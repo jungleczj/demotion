@@ -1,0 +1,19 @@
+✔ landscape burned captions retain their original size, opaque white and separation from bright footage (4139.408334ms)
+ℹ {"format":"landscape","actualGlyphHeight":18,"whitePixels":1422,"darkPixels":10912,"realModelRequests":0}
+✔ portrait burned captions retain their original size, opaque white and separation from bright footage (3877.999542ms)
+ℹ {"format":"portrait","actualGlyphHeight":35,"whitePixels":6168,"darkPixels":28943,"realModelRequests":0}
+✔ queued production persists independently of UI and only explicit stop cancels it (32.403333ms)
+✔ simultaneous submissions for the same project share one durable task (7.861208ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (8.654333ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (8.677708ms)
+✔ finished video captions cannot be dimmed by a second preview vignette (34.735791ms)
+✔ landscape draft captions scale with the video canvas and retain opaque text (21.226333ms)
+✔ portrait draft captions scale with the video canvas and retain opaque text (24.702291ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8639.973791

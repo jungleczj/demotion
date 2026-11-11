@@ -43,7 +43,7 @@ function parts(text) {
 
 export function makeAss(text, duration, width, height, offset = 0) {
   const scale = Math.min(width, height) / style.referenceShortSide;
-  const size = Math.round(style.fontSize * scale);
+  const size = Math.round(height * style.fontHeightRatio);
   const marginX = Math.round(width * style.safeMargin), marginY = Math.round(height * style.safeMargin);
   const alpha = Math.round((1 - style.backgroundOpacity) * 255).toString(16).padStart(2, '0').toUpperCase();
   const base = `${style.fontFamily},${size}`;

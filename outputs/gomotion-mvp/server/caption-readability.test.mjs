@@ -14,7 +14,7 @@ import { run } from './process.mjs';
 // Actual libass/FFmpeg pixels, with a flat grey backdrop. The artificial tone
 // avoids provider requests; this checks text readability, never voice quality.
 for (const [format, width, height] of [['landscape', 1280, 720], ['portrait', 720, 1280]]) {
-  test(`${format} burned captions remain large, opaque white and separated from bright footage`, { timeout: 60000 }, async (t) => {
+  test(`${format} burned captions retain their original size, opaque white and separation from bright footage`, { timeout: 60000 }, async (t) => {
     const folder = await mkdtemp(path.join(os.tmpdir(), 'caption-readability-'));
     const id = `upload:${randomUUID()}`;
     let audio;
@@ -73,7 +73,9 @@ for (const [format, width, height] of [['landscape', 1280, 720], ['portrait', 72
       }
       assert.ok(detailedGlyphs >= 5, `Chinese glyphs must contain real strokes, not hollow boxes: ${detailedGlyphs}`);
       assert.ok(shapes.size >= 5, `Chinese must have distinct glyphs, not repeated missing-font boxes: ${shapes.size} shapes`);
-      assert.ok(bottom - top + 1 >= 28, `actual glyphs are too small at ${width}x${height}: ${bottom - top + 1}px`);
+      const glyphHeight = bottom - top + 1;
+      const [minimumHeight, maximumHeight] = format === 'landscape' ? [14, 24] : [28, 42];
+      assert.ok(glyphHeight >= minimumHeight && glyphHeight <= maximumHeight, `restore the original caption size at ${width}x${height}: ${glyphHeight}px`);
       assert.ok(dark > white, `dark backing must visibly separate letters from bright footage: ${dark} vs ${white}`);
       assert.ok(left >= width * .05 && right <= width * .95, 'captions remain inside horizontal safe area');
       assert.ok(bottom <= height * .94, 'captions remain above bottom safe area');

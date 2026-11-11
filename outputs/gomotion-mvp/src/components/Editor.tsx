@@ -29,7 +29,8 @@ export default function Editor({ project, providers, generating, progress, task,
   const scene = project.scenes[active];
   const total = project.scenes.reduce((sum, s) => sum + s.duration, 0);
   const captionWidth = project.format === 'portrait' ? videoProfile.height : videoProfile.width;
-  const captionSize = captionStyle.fontSize * Math.min(videoProfile.width, videoProfile.height) / captionStyle.referenceShortSide / captionWidth * 100;
+  const captionHeight = project.format === 'portrait' ? videoProfile.width : videoProfile.height;
+  const captionSize = Math.round(captionHeight * captionStyle.fontHeightRatio) / captionWidth * 100;
   const filled = project.scenes.filter((s) => s.selected).length;
   const approved = project.scenes.filter(contentApproved).length;
   const missing = project.scenes.filter((s) => s.selected?.kind !== 'video').length;

@@ -29,7 +29,8 @@ for (const [format, width] of [['landscape', 600], ['portrait', 260]]) test(`${f
   assert.ok(caption, 'caption style must be driven by the shared output style');
   const font = Number(caption[1].match(/font-size:([\d.]+)cqw/)?.[1]);
   assert.ok(Number.isFinite(font), 'caption sizing must follow canvas width, not the page viewport');
-  assert.ok(font * width / 100 >= (format === 'landscape' ? 22 : 17), 'scaled glyph em remains legible in the actual preview size');
+  const expectedPixels = format === 'landscape' ? 27 / 1280 * width : 49 / 720 * width;
+  assert.ok(Math.abs(font * width / 100 - expectedPixels) < .01, 'preview retains the original height-based caption size');
   assert.match(html, /background-color:rgba\(0, 0, 0, 0\.82\)/);
   assert.match(html, /color:#fff|color:white|color:#ffffff/);
 });
