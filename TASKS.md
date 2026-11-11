@@ -1,6 +1,6 @@
 # GoMotion MVP 任务与验收
 
-最后更新：2026-11-11 22:40（Asia/Shanghai）
+最后更新：2026-11-11 22:43（Asia/Shanghai）
 工作台：<http://localhost:3027/>
 应用入口：[MVP README](outputs/gomotion-mvp/README.md)
 
@@ -45,7 +45,7 @@
 | Y2 | 直接在后台接入更多视频、图片、音乐来源，不增加前台入口 | 自动检索新来源；保留原件/许可/作者；视频只有可验证原件才入可剪列表；音乐真实下载与完整解码后才供文件；失败不得伪装成功，密钥不入Git。 | 已实现；部分真实来源验收通过 | 图片自动扩展Openverse+Cleveland；Cleveland实际CC0原图下载和完整解码通过。视频自动补查已有key的stock源；YouTube仅元数据线索，不伪装成MP4。音乐后台检索/下载接口接通但真实音乐下载未通过；Openverse当前网络失败。21项定向检查通过，并纳入241项全范围回归。本地3027已加载。[实现与来源报告](outputs/youtube-expanded-media-sources-2026-11-11.md)、[真实联网证据](outputs/expanded-media-sources-live-2026-11-11.json)。 |
 | M1 | 参考 GoMotion，取得不消耗生成额度的背景音乐 | 核对曲目来源与实际许可；实际音频可解码并缓存复用；配乐不新增模型/视频检索调用；整片连续且不盖旁白，无逐镜设置。 | 音乐后台已实现；真实新源下载与混音未通过 | 已新增Scott Buckley逐曲CC BY官方曲库及Openverse音频适配、检索/按需下载/完整解码/哈希缓存；本地音乐接口已接通。Undertow官网许可和MP3链接核对通过，但真实MP3下载120秒超时，未冒充可播或入片。原GoMotion试听文件的逐曲授权仍未知，不自动使用。[后台增源与实测](outputs/youtube-expanded-media-sources-2026-11-11.md)、[许可审计](outputs/gomotion-music-license-audit-2026-11-11.md)、[早期音乐研究](outputs/gomotion-background-music-2026-11-11.md)。 |
 | C1 | 字幕清晰；按最新要求恢复原来大小 | 草稿与导出恢复原字号（画面高度×0.038），保留白字/描边/底色；成片无二次暗层；中文无方框；横竖实际帧及浏览器检查。 | 已实现；实际文件通过，浏览器待验收 | 已按用户最新反馈恢复横屏27、竖屏49字号；保留对比度与字体修复，样式版本3防止复用放大版缓存。最新9项通过，实际横竖字形18/35像素；类型检查与构建通过。本地服务已加载。已有成片需重新导出。[字号恢复检查](outputs/subtitle-size-restored-regression-2026-11-11.txt)、[字幕报告](outputs/subtitle-readability-progress-2026-11-11.md)。 |
-| G1 | 推送到 jungleczj/demotion | 源码/任务/报告可克隆，排除密钥/依赖/媒体/第三方代码；核对远端分支和提交。 | 已完成 | 本轮198文件约2.06MB凭证扫描0匹配，65文件改动已推送main：[a0a9671](https://github.com/jungleczj/demotion/commit/a0a9671)。初始提交[7c1c569](https://github.com/jungleczj/demotion/commit/7c1c569)。依赖、媒体缓存与第三方原始页面/脚本排除；[仓库](https://github.com/jungleczj/demotion)。 |
+| G1 | 推送到 jungleczj/demotion | 源码/任务/报告可克隆，排除密钥/依赖/媒体/第三方代码；核对远端分支和提交。 | 已完成 | 最新31文件的任务14云端制作、来源列表和证据已推送main：[de0dbcb](https://github.com/jungleczj/demotion/commit/de0dbcbebd1a334f567b77f4fd2312a09cd1833e)，远端提交已实际核对。221文件约2.22MB凭证/排除内容扫描0匹配；依赖、媒体和环境文件未入Git。此前[a0a9671](https://github.com/jungleczj/demotion/commit/a0a9671)保留历史。[仓库](https://github.com/jungleczj/demotion)。 |
 | D1 | 修复Vercel线上“工作台无法连接／声音列表无法加载” | 线上配置/声音/任务接口返回真实JSON；实际试听、完整制作、Range播放和下载可用；离开/刷新不取消任务，后台重启可恢复；目标平台实际验证。 | 连接、声音目录和真实短片云端通过；浏览器待验收 | 配置/声音200、30声音/15语言；真实中文试听此前通过。现已补private Blob与独立Linux执行，实际两幕短片制作、审片、Range、完整解码和失败检查点恢复通过；本地已有任务未取消。浏览器录屏/听感与长视频仍未验收。[任务14最新实测](outputs/task-14-cloud-live-acceptance-2026-11-11.json)、[实施记录](outputs/task-14-cloud-generation-progress-2026-11-11.md)、[部署说明](outputs/gomotion-mvp/DEPLOYMENT.md)。 |
 
 ## 本轮本地验收摘要
@@ -245,6 +245,8 @@
 - 本聊天每小时更新保持开启（automation ID `gomotion`），本轮已将提示补齐第13项、后台增源及云端制作的证据边界。下一步优先核对用户对线上页面的复核；来源补片真实整片、速度、长视频与播放/声音的人工作验收仍保留。
 
 ## 更新日志
+
+- **2026-11-11 22:43**：已将任务14真实云端制作、播放/下载修复与第15项来源列表提交并推送[de0dbcb](https://github.com/jungleczj/demotion/commit/de0dbcbebd1a334f567b77f4fd2312a09cd1833e)，远端main实际核对一致。最终263/263通过、类型/构建通过、221文件凭证扫描0匹配；正式render=true，30声音/15语言，YouTube已连接。浏览器点击待用户复核，第16项及其他未验收项目继续保留。
 
 - **2026-11-11 22:37**：第14项已正式部署；实际两幕短片云端完成并从失败检查点恢复，MP4/SRT/来源文件、Range206、全片解码及大于4.5MB素材均通过。Blob实测发现的异常分类、条件写和字幕媒体类型已修复。保留续做/冷生成与浏览器验收边界，第15项亦已部署，第16项仍待处理。[实测](outputs/task-14-cloud-live-acceptance-2026-11-11.json)。
 
