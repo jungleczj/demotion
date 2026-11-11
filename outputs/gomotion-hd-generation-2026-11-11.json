@@ -1,0 +1,333 @@
+{
+  "taskId": "03d2a402-8ee5-48ae-a1c7-523b5171201d",
+  "status": "done",
+  "coldCache": true,
+  "elapsedSeconds": 139.724,
+  "videoSeconds": 30.722375,
+  "timings": {
+    "planningMs": 6220,
+    "matchingMs": 93219,
+    "renderAndReviewMs": 40283
+  },
+  "videoProfile": {
+    "version": 1,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "label": "720p"
+  },
+  "review": {
+    "exportId": "1c45a0c0-eb60-424b-8074-827f631cde95",
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "passed": true,
+    "audioReviewed": true,
+    "watermarkFree": true,
+    "summary": "视频画面与旁白内容对应良好，音画同步且发音清晰自然，整体画质清晰无水印残留。",
+    "issues": [],
+    "analyzedUntil": 30.966666666666665,
+    "totalDuration": 30.966666666666665,
+    "limitations": [
+      "已读取实际画面和声音；AI 审片不能替代人工试听及最终审看"
+    ],
+    "events": [
+      {
+        "stage": "rendered-audiovisual-review-0",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T02:56:07.937Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 3672,
+          "outputTokens": 83,
+          "totalTokens": 3755
+        },
+        "durationMs": 18956
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "text": "清晨，海浪拍打着海岸，白色浪花沿着沙滩缓缓散开。",
+      "duration": 7.433333333333334,
+      "asset": "pixabay:4006",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "text": "潜入温暖的浅海，珊瑚礁为形形色色的鱼类提供栖息之所。",
+      "duration": 8.4,
+      "asset": "pixabay:259362",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "text": "成群的鱼儿在珊瑚之间游动，构成一个充满生命力的海底世界。",
+      "duration": 7.866666666666665,
+      "asset": "pixabay:263252",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "text": "离开海岸，鲸鱼在开阔的水域中游动，展现海洋生命的力量。",
+      "duration": 7.266666666666666,
+      "asset": "pixabay:244188",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "sequence": {
+    "complete": true,
+    "missingScenes": [],
+    "analyzed": 8,
+    "candidates": 8,
+    "method": "ai-video-director",
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "summary": "全片从清晨海滩浪花自然过渡至浅海珊瑚礁鱼群，再聚焦珊瑚间穿梭的繁盛生机，最后转向开阔大洋中的巨鲸，节奏与视觉层次连贯完整。",
+    "warnings": [],
+    "bytes": 50850209,
+    "events": [
+      {
+        "stage": "semantic-search-plan",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "text",
+        "mediaCount": 0,
+        "at": "2026-11-11T02:54:13.390Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 653,
+          "outputTokens": 275,
+          "totalTokens": 928
+        },
+        "durationMs": 3950
+      },
+      {
+        "stage": "semantic-retrieval-1",
+        "engine": "pixabay+coverr",
+        "status": "completed",
+        "inputType": "AI-query",
+        "mediaCount": 25,
+        "durationMs": 2410,
+        "detail": "检索词：beach morning surf；目录返回不等于内容已审核"
+      },
+      {
+        "stage": "semantic-retrieval-4",
+        "engine": "pixabay+coverr",
+        "status": "completed",
+        "inputType": "AI-query",
+        "mediaCount": 24,
+        "durationMs": 2407,
+        "detail": "检索词：whale swimming ocean；目录返回不等于内容已审核"
+      },
+      {
+        "stage": "semantic-retrieval-2",
+        "engine": "pixabay+coverr",
+        "status": "completed",
+        "inputType": "AI-query",
+        "mediaCount": 20,
+        "durationMs": 2682,
+        "detail": "检索词：underwater tropical reef；目录返回不等于内容已审核"
+      },
+      {
+        "stage": "semantic-retrieval-3",
+        "engine": "pixabay+coverr",
+        "status": "completed",
+        "inputType": "AI-query",
+        "mediaCount": 22,
+        "durationMs": 2763,
+        "detail": "检索词：fish school coral；目录返回不等于内容已审核"
+      },
+      {
+        "stage": "catalog-shortlist",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "text",
+        "mediaCount": 0,
+        "at": "2026-11-11T02:54:20.107Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 7474,
+          "outputTokens": 355,
+          "totalTokens": 7829
+        },
+        "durationMs": 4072
+      },
+      {
+        "stage": "narration-alignment",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "audio",
+        "mediaCount": 1,
+        "at": "2026-11-11T02:54:27.882Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 1075,
+          "outputTokens": 97,
+          "totalTokens": 1172
+        },
+        "durationMs": 3536
+      },
+      {
+        "stage": "narration-timing",
+        "engine": "gemini-tts",
+        "model": "gemini-2.5-flash-preview-tts",
+        "status": "completed",
+        "durationMs": 18030,
+        "inputType": "text",
+        "mediaCount": 4
+      },
+      {
+        "stage": "prepare-media-4",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 15819,
+        "detail": "pixabay:244188"
+      },
+      {
+        "stage": "prepare-media-1",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 21674,
+        "detail": "pixabay:143754"
+      },
+      {
+        "stage": "prepare-media-2",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 24365,
+        "detail": "pixabay:259362"
+      },
+      {
+        "stage": "prepare-media-4",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 13714,
+        "detail": "pixabay:32451"
+      },
+      {
+        "stage": "visual-scene-4-1",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 2,
+        "at": "2026-11-11T02:55:00.954Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 2645,
+          "outputTokens": 351,
+          "totalTokens": 2996
+        },
+        "durationMs": 5176
+      },
+      {
+        "stage": "prepare-media-3",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 39436,
+        "detail": "pixabay:263252"
+      },
+      {
+        "stage": "prepare-media-2",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 16811,
+        "detail": "pixabay:290900"
+      },
+      {
+        "stage": "visual-scene-2-1",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 2,
+        "at": "2026-11-11T02:55:12.596Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 2840,
+          "outputTokens": 402,
+          "totalTokens": 3242
+        },
+        "durationMs": 16123
+      },
+      {
+        "stage": "prepare-media-1",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 23331,
+        "detail": "pixabay:4006"
+      },
+      {
+        "stage": "visual-scene-1-1",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 2,
+        "at": "2026-11-11T02:55:16.424Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 3079,
+          "outputTokens": 339,
+          "totalTokens": 3418
+        },
+        "durationMs": 6983
+      },
+      {
+        "stage": "prepare-media-3",
+        "engine": "media-reader",
+        "status": "completed",
+        "durationMs": 13996,
+        "detail": "pixabay:263237"
+      },
+      {
+        "stage": "visual-scene-3-1",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 2,
+        "at": "2026-11-11T02:55:24.852Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 2280,
+          "outputTokens": 355,
+          "totalTokens": 2635
+        },
+        "durationMs": 9136
+      },
+      {
+        "stage": "whole-film-edit",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "timestamped-images",
+        "mediaCount": 12,
+        "at": "2026-11-11T02:55:33.989Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 15312,
+          "outputTokens": 712,
+          "totalTokens": 16024
+        },
+        "durationMs": 12601
+      }
+    ],
+    "usage": {
+      "inputTokens": 35358,
+      "outputTokens": 2886,
+      "totalTokens": 38244
+    },
+    "analyzedUntil": 18.02,
+    "retries": 0,
+    "retryLimit": 3
+  }
+}

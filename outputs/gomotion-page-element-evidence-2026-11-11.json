@@ -1,0 +1,51 @@
+{
+  "url": "https://gomotionai.com/app",
+  "fetchedAt": "2026-11-11T08:32:40.299Z",
+  "bytes": 648203,
+  "locators": [
+    {
+      "term": "const bgFiles",
+      "line": 3942
+    },
+    {
+      "term": "const bgData",
+      "line": 5942
+    },
+    {
+      "term": "const AU_BGS",
+      "line": 3152
+    },
+    {
+      "term": "async _startGen",
+      "line": 3925
+    },
+    {
+      "term": "_previewMusic(rel)",
+      "line": 3893
+    },
+    {
+      "term": "_effectiveMusicTrack()",
+      "line": 3915
+    },
+    {
+      "term": "toggleAnims:",
+      "line": 6934
+    },
+    {
+      "term": "Charts, maps",
+      "line": 2603
+    },
+    {
+      "term": "anims: s.anims",
+      "line": 6933
+    },
+    {
+      "term": "options = { background",
+      "line": 4012
+    },
+    {
+      "term": "mode: 'auto'",
+      "line": 4026
+    }
+  ]
+}

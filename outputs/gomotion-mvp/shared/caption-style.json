@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "referenceShortSide": 720,
+  "fontSize": 50,
+  "fontFamily": "PingFang SC",
+  "fontWeight": 700,
+  "safeMargin": 0.08,
+  "backgroundOpacity": 0.82,
+  "outline": 2,
+  "shadow": 1,
+  "boxPadding": 7
+}

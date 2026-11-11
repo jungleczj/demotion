@@ -1,0 +1,17 @@
+[
+ {"code":"zh-CN","name":"中文","native":"普通话","speech":"Mandarin Chinese","sample":"海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"},
+ {"code":"en","name":"英语","native":"English","speech":"English","sample":"The ocean holds more stories than we can imagine. Let us discover another side of our world."},
+ {"code":"nl","name":"荷兰语","native":"Nederlands","speech":"Dutch","sample":"De oceaan heeft meer verhalen dan we kunnen bedenken. Laten we samen een andere kant van de wereld ontdekken."},
+ {"code":"fr","name":"法语","native":"Français","speech":"French","sample":"L'océan cache bien plus d'histoires que nous ne pouvons l'imaginer. Découvrons ensemble une autre facette du monde."},
+ {"code":"de","name":"德语","native":"Deutsch","speech":"German","sample":"Der Ozean birgt mehr Geschichten, als wir uns vorstellen können. Entdecken wir gemeinsam eine andere Seite der Welt."},
+ {"code":"hi","name":"印地语","native":"हिन्दी","speech":"Hindi","sample":"समुद्र में हमारी कल्पना से कहीं अधिक कहानियाँ छिपी हैं। आइए, मिलकर दुनिया का एक नया पहलू खोजें।"},
+ {"code":"id","name":"印度尼西亚语","native":"Bahasa Indonesia","speech":"Indonesian","sample":"Lautan menyimpan lebih banyak cerita daripada yang kita bayangkan. Mari kita temukan sisi lain dunia bersama."},
+ {"code":"it","name":"意大利语","native":"Italiano","speech":"Italian","sample":"L'oceano custodisce più storie di quante possiamo immaginare. Scopriamo insieme un altro lato del mondo."},
+ {"code":"pl","name":"波兰语","native":"Polski","speech":"Polish","sample":"Ocean skrywa więcej historii, niż możemy sobie wyobrazić. Odkryjmy razem inną stronę świata."},
+ {"code":"pt","name":"葡萄牙语","native":"Português","speech":"Portuguese","sample":"O oceano guarda mais histórias do que podemos imaginar. Vamos descobrir juntos um outro lado do mundo."},
+ {"code":"ru","name":"俄语","native":"Русский","speech":"Russian","sample":"Океан хранит больше историй, чем мы можем представить. Давайте вместе откроем другую сторону мира."},
+ {"code":"es","name":"西班牙语","native":"Español","speech":"Spanish","sample":"El océano guarda más historias de las que podemos imaginar. Descubramos juntos otra cara del mundo."},
+ {"code":"sv","name":"瑞典语","native":"Svenska","speech":"Swedish","sample":"Havet rymmer fler berättelser än vi kan föreställa oss. Låt oss tillsammans upptäcka en annan sida av världen."},
+ {"code":"tr","name":"土耳其语","native":"Türkçe","speech":"Turkish","sample":"Okyanus, hayal edebileceğimizden çok daha fazla hikâye saklıyor. Gelin, dünyanın başka bir yüzünü birlikte keşfedelim."},
+ {"code":"uk","name":"乌克兰语","native":"Українська","speech":"Ukrainian","sample":"Океан зберігає більше історій, ніж ми можемо уявити. Відкриймо разом інший бік світу."}
+]

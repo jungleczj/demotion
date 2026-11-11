@@ -1,0 +1,44 @@
+✔ rejects legacy freehand plans and sources that were not actually read (1.028125ms)
+✔ only permits source-supported regions and exact narration annotations (1.413875ms)
+✔ source remains fixed while grounded region highlights and labels animate (3257.279334ms)
+✔ worker decodes acquired source and renders HD annotation layers in both orientations (1881.626875ms)
+✔ cancelled source animations leave no partial video or worker behind (2296.352416ms)
+✔ fallback revalidates saved source files and keeps unfilled scenes incomplete (66.54175ms)
+✔ source-backed fallback retains successful files and provenance while another gap remains (1345.880542ms)
+✔ four independent missing scenes can search images together without serial waiting (1.915459ms)
+✔ render slots cap active workers and release queued work after a failure (0.494667ms)
+✔ render rejection removes the unselected source files (452.071583ms)
+✔ a later service block preserves completed source scenes in a durable checkpoint (2487.000417ms)
+✔ malformed v2 render plans are rejected before accessing annotation arrays (0.748625ms)
+✔ worker rejects legacy or malformed source plans with a controlled validation error (90.218333ms)
+✔ queued production persists independently of UI and only explicit stop cancels it (11.264ms)
+✔ simultaneous submissions for the same project share one durable task (1.961042ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (2.754542ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (2.323334ms)
+✔ acquires the actual file and derives dimensions and checksum from full decoding (330.938125ms)
+✔ large source images retain the original file while bounding full-frame review pixels (523.813ms)
+✔ content inspection sends real acquired image bytes and binds the decision to those bytes (268.564375ms)
+✔ image search is bounded, rejects wrong subjects, and never creates assets when sources fail (865.807958ms)
+✔ candidate cleanup isolates scenes and removes cancelled image reads (675.40625ms)
+✔ export rejects legacy diagrams before requesting voice or processing media (9.937792ms)
+✔ final audiovisual review cannot approve an old arbitrary diagram manifest (2.687916ms)
+✔ export compares submitted observations with the registered canonical asset before voice requests (3.139292ms)
+✔ ordinary footage needs no generated-image receipt, while legacy diagrams do (1.047542ms)
+✔ a complete matching source-image receipt is accepted (1.876875ms)
+✔ a valid source-image plan cannot be attached to a different narration scene (0.218875ms)
+✔ evidence quotes use the same whitespace normalization as the source-plan validator (0.302083ms)
+✔ an image title cannot replace an actual visual-read receipt (0.139916ms)
+✔ a wrong species or unsupported annotation cannot pass source provenance (0.209125ms)
+✔ output receipt cannot silently swap the recorded base image (0.161917ms)
+✔ malformed processing operations return a rejection rather than throwing (0.105042ms)
+✔ rendering requires the exact original and decoded files that were reviewed (7.648291ms)
+✔ submitted content review cannot replace the registered source observation (0.25275ms)
+✔ source gate enforces the strict plan rules for distinct evidence annotations (0.139125ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15128.682125

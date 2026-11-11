@@ -1,0 +1,74 @@
+{
+  "taskId": "9d1a7812-4e8f-4d4f-b89d-8f1456714c71",
+  "status": "done",
+  "videoSeconds": 31.689458,
+  "wallSeconds": 106.388,
+  "timings": {
+    "planningMs": 6306,
+    "matchingMs": 62743,
+    "renderAndReviewMs": 37334
+  },
+  "review": {
+    "exportId": "990ff277-2c83-4c0f-af25-c2b590faf278",
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "passed": true,
+    "audioReviewed": true,
+    "summary": "视频包含四段海洋场景，画面与旁白内容对应良好，语音清晰连贯，画面切换基本平稳。",
+    "issues": [
+      {
+        "time": 24.3,
+        "sceneIndex": 4,
+        "type": "content",
+        "severity": "low",
+        "description": "镜头底部带有第三方机构水印及许可文字",
+        "suggestion": "替换为无水印航拍素材或适当裁切"
+      }
+    ],
+    "analyzedUntil": 31.933333333333334,
+    "totalDuration": 31.933333333333334,
+    "limitations": [
+      "已读取实际画面和声音；AI 审片不能替代人工试听及最终审看"
+    ],
+    "events": [
+      {
+        "stage": "rendered-audiovisual-review-0",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T02:12:53.668Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 3668,
+          "outputTokens": 146,
+          "totalTokens": 3814
+        },
+        "durationMs": 9348
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "text": "清晨，海浪不断涌向海岸，白色浪花在沙滩上缓缓散开。",
+      "duration": 7.9,
+      "asset": "pixabay:4006"
+    },
+    {
+      "text": "潜入温暖的浅海，珊瑚礁为形形色色的鱼类提供栖息之所。",
+      "duration": 8.166666666666666,
+      "asset": "pixabay:242785"
+    },
+    {
+      "text": "成群的鱼儿在珊瑚之间游动，构成一个充满生命力的海底世界。",
+      "duration": 8.233333333333334,
+      "asset": "pixabay:265149"
+    },
+    {
+      "text": "离开海岸，鲸鱼在开阔的水域中游动，展现海洋生命的力量。",
+      "duration": 7.633333333333333,
+      "asset": "commons:139301091"
+    }
+  ]
+}

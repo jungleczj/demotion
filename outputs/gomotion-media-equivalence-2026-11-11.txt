@@ -1,0 +1,12 @@
+✔ one decode preserves actual-video input, ten sample positions, pixels and boundary frames (6895.708708ms)
+ℹ {"fixture":{"width":1280,"height":720,"duration":79.4},"times":[{"round":0,"outputCache":"first-local-file/fresh-output","oldSeconds":0.3951012910000001,"newSeconds":0.21957783300000006,"phases":{"playbackMs":null,"statMs":0.133,"probeMs":37.445,"ffmpegMs":180.001,"frameReadMs":0.935,"videoReadMs":0.139,"queueMs":null,"downloadMs":null,"ffmpegInvocations":1,"playbackBypassed":true},"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true},{"round":1,"outputCache":"repeat-local-file/fresh-output","oldSeconds":0.38443654200000016,"newSeconds":0.22280824999999993,"phases":{"playbackMs":null,"statMs":0.036,"probeMs":37.385,"ffmpegMs":184.293,"frameReadMs":0.939,"videoReadMs":0.091,"queueMs":null,"downloadMs":null,"ffmpegInvocations":1,"playbackBypassed":true},"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true},{"round":2,"outputCache":"repeat-local-file/fresh-output","oldSeconds":0.3854624999999999,"newSeconds":0.21925487500000007,"phases":{"playbackMs":null,"statMs":0.037,"probeMs":37.764,"ffmpegMs":180.593,"frameReadMs":0.699,"videoReadMs":0.098,"queueMs":null,"downloadMs":null,"ffmpegInvocations":1,"playbackBypassed":true},"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true}],"fractionalOffset":{"offset":2.173,"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true},"longWindow":{"duration":66.75,"dimensions":[320,180],"decodedFrames":267,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true}}
+✔ audio review honors a bounded analysisDuration and original source offset (1786.408167ms)
+✔ preparation failures retain measured phases without inventing download or queue durations (0.40625ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8752.069667

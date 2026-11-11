@@ -1,0 +1,25 @@
+✔ landscape burned captions remain large, opaque white and separated from bright footage (4847.378167ms)
+ℹ {"format":"landscape","actualGlyphHeight":35,"whitePixels":6501,"darkPixels":30004,"realModelRequests":0}
+✔ portrait burned captions remain large, opaque white and separated from bright footage (3207.600875ms)
+ℹ {"format":"portrait","actualGlyphHeight":36,"whitePixels":6486,"darkPixels":29988,"realModelRequests":0}
+✔ an authentication denial stops acceptance immediately and keeps later voices unrequested (8.567209ms)
+✔ an executor that finishes after a stop cannot publish a successful acceptance result (6.09375ms)
+✔ invalid acceptance concurrency cannot silently skip work or exceed two requests (2.139125ms)
+✔ an already interrupted acceptance queue never starts a voice request (0.773458ms)
+✔ voice acceptance can select an isolated loopback port while preserving the default and making no requests (655.361125ms)
+✔ voice acceptance rejects remote, credential-bearing or non-root base URLs before execution (2106.418584ms)
+✔ queued production persists independently of UI and only explicit stop cancels it (38.528916ms)
+✔ simultaneous submissions for the same project share one durable task (5.962583ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (10.522083ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (8.930875ms)
+✔ finished video captions cannot be dimmed by a second preview vignette (40.055917ms)
+✔ landscape draft captions scale with the video canvas and retain opaque text (19.983625ms)
+✔ portrait draft captions scale with the video canvas and retain opaque text (24.385917ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20370.61875

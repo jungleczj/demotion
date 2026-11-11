@@ -1,0 +1,1735 @@
+{
+  "schema_version": "1.0",
+  "researched_on": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "scope": "覆盖当前 MVP 全部主题，并补充未列出的可用方向；不是对全球每个素材站的穷举。",
+  "methodology": [
+    "仅引用官方当前页面、官方开发文档与直接观察到的跳转。",
+    "未注册新账户、未验证新 key 实际签发或生产申请结果。",
+    "主题路由与覆盖高低是根据目录定位的产品判断，未完成等量查询基准，不能称为已测得某库某类最多。",
+    "不保存、不复述任何用户密钥。",
+    "API 免费、媒体免费、可下载、可商业再剪辑是四个独立条件。"
+  ],
+  "provider_count": 25,
+  "existing_topic_count": 43,
+  "additional_topic_count": 16,
+  "providers": [
+    {
+      "id": "pixabay",
+      "name": "Pixabay",
+      "api_access": "free_self_service_key",
+      "media_types": [
+        "video",
+        "image"
+      ],
+      "content_origin": "社区实拍、动画及 AI 内容混合；film/animation 不是可靠的非 AI 标志",
+      "strongest_topics": [
+        "通用生活",
+        "自然风景",
+        "动物宠物",
+        "城市",
+        "商业",
+        "食物",
+        "运动",
+        "抽象动效"
+      ],
+      "rights_summary": "Content License 允许免费改编使用；禁止原样独立分发或转售，品牌、肖像等另有边界。API 展示搜索结果要标示来源。",
+      "homepage": "https://pixabay.com/videos/",
+      "api_docs": "https://pixabay.com/api/docs/",
+      "key_application": "https://pixabay.com/api/docs/",
+      "license_url": "https://pixabay.com/service/license-summary/",
+      "endpoints": [
+        "GET https://pixabay.com/api/videos/?key=SERVER_SIDE_KEY&q=QUERY",
+        "GET https://pixabay.com/api/?key=SERVER_SIDE_KEY&q=QUERY"
+      ],
+      "limits": "默认 100 次/60 秒；查询缓存 24 小时；禁止系统性批量下载，要求真实用户请求。",
+      "integration_priority": "P0",
+      "caveat": "文档仍显示登录/注册查看 key；用户已有 key。文档没有公开的通用排除 AI 参数，不要杜撰 exclude_ai。API 查询不是批量采集授权。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "commons",
+      "name": "Wikimedia Commons",
+      "api_access": "free_no_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "实拍、历史资料、动画和部分 AI 内容并存",
+      "strongest_topics": [
+        "具名地标",
+        "物种",
+        "铁路航空",
+        "历史",
+        "艺术文化",
+        "科学"
+      ],
+      "rights_summary": "按每条文件的 PD/CC0/CC BY/CC BY-SA 等条件使用；作者署名、许可链接及改编的相同方式共享条件可能适用，平台不保证所有权利无误。",
+      "homepage": "https://commons.wikimedia.org/",
+      "api_docs": "https://commons.wikimedia.org/wiki/Help:Machine-readable_data",
+      "key_application": null,
+      "license_url": "https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia",
+      "endpoints": [
+        "GET https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrsearch=QUERY%20filetype:video&prop=imageinfo&iiprop=url|extmetadata&format=json"
+      ],
+      "limits": "设置可识别 User-Agent；限流和服务政策适用；无固定无限请求承诺。",
+      "integration_priority": "P0",
+      "caveat": "视频常为 WebM/Ogg，不保证 MP4；视频密度低于图片。读取 extmetadata，并提取 LicenseUrl、Artist、Credit。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "nasa",
+      "name": "NASA Image and Video Library",
+      "api_access": "free_no_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "任务实拍、历史档案、CGI/科学可视化混合",
+      "strongest_topics": [
+        "航天任务",
+        "火箭",
+        "宇航员",
+        "月球",
+        "地球观测",
+        "航空研究"
+      ],
+      "rights_summary": "NASA 自有素材一般在美国无版权保护；第三方素材例外，须署 NASA 来源，不能暗示背书；广告中的标志及可识别人员有额外约束。",
+      "homepage": "https://images.nasa.gov/",
+      "api_docs": "https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf",
+      "key_application": null,
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "endpoints": [
+        "GET https://images-api.nasa.gov/search?q=QUERY&media_type=video",
+        "GET https://images-api.nasa.gov/asset/NASA_ID"
+      ],
+      "limits": "本视频库 API 不需要 api.nasa.gov key；其他 NASA API 的 DEMO_KEY/配额不要混用。",
+      "integration_priority": "P0",
+      "caveat": "先搜索 nasa_id，再请求 asset manifest 选视频变体；搜索结果的预览 links 不一定是视频文件。科学动画不能冒充任务实录。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "archive",
+      "name": "Internet Archive Moving Image Archive",
+      "api_access": "free_no_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "旧电影、历史档案、用户上传与当代内容，出处与许可混合",
+      "strongest_topics": [
+        "历史战争",
+        "旧工业交通",
+        "早期电影",
+        "旧广告",
+        "社会文化"
+      ],
+      "rights_summary": "API 免费读取不代表条目可免费再剪辑。优先明确 PD/CC0/CC BY 的可信机构条目；无许可或仅可观看者不自动进入导出。",
+      "homepage": "https://archive.org/details/movies",
+      "api_docs": "https://archive.org/developers/",
+      "key_application": null,
+      "license_url": "https://archive.org/about/terms.php",
+      "endpoints": [
+        "GET https://archive.org/advancedsearch.php?q=mediatype:movies%20AND%20QUERY&output=json",
+        "GET https://archive.org/metadata/IDENTIFIER"
+      ],
+      "limits": "合理并发、缓存、可识别 User-Agent，遵从 429/Retry-After；不是全站镜像许可。",
+      "integration_priority": "P0",
+      "caveat": "metadata.files 取可下载变体；licenseurl 缺失很常见，标为待核实。平台不新设版权不代表上传者有权授权。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "coverr",
+      "name": "Coverr",
+      "api_access": "free_demo_key_paid_production",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "实拍和 AI 库内容同索引，可按 is_ai_generated 过滤",
+      "strongest_topics": [
+        "航拍风景",
+        "城市旅行",
+        "人物生活",
+        "健身",
+        "商业",
+        "食物",
+        "科技"
+      ],
+      "rights_summary": "2026-11-04 最新许可明确 Demo 在内各 API 层可用于商业 SaaS/编辑器；Demo 必须署 Coverr/作者链接。Premium、赞助商内容另受访问和授权限制。禁止原样转售、竞争素材库、批量下载和模型训练。",
+      "homepage": "https://coverr.co/stock-video-footage",
+      "api_docs": "https://api.coverr.co/docs/start/",
+      "key_application": "https://coverr.co/developers/",
+      "license_url": "https://coverr.co/license",
+      "endpoints": [
+        "GET https://api.coverr.co/videos?query=QUERY&urls=true&filter=is_ai_generated:false",
+        "GET https://api.coverr.co/videos/ID",
+        "PATCH https://api.coverr.co/videos/ID/stats/downloads"
+      ],
+      "limits": "Demo 免费 50 次/小时；Production 2,000 次/小时需要 Pro 或 Ultimate；Premium 一般需 Plus+。",
+      "integration_priority": "P1",
+      "caveat": "最新许可要求选用/下载时计数；旧 API 页称 recommended，按最新许可执行。旧 intro 曾否定商业使用，最新许可已明确允许；仍应保存所用许可版本。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "dvids",
+      "name": "DVIDS",
+      "api_access": "free_self_service_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "以美国国防/联邦部门现场实拍与报道为主，也有成片和图形",
+      "strongest_topics": [
+        "军事训练装备",
+        "舰船航空",
+        "救灾",
+        "人道援助",
+        "军医",
+        "军人体能",
+        "后勤工业"
+      ],
+      "rights_summary": "API 条款明确免费商业使用；版权页注明联邦作品原则上 PD，单条标注其他版权者除外；不能暗示国防部门背书，保留拍摄者信息。",
+      "homepage": "https://www.dvidshub.net/",
+      "api_docs": "https://api.dvidshub.net/docs",
+      "key_application": "https://api.dvidshub.net/",
+      "license_url": "https://api.dvidshub.net/docs/copyright",
+      "endpoints": [
+        "GET https://api.dvidshub.net/search?api_key=SERVER_SIDE_KEY&type=video&q=QUERY",
+        "GET https://api.dvidshub.net/asset?api_key=SERVER_SIDE_KEY&id=video:ID"
+      ],
+      "limits": "官方公开表示 API access currently open；注册/登录申请，域名/Origin 与 key 绑定；未核实统一固定配额。",
+      "integration_priority": "P1",
+      "caveat": "asset.files 提供 MP4、宽高、大小和码率；category=B-Roll 有助于找原始镜头。强烈美国军方视角，不应代替一般世界历史或具体他国事件。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "loc",
+      "name": "Library of Congress",
+      "api_access": "free_no_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "早期实拍、历史影片、馆内讲座及文化收藏",
+      "strongest_topics": [
+        "早期电影",
+        "历史文化",
+        "旧工业",
+        "铁路交通",
+        "艺术",
+        "历史人物"
+      ],
+      "rights_summary": "逐条看 Rights & Access。明确 Public Domain Films / Free to Use and Reuse 集合比全站搜索更适合 MVP；不是所有馆藏可下载或免许可。",
+      "homepage": "https://www.loc.gov/film-and-videos/",
+      "api_docs": "https://www.loc.gov/apis/json-and-yaml",
+      "key_application": null,
+      "license_url": "https://www.loc.gov/free-to-use/public-domain-films-from-the-national-film-registry/",
+      "endpoints": [
+        "GET https://www.loc.gov/film-and-videos/?fo=json&q=QUERY",
+        "GET https://www.loc.gov/item/ITEM_ID/?fo=json"
+      ],
+      "limits": "公开无 key；有动态限流和深分页限制，本轮直接抓 docs 曾遇 429。",
+      "integration_priority": "P1",
+      "caveat": "JSON 目录元数据不是可靠 MP4 下载清单；需解析 item/resources，部分只有流或不可下载。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "europeana",
+      "name": "Europeana",
+      "api_access": "free_personal_key_reviewed_project_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio",
+        "3d"
+      ],
+      "content_origin": "文化机构聚合目录，历史图片占比高，也含视频",
+      "strongest_topics": [
+        "欧洲文化",
+        "艺术",
+        "民俗",
+        "历史",
+        "博物馆",
+        "传统工艺"
+      ],
+      "rights_summary": "元数据 CC0 与媒体许可分开；媒体由各机构持有，过滤 edm:rights/rights 仍需落地页核对；不能把免费目录 API 当全库免费授权。",
+      "homepage": "https://www.europeana.eu/",
+      "api_docs": "https://api.europeana.eu/en",
+      "key_application": "https://www.europeana.eu/account/api-keys",
+      "license_url": "https://www.europeana.eu/en/rights/terms-of-use",
+      "endpoints": [
+        "GET https://api.europeana.eu/record/v2/search.json?query=QUERY&qf=TYPE:VIDEO"
+      ],
+      "limits": "免费个人 key 自助即得，仅个人/非生产；生产 Project key 审核，官方目标 1–5 工作日；生产具体限额按申请条件。",
+      "integration_priority": "P2",
+      "caveat": "2025-05-28 起在 Europeana 账号 Manage API keys 申请；请求首选 X-Api-Key，旧 wskey 参数已弃用。视频可能只有提供方落地页/流，没有可下载 MP4。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "nps",
+      "name": "U.S. National Park Service",
+      "api_access": "free_self_service_key",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "美国国家公园现场影像、解说和自然文化资料",
+      "strongest_topics": [
+        "美国目的地",
+        "山川湖泊",
+        "国家公园",
+        "野生动物",
+        "徒步",
+        "地质",
+        "遗产建筑"
+      ],
+      "rights_summary": "NPS 员工公务作品通常在美国 PD，但供稿人、商标、人物等例外；逐条查看 credit/copyright。",
+      "homepage": "https://www.nps.gov/",
+      "api_docs": "https://www.nps.gov/subjects/developer/api-documentation.htm",
+      "key_application": "https://www.nps.gov/subjects/developer/get-started.htm",
+      "license_url": "https://www.nps.gov/aboutus/disclaimer.htm",
+      "endpoints": [],
+      "limits": "官方 API 免费登记；默认 1,000 次/小时。",
+      "integration_priority": "P2",
+      "caveat": "官方动态 Swagger 在本轮未能展开，候选 /multimedia/videos 路径没有完成官方 schema 核实，故不写为已验证 endpoint。先用官网媒体页人工导入或取得 key 后再联调。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "mixkit",
+      "name": "Mixkit",
+      "api_access": "manual_no_public_api_confirmed",
+      "media_types": [
+        "video"
+      ],
+      "content_origin": "以实拍 stock 为主，另有动画与模板；不保证每条不是 AI",
+      "strongest_topics": [
+        "生活人物",
+        "健身",
+        "美食",
+        "旅行",
+        "城市",
+        "自然",
+        "节日"
+      ],
+      "rights_summary": "必须区分 Video Free License（可商业项目）与 Restricted License（仅非商业）；不要求署名不等于允许重发成素材库。",
+      "homepage": "https://mixkit.co/free-stock-video/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://mixkit.co/license/",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P1 手动",
+      "caveat": "本轮未找到官方开放搜索/下载 API；不要把网站内部接口当获准公共 API。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "dareful",
+      "name": "Dareful",
+      "api_access": "manual_no_public_api_confirmed",
+      "media_types": [
+        "video"
+      ],
+      "content_origin": "官方称由摄影师 Joel Holland 拍摄的 4K/HD 实拍库",
+      "strongest_topics": [
+        "航拍",
+        "自然风景",
+        "山林湖海",
+        "旅行",
+        "城市",
+        "延时"
+      ],
+      "rights_summary": "首页 License 指向 Creative Commons Attribution 4.0，需署名/链接并说明改动；不要把 open source 描述解读成无署名。",
+      "homepage": "https://dareful.com/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P1 手动",
+      "caveat": "本轮首页显示 242 个视频，适合精选补充，不是海量通用库；无已确认公共 API。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "vidsplay",
+      "name": "Vidsplay",
+      "api_access": "manual_no_public_api_confirmed",
+      "media_types": [
+        "video"
+      ],
+      "content_origin": "摄影师拍摄的通用实拍库",
+      "strongest_topics": [
+        "自然",
+        "城市",
+        "旅行",
+        "动物",
+        "生活",
+        "交通"
+      ],
+      "rights_summary": "免费个人/商业改编使用，要求网站/片尾/视频描述中加入 Vidsplay 可见链接；禁止原样分发、转售或再许可。",
+      "homepage": "https://www.vidsplay.com/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://www.vidsplay.com/terms/",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P2 手动",
+      "caveat": "无已确认公共 API；小型素材集合，不能视作主题全覆盖。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "videezy",
+      "name": "Videezy",
+      "api_access": "manual_no_public_api_confirmed",
+      "media_types": [
+        "video"
+      ],
+      "content_origin": "社区实拍与动态图形等，逐条检查",
+      "strongest_topics": [
+        "风景航拍",
+        "背景动效",
+        "城市",
+        "商业",
+        "交通"
+      ],
+      "rights_summary": "免费 Standard/Community 内容通常须署名；Pro 付费；CC 非商业和 Editorial Only 与普通商业广告使用不同。以每条 License Info 为准。",
+      "homepage": "https://www.videezy.com/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://support.videezy.com/en_us/videezy-standard-license-and-usage-HylDtxsDK",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P2 手动",
+      "caveat": "免费页与付费内容混合；本轮未确认公开素材搜索 API。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "magnific",
+      "name": "Magnific（原 Freepik；Videvo/Mazwai 当前跳转）",
+      "api_access": "manual_free_subset_api_not_verified",
+      "media_types": [
+        "video",
+        "image"
+      ],
+      "content_origin": "实拍、动画与 AI 创作功能混合的商业平台",
+      "strongest_topics": [
+        "通用人物",
+        "商业科技",
+        "自然旅行",
+        "食物",
+        "体育",
+        "动效"
+      ],
+      "rights_summary": "当前视频页有 Free 筛选，免费使用须署作者；Premium 与免费素材分开。页面所说可编辑不等于允许原始文件转售。",
+      "homepage": "https://www.magnific.com/videos",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://www.magnific.com/legal/terms-of-use",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P2 手动",
+      "caveat": "本轮直接访问 mazwai.com 与 videvo.net 均跳到此站，不再计为两个独立库；普通许可对向第三方交付要求具体人工参与，并限制 AI/ML 使用，不能默认拿免费素材做自动 SaaS。存在 API 入口，但未核实免费视频目录权限。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "noaa",
+      "name": "NOAA Ocean Exploration",
+      "api_access": "manual_no_public_stock_api_confirmed",
+      "media_types": [
+        "video",
+        "image"
+      ],
+      "content_origin": "深海科考、海洋生物现场实拍与科学展示",
+      "strongest_topics": [
+        "深海",
+        "海洋生物",
+        "水下地形",
+        "科考",
+        "海洋气候"
+      ],
+      "rights_summary": "Ocean Exploration 说明除特别标注外原则上 PD，使用原条目 credit；NOAA 其他部门成片常混第三方镜头，不能全站自动白名单。",
+      "homepage": "https://oceanexplorer.noaa.gov/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://oceanexplorer.noaa.gov/faqs/",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P1 手动",
+      "caveat": "未确认统一 stock 视频检索下载 API；数据 API、天气 API 不等于素材 API。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "usgs",
+      "name": "USGS Multimedia Gallery",
+      "api_access": "manual_no_public_stock_api_confirmed",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "地质、水文、生态、灾害现场实拍及可视化",
+      "strongest_topics": [
+        "火山地震",
+        "地质",
+        "河流",
+        "生态",
+        "矿产",
+        "自然灾害"
+      ],
+      "rights_summary": "Gallery 条目除注明外 PD；USGS 自有作品通常美国 PD，第三方例外，人员肖像商业使用可能需另许可。",
+      "homepage": "https://www.usgs.gov/products/multimedia-gallery",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P1 手动",
+      "caveat": "数据服务丰富不代表存在统一视频 stock API；本轮不把 ScienceBase 元数据接口当已接入视频供应商。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "eso",
+      "name": "ESO Videos",
+      "api_access": "manual_no_public_stock_api_confirmed",
+      "media_types": [
+        "video",
+        "image"
+      ],
+      "content_origin": "天文台、星空实拍与大量天文学 CGI/科学动画",
+      "strongest_topics": [
+        "天文台",
+        "望远镜",
+        "星空",
+        "宇宙可视化"
+      ],
+      "rights_summary": "公共站视频通常 CC BY 4.0（例外按条目）；完整 credit 清晰可见、说明改动，YouTube 仅描述栏署名不足其要求；不能暗示背书，可识别人员商业使用有限制。",
+      "homepage": "https://www.eso.org/public/videos/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://www.eso.org/public/copyright/",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P1 手动",
+      "caveat": "有 CGI/艺术想象，不应说成真实星际摄像；未确认稳定通用视频检索 API。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "esa",
+      "name": "ESA Multimedia",
+      "api_access": "manual_permission_mixed",
+      "media_types": [
+        "video",
+        "image"
+      ],
+      "content_origin": "航天任务实录、节目及动画可视化",
+      "strongest_topics": [
+        "欧洲航天",
+        "任务背景资料",
+        "地球观测"
+      ],
+      "rights_summary": "不能作为默认免费可剪素材库。ESA Help 明确部分 VOD 含已授权音乐/stock，未经明确同意不得切片用于别的制作；商业目的联系 ESA。",
+      "homepage": "https://www.esa.int/ESA_Multimedia",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://www.esa.int/ESA_Multimedia/Help",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "暂不自动接入",
+      "caveat": "按具体许可开放的条目可单独评估；机构网站可看不等于可再剪辑。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "pond5_pd",
+      "name": "Pond5 Public Domain Project",
+      "api_access": "manual_free_subset_commercial_api_separate",
+      "media_types": [
+        "video",
+        "image",
+        "audio"
+      ],
+      "content_origin": "历史档案、公有领域媒体精选",
+      "strongest_topics": [
+        "历史",
+        "旧工业",
+        "旧交通",
+        "早期电影"
+      ],
+      "rights_summary": "仅 Public Domain 项目可作免费候选；不外推整个 Pond5 商业库存。仍核对原件状态和使用地区。",
+      "homepage": "https://www.pond5.com/public-domain",
+      "api_docs": "https://www.pond5.com/api",
+      "key_application": null,
+      "license_url": "https://www.pond5.com/public-domain",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P2 手动",
+      "caveat": "Pond5 API 是商务定制授权/报价，免费网页集合不等于免费 API。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "blender",
+      "name": "Blender Open Movies",
+      "api_access": "manual_no_stock_search_api",
+      "media_types": [
+        "video",
+        "3d"
+      ],
+      "content_origin": "人工制作动画/CGI，也有实拍合成开放电影",
+      "strongest_topics": [
+        "动画",
+        "电影制作",
+        "视觉特效",
+        "科幻示意"
+      ],
+      "rights_summary": "开放影片依各片 CC BY 等许可署名；制作文件/样例可能不同许可，不统一外推。",
+      "homepage": "https://studio.blender.org/films/",
+      "api_docs": null,
+      "key_application": null,
+      "license_url": "https://www.blender.org/download/demo-files/",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P2 手动",
+      "caveat": "用于开放影片片段/动画示意，不是现实历史、动物行为或新闻实录的替代品。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "wellcome",
+      "name": "Wellcome Collection",
+      "api_access": "free_no_key_catalogue_video_delivery_not_verified",
+      "media_types": [
+        "image",
+        "catalogue",
+        "possible_video"
+      ],
+      "content_origin": "医学史、健康文化馆藏，以图片、书籍和档案为主",
+      "strongest_topics": [
+        "医学史",
+        "疾病图像史",
+        "科学史",
+        "健康文化"
+      ],
+      "rights_summary": "Wellcome 自有元数据 CC0，但原始媒体许可有 PD/CC BY/NC/在版权期等不同，不能统一商用。",
+      "homepage": "https://wellcomecollection.org/",
+      "api_docs": "https://developers.wellcomecollection.org/docs/catalogue",
+      "key_application": null,
+      "license_url": "https://wellcomecollection.org/research-access-to-our-collections",
+      "endpoints": [
+        "GET https://api.wellcomecollection.org/catalogue/v2/works?query=QUERY"
+      ],
+      "limits": null,
+      "integration_priority": "P2 图片补充",
+      "caveat": "无 key 元数据 API 已核实；本轮未核实稳定的 MP4 素材交付链，不计入即接即用视频 API 数量。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "met",
+      "name": "The Met Collection API",
+      "api_access": "free_no_key",
+      "media_types": [
+        "image"
+      ],
+      "content_origin": "艺术品实物摄影/扫描",
+      "strongest_topics": [
+        "艺术",
+        "服饰史",
+        "古文明",
+        "器物",
+        "宗教艺术"
+      ],
+      "rights_summary": "Open Access 公有领域图像与数据 CC0；筛选 isPublicDomain 并确认有图，不是所有艺术品图片都开放。",
+      "homepage": "https://www.metmuseum.org/",
+      "api_docs": "https://metmuseum.github.io/",
+      "key_application": null,
+      "license_url": "https://www.metmuseum.org/policies/terms-and-conditions",
+      "endpoints": [
+        "GET https://collectionapi.metmuseum.org/public/collection/v1.1/search?hasImages=true&q=QUERY",
+        "GET https://collectionapi.metmuseum.org/public/collection/v1/objects/OBJECT_ID"
+      ],
+      "limits": "无需 key；官方要求低于 80 次/秒；2026-10-01 旧 v1/search 退休，应使用 v1.1/search。",
+      "integration_priority": "P2 图片补充",
+      "caveat": "仅图片，不是视频库。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "artic",
+      "name": "Art Institute of Chicago API",
+      "api_access": "free_no_key",
+      "media_types": [
+        "image"
+      ],
+      "content_origin": "艺术品图像与元数据",
+      "strongest_topics": [
+        "绘画",
+        "艺术",
+        "历史人物肖像",
+        "设计"
+      ],
+      "rights_summary": "媒体版权逐条，以 is_public_domain 与可用 image_id 筛选开放图，不能用元数据开放推断所有图像开放。",
+      "homepage": "https://www.artic.edu/",
+      "api_docs": "https://api.artic.edu/docs/",
+      "key_application": null,
+      "license_url": "https://api.artic.edu/docs/#copyright",
+      "endpoints": [
+        "GET https://api.artic.edu/api/v1/artworks/search?q=QUERY"
+      ],
+      "limits": null,
+      "integration_priority": "P2 图片补充",
+      "caveat": "普通公开 API 无 key；主要用 IIIF 图片，不计视频来源。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "smithsonian",
+      "name": "Smithsonian Open Access",
+      "api_access": "free_self_service_key",
+      "media_types": [
+        "image",
+        "3d",
+        "catalogue"
+      ],
+      "content_origin": "馆藏图像、三维及数据",
+      "strongest_topics": [
+        "自然史",
+        "艺术",
+        "历史文化",
+        "航空器物",
+        "动物标本"
+      ],
+      "rights_summary": "只把 CC0 明确标识媒体纳入可商用；非 CC0 的商业使用可能需书面许可。元数据开放不代表媒体开放。",
+      "homepage": "https://www.si.edu/openaccess",
+      "api_docs": "https://www.si.edu/openaccess/faq",
+      "key_application": "https://api.si.edu/",
+      "license_url": "https://www.si.edu/openaccess/faq",
+      "endpoints": [],
+      "limits": null,
+      "integration_priority": "P2 图片补充",
+      "caveat": "官方 FAQ 核实 api.data.gov key 注册入口；不承诺视频供应，适合静态补充。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    },
+    {
+      "id": "pexels",
+      "name": "Pexels",
+      "api_access": "new_key_issuance_paused",
+      "media_types": [
+        "video",
+        "image"
+      ],
+      "content_origin": "以实拍 photo/video 为核心；不作每条真实性担保",
+      "strongest_topics": [
+        "自然旅行",
+        "城市建筑",
+        "人物生活",
+        "商业",
+        "健身",
+        "食物"
+      ],
+      "rights_summary": "Pexels License 允许免费使用和修改，禁止未修改转售、做其他 stock 平台分发、暗示人物品牌背书等。API 还要遵守自身条款与来源展示要求。",
+      "homepage": "https://www.pexels.com/videos/",
+      "api_docs": "https://www.pexels.com/api/documentation/",
+      "key_application": "https://www.pexels.com/api/",
+      "license_url": "https://www.pexels.com/license/",
+      "endpoints": [
+        "GET https://api.pexels.com/videos/search?query=QUERY"
+      ],
+      "limits": null,
+      "integration_priority": "已有 key 时 P0；新项目不能依赖",
+      "caveat": "官方帮助 2026-11-09 更新明确 New API key issuance is currently paused，旧的即时签发说明不可继续引用；手动网站素材可作备用。",
+      "verification": "2026-11-10 官方公开页面核实；未创建新账户、未完成新 key 签发或生产权限验证"
+    }
+  ],
+  "topics": [
+    {
+      "id": "sports",
+      "name": "体育赛事",
+      "group": "人物与生活",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "videezy"
+      ],
+      "coverage_assessment": "比赛实录稀缺",
+      "constraints": "指定球星/比赛的免费精确覆盖没有可靠保证；通用足球场不是比赛本身。"
+    },
+    {
+      "id": "fitness",
+      "name": "运动与健身",
+      "group": "人物与生活",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "具体健身教程动作需人工检查正确性。"
+    },
+    {
+      "id": "daily",
+      "name": "日常生活",
+      "group": "人物与生活",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "vidsplay"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "优先真实人物、生活动作，不让 AI/摆拍冒充事件。"
+    },
+    {
+      "id": "family",
+      "name": "家庭与亲子",
+      "group": "人物与生活",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "亲子/儿童肖像和敏感叙事需匹配使用条件。"
+    },
+    {
+      "id": "relationships",
+      "name": "情感与关系",
+      "group": "人物与生活",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "概念表达较好",
+      "constraints": "特定情绪/动作需要画面审核，人物不能被诽谤性关联。"
+    },
+    {
+      "id": "celebrity",
+      "name": "明星与娱乐新闻",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "archive"
+      ],
+      "coverage_assessment": "当前精确视频明显不足",
+      "constraints": "免费人物照片可能有，明星采访/红毯片段不应默认免费复用。"
+    },
+    {
+      "id": "cinema",
+      "name": "影视与电影文化",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "archive",
+        "loc",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "pond5_pd",
+        "blender"
+      ],
+      "coverage_assessment": "早期开放影片可做",
+      "constraints": "现代影视切片不存在通用免费授权库；开放动画另计。"
+    },
+    {
+      "id": "music",
+      "name": "音乐与演出",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "通用乐器舞台较好",
+      "constraints": "画面许可不等于录音/词曲许可，指定歌手演出往往需另授权。"
+    },
+    {
+      "id": "art",
+      "name": "艺术与博物馆",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "europeana"
+      ],
+      "manual_or_later_sources": [
+        "loc"
+      ],
+      "coverage_assessment": "图片强、视频偏少",
+      "constraints": "可用 Met/Artic/Smithsonian 图片做运镜；馆内拍摄仍查作品权利。"
+    },
+    {
+      "id": "culture",
+      "name": "传统文化与民俗",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "europeana",
+        "archive"
+      ],
+      "manual_or_later_sources": [
+        "loc"
+      ],
+      "coverage_assessment": "机构资料较好",
+      "constraints": "地区、年代、民族与仪式要精准，避免泛亚洲/泛欧洲替代。"
+    },
+    {
+      "id": "fashion",
+      "name": "时尚与美妆",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "magnific"
+      ],
+      "coverage_assessment": "通用画面可做",
+      "constraints": "具体品牌秀场和明星广告不是免费 stock。"
+    },
+    {
+      "id": "gaming",
+      "name": "游戏与电竞",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "magnific"
+      ],
+      "coverage_assessment": "玩家设备可做",
+      "constraints": "游戏内画面建议用户自录并按发行商规则；赛事转播不是 stock。"
+    },
+    {
+      "id": "travel",
+      "name": "旅行与目的地",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "dareful",
+        "mixkit",
+        "vidsplay"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "精确目的地先查地点元数据；美国国家公园可扩 NPS。"
+    },
+    {
+      "id": "landscape",
+      "name": "自然风景",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "dareful",
+        "mixkit",
+        "vidsplay"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "漂亮风景不能代替脚本里的具体地名。"
+    },
+    {
+      "id": "mountains",
+      "name": "山川湖泊",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "dareful",
+        "mixkit"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "美国具名山川可补 NPS；场景相似不等于同一山峰。"
+    },
+    {
+      "id": "city",
+      "name": "城市与街景",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "dareful",
+        "mixkit",
+        "videezy"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "需地理一致性，城市标志性建筑优先 Commons。"
+    },
+    {
+      "id": "architecture",
+      "name": "建筑与空间",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "europeana"
+      ],
+      "coverage_assessment": "外观较好、内景不稳定",
+      "constraints": "具名建筑、室内、私人产权及全景自由因国家不同。"
+    },
+    {
+      "id": "home",
+      "name": "地产与家居",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "magnific"
+      ],
+      "coverage_assessment": "概念覆盖较好",
+      "constraints": "指定房源应用户提供素材，不能用 stock 误示真实房屋。"
+    },
+    {
+      "id": "ocean",
+      "name": "海洋与水下",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "noaa",
+        "dareful"
+      ],
+      "coverage_assessment": "浅海 stock 较好，深海有专业补充",
+      "constraints": "精确物种/深度/地点查 NOAA 原始说明。"
+    },
+    {
+      "id": "wildlife",
+      "name": "野生动物",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "nps",
+        "noaa",
+        "usgs"
+      ],
+      "coverage_assessment": "常见物种较好",
+      "constraints": "珍稀行为/具体栖息地覆盖不足，不能用近缘种代替。"
+    },
+    {
+      "id": "pets",
+      "name": "宠物",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "vidsplay"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "具体品种和训练动作需目检。"
+    },
+    {
+      "id": "agriculture",
+      "name": "农业与乡村",
+      "group": "自然与地点",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "commons",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "archive"
+      ],
+      "coverage_assessment": "通用农业可做",
+      "constraints": "作物、机械工艺和国家季节不能乱配。"
+    },
+    {
+      "id": "space",
+      "name": "航天与天文",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "nasa",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "eso"
+      ],
+      "coverage_assessment": "专业来源清晰",
+      "constraints": "NASA 任务实录/CGI分开；ESA 未确认允许重编者不自动导出。"
+    },
+    {
+      "id": "earth",
+      "name": "地球与气候",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "nasa",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "noaa",
+        "usgs",
+        "eso"
+      ],
+      "coverage_assessment": "科学资料较好",
+      "constraints": "卫星图、可视化和现场录像分开标记。"
+    },
+    {
+      "id": "technology",
+      "name": "科技与数码",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "magnific"
+      ],
+      "coverage_assessment": "概念覆盖较好",
+      "constraints": "具体产品功能、UI、性能演示用用户素材/录屏。"
+    },
+    {
+      "id": "ai",
+      "name": "AI 与机器人",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "blender",
+        "magnific"
+      ],
+      "coverage_assessment": "概念画面多，真实设备较少",
+      "constraints": "真实机器人型号、演示能力需精确匹配；抽象大脑是示意。"
+    },
+    {
+      "id": "industry",
+      "name": "工业与制造",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "archive",
+        "mixkit"
+      ],
+      "coverage_assessment": "普通工厂较好",
+      "constraints": "复杂生产工艺/指定工厂免费精确覆盖不保证；DVIDS 仅部分后勤制造。"
+    },
+    {
+      "id": "energy",
+      "name": "能源与基础设施",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "usgs",
+        "archive"
+      ],
+      "coverage_assessment": "通用设施可做",
+      "constraints": "指定电厂和油田按地点核对；能源数据最好自绘。"
+    },
+    {
+      "id": "health",
+      "name": "医疗与健康",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "commons",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "wellcome",
+        "dvids"
+      ],
+      "coverage_assessment": "一般医护可做，专业操作不足",
+      "constraints": "医学史用 Wellcome；真实手术不是普通 stock，避免误导。"
+    },
+    {
+      "id": "education",
+      "name": "教育与科学实验",
+      "group": "科学与技术",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "commons",
+        "nasa"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "wellcome"
+      ],
+      "coverage_assessment": "通用课堂实验可做",
+      "constraints": "实验条件和结论需核对；不要用不相关实验表现科学事实。"
+    },
+    {
+      "id": "history",
+      "name": "历史与战争",
+      "group": "事件与社会",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "archive",
+        "commons",
+        "loc"
+      ],
+      "manual_or_later_sources": [
+        "pond5_pd",
+        "europeana"
+      ],
+      "coverage_assessment": "部分事件强，整体不均",
+      "constraints": "优先机构、年代和拍摄地点可溯源条目；档案水印不等于授权。"
+    },
+    {
+      "id": "news",
+      "name": "新闻与国际事件",
+      "group": "事件与社会",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "dvids"
+      ],
+      "manual_or_later_sources": [
+        "archive"
+      ],
+      "coverage_assessment": "当前事件明显不足",
+      "constraints": "DVIDS 仅对应军方/联邦题材；Reuters/AP 可观看不等于免费商用。"
+    },
+    {
+      "id": "politics",
+      "name": "政治与公共人物",
+      "group": "事件与社会",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "archive",
+        "dvids"
+      ],
+      "manual_or_later_sources": [
+        "loc"
+      ],
+      "coverage_assessment": "部分公共讲话可做",
+      "constraints": "人物、日期、国家和出处必须一致；美国联邦作品不能外推他国政府。"
+    },
+    {
+      "id": "crime",
+      "name": "案件与悬疑",
+      "group": "事件与社会",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "archive",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "loc"
+      ],
+      "coverage_assessment": "精确案件资料不足",
+      "constraints": "通用警灯/夜街只能标示意，不能暗示画中人为涉案人。"
+    },
+    {
+      "id": "business",
+      "name": "商业与职场",
+      "group": "商业与交通",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "magnific"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "具体公司办公画面和创始人不一定有免费录像。"
+    },
+    {
+      "id": "finance",
+      "name": "财经与经济",
+      "group": "商业与交通",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "archive"
+      ],
+      "coverage_assessment": "概念覆盖较好",
+      "constraints": "数据/行情图建议自绘；交易所商标不等于广告背书许可。"
+    },
+    {
+      "id": "food",
+      "name": "美食与烹饪",
+      "group": "商业与交通",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "vidsplay"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "具体菜品、地区及烹饪步骤核对。"
+    },
+    {
+      "id": "cars",
+      "name": "汽车与公路",
+      "group": "商业与交通",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "dareful",
+        "archive",
+        "videezy"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "指定车型、年份和广告中的商标条件需核对。"
+    },
+    {
+      "id": "rail",
+      "name": "铁路与列车",
+      "group": "商业与交通",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "archive",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "loc",
+        "pond5_pd"
+      ],
+      "coverage_assessment": "具名交通有开放资料",
+      "constraints": "站点、车型和线路年代按说明对应。"
+    },
+    {
+      "id": "aviation",
+      "name": "航空与航海",
+      "group": "商业与交通",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "commons",
+        "archive",
+        "nasa",
+        "dvids"
+      ],
+      "manual_or_later_sources": [
+        "loc",
+        "pond5_pd"
+      ],
+      "coverage_assessment": "航空舰船专业来源较多",
+      "constraints": "机型、舰名、军种和拍摄日期必须确认。"
+    },
+    {
+      "id": "meditation",
+      "name": "睡眠与冥想",
+      "group": "氛围与视觉",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "dareful",
+        "mixkit",
+        "vidsplay"
+      ],
+      "coverage_assessment": "可做但长镜头稀缺",
+      "constraints": "短片重复拼接不是无限自然长镜头；检查闪烁与循环接缝。"
+    },
+    {
+      "id": "abstract",
+      "name": "抽象与动态图形",
+      "group": "氛围与视觉",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "blender",
+        "videezy",
+        "magnific"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "明确区分动画/AI/实拍，不能作事实证据。"
+    },
+    {
+      "id": "seasons",
+      "name": "节日与季节",
+      "group": "氛围与视觉",
+      "existing_mvp_topic": true,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit",
+        "dareful"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "文化节日、气候季节和地区要对应。"
+    },
+    {
+      "id": "geology",
+      "name": "地质、火山与地震",
+      "group": "科学与技术",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "nasa"
+      ],
+      "manual_or_later_sources": [
+        "usgs",
+        "nps"
+      ],
+      "coverage_assessment": "专业资料较好",
+      "constraints": "地震新闻现场不等于可复用；USGS 科学影像优先。"
+    },
+    {
+      "id": "weather",
+      "name": "天气、风暴与自然灾害",
+      "group": "科学与技术",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "nasa",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "noaa",
+        "usgs",
+        "dvids"
+      ],
+      "coverage_assessment": "现象示意较好，实时事件不齐",
+      "constraints": "雷雨 stock 不是某场灾害；追溯日期地点。"
+    },
+    {
+      "id": "conservation",
+      "name": "环保、生态与保育",
+      "group": "自然与地点",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "nasa",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "usgs",
+        "nps",
+        "noaa"
+      ],
+      "coverage_assessment": "专业/概念均有",
+      "constraints": "区分实际生态项目和泛自然示意画面。"
+    },
+    {
+      "id": "insects",
+      "name": "昆虫、植物与微距",
+      "group": "自然与地点",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "nps",
+        "usgs"
+      ],
+      "coverage_assessment": "常见物种较好",
+      "constraints": "物种识别优先，微距照片可补充视频不足。"
+    },
+    {
+      "id": "outdoors",
+      "name": "户外、徒步与露营",
+      "group": "自然与地点",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "nps",
+        "mixkit",
+        "dareful"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "国家公园目的地用 NPS，不能展示不安全动作做教学。"
+    },
+    {
+      "id": "military",
+      "name": "军武、国防与军史",
+      "group": "事件与社会",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "dvids",
+        "commons",
+        "archive"
+      ],
+      "manual_or_later_sources": [
+        "loc",
+        "pond5_pd"
+      ],
+      "coverage_assessment": "部分专业资料丰富",
+      "constraints": "DVIDS 偏美国当前训练，不能用当前演习假称历史实战。"
+    },
+    {
+      "id": "rescue",
+      "name": "消防、救援与人道援助",
+      "group": "事件与社会",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "dvids",
+        "commons",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "usgs"
+      ],
+      "coverage_assessment": "部分专业资料较好",
+      "constraints": "具体灾难受害者画面和地点时间应核实。"
+    },
+    {
+      "id": "logistics",
+      "name": "物流、港口与供应链",
+      "group": "商业与交通",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons",
+        "dvids"
+      ],
+      "manual_or_later_sources": [
+        "archive"
+      ],
+      "coverage_assessment": "通用覆盖较好",
+      "constraints": "DVIDS 后勤并非一般商业港口，精确企业须自有素材。"
+    },
+    {
+      "id": "crafts",
+      "name": "手工、DIY 与维修",
+      "group": "人物与生活",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "通用流程可做",
+      "constraints": "步骤连续性和安全操作必须人工审核。"
+    },
+    {
+      "id": "religion",
+      "name": "宗教、寺庙与仪式",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "europeana",
+        "pixabay"
+      ],
+      "manual_or_later_sources": [
+        "loc",
+        "archive"
+      ],
+      "coverage_assessment": "图片强、精确视频不均",
+      "constraints": "尊重具体仪式背景；艺术品与拍摄许可分别核对。"
+    },
+    {
+      "id": "archaeology",
+      "name": "考古、古文明与文物",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "europeana"
+      ],
+      "manual_or_later_sources": [
+        "loc"
+      ],
+      "coverage_assessment": "图片强、现场视频稀缺",
+      "constraints": "Met/Artic/Smithsonian 是静态补充；CGI 复原需标示意。"
+    },
+    {
+      "id": "biography",
+      "name": "人物传记与发明史",
+      "group": "事件与社会",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "commons",
+        "archive",
+        "loc"
+      ],
+      "manual_or_later_sources": [
+        "europeana"
+      ],
+      "coverage_assessment": "年代依赖强",
+      "constraints": "近现代私人生活影像和当代名人精确录像往往不免费。"
+    },
+    {
+      "id": "software",
+      "name": "软件、SaaS 与产品教程",
+      "group": "科学与技术",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "通用 B-roll 不解决真实演示",
+      "constraints": "核心画面用用户录屏；没有能覆盖所有产品最新 UI 的免费库。"
+    },
+    {
+      "id": "dance",
+      "name": "舞蹈与舞台表演",
+      "group": "文化与娱乐",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "mixkit"
+      ],
+      "coverage_assessment": "通用表演可做",
+      "constraints": "具体编舞、现场音轨、演出者许可分别核对。"
+    },
+    {
+      "id": "accessibility",
+      "name": "无障碍、老龄与社会服务",
+      "group": "人物与生活",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "pixabay",
+        "coverr",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "dvids",
+        "loc"
+      ],
+      "coverage_assessment": "概念画面可做",
+      "constraints": "避免以可识别人物暗示疾病、贫困或其他敏感身份。"
+    },
+    {
+      "id": "maps",
+      "name": "地图、数据与地理解释",
+      "group": "氛围与视觉",
+      "existing_mvp_topic": false,
+      "preferred_api_sources": [
+        "nasa",
+        "commons"
+      ],
+      "manual_or_later_sources": [
+        "usgs"
+      ],
+      "coverage_assessment": "数据图像强，建议自制动画",
+      "constraints": "免费地图图像不等于地图瓦片无请求限制；数据来源、样式、底图许可分别核对。"
+    }
+  ],
+  "production_rules": [
+    "API key 只在服务端，不进入前端 bundle、日志或导出。",
+    "每个候选存 asset ID、来源落地页、作者、许可 URL、credit、媒体类型、AI 标志、宽高时长及获取时间。",
+    "先搜元数据/预览，用户选中后才按需取文件，项目完成删除临时素材。",
+    "未知许可、仅非商业、仅观看或禁改编的条目不自动进入商业导出。",
+    "无视频结果时可以明确提示使用图片运镜、用户上传或自绘，不暗中放松事实条件。"
+  ]
+}

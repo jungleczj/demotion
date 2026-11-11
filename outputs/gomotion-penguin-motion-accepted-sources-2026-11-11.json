@@ -1,0 +1,575 @@
+{
+  "title": "放弃天空的鸟——帝企鹅 · 补片验收",
+  "duration": 79.4,
+  "width": 1280,
+  "height": 720,
+  "videoProfile": {
+    "version": 1,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "label": "720p"
+  },
+  "createdAt": "2026-11-11T04:03:06.248Z",
+  "scenes": [
+    {
+      "text": "并非所有鸟类，都属于天空。在地球的最南端，一群鸟类放弃了飞行，却征服了另一片广阔的世界。",
+      "start": 0,
+      "end": 13.666666666666666,
+      "renderKind": "footage",
+      "source": {
+        "id": "pixabay:327101",
+        "title": "penguin, nature, animal, wildlife, fauna, winter, birds, snow, cold, antarctica",
+        "provider": "pixabay",
+        "kind": "video",
+        "url": "https://pixabay.com/videos/id-327101/",
+        "author": "NguyenTham_NTB",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "cut",
+      "outgoingFade": 0
+    },
+    {
+      "text": "它们，就是帝企鹅。",
+      "start": 13.666666666666666,
+      "end": 17.366666666666667,
+      "renderKind": "footage",
+      "source": {
+        "id": "pixabay:114415",
+        "title": "penguins, birds, animal, penguin dance, penguins of madagascar",
+        "provider": "pixabay",
+        "kind": "video",
+        "url": "https://pixabay.com/videos/id-114415/",
+        "author": "Eaktas06",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "cut",
+      "outgoingFade": 0.26666666666666666
+    },
+    {
+      "text": "南极的冬季，气温可能降至零下四十摄氏度，",
+      "start": 17.366666666666667,
+      "end": 23.10666666666667,
+      "renderKind": "footage",
+      "source": {
+        "id": "pixabay:230003",
+        "title": "mountains, ice, iceberg, snow, cold, frozen, winter, antarctica, polar, nature, landscape",
+        "provider": "pixabay",
+        "kind": "video",
+        "url": "https://pixabay.com/videos/id-230003/",
+        "author": "Afzaal0001",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "狂风不断席卷冰原。",
+      "start": 23.10666666666667,
+      "end": 25.886666666666667,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "mechanism",
+        "title": "极地严寒环境",
+        "explanation": "展示南极冬季恶劣的气候条件与极低气温",
+        "nodes": [
+          {
+            "label": "狂风席卷",
+            "quote": "狂风不断席卷冰原",
+            "icon": "wind"
+          },
+          {
+            "label": "极度严寒",
+            "quote": "气温可能降至零下四十摄氏度",
+            "icon": "thermometer",
+            "valueText": "零下四十摄氏度"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:9d25d63c-9836-4c2d-a5c5-806b1b8a6661",
+        "title": "极地严寒环境",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "就在这样的环境中，帝企鹅开始繁衍后代。",
+      "start": 25.886666666666667,
+      "end": 31.033333333333335,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "process",
+        "title": "严寒中的繁衍",
+        "explanation": "展示帝企鹅在极寒冰原环境中开启繁衍周期的过程，连接恶劣气候与繁殖开端",
+        "nodes": [
+          {
+            "label": "极寒环境",
+            "quote": "气温可能降至零下四十摄氏度，狂风不断席卷冰原",
+            "icon": "thermometer",
+            "valueText": "零下四十摄氏度"
+          },
+          {
+            "label": "帝企鹅繁衍",
+            "quote": "就在这样的环境中，帝企鹅开始繁衍后代。",
+            "icon": "penguin"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:9bcd75c3-58ce-45f3-98eb-c65e362cf247",
+        "title": "严寒中的繁衍",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本项目动态示意",
+        "license": "本项目生成的动态示意",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "母企鹅产下蛋后，便前往海洋寻找食物。",
+      "start": 31.033333333333335,
+      "end": 36.766666666666666,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "process",
+        "title": "母企鹅觅食路线",
+        "explanation": "展示母企鹅产卵后离开冰原前往海洋觅食的过程",
+        "nodes": [
+          {
+            "label": "产下企鹅蛋",
+            "quote": "母企鹅产下蛋后",
+            "icon": "egg"
+          },
+          {
+            "label": "前往海洋",
+            "quote": "便前往海洋寻找食物",
+            "icon": "sea"
+          },
+          {
+            "label": "捕食鱼类",
+            "quote": "寻找食物",
+            "icon": "fish"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:779b3708-25b1-4b7e-a761-838e4664d98c",
+        "title": "母企鹅觅食路线",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "而企鹅爸爸，则承担起孵化的责任。",
+      "start": 36.766666666666666,
+      "end": 41.46666666666667,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "process",
+        "title": "雄性孵化分工",
+        "explanation": "展示企鹅爸爸在母企鹅离去后接替承担起孵卵任务",
+        "nodes": [
+          {
+            "label": "企鹅爸爸",
+            "quote": "而企鹅爸爸",
+            "icon": "penguin"
+          },
+          {
+            "label": "承担孵化",
+            "quote": "则承担起孵化的责任",
+            "icon": "shield"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:f4b00faf-947a-41df-be42-4fff841cf11b",
+        "title": "雄性孵化分工",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "它们将蛋放在双脚上，",
+      "start": 41.46666666666667,
+      "end": 43.54666666666667,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "mechanism",
+        "title": "双脚托卵机制",
+        "explanation": "通过企鹅脚部托蛋机制图解展示防冻结构",
+        "nodes": [
+          {
+            "label": "双脚托蛋",
+            "quote": "它们将蛋放在双脚上",
+            "icon": "egg"
+          },
+          {
+            "label": "雄企鹅脚部",
+            "quote": "它们将蛋放在双脚上",
+            "icon": "penguin"
+          }
+        ],
+        "mechanism": "penguin-egg"
+      },
+      "source": {
+        "id": "upload:29a63d9e-4e9f-4f7d-9950-b6ac21c5eac3",
+        "title": "双脚托卵机制",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "用腹部的育儿袋保护着这个脆弱的新生命。",
+      "start": 43.54666666666667,
+      "end": 48.86666666666667,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "mechanism",
+        "title": "育儿袋保温防护",
+        "explanation": "展示腹部育儿袋覆于蛋上提供严密保护的生理结构",
+        "nodes": [
+          {
+            "label": "腹部育儿袋",
+            "quote": "用腹部的育儿袋保护着这个脆弱的新生命",
+            "icon": "shield"
+          },
+          {
+            "label": "脆弱新生命",
+            "quote": "脆弱的新生命",
+            "icon": "egg"
+          }
+        ],
+        "mechanism": "penguin-egg"
+      },
+      "source": {
+        "id": "upload:fe54d818-6eca-4d7a-8c34-06f71fe33b5c",
+        "title": "育儿袋保温防护",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "在漫长的孵化过程中，雄企鹅可能数月无法进食。",
+      "start": 48.86666666666667,
+      "end": 54.72666666666667,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "timeline",
+        "title": "断食孵化历程",
+        "explanation": "展示雄企鹅在漫长孵化期中数月不能进食的考验",
+        "nodes": [
+          {
+            "label": "漫长孵化",
+            "quote": "在漫长的孵化过程中",
+            "icon": "clock"
+          },
+          {
+            "label": "数月断食",
+            "quote": "雄企鹅可能数月无法进食",
+            "icon": "penguin"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:ecee4394-74ec-4361-b5f6-550a3d04b13f",
+        "title": "断食孵化历程",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "它们彼此依偎，轮流站在寒风中，",
+      "start": 54.72666666666667,
+      "end": 58.92666666666667,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "mechanism",
+        "title": "群体轮换抵御寒风",
+        "explanation": "展示企鹅群体紧密依偎并轮流在外侧阻挡寒风的互助机制",
+        "nodes": [
+          {
+            "label": "彼此依偎",
+            "quote": "它们彼此依偎",
+            "icon": "group"
+          },
+          {
+            "label": "轮流抗风",
+            "quote": "轮流站在寒风中",
+            "icon": "wind"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:5c6d3e4d-cd7e-4c8f-9fa3-a9ece41c4606",
+        "title": "群体轮换抵御寒风",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "用群体的温暖抵御严寒。",
+      "start": 58.92666666666667,
+      "end": 62.5,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "mechanism",
+        "title": "群体取暖效应",
+        "explanation": "说明企鹅群集聚热量以抵抗外界极寒的生存机制",
+        "nodes": [
+          {
+            "label": "群体温暖",
+            "quote": "用群体的温暖",
+            "icon": "group"
+          },
+          {
+            "label": "抵御严寒",
+            "quote": "抵御严寒",
+            "icon": "shield"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:6e2d2602-7382-4d13-bfdb-45dca5904651",
+        "title": "群体取暖效应",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "终于，当第一声稚嫩的鸣叫从蛋壳中传来，",
+      "start": 62.5,
+      "end": 68.08,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "process",
+        "title": "新生命破壳",
+        "explanation": "展示企鹅雏鸟从蛋壳中孵化发声的阶段",
+        "nodes": [
+          {
+            "label": "破壳初鸣",
+            "quote": "第一声稚嫩的鸣叫从蛋壳中传来",
+            "icon": "egg"
+          },
+          {
+            "label": "企鹅雏鸟",
+            "quote": "第一声稚嫩的鸣叫",
+            "icon": "penguin"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:3a1367a5-0345-41b8-a235-e8bd89e81994",
+        "title": "新生命破壳",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0
+    },
+    {
+      "text": "一切等待都有了意义。",
+      "start": 68.08,
+      "end": 71.23333333333333,
+      "renderKind": "footage",
+      "source": {
+        "id": "pixabay:185273",
+        "title": "penguins, birds, snow, ice, frozen, nature, antartica, water",
+        "provider": "pixabay",
+        "kind": "video",
+        "url": "https://pixabay.com/videos/id-185273/",
+        "author": "santosjesus90",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "cut",
+      "outgoingFade": 0
+    },
+    {
+      "text": "它们虽然无法飞翔，",
+      "start": 71.23333333333333,
+      "end": 73.99333333333334,
+      "renderKind": "footage",
+      "source": {
+        "id": "pixabay:185273",
+        "title": "penguins, birds, snow, ice, frozen, nature, antartica, water",
+        "provider": "pixabay",
+        "kind": "video",
+        "url": "https://pixabay.com/videos/id-185273/",
+        "author": "santosjesus90",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      },
+      "sourceStart": 3.153333,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "cut",
+      "outgoingFade": 0.2
+    },
+    {
+      "text": "却在冰冷的世界里，创造了生命最温暖的奇迹。",
+      "start": 73.99333333333334,
+      "end": 79.4,
+      "renderKind": "motion-graphic",
+      "motionGraphic": {
+        "schemaVersion": 1,
+        "type": "comparison",
+        "title": "冰冷世界与温暖生命",
+        "explanation": "对比冰天雪地的恶劣极地与帝企鹅孕育出的温暖生命奇迹",
+        "nodes": [
+          {
+            "label": "冰冷世界",
+            "quote": "在冰冷的世界里",
+            "icon": "snow"
+          },
+          {
+            "label": "生命奇迹",
+            "quote": "创造了生命最温暖的奇迹",
+            "icon": "penguin"
+          }
+        ]
+      },
+      "source": {
+        "id": "upload:926b11c2-e8e8-4ed5-995c-76021fb60f73",
+        "title": "冰冷世界与温暖生命",
+        "provider": "upload",
+        "kind": "video",
+        "url": "",
+        "author": "本地上传",
+        "license": "用户提供",
+        "licenseUrl": ""
+      },
+      "sourceStart": 0,
+      "voice": "gemini:Charon",
+      "narrationModel": "gemini-2.5-flash-preview-tts",
+      "narrationTrackKey": "9bda4e26c344ebdd1b5645c3c3219e98e03efb036f45d385171c948c46865683",
+      "incomingTransition": "dissolve",
+      "outgoingFade": 0
+    }
+  ]
+}

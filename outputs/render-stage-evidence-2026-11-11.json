@@ -1,0 +1,20 @@
+{
+  "inputReportsMax": 4,
+  "renderTimings": {
+    "narrationMs": 73.33041599999996,
+    "prepareInputsMs": 1588.7740000000003,
+    "encodeMs": 737.5573749999999,
+    "assembleMs": 834.5498339999999,
+    "reviewMs": 356.2733330000001,
+    "totalMs": 3590.751292
+  },
+  "outputDuration": 2.233333,
+  "artificialAudio": true,
+  "realModelRequests": 0,
+  "scenario": "four-scene offline render fixture",
+  "realFootageLibrarySearches": 0,
+  "sourceTracking": "in-memory response fixture",
+  "actualHDVideoEncodeAndFullDecode": true,
+  "realProductionSpeedMeasured": false,
+  "evidenceLog": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-local-acceptance-2026-11-11.txt"
+}

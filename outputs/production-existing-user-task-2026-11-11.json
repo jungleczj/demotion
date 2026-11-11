@@ -1,0 +1,158 @@
+{
+  "id": "48c3af2e-574f-4895-bc93-cdf7c5e189e3",
+  "status": "done",
+  "title": "放弃天空的鸟——帝企鹅",
+  "createdAt": 1794384227998,
+  "startedAt": 1794384228065,
+  "finishedAt": 1794384722049,
+  "wallSeconds": 493.984,
+  "timings": {
+    "planningMs": 13468,
+    "matchingMs": 302178,
+    "renderAndReviewMs": 178323
+  },
+  "duration": 60.573208,
+  "sceneCount": 13,
+  "motionSceneCount": 0,
+  "sourceBackedCount": 0,
+  "review": {
+    "exportId": "1b6fb3be-b98f-4993-9827-ff982a11cd29",
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "passed": true,
+    "audioReviewed": true,
+    "watermarkFree": true,
+    "summary": "前30.2秒视频音画质量总体良好，旁白与字幕完整匹配，语音自然流畅，画面无水印及黑帧卡顿，场景切换平滑且与解说主题北极燕鸥的迁徙旅程相呼应。\n视频在29.8秒至60.2秒区间内画面质量高，画面与解说词高度契合，旁白清晰自然且完整，无水印、无黑帧等技术缺陷。\n在提供的区间 [59.8, 60.8] 内，视频展示了夕阳下群鸟飞行的画面，与旁白“而是一条永不停歇的旅途”收尾完全吻合。画面清晰流畅，无水印，语音自然顺畅，无异常。",
+    "issues": [],
+    "analyzedUntil": 60.8,
+    "totalDuration": 60.8,
+    "limitations": [
+      "已读取实际画面和声音；AI 审片不能替代人工试听及最终审看"
+    ],
+    "events": [
+      {
+        "stage": "prepare-media-phases",
+        "engine": "media-reader",
+        "assetId": "export:1b6fb3be-b98f-4993-9827-ff982a11cd29",
+        "status": "completed",
+        "at": "2026-11-11T08:09:47.359Z",
+        "timings": {
+          "playbackMs": null,
+          "statMs": 0.12,
+          "probeMs": 147.8,
+          "ffmpegMs": 5307.665,
+          "frameReadMs": 0.004,
+          "videoReadMs": 4.973,
+          "queueMs": null,
+          "downloadMs": null,
+          "ffmpegInvocations": 1,
+          "playbackBypassed": true
+        },
+        "timingScope": "queue/download are not separately measured; playbackMs includes ensurePlayback queue, download, validation and normalization when needed",
+        "durationMs": 5460.684
+      },
+      {
+        "stage": "prepare-media-phases",
+        "engine": "media-reader",
+        "assetId": "export:1b6fb3be-b98f-4993-9827-ff982a11cd29",
+        "status": "completed",
+        "at": "2026-11-11T08:09:47.359Z",
+        "timings": {
+          "playbackMs": null,
+          "statMs": 6.548,
+          "probeMs": 146.461,
+          "ffmpegMs": 5853.24,
+          "frameReadMs": 0.003,
+          "videoReadMs": 1.129,
+          "queueMs": null,
+          "downloadMs": null,
+          "ffmpegInvocations": 1,
+          "playbackBypassed": true
+        },
+        "timingScope": "queue/download are not separately measured; playbackMs includes ensurePlayback queue, download, validation and normalization when needed",
+        "durationMs": 6007.442
+      },
+      {
+        "stage": "prepare-media-phases",
+        "engine": "media-reader",
+        "assetId": "export:1b6fb3be-b98f-4993-9827-ff982a11cd29",
+        "status": "completed",
+        "at": "2026-11-11T08:09:47.359Z",
+        "timings": {
+          "playbackMs": null,
+          "statMs": 9.145,
+          "probeMs": 141.702,
+          "ffmpegMs": 785.677,
+          "frameReadMs": 0.003,
+          "videoReadMs": 4.477,
+          "queueMs": null,
+          "downloadMs": null,
+          "ffmpegInvocations": 1,
+          "playbackBypassed": true
+        },
+        "timingScope": "queue/download are not separately measured; playbackMs includes ensurePlayback queue, download, validation and normalization when needed",
+        "durationMs": 941.045
+      },
+      {
+        "stage": "rendered-audiovisual-review-59.8",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T08:09:48.300Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 1506,
+          "outputTokens": 98,
+          "totalTokens": 1604
+        },
+        "durationMs": 6105
+      },
+      {
+        "stage": "rendered-audiovisual-review-0",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T08:09:52.820Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 4135,
+          "outputTokens": 106,
+          "totalTokens": 4241
+        },
+        "durationMs": 10066
+      },
+      {
+        "stage": "rendered-audiovisual-review-29.8",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "failed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T08:09:53.366Z",
+        "durationMs": 120004,
+        "errorCode": "23",
+        "detail": "视觉 AI 网络连接超时（23），请检查服务使用的代理"
+      },
+      {
+        "stage": "rendered-audiovisual-review-29.8",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T08:11:53.370Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 4144,
+          "outputTokens": 79,
+          "totalTokens": 4223
+        },
+        "durationMs": 8678
+      }
+    ]
+  }
+}

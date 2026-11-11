@@ -1,0 +1,78 @@
+[
+  {
+    "title": "从地球出发，向月球前进",
+    "status": "incomplete",
+    "videoSeconds": 38.323792,
+    "elapsedSeconds": 47.69,
+    "timings": {
+      "planningMs": 7,
+      "matchingMs": 689,
+      "renderAndReviewMs": 46992
+    },
+    "error": null
+  },
+  {
+    "title": "生成链路验证 · 海洋短片",
+    "status": "incomplete",
+    "videoSeconds": 23.222042,
+    "elapsedSeconds": 305.4,
+    "timings": {
+      "planningMs": 14475,
+      "matchingMs": 290913
+    },
+    "error": null
+  },
+  {
+    "title": "从地球出发，向月球前进",
+    "status": "incomplete",
+    "videoSeconds": 38.323792,
+    "elapsedSeconds": 806.42,
+    "timings": {
+      "planningMs": 11,
+      "matchingMs": 246110
+    },
+    "error": null
+  },
+  {
+    "title": "从地球出发，向月球前进",
+    "status": "done",
+    "videoSeconds": 38.323792,
+    "elapsedSeconds": 35.15,
+    "timings": {
+      "planningMs": 4,
+      "matchingMs": 643,
+      "renderAndReviewMs": 34495
+    },
+    "error": null
+  },
+  {
+    "title": "生成链路验证 · 海洋短片",
+    "status": "incomplete",
+    "videoSeconds": 23.222042,
+    "elapsedSeconds": 80.41,
+    "timings": {
+      "planningMs": 7,
+      "matchingMs": 32402,
+      "renderAndReviewMs": 47995
+    },
+    "error": null
+  },
+  {
+    "title": "从地球出发，向月球前进",
+    "status": "done",
+    "videoSeconds": 38.323792,
+    "elapsedSeconds": 0.0,
+    "timings": {
+      "cacheReused": true
+    },
+    "error": null
+  },
+  {
+    "title": "完整生成计时 · 海洋四幕",
+    "status": "error",
+    "videoSeconds": 26,
+    "elapsedSeconds": 0.35,
+    "timings": {},
+    "error": "视觉 AI 请求失败（HTTP 402），请检查模型与接口：Your prepayment credits are depleted. Please go to AI Studio at [服务链接] to manage your project and billing. Learn more at [服务链接] "
+  }
+]

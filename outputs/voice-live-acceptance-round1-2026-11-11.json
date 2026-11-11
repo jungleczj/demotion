@@ -1,0 +1,828 @@
+{
+  "version": 1,
+  "mode": "live",
+  "startedAt": "2026-11-11T04:07:54.147Z",
+  "endpoint": "http://127.0.0.1:3027/api/narration",
+  "planned": 44,
+  "concurrency": 2,
+  "downloadDirectory": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx",
+  "stopOnHttp": [
+    402,
+    403,
+    429
+  ],
+  "stopAfterConsecutiveFailures": 3,
+  "assessment": {
+    "fullDecode": true,
+    "actualDuration": true,
+    "browserPlayback": "not_assessed",
+    "languageCorrect": "not_assessed",
+    "voiceIdentityCorrect": "not_assessed",
+    "naturalness": "not_assessed"
+  },
+  "cacheNote": "The API may reuse existing cache; it does not disclose whether each response generated new TTS.",
+  "cancellationNote": "At most two requests are in flight. On a stop condition no new tasks start; other client requests are aborted. Server-side cancellation/charges cannot be confirmed from this client.",
+  "finishedAt": "2026-11-11T04:08:26.881Z",
+  "summary": {
+    "success": 10,
+    "failed": 2,
+    "notRun": 32,
+    "requestsStarted": 12
+  },
+  "updatedAt": "2026-11-11T04:08:26.882Z",
+  "stopped": true,
+  "stopReason": "http_429",
+  "stopTaskId": "Iapetus__zh-CN__documentary",
+  "results": [
+    {
+      "id": "Kore__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Kore",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/c03c20c52db19a7a932fb89d2ab9c3ea77ef862b3209dc8f42b4f16e10270089.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Kore__zh-CN__documentary.wav",
+      "bytes": 399966,
+      "durationSeconds": 8.331,
+      "serverDurationSeconds": 8.331,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:07:54.149Z",
+      "finishedAt": "2026-11-11T04:08:00.417Z",
+      "elapsedMs": 6267
+    },
+    {
+      "id": "Charon__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Charon",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Charon",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/49b4a2bc9cb212fdc0201cf8fe5c81f2d77ba598c3930fe93edec4349ed362bd.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Charon__zh-CN__documentary.wav",
+      "bytes": 392930,
+      "durationSeconds": 8.184417,
+      "serverDurationSeconds": 8.184417,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:07:54.169Z",
+      "finishedAt": "2026-11-11T04:08:00.520Z",
+      "elapsedMs": 6351
+    },
+    {
+      "id": "Puck__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Puck",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Puck",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/e9f983440009ea31ea920f77c95e24daeed8309f64829fe2eac3b95d303d2b84.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Puck__zh-CN__documentary.wav",
+      "bytes": 381656,
+      "durationSeconds": 7.949542,
+      "serverDurationSeconds": 7.949542,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:00.417Z",
+      "finishedAt": "2026-11-11T04:08:06.541Z",
+      "elapsedMs": 6123
+    },
+    {
+      "id": "Zephyr__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Zephyr",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Zephyr",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/f84ba8fff4777c5a3ca11d07c0b127c15261cf9f15bbbd7ddffffad554c80df3.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Zephyr__zh-CN__documentary.wav",
+      "bytes": 411246,
+      "durationSeconds": 8.566,
+      "serverDurationSeconds": 8.566,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:00.520Z",
+      "finishedAt": "2026-11-11T04:08:09.004Z",
+      "elapsedMs": 8484
+    },
+    {
+      "id": "Fenrir__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Fenrir",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Fenrir",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/c9aca47d78a70e8f651e93f14b7a451bd8e8d5f654964a2f64bb48f1472a8f0d.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Fenrir__zh-CN__documentary.wav",
+      "bytes": 408480,
+      "durationSeconds": 8.508375,
+      "serverDurationSeconds": 8.508375,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:06.541Z",
+      "finishedAt": "2026-11-11T04:08:12.932Z",
+      "elapsedMs": 6391
+    },
+    {
+      "id": "Leda__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Leda",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Leda",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/8d3c659c355f75b2b568eb5c1a7ad272b03d25c52dae04f7d83491b5553ff1e7.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Leda__zh-CN__documentary.wav",
+      "bytes": 381888,
+      "durationSeconds": 7.954375,
+      "serverDurationSeconds": 7.954375,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:09.004Z",
+      "finishedAt": "2026-11-11T04:08:14.935Z",
+      "elapsedMs": 5931
+    },
+    {
+      "id": "Orus__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Orus",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Orus",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/e426dd70d96003e246b686a0a14bacbb76ff2c10233e48572857aea6703994ea.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Orus__zh-CN__documentary.wav",
+      "bytes": 396342,
+      "durationSeconds": 8.2555,
+      "serverDurationSeconds": 8.2555,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:12.933Z",
+      "finishedAt": "2026-11-11T04:08:18.962Z",
+      "elapsedMs": 6029
+    },
+    {
+      "id": "Aoede__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Aoede",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Aoede",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/840430c315dd5ac77c4c939ea2b019b758773e0288cde13c8e36cf44f74571ab.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Aoede__zh-CN__documentary.wav",
+      "bytes": 399482,
+      "durationSeconds": 8.320917,
+      "serverDurationSeconds": 8.320917,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:14.936Z",
+      "finishedAt": "2026-11-11T04:08:21.373Z",
+      "elapsedMs": 6437
+    },
+    {
+      "id": "Callirrhoe__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Callirrhoe",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Callirrhoe",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/6cd19e891939e647ca230ac54b984a7d1d7c3a492c019394d14c9f7b073236eb.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Callirrhoe__zh-CN__documentary.wav",
+      "bytes": 372280,
+      "durationSeconds": 7.754208,
+      "serverDurationSeconds": 7.754208,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:18.962Z",
+      "finishedAt": "2026-11-11T04:08:24.579Z",
+      "elapsedMs": 5616
+    },
+    {
+      "id": "Autonoe__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Autonoe",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Autonoe",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "audioUrl": "/api/narration/97b7801b35f923b78f6b1095f0253ec0a9b3b171971765232b352815425fb616.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ZzpNVx/Autonoe__zh-CN__documentary.wav",
+      "bytes": 389600,
+      "durationSeconds": 8.115042,
+      "serverDurationSeconds": 8.115042,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T04:08:21.373Z",
+      "finishedAt": "2026-11-11T04:08:26.606Z",
+      "elapsedMs": 5233
+    },
+    {
+      "id": "Enceladus__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Enceladus",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Enceladus",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "failed",
+      "requestStartedAt": "2026-11-11T04:08:24.580Z",
+      "finishedAt": "2026-11-11T04:08:26.879Z",
+      "elapsedMs": 2299,
+      "reason": "aborted_after_stop",
+      "httpStatus": null,
+      "fatalHttpStatus": null,
+      "cancelledDueToStop": true,
+      "error": "Stopped while already in flight; server cancellation is not confirmed."
+    },
+    {
+      "id": "Iapetus__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Iapetus",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Iapetus",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "failed",
+      "requestStartedAt": "2026-11-11T04:08:26.609Z",
+      "finishedAt": "2026-11-11T04:08:26.877Z",
+      "elapsedMs": 268,
+      "reason": "narration_request",
+      "httpStatus": 500,
+      "fatalHttpStatus": 429,
+      "cancelledDueToStop": false,
+      "error": "Quota or permission status 429 (local HTTP 500)"
+    },
+    {
+      "id": "Umbriel__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Umbriel",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Umbriel",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Algieba__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Algieba",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Algieba",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Despina__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Despina",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Despina",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Erinome__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Erinome",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Erinome",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Algenib__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Algenib",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Algenib",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Rasalgethi__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Rasalgethi",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Rasalgethi",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Laomedeia__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Laomedeia",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Laomedeia",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Achernar__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Achernar",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Achernar",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Alnilam__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Alnilam",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Alnilam",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Schedar__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Schedar",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Schedar",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Gacrux__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Gacrux",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Gacrux",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Pulcherrima__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Pulcherrima",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Pulcherrima",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Achird__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Achird",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Achird",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Zubenelgenubi__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Zubenelgenubi",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Zubenelgenubi",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Vindemiatrix__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Vindemiatrix",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Vindemiatrix",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Sadachbia__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Sadachbia",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Sadachbia",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Sadaltager__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Sadaltager",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Sadaltager",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Sulafat__zh-CN__documentary",
+      "group": "all_voices_chinese",
+      "voiceKey": "Sulafat",
+      "language": "zh-CN",
+      "request": {
+        "voice": "gemini:Sulafat",
+        "voiceStyle": "documentary",
+        "language": "zh-CN",
+        "text": "海洋的故事，远不止眼前的这一片蓝色。让我们一起，发现世界的另一面。"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__en__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "en",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "en",
+        "text": "The ocean holds more stories than we can imagine. Let us discover another side of our world."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__nl__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "nl",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "nl",
+        "text": "De oceaan heeft meer verhalen dan we kunnen bedenken. Laten we samen een andere kant van de wereld ontdekken."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__fr__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "fr",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "fr",
+        "text": "L'océan cache bien plus d'histoires que nous ne pouvons l'imaginer. Découvrons ensemble une autre facette du monde."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__de__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "de",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "de",
+        "text": "Der Ozean birgt mehr Geschichten, als wir uns vorstellen können. Entdecken wir gemeinsam eine andere Seite der Welt."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__hi__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "hi",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "hi",
+        "text": "समुद्र में हमारी कल्पना से कहीं अधिक कहानियाँ छिपी हैं। आइए, मिलकर दुनिया का एक नया पहलू खोजें।"
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__id__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "id",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "id",
+        "text": "Lautan menyimpan lebih banyak cerita daripada yang kita bayangkan. Mari kita temukan sisi lain dunia bersama."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__it__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "it",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "it",
+        "text": "L'oceano custodisce più storie di quante possiamo immaginare. Scopriamo insieme un altro lato del mondo."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__pl__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "pl",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "pl",
+        "text": "Ocean skrywa więcej historii, niż możemy sobie wyobrazić. Odkryjmy razem inną stronę świata."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__pt__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "pt",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "pt",
+        "text": "O oceano guarda mais histórias do que podemos imaginar. Vamos descobrir juntos um outro lado do mundo."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__ru__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "ru",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "ru",
+        "text": "Океан хранит больше историй, чем мы можем представить. Давайте вместе откроем другую сторону мира."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__es__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "es",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "es",
+        "text": "El océano guarda más historias de las que podemos imaginar. Descubramos juntos otra cara del mundo."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__sv__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "sv",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "sv",
+        "text": "Havet rymmer fler berättelser än vi kan föreställa oss. Låt oss tillsammans upptäcka en annan sida av världen."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__tr__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "tr",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "tr",
+        "text": "Okyanus, hayal edebileceğimizden çok daha fazla hikâye saklıyor. Gelin, dünyanın başka bir yüzünü birlikte keşfedelim."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    },
+    {
+      "id": "Kore__uk__documentary",
+      "group": "kore_other_languages",
+      "voiceKey": "Kore",
+      "language": "uk",
+      "request": {
+        "voice": "gemini:Kore",
+        "voiceStyle": "documentary",
+        "language": "uk",
+        "text": "Океан зберігає більше історій, ніж ми можемо уявити. Відкриймо разом інший бік світу."
+      },
+      "status": "not_run",
+      "reason": "http_429"
+    }
+  ]
+}
