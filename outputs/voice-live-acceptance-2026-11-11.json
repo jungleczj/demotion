@@ -1,17 +1,17 @@
 {
   "version": 2,
   "mode": "live",
-  "startedAt": "2026-11-11T08:39:53.930Z",
+  "startedAt": "2026-11-11T15:54:35.595Z",
   "firstStartedAt": "2026-11-11T04:07:54.147Z",
-  "round": 3,
+  "round": 4,
   "resumed": true,
-  "preservedSuccesses": 29,
-  "plannedThisRun": 15,
-  "previousReportBackup": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/voice-live-acceptance-round2-2026-11-11.json",
+  "preservedSuccesses": 42,
+  "plannedThisRun": 2,
+  "previousReportBackup": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/voice-live-acceptance-round3-2026-11-11.json",
   "endpoint": "http://127.0.0.1:3027/api/narration",
   "planned": 44,
   "concurrency": 2,
-  "downloadDirectory": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-eG2LcR",
+  "downloadDirectory": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ttbvxj",
   "stopOnHttp": [
     401,
     402,
@@ -29,18 +29,18 @@
   },
   "cacheNote": "The API may reuse existing cache; it does not disclose whether each response generated new TTS.",
   "cancellationNote": "At most two requests are in flight. On a stop condition no new tasks start; other client requests are aborted. Server-side cancellation/charges cannot be confirmed from this client.",
-  "finishedAt": "2026-11-11T08:40:44.687Z",
+  "finishedAt": "2026-11-11T15:54:42.412Z",
   "roundSummary": {
-    "success": 13,
-    "failed": 2,
+    "success": 2,
+    "failed": 0,
     "notRun": 0,
-    "requestsStarted": 15
+    "requestsStarted": 2
   },
   "summary": {
-    "success": 42,
-    "failed": 2,
+    "success": 44,
+    "failed": 0,
     "notRun": 0,
-    "requestsStarted": 48,
+    "requestsStarted": 50,
     "distinctTasksStarted": 44
   },
   "rounds": [
@@ -76,12 +76,23 @@
         "notRun": 0,
         "requestsStarted": 15
       }
+    },
+    {
+      "startedAt": "2026-11-11T15:54:35.595Z",
+      "finishedAt": "2026-11-11T15:54:42.412Z",
+      "stopReason": null,
+      "summary": {
+        "success": 2,
+        "failed": 0,
+        "notRun": 0,
+        "requestsStarted": 2
+      }
     }
   ],
-  "updatedAt": "2026-11-11T08:40:44.687Z",
-  "stopped": true,
-  "stopReason": "http_429",
-  "stopTaskId": "Kore__tr__documentary",
+  "updatedAt": "2026-11-11T15:54:42.412Z",
+  "stopped": false,
+  "stopReason": null,
+  "stopTaskId": null,
   "results": [
     {
       "id": "Kore__zh-CN__documentary",
@@ -1354,15 +1365,24 @@
         "language": "tr",
         "text": "Okyanus, hayal edebileceğimizden çok daha fazla hikâye saklıyor. Gelin, dünyanın başka bir yüzünü birlikte keşfedelim."
       },
-      "status": "failed",
-      "requestStartedAt": "2026-11-11T08:40:36.065Z",
-      "finishedAt": "2026-11-11T08:40:44.671Z",
-      "elapsedMs": 8606,
-      "reason": "narration_request",
-      "httpStatus": 429,
-      "fatalHttpStatus": 429,
-      "cancelledDueToStop": false,
-      "error": "Quota or permission status 429 (local HTTP 429)"
+      "audioUrl": "/api/narration/d90b191914f9e0f2d061ea463b22cf4bfe2c4c03009832eebd811a8082c379ee.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ttbvxj/Kore__tr__documentary.wav",
+      "bytes": 428870,
+      "durationSeconds": 8.933167,
+      "serverDurationSeconds": 8.933167,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T15:54:35.597Z",
+      "finishedAt": "2026-11-11T15:54:42.412Z",
+      "elapsedMs": 6814
     },
     {
       "id": "Kore__uk__documentary",
@@ -1375,15 +1395,24 @@
         "language": "uk",
         "text": "Океан зберігає більше історій, ніж ми можемо уявити. Відкриймо разом інший бік світу."
       },
-      "status": "failed",
-      "requestStartedAt": "2026-11-11T08:40:36.686Z",
-      "finishedAt": "2026-11-11T08:40:44.678Z",
-      "elapsedMs": 7992,
-      "reason": "aborted_after_stop",
-      "httpStatus": null,
-      "fatalHttpStatus": null,
-      "cancelledDueToStop": true,
-      "error": "Stopped while already in flight; server cancellation is not confirmed."
+      "audioUrl": "/api/narration/f06638edf3adf1c03c6e27fd5607fb87a93129758a027af406f1fa11e6f037ab.wav",
+      "file": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-voice-live-2026-11-11-ttbvxj/Kore__uk__documentary.wav",
+      "bytes": 393342,
+      "durationSeconds": 8.193,
+      "serverDurationSeconds": 8.193,
+      "codec": "pcm_s16le",
+      "sampleRate": 24000,
+      "channels": 1,
+      "probeExit": 0,
+      "fullDecodeExit": 0,
+      "cacheHit": "not_reported_by_api",
+      "languageCorrect": "not_assessed",
+      "voiceIdentityCorrect": "not_assessed",
+      "naturalness": "not_assessed",
+      "status": "success",
+      "requestStartedAt": "2026-11-11T15:54:35.618Z",
+      "finishedAt": "2026-11-11T15:54:41.556Z",
+      "elapsedMs": 5938
     }
   ]
 }

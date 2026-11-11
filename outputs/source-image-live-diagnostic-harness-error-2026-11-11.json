@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-11T15:30:30.111Z",
+  "taskId": "dce7253e-1fac-43ff-a041-0f1c993ee3b8",
+  "diagnosticOnly": true,
+  "userTaskCancelled": false,
+  "productionSubmitted": false,
+  "maxImageReviews": 4,
+  "passed": false,
+  "scene": {
+    "id": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "text": "它们将蛋放在双脚上，",
+    "query": "penguin feet snow"
+  },
+  "error": "视觉 AI 请求失败（HTTP 400），请检查模型与接口：API key not valid. Please pass a valid API key.",
+  "calls": 1,
+  "events": [
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:65739620",
+      "status": "failed",
+      "detail": "图片来源、作者或许可信息不完整"
+    },
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "failed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-11T15:30:37.058Z",
+      "httpStatus": 400,
+      "durationMs": 7927,
+      "detail": "视觉 AI 请求失败（HTTP 400），请检查模型与接口：API key not valid. Please pass a valid API key."
+    }
+  ],
+  "harnessError": true,
+  "configurationIssue": "Diagnostic loaded placeholder credentials from a deployment preparation file; this is not evidence of production credentials failing."
+}

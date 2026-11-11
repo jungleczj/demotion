@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-11T15:25:18.837439+00:00",
+  "origin": "https://gomotion-mvp.vercel.app",
+  "newGenerationRequests": 0,
+  "browserVerified": false,
+  "endpoints": [
+    {
+      "path": "/api/config",
+      "status": 200,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true
+    },
+    {
+      "path": "/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "passed": true
+}

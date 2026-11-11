@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-11",
+  "tutorialPage": "https://gomotionai.com/tutorial",
+  "sourceUrl": "https://gomotionai.com/music/tutorial/gomotion-tutorial.mp4",
+  "source": {
+    "bytes": 143362727,
+    "sha256": "d9ef00a58a4fae305602b025b153cd40fd703f158467f7975c9806173999b578",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "durationSeconds": 349.437007,
+    "decodedFrames": 20966,
+    "fullDecodePassed": true
+  },
+  "method": {
+    "everyFrameDecoded": true,
+    "everyFrameHumanViewed": false,
+    "inputRegionFrameChangeScan": {
+      "startSeconds": 142,
+      "endSeconds": 155,
+      "rectangle": [536, 320, 710, 190],
+      "sceneScoreThreshold": 0.015,
+      "limitations": "Change screening locates UI states, not OCR proof of every individual character. Native keyframes were visually checked."
+    },
+    "fullSourceOrTranscriptsPublished": false,
+    "newGenerationRequests": 0
+  },
+  "input": {
+    "firstLocatedAtSeconds": 144.333333,
+    "departureLocatedAtSeconds": 150.7,
+    "nativeFrameCheckedAtSeconds": 150,
+    "displayedCharacterCount": 15926,
+    "displayedCharacterLimit": 23000,
+    "language": "English",
+    "voice": "Deneb Standard",
+    "background": "Blue",
+    "subtitles": true,
+    "motionGraphics": true,
+    "estimatedVideoUpperMinutes": 18,
+    "estimatedProductionMinutesDisplayed": [30, 65],
+    "estimatedTimeIsObservedBenchmark": false,
+    "fullScriptRecovered": false,
+    "visibleTopicParaphrase": "British naval Sea Wolf targeting, Argentine pilots, radar/computing limitations and a software response.",
+    "visibleShotDirectionsFound": false,
+    "hiddenTextShotDirectionsKnown": false
+  },
+  "editedProjects": [
+    {
+      "checkedAtSeconds": 155,
+      "projectId": "p_b2f3e65d7aed",
+      "title": "Kursk 1943 — run final",
+      "clipCount": 136,
+      "durationDisplayed": "15:47",
+      "sameAsVisibleInputDemonstrated": false
+    },
+    {
+      "checkedAtSeconds": 195,
+      "projectId": "p_599cdd7b2891",
+      "title": "Validacion FINAL (fondo azul)",
+      "clipCount": 128,
+      "durationDisplayed": "14:58",
+      "topic": "Poland 1939",
+      "sameAsVisibleInputDemonstrated": false,
+      "manualReplacementObservedAtSeconds": [235, 240]
+    }
+  ],
+  "findings": {
+    "sameInputToOutputMappingProved": false,
+    "requiresPreciseShotScriptProved": false,
+    "zeroEditGenerationProved": false,
+    "motionGraphicsObserved": ["bullet_panel", "animated_bar_ranking", "evidence_board"],
+    "graphicsTriggeredOnlyByMissingVideoProved": false,
+    "mainFootageProviderIdentified": false
+  }
+}

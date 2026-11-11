@@ -1,0 +1,146 @@
+{
+  "at": "2026-11-11T15:34:22.662Z",
+  "taskId": "dce7253e-1fac-43ff-a041-0f1c993ee3b8",
+  "diagnosticOnly": true,
+  "userTaskCancelled": false,
+  "productionSubmitted": false,
+  "maxImageReviews": 4,
+  "passed": false,
+  "scene": {
+    "id": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "text": "它们将蛋放在双脚上，",
+    "query": "penguin feet snow"
+  },
+  "imageObservations": [
+    {
+      "matched": false,
+      "exactSubject": false,
+      "clear": true,
+      "watermarkFree": true,
+      "licenseUsable": true,
+      "observed": "A human hiker with a red backpack walking on a snow-covered mountain ridge (Penguin Peak, Alaska). No penguins or penguin eggs are present.",
+      "limitations": [
+        "The image shows a mountain named Penguin Peak, not actual emperor penguins or eggs"
+      ],
+      "title": "它们将蛋放在双脚上，",
+      "annotations": []
+    },
+    {
+      "matched": false,
+      "exactSubject": false,
+      "clear": true,
+      "watermarkFree": true,
+      "licenseUsable": true,
+      "observed": "An astronaut satellite/space photograph of South Georgia Island covered in snow surrounded by ocean and clouds. There are no penguins or eggs visible.",
+      "limitations": [
+        "The narration describes an emperor penguin holding an egg on its feet, but the image is a high-altitude orbital view of an island."
+      ],
+      "title": "它们将蛋放在双脚上，",
+      "annotations": []
+    },
+    {
+      "matched": false,
+      "exactSubject": false,
+      "clear": true,
+      "watermarkFree": true,
+      "licenseUsable": true,
+      "observed": "A satellite view showing icebergs and cloud patterns over the Southern Ocean near the South Orkney Islands, with no penguins, penguin feet, or eggs visible.",
+      "limitations": [
+        "The narration describes emperor penguins holding eggs on their feet, but the image is a satellite view of ocean, clouds, and icebergs."
+      ],
+      "title": "它们将蛋放在双脚上，",
+      "annotations": []
+    }
+  ],
+  "elapsedMs": 84855,
+  "result": {
+    "plan": null,
+    "attempted": 4,
+    "warnings": [
+      "openverse：fetch failed",
+      "commons:65739620 图片已排除：图片来源、作者或许可信息不完整",
+      "commons:63571986 图片已排除：实际图片内容、主体、物种、清晰度或许可未通过匹配审查",
+      "commons:177372439 图片已排除：实际图片内容、主体、物种、清晰度或许可未通过匹配审查",
+      "commons:145418892 图片已排除：实际图片内容、主体、物种、清晰度或许可未通过匹配审查"
+    ]
+  },
+  "calls": 3,
+  "events": [
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:65739620",
+      "status": "failed",
+      "detail": "图片来源、作者或许可信息不完整"
+    },
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-11T15:34:29.201Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1963,
+        "outputTokens": 129,
+        "totalTokens": 2092
+      },
+      "durationMs": 17141
+    },
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:63571986",
+      "status": "failed",
+      "detail": "实际图片内容、主体、物种、清晰度或许可未通过匹配审查"
+    },
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-11T15:34:49.423Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2289,
+        "outputTokens": 137,
+        "totalTokens": 2426
+      },
+      "durationMs": 27841
+    },
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:177372439",
+      "status": "failed",
+      "detail": "实际图片内容、主体、物种、清晰度或许可未通过匹配审查"
+    },
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-11T15:35:19.140Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2154,
+        "outputTokens": 141,
+        "totalTokens": 2295
+      },
+      "durationMs": 28387
+    },
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:145418892",
+      "status": "failed",
+      "detail": "实际图片内容、主体、物种、清晰度或许可未通过匹配审查"
+    }
+  ]
+}
