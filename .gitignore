@@ -1,4 +1,5 @@
 .DS_Store
+.vercel/
 node_modules/
 dist/
 .env
@@ -17,3 +18,5 @@ work/
 outputs/*public*.html
 outputs/*public*.js
 outputs/subtitle-comparison-*.ass
+.vercel
+.env*

@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+node_modules
+outputs/*
+!outputs/gomotion-mvp
+outputs/gomotion-mvp/node_modules
+outputs/gomotion-mvp/dist
+outputs/gomotion-mvp/.env
+outputs/gomotion-mvp/.env.*
+outputs/gomotion-mvp/work
+outputs/gomotion-mvp/server/*.test.mjs
+outputs/gomotion-mvp/shared/*.test.mjs
+outputs/gomotion-mvp/src/**/*.test.mjs
+outputs/gomotion-mvp/scripts

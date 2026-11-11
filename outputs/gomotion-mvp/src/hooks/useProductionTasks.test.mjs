@@ -45,7 +45,7 @@ function mount(network, handlers = {}) {
   const patch = (key, value) => { originals.set(key, Object.getOwnPropertyDescriptor(globalThis, key)); Object.defineProperty(globalThis, key, { configurable: true, writable: true, value }); };
   let cursor = 0, timerId = 0, pending = false, disposed = false, result;
   const values = [], effects = [];
-  const options = { onUpdate(value) { updates.push(value); handlers.onUpdate?.(value); }, onFinished(value) { finished.push(value); handlers.onFinished?.(value); } };
+  const options = { enabled: handlers.enabled, onUpdate(value) { updates.push(value); handlers.onUpdate?.(value); }, onFinished(value) { finished.push(value); handlers.onFinished?.(value); } };
   const location = { assign(...args) { navigation.push(['assign', ...args]); }, replace(...args) { navigation.push(['replace', ...args]); } };
   Object.defineProperty(location, 'href', { configurable: true, get: () => '/projects', set: (value) => navigation.push(['href', value]) });
   const history = Object.fromEntries(['pushState', 'replaceState', 'back', 'forward', 'go'].map((name) => [name, (...args) => navigation.push([name, ...args])]));
@@ -79,6 +79,17 @@ function mount(network, handlers = {}) {
     },
   };
 }
+
+test('an unavailable worker does not start a failing poll loop', async () => {
+  const network = transport();
+  const app = mount(network, { enabled: false });
+  try {
+    await settle();
+    assert.equal(network.requests.length, 0);
+    assert.equal(app.timers.size, 0);
+    assert.equal(app.hook.connectionLost, false);
+  } finally { app.dispose(); }
+});
 
 test('a refreshed mount reads the original background task without submitting or cancelling it', async () => {
   const network = transport(), original = task();

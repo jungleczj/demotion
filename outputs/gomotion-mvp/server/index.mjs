@@ -1,9 +1,8 @@
 import http from 'node:http';
 import path from 'node:path';
-import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, writeFile, stat, readdir, rm } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, stat, readdir, rm, rename } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
@@ -25,12 +24,17 @@ import { MAX_SCENES } from './recovery.mjs';
 import { createProductionManager } from './productions.mjs';
 import { previewCancellation } from './preview-cancellation.mjs';
 import { searchYouTubeReferences } from './youtube.mjs';
+import { workDirectory, allowedOrigins } from './runtime.mjs';
+import { retainedMedia } from './media-retention.mjs';
+import { searchMusicSources, acquireMusicAsset } from './music-sources.mjs';
 
 const network = configureNetwork();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.env.PORT) || 3027;
-const work = path.join(os.tmpdir(), 'gomotion-local-mvp');
+const host = process.env.HOST || '127.0.0.1';
+const requestOrigins = allowedOrigins(port);
+const work = workDirectory;
 await mkdir(work, { recursive: true });
 const config = {
   llmKey: process.env.LLM_API_KEY || process.env.SECRET_DEEPSEEK_API_KEY || '',
@@ -56,7 +60,11 @@ function analysisView(job) {
 try { for (const asset of JSON.parse(await readFile(path.join(work, 'assets.json'), 'utf8'))) assets.set(asset.id, asset); } catch {}
 let assetWriteQueue = Promise.resolve();
 const saveAssets = () => {
-  assetWriteQueue = assetWriteQueue.catch(() => {}).then(() => writeFile(path.join(work, 'assets.json'), JSON.stringify([...assets.values()])));
+  assetWriteQueue = assetWriteQueue.catch(() => {}).then(async () => {
+    const file = path.join(work, 'assets.json');
+    await writeFile(`${file}.partial`, JSON.stringify([...assets.values()]));
+    await rename(`${file}.partial`, file);
+  });
   return assetWriteQueue;
 };
 
@@ -97,7 +105,8 @@ const server = http.createServer(async (req, res) => {
   try {
     if (url.pathname.startsWith('/api/')) {
       const origin = req.headers.origin;
-      if (origin && ![`http://localhost:${port}`, `http://127.0.0.1:${port}`].includes(origin)) return send(res, 403, { error: '仅接受本地工作台请求' });
+      if (origin && !requestOrigins.has(origin)) return send(res, 403, { error: '该工作台地址未获允许' });
+      if (url.pathname === '/api/health' && req.method === 'GET') return send(res, 200, { status: 'ok' });
       if (url.pathname === '/api/productions/recover' && req.method === 'POST') return send(res, 200, await productions.recover(await json(req)));
       if (url.pathname === '/api/productions' && req.method === 'GET') return send(res, 200, productions.list(Math.max(0, Number(url.searchParams.get('after')) || 0)));
       if (url.pathname === '/api/productions' && req.method === 'POST') return send(res, 202, await productions.submit(await json(req)));
@@ -110,6 +119,28 @@ const server = http.createServer(async (req, res) => {
         }
       }
       if (url.pathname === '/api/config' && req.method === 'GET') return send(res, 200, configPublic());
+      if (url.pathname === '/api/music/search' && req.method === 'POST') {
+        const input = await json(req);
+        if (typeof input.query !== 'string' || input.query.length > 200 || input.providers && (!Array.isArray(input.providers) || input.providers.some((p) => !['scottbuckley', 'openverse'].includes(p)))) return send(res, 400, { error: '音乐检索参数无效' });
+        const request = previewCancellation(res);
+        try { return send(res, 200, await searchMusicSources(input.query, config, { providers: input.providers, signal: request.signal })); }
+        finally { request.dispose(); }
+      }
+      if (url.pathname === '/api/music/download' && req.method === 'POST') {
+        const input = await json(req), request = previewCancellation(res);
+        try {
+          const record = await acquireMusicAsset(input.id, path.join(work, 'music-sources'), { signal: request.signal });
+          const { localPath, ...receipt } = record;
+          return send(res, 200, { ...receipt, url: `/api/music/files/${path.basename(localPath)}`, downloadChecked: true });
+        } finally { request.dispose(); }
+      }
+      const musicFile = /^\/api\/music\/files\/([a-f0-9]{64}\.audio)$/.exec(url.pathname);
+      if (musicFile && req.method === 'GET') {
+        const file = path.join(work, 'music-sources', musicFile[1]);
+        const receipt = JSON.parse(await readFile(`${file}.json`, 'utf8').catch(() => 'null'));
+        if (!receipt?.fullDecode || !receipt.sha256) return send(res, 404, { error: '音乐尚未完整下载与验证' });
+        return await serveFile(req, res, file, 'application/octet-stream');
+      }
       if (url.pathname === '/api/voices' && req.method === 'GET') return send(res, 200, { voices: await readyVoices(), languages });
       const voiceSampleMatch = /^\/api\/voice-samples\/([A-Za-z]+)\.wav$/.exec(url.pathname);
       if (voiceSampleMatch && req.method === 'GET') return await serveFile(req, res, await voiceSample(voiceSampleMatch[1]), 'audio/wav');
@@ -396,16 +427,17 @@ async function cleanup() {
       const cacheDirectory = path.join(work, entry.name);
       for (const fileName of await readdir(cacheDirectory)) {
         const file = path.join(cacheDirectory, fileName);
-        try { if (Date.now() - (await stat(file)).mtimeMs > 24 * 3600000) await rm(file, { force: true }); } catch {}
+        try { if (!retainedMedia(file) && Date.now() - (await stat(file)).mtimeMs > 24 * 3600000) await rm(file, { force: true }); } catch {}
       }
       continue;
     }
     const file = path.join(work, entry.name);
+    if (retainedMedia(file, true)) continue;
     if (jobs.get(entry.name)?.status === 'rendering') continue;
     if (entry.name.startsWith('vision-') && analyses.get(entry.name.slice(7))?.status === 'running') continue;
     try { if (Date.now() - (await stat(file)).mtimeMs > 24 * 60 * 60 * 1000) await rm(file, { recursive: true, force: true }); } catch {}
   }
 }
-void cleanup(); setInterval(cleanup, 60 * 60 * 1000).unref();
-server.listen(port, '127.0.0.1', () => console.log(`\n  GoMotion local MVP\n  Local: http://localhost:${port}\n  AI planner: ${config.llmKey ? 'configured' : 'not connected'}\n`));
+await cleanup(); setInterval(cleanup, 60 * 60 * 1000).unref();
+server.listen(port, host, () => console.log(`\n  GoMotion local MVP\n  Local: http://localhost:${port}\n  AI planner: ${config.llmKey ? 'configured' : 'not connected'}\n`));
 server.on('error', (error) => { console.error(error.code === 'EADDRINUSE' ? `端口 ${port} 已被占用，请设置 PORT 后重启。` : error.message); process.exitCode = 1; });

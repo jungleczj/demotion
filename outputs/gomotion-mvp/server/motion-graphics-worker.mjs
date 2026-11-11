@@ -8,7 +8,8 @@ import { motionSVG, graphicTextLines, validateMotionPlan } from './motion-graphi
 
 const { plan: inputPlan, style, duration, profile, file, fontFile, marker } = workerData || {};
 let plan, child;
-const font = { loadSystemFonts: false, fontFiles: fontFile ? [fontFile] : [], defaultFontFamily: fontFile ? 'PingFang SC' : 'Arial' };
+const fontFamily = process.env.MOTION_FONT_FAMILY || (fontFile ? 'PingFang SC' : 'Arial');
+const font = { loadSystemFonts: process.env.MOTION_SYSTEM_FONTS === '1', fontFiles: fontFile ? [fontFile] : [], defaultFontFamily: fontFamily };
 const textCache = new Map();
 const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[c]);
 
@@ -17,7 +18,7 @@ function drawText(label, x, y, size, color, anchor = 'middle', maxWidth = 800) {
   const key = JSON.stringify([label, size, color, anchor, maxWidth]);
   if (!textCache.has(key)) {
     const lines = graphicTextLines(label, size, maxWidth);
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="-800 -100 1600 400"><text x="0" y="0" text-anchor="${anchor}" font-family="PingFang SC,Arial,sans-serif" font-size="${size}" font-weight="500" fill="${color}">${lines.map((line, i) => `<tspan x="0" dy="${i ? size * 1.35 : 0}">${escape(line)}</tspan>`).join('')}</text></svg>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="-800 -100 1600 400"><text x="0" y="0" text-anchor="${anchor}" font-family="${escape(fontFamily)},Arial,sans-serif" font-size="${size}" font-weight="500" fill="${color}">${lines.map((line, i) => `<tspan x="0" dy="${i ? size * 1.35 : 0}">${escape(line)}</tspan>`).join('')}</text></svg>`;
     const outlined = new Resvg(svg, { font }).toString();
     textCache.set(key, outlined.slice(outlined.indexOf('>') + 1, outlined.lastIndexOf('</svg>')));
   }

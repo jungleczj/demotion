@@ -17,6 +17,15 @@ const asset = { id: 'local-contract', provider: 'upload', kind: 'video', title: 
 const base = { id: 'project-contract', title: '字幕检查', script: '字幕应该清晰。', voice: 'gemini:Kore', language: 'zh-CN', subtitles: true, fit: 'cover', scenes: [{ id: 'scene-contract', text: '字幕应该清晰。', duration: 8, start: 0, selected: asset, status: 'done' }] };
 const render = (patch) => renderToStaticMarkup(createElement(Editor, { project: { ...base, ...patch }, providers: [], generating: false, onRemake: async () => {}, onChange() {}, onBack() {}, onError() {}, onCancel() {} }));
 
+test('existing drafts cannot start remake or export when the cloud worker is unavailable', () => {
+  for (const scenes of [[], base.scenes]) {
+    const html = renderToStaticMarkup(createElement(Editor, { project: { ...base, scenes }, providers: [], productionReady: false, generating: false, onRemake: async () => {}, onChange() {}, onBack() {}, onError() {}, onCancel() {} }));
+    for (const button of html.matchAll(/<button\b[^>]*>[^]*?<\/button>/g)) {
+      if (/重新制作|Export video/.test(button[0])) assert.ok(button[0].includes('disabled=""'));
+    }
+  }
+});
+
 test('finished video captions cannot be dimmed by a second preview vignette', () => {
   const html = render({ format: 'landscape', exportUrl: '/api/exports/local/video.mp4' });
   assert.ok(!html.includes('class="video-vignette"'), 'a film already contains its captions and must not receive a dark overlay');

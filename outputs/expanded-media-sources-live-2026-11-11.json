@@ -1,0 +1,139 @@
+{
+  "at": "2026-11-11T12:49:08.716Z",
+  "modelRequests": 0,
+  "paidRequests": 0,
+  "network": {
+    "configured": true,
+    "source": "macOS-system"
+  },
+  "operations": [
+    {
+      "name": "cleveland-search",
+      "ok": true,
+      "elapsedMs": 3026,
+      "result": {
+        "count": 8,
+        "queriedSources": [
+          "cleveland"
+        ],
+        "first": {
+          "provider": "cleveland",
+          "sourceId": "172523",
+          "kind": "image",
+          "title": "Finial with Bird (Harpy Eagle with Royal Flycatcher Crest?)",
+          "description": "This gold finial fit over the end of a staff, an emblem of rank. The bird has the hooked beak of a raptor—perhaps the harpy eagle, the “king” of tropical forests. The enormous crest, however, may be inspired by the Royal Flycatcher, a smaller bird that fans its unique, brilliantly colored crest during mating. gold, cast 400–1000",
+          "url": "https://openaccess-cdn.clevelandart.org/2015.3/2015.3_print.jpg",
+          "thumbnail": "https://openaccess-cdn.clevelandart.org/2015.3/2015.3_web.jpg",
+          "sourceUrl": "https://clevelandart.org/art/2015.3",
+          "author": "Isthmian Region (Colombia), Sinú (Zenú), 5th century-11th century",
+          "license": "CC0 1.0",
+          "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "attribution": "Finial with Bird (Harpy Eagle with Royal Flycatcher Crest?) — Isthmian Region (Colombia), Sinú (Zenú), 5th century-11th century; Cleveland Museum of Art; CC0 1.0; https://clevelandart.org/art/2015.3",
+          "rights": {
+            "attributionRequired": false,
+            "shareAlike": false,
+            "preserveSourceMarks": true,
+            "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+          },
+          "width": 2710,
+          "height": 3400,
+          "bytes": 1391381,
+          "duration": 0,
+          "licenseCheckedAt": "2026-11-11T12:49:11.741Z",
+          "id": "cleveland:172523",
+          "score": 90,
+          "reason": "标题或说明包含主要检索词；仍需确认画面",
+          "matchMethod": "metadata"
+        }
+      }
+    },
+    {
+      "name": "cleveland-original-full-decode",
+      "ok": true,
+      "elapsedMs": 6451,
+      "result": {
+        "id": "cleveland:172523",
+        "provider": "cleveland",
+        "sourceId": "172523",
+        "sourceUrl": "https://clevelandart.org/art/2015.3",
+        "author": "Isthmian Region (Colombia), Sinú (Zenú), 5th century-11th century",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "localPath": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-local-mvp/expanded-source-acceptance/image/65aaa5e0fbdc655077e2b88c8dabe3dc386e8db1a85d21cf196090cd1e17f57c.source",
+        "decodedPath": "/var/folders/l5/164spx8n27nbbtz29bp4kf1m0000gn/T/gomotion-local-mvp/expanded-source-acceptance/image/65aaa5e0fbdc655077e2b88c8dabe3dc386e8db1a85d21cf196090cd1e17f57c.png",
+        "sha256": "65aaa5e0fbdc655077e2b88c8dabe3dc386e8db1a85d21cf196090cd1e17f57c",
+        "decodedSha256": "e34f56bb4107061b4c23aab074f347e90a19975e5be81be5b6251b6647e3ed62",
+        "width": 1275,
+        "height": 1600,
+        "bytes": 1381412,
+        "decoding": {
+          "sourceWidth": 2710,
+          "sourceHeight": 3400,
+          "width": 1275,
+          "height": 1600,
+          "fullFrame": true,
+          "scaleDownOnly": true
+        },
+        "acquisition": {
+          "kind": "source-download",
+          "url": "https://openaccess-cdn.clevelandart.org/2015.3/2015.3_print.jpg",
+          "acquiredAt": "2026-11-11T12:49:18.194Z",
+          "bytes": 1381412
+        },
+        "attribution": "Isthmian Region (Colombia), Sinú (Zenú), 5th century-11th century · CC0 1.0 · https://clevelandart.org/art/2015.3",
+        "rights": {
+          "attributionRequired": false,
+          "shareAlike": false,
+          "preserveSourceMarks": true,
+          "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+        },
+        "catalogTitle": "Finial with Bird (Harpy Eagle with Royal Flycatcher Crest?)",
+        "catalogDescription": "This gold finial fit over the end of a staff, an emblem of rank. The bird has the hooked beak of a raptor—perhaps the harpy eagle, the “king” of tropical forests. The enormous crest, however, may be inspired by the Royal Flycatcher, a smaller bird that fans its unique, brilliantly colored crest during mating. gold, cast 400–1000"
+      }
+    },
+    {
+      "name": "scottbuckley-official-page",
+      "ok": true,
+      "elapsedMs": 8697,
+      "result": {
+        "count": 1,
+        "warnings": [],
+        "first": {
+          "provider": "scottbuckley",
+          "sourceId": "undertow",
+          "title": "Undertow",
+          "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+          "kind": "audio",
+          "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+          "thumbnail": "",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "author": "Scott Buckley",
+          "authorUrl": "https://www.scottbuckley.com.au/",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+          "rights": {
+            "attributionRequired": true,
+            "shareAlike": false,
+            "synchronisationOnly": true,
+            "noFingerprinting": true,
+            "youtubeDescriptionCredit": true,
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+          },
+          "licenseCheckedAt": "2026-11-11T12:49:26.890Z",
+          "width": 0,
+          "height": 0,
+          "duration": 0,
+          "bytes": 0,
+          "id": "scottbuckley:undertow"
+        }
+      }
+    },
+    {
+      "name": "scottbuckley-mp3-cold-local-cache",
+      "ok": false,
+      "elapsedMs": 120011,
+      "error": "The operation was aborted"
+    }
+  ]
+}

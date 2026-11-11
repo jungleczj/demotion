@@ -4,14 +4,14 @@ import { createWriteStream } from 'node:fs';
 import { Transform, Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import path from 'node:path';
-import os from 'node:os';
+import { workDirectory } from './runtime.mjs';
 import { assets, ensureAnalysisPreview } from './sources.mjs';
 import { run, probe } from './process.mjs';
 import { mediaQualityError, outputProfile } from './media-quality.mjs';
 import { contentCrop } from './framing.mjs';
 import { sharedOperations } from './shared-operation.mjs';
 
-const folder = path.join(os.tmpdir(), 'gomotion-local-mvp', 'playback');
+const folder = path.join(workDirectory, 'playback');
 const FILE_LIMIT = 24 * 1024 * 1024;
 const SOURCE_LIMIT = 48 * 1024 * 1024;
 const CACHE_LIMIT = 256 * 1024 * 1024;
@@ -147,7 +147,7 @@ export async function ensurePlayback(asset, config, retry = false, signal) {
   const qualityError = config.outputFormat && mediaQualityError(asset.width, asset.height, config.outputFormat, true);
   if (qualityError) throw new Error(qualityError);
   await mkdir(folder, { recursive: true });
-  await measure(timings, 'metadataMs', () => ensureAnalysisPreview(asset, config));
+  await measure(timings, 'metadataMs', () => ensureAnalysisPreview(asset, config, operationSignal));
   operationSignal.throwIfAborted();
   const seconds = previewSpan(asset, config), key = playbackKey(asset, seconds), file = playbackPath(key);
   if (retry) { fileInfo.delete(key); await Promise.all([file, file.replace(/\.mp4$/, '.jpg')].map((f) => rm(f, { force: true }))); }

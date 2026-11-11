@@ -1,10 +1,11 @@
 import { mkdir, readFile, writeFile, stat, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
-import os from 'node:os';
+import { workDirectory } from './runtime.mjs';
 import samples from '../shared/voice-samples.json' with { type: 'json' };
+import voices from '../shared/voices.json' with { type: 'json' };
 import { probe } from './process.mjs';
 
-const folder = path.join(os.tmpdir(), 'gomotion-local-mvp', 'voice-samples');
+const folder = path.join(workDirectory, 'voice-samples');
 const pending = new Map();
 export const voiceSamplePath = (key) => path.join(folder, `${key}.wav`);
 
@@ -34,19 +35,8 @@ export async function voiceSample(key) {
   return pending.get(key);
 }
 
-let catalogPreparation;
 export async function readyVoices() {
-  if (!catalogPreparation) catalogPreparation = (async () => {
-    const ready = [], keys = Object.keys(samples);
-    let cursor = 0;
-    async function worker() {
-      while (cursor < keys.length) {
-        const key = keys[cursor++];
-        try { await voiceSample(key); ready.push(key); } catch {}
-      }
-    }
-    await Promise.all([worker(), worker(), worker()]);
-    return ready;
-  })().finally(() => { catalogPreparation = null; });
-  return catalogPreparation;
+  // Audition uses /api/narration in the selected language. Loading this catalog
+  // must not wait on unrelated English documentation samples or remote TTS.
+  return voices.map((voice) => voice.key);
 }

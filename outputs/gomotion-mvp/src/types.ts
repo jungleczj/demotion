@@ -1,4 +1,4 @@
-export type Provider = 'commons' | 'archive' | 'nasa' | 'pexels' | 'pixabay' | 'coverr' | 'upload';
+export type Provider = 'commons' | 'archive' | 'nasa' | 'pexels' | 'pixabay' | 'coverr' | 'openverse' | 'cleveland' | 'scottbuckley' | 'upload';
 export type Asset = {
   id: string; provider: Provider; sourceId: string; title: string; description: string;
   url: string; thumbnail: string; sourceUrl: string; author: string; authorUrl?: string;
@@ -47,7 +47,7 @@ export type Config = {
 };
 export type SearchResult = { assets: Asset[]; warnings: string[]; queriedSources: Provider[]; cached: boolean; rankMethod?: string };
 export type ExportJob = { createdAt?: number; id: string; status: 'rendering' | 'done' | 'error' | 'cancelled'; progress: number; message: string; error?: string; url?: string; duration?: number; size?: number; review?: VideoReview; reviewError?: string };
-export const sourceLabels: Record<Provider, string> = { commons: 'Wikimedia', archive: 'Internet Archive', nasa: 'NASA', pexels: 'Pexels', pixabay: 'Pixabay', coverr: 'Coverr', upload: '本地素材' };
+export const sourceLabels: Record<Provider, string> = { commons: 'Wikimedia', archive: 'Internet Archive', nasa: 'NASA', pexels: 'Pexels', pixabay: 'Pixabay', coverr: 'Coverr', openverse: 'Openverse', cleveland: 'Cleveland Museum of Art', scottbuckley: 'Scott Buckley', upload: '本地素材' };
 export const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 export const media = (asset: Asset, thumb = false) => `/api/media?id=${encodeURIComponent(asset.id)}${thumb ? '&thumbnail=1' : ''}`;
 export const contentApproved = (scene: Scene) => Boolean(scene.selected?.kind === 'video' && (scene.confirmed || (scene.visualObservation?.assetId === scene.selected.id && Number.isFinite(scene.trimEnd))));

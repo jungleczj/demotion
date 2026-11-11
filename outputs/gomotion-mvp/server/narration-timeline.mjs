@@ -1,12 +1,12 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import os from 'node:os';
+import { workDirectory } from './runtime.mjs';
 import { narrationAudio } from './narration.mjs';
 import { visionJSON } from './vision-client.mjs';
 import { run } from './process.mjs';
 
-const folder = path.join(os.tmpdir(), 'gomotion-local-mvp', 'narration');
+const folder = path.join(workDirectory, 'narration');
 
 export async function prepareNarrationTimeline(project, config, job, directory) {
   const signal = job.controller.signal;

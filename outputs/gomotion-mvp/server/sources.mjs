@@ -1,20 +1,29 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { mediaQualityError } from './media-quality.mjs';
+import { searchOpenverse } from './source-adapters/openverse.mjs';
+import { searchCleveland } from './source-adapters/cleveland.mjs';
+import { discoverYouTubeReferences } from './youtube.mjs';
+import { sharedOperations } from './shared-operation.mjs';
 
 const USER_AGENT = 'GoMotionLocalMVP/0.1 (local footage research prototype)';
 export const assets = new Map();
 const cache = new Map();
 const MAX_CACHE = 100;
+const catalogOperations = sharedOperations();
+const cooldowns = new Map();
 export const strip = (value = '') => String(value).replace(/<[^>]*>/g, ' ').replace(/&(?:amp|quot|lt|gt|nbsp);/g, ' ').replace(/\s+/g, ' ').trim();
 
 export async function requestJSON(url, options = {}) {
+  const signal = options.signal ? AbortSignal.any([options.signal, AbortSignal.timeout(12000)]) : AbortSignal.timeout(12000);
   const response = await fetch(url, {
     ...options,
     headers: { 'User-Agent': USER_AGENT, ...options.headers },
-    signal: options.signal || AbortSignal.timeout(12000),
+    signal,
   });
   if (!response.ok) throw new Error(`请求失败 (${response.status})${response.status === 429 ? '，请稍后重试' : ''}`);
-  return response.json();
+  const data = await response.json();
+  signal.throwIfAborted();
+  return data;
 }
 
 function register(asset) {
@@ -221,9 +230,12 @@ export async function trackSelection(asset, projectId, config, signal) {
   if (selections.size > 1000) selections.delete(selections.values().next().value);
 }
 
-export const providers = { commons, archive, nasa, pexels, pixabay, coverr };
+const openverse = async (query, config, kind) => (await searchOpenverse(query, kind, { requestJSON, signal: config.signal })).map(register);
+const cleveland = async (query, config, kind) => (await searchCleveland(query, kind, { requestJSON, signal: config.signal })).map(register);
+export const providers = { commons, archive, nasa, pexels, pixabay, coverr, openverse, cleveland };
 
-export async function ensureAnalysisPreview(asset, config) {
+export async function ensureAnalysisPreview(asset, config, signal = config.signal) {
+  signal?.throwIfAborted();
   if (asset.provider === 'nasa') {
     asset.url = asset.url?.replace(/^http:\/\/images-assets\.nasa\.gov\//i, 'https://images-assets.nasa.gov/');
     asset.analysisUrl = asset.analysisUrl?.replace(/^http:\/\/images-assets\.nasa\.gov\//i, 'https://images-assets.nasa.gov/');
@@ -231,17 +243,17 @@ export async function ensureAnalysisPreview(asset, config) {
   if (asset.provider === 'commons' && asset.kind === 'video' && !asset.derivativesChecked) {
     const url = new URL('https://commons.wikimedia.org/w/api.php');
     url.search = new URLSearchParams({ action: 'query', format: 'json', prop: 'videoinfo', viprop: 'url|size|derivatives', pageids: asset.sourceId }).toString();
-    const info = (await requestJSON(url)).query?.pages?.[asset.sourceId]?.videoinfo?.[0];
+    const info = (await requestJSON(url, { signal })).query?.pages?.[asset.sourceId]?.videoinfo?.[0];
     if (info) applyCommonsDerivatives(asset, info);
   }
   if (asset.analysisUrl || asset.localPath) return asset;
   if (asset.provider === 'pixabay' && config.pixabayKey) {
     const url = new URL('https://pixabay.com/api/videos/');
     url.search = new URLSearchParams({ key: config.pixabayKey, id: asset.sourceId }).toString();
-    const item = (await requestJSON(url)).hits?.[0];
+    const item = (await requestJSON(url, { signal })).hits?.[0];
     if (item) asset.analysisUrl = item.videos.small?.url || item.videos.tiny?.url;
   } else if (asset.provider === 'coverr' && config.coverrKey) {
-    const item = await requestJSON(`https://api.coverr.co/videos/${encodeURIComponent(asset.sourceId)}`, { headers: { 'x-api-key': config.coverrKey } });
+    const item = await requestJSON(`https://api.coverr.co/videos/${encodeURIComponent(asset.sourceId)}`, { headers: { 'x-api-key': config.coverrKey }, signal });
     asset.analysisUrl = item.urls?.mp4_preview;
   }
   return asset;
@@ -259,25 +271,47 @@ export function metadataRank(candidates, query, used = []) {
 }
 
 export async function searchSources(query, enabled, config, kind = 'video', used = []) {
-  const unique = [...new Set(enabled)].filter((key) => providers[key] && (key !== 'archive' || kind !== 'image'));
+  const unique = [...new Set(enabled)].filter((key) => providers[key] && (key !== 'archive' || kind !== 'image') && (!['openverse', 'cleveland'].includes(key) || kind === 'image'));
   if (!unique.length) throw new Error('请至少选择一个可用素材来源');
+  if (config.expandSources !== false) {
+    // Search the new public image catalogs automatically from the existing
+    // source-image fallback. No planner/sentence-splitting changes are involved.
+    if (kind === 'image') unique.push(...['openverse', 'cleveland'].filter((p) => !unique.includes(p)));
+    // Existing planners choose only 1–2 sources. Include configured stock APIs
+    // that were omitted, without registering any reference-only YouTube result.
+    if (kind === 'video') unique.push(...['pexels', 'pixabay', 'coverr'].filter((p) => config[`${p}Key`] && !unique.includes(p)).slice(0, 2));
+  }
   const outcomes = await Promise.allSettled(unique.map(async (key) => {
-    const cacheKey = `${key}:${kind}:${config.outputFormat || 'any'}:${query.toLowerCase().trim()}`;
+    const credential = createHash('sha256').update(String(config[`${key}Key`] || '')).digest('hex');
+    const cacheKey = `${key}:${credential}:${kind}:${config.outputFormat || 'any'}:${query.toLowerCase().trim()}`;
     const saved = cache.get(cacheKey);
     if (saved && Date.now() - saved.at < 86400000) return { provider: key, results: saved.results, cached: true };
-    const results = await providers[key](query, config, kind);
-    cache.set(cacheKey, { results, at: Date.now() });
-    if (cache.size > MAX_CACHE) cache.delete(cache.keys().next().value);
-    return { provider: key, results, cached: false };
+    if ((cooldowns.get(key) || 0) > Date.now()) throw new Error('来源暂不可连接，短暂冷却后再检查');
+    return catalogOperations(cacheKey, config.signal, async (signal) => {
+      try {
+        const results = await providers[key](query, { ...config, signal }, kind);
+        cache.set(cacheKey, { results, at: Date.now() });
+        if (cache.size > MAX_CACHE) cache.delete(cache.keys().next().value);
+        return { provider: key, results, cached: false };
+      } catch (error) {
+        if (['openverse', 'cleveland'].includes(key) && !signal.aborted) cooldowns.set(key, Date.now() + 60000);
+        throw error;
+      }
+    });
   }));
+  config.signal?.throwIfAborted();
   const warnings = outcomes.flatMap((result, index) => result.status === 'rejected' ? [`${unique[index]}：${result.reason.message}`] : []);
   const successful = outcomes.filter((result) => result.status === 'fulfilled').map((result) => result.value);
-  if (!successful.length) throw new Error(warnings.join('；'));
+  const found = metadataRank(successful.flatMap((result) => result.results).filter((a) => a.kind === kind && (kind === 'image' || !config.outputFormat || !mediaQualityError(a.width, a.height, config.outputFormat, true))), query, used);
+  const discovery = kind === 'video' && !found.length ? await discoverYouTubeReferences(query, config, { signal: config.signal }) : { references: [] };
+  if (discovery.warning) warnings.push(`youtube（仅来源线索）：${discovery.warning}`);
+  if (discovery.references.length) warnings.push('YouTube 找到来源线索，需取得授权原文件后才能剪辑；当前未增加可用视频。');
+  if (!successful.length && !discovery.references.length) throw new Error(warnings.join('；'));
   return {
     // Still assets are elements of a composed layout. Their actual decoded
     // resolution and placement are checked by the image compositor; imposing
     // source-video orientation here would discard useful photos and diagrams.
-    assets: metadataRank(successful.flatMap((result) => result.results).filter((a) => a.kind === kind && (kind === 'image' || !config.outputFormat || !mediaQualityError(a.width, a.height, config.outputFormat, true))), query, used),
-    warnings, queriedSources: unique, cached: successful.every((result) => result.cached),
+    assets: found, references: discovery.references,
+    warnings, queriedSources: unique, cached: successful.every((result) => result.cached) && (!discovery.discoveryOnly || discovery.cacheHit === true),
   };
 }

@@ -1,0 +1,4524 @@
+{
+  "id": "f6e35edd-2761-42f1-add5-c361a989dee6",
+  "status": "done",
+  "createdAt": 1794388188585,
+  "finishedAt": 1794388836370,
+  "elapsedSeconds": 647.785,
+  "conditions": "Existing user task; reused narration and previous selections; not a fresh cold benchmark",
+  "narrationSeconds": 52.438917,
+  "timings": {
+    "planningMs": 129,
+    "matchingMs": 622487,
+    "renderAndReviewMs": 25104,
+    "renderPhases": {
+      "narrationMs": 93.5337920000311,
+      "prepareInputsMs": 0.7352919999975711,
+      "encodeMs": 5284.929665999953,
+      "assembleMs": 8456.032750000013,
+      "reviewMs": 11249.723584000021,
+      "totalMs": 25085.27649999992
+    }
+  },
+  "retries": 3,
+  "sceneCount": 12,
+  "motionGraphicCount": 0,
+  "selectedCount": 12,
+  "review": {
+    "exportId": "dd118971-530b-4855-bc15-2d219d1fbdd4",
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "passed": true,
+    "audioReviewed": true,
+    "watermarkFree": true,
+    "summary": "前30.2秒视频画面与旁白基本同步，语音清晰自然，画质良好且无水印。镜头衔接平稳，叙事节奏正常。\n视频在29.8秒至52.66秒区间内，画面与旁白基本契合，语音语调自然，音画同步完好，全片未见第三方水印。",
+    "issues": [],
+    "analyzedUntil": 52.666666666666664,
+    "totalDuration": 52.666666666666664,
+    "limitations": [
+      "已读取实际画面和声音；AI 审片不能替代人工试听及最终审看"
+    ],
+    "events": [
+      {
+        "stage": "prepare-media-phases",
+        "engine": "media-reader",
+        "assetId": "export:dd118971-530b-4855-bc15-2d219d1fbdd4",
+        "status": "completed",
+        "at": "2026-11-11T09:20:25.121Z",
+        "timings": {
+          "playbackMs": null,
+          "statMs": 0.041,
+          "probeMs": 69.563,
+          "ffmpegMs": 1723.269,
+          "frameReadMs": 0.002,
+          "videoReadMs": 0.538,
+          "queueMs": null,
+          "downloadMs": null,
+          "playbackPhases": null,
+          "ffmpegInvocations": 1,
+          "playbackBypassed": true
+        },
+        "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+        "durationMs": 1793.448
+      },
+      {
+        "stage": "prepare-media-phases",
+        "engine": "media-reader",
+        "assetId": "export:dd118971-530b-4855-bc15-2d219d1fbdd4",
+        "status": "completed",
+        "at": "2026-11-11T09:20:25.121Z",
+        "timings": {
+          "playbackMs": null,
+          "statMs": 0.538,
+          "probeMs": 68.286,
+          "ffmpegMs": 1535.154,
+          "frameReadMs": 0.009,
+          "videoReadMs": 0.455,
+          "queueMs": null,
+          "downloadMs": null,
+          "playbackPhases": null,
+          "ffmpegInvocations": 1,
+          "playbackBypassed": true
+        },
+        "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+        "durationMs": 1604.564
+      },
+      {
+        "stage": "rendered-audiovisual-review-29.8",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T09:20:26.726Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 3666,
+          "outputTokens": 77,
+          "totalTokens": 3743
+        },
+        "durationMs": 7953
+      },
+      {
+        "stage": "rendered-audiovisual-review-0",
+        "engine": "gemini",
+        "model": "gemini-3.8-flash",
+        "status": "completed",
+        "inputType": "video",
+        "mediaCount": 1,
+        "at": "2026-11-11T09:20:26.915Z",
+        "httpStatus": 200,
+        "usage": {
+          "inputTokens": 4269,
+          "outputTokens": 93,
+          "totalTokens": 4362
+        },
+        "durationMs": 9453
+      }
+    ]
+  },
+  "output": "/api/exports/dd118971-530b-4855-bc15-2d219d1fbdd4/video.mp4",
+  "profile": {
+    "version": 1,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "label": "720p",
+    "captionStyleVersion": 3
+  },
+  "events": [
+    {
+      "stage": "semantic-search-plan",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:09:48.775Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1221,
+        "outputTokens": 610,
+        "totalTokens": 1831
+      },
+      "durationMs": 7691
+    },
+    {
+      "stage": "narration-timing",
+      "engine": "gemini-tts",
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": "completed",
+      "durationMs": 583,
+      "inputType": "text",
+      "mediaCount": 9
+    },
+    {
+      "stage": "semantic-retrieval-3",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 32,
+      "durationMs": 2030,
+      "detail": "检索词：epic glacier ocean coast；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-6",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 31,
+      "durationMs": 2108,
+      "detail": "检索词：hands holding small plant；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-5",
+      "engine": "coverr+pixabay",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 29,
+      "durationMs": 2209,
+      "detail": "检索词：dark storm clouds moving；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-4",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 29,
+      "durationMs": 2919,
+      "detail": "检索词：city traffic light timelapse；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-7",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 50,
+      "durationMs": 985,
+      "detail": "检索词：man looking up outdoors；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-2",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 30,
+      "durationMs": 3178,
+      "detail": "检索词：flying flock birds blue；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-8",
+      "engine": "pixabay+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 29,
+      "durationMs": 2333,
+      "detail": "检索词：eagle flying gliding wings；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-1",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 28,
+      "durationMs": 5265,
+      "detail": "检索词：dense misty forest trees；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-9",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 29,
+      "durationMs": 3916,
+      "detail": "检索词：birds silhouette sunset sky；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "catalog-shortlist",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:10:02.614Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 18633,
+        "outputTokens": 894,
+        "totalTokens": 19527
+      },
+      "durationMs": 9234
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:203449",
+      "status": "completed",
+      "at": "2026-11-11T09:10:11.855Z",
+      "timings": {
+        "playbackMs": 372.648,
+        "statMs": 3.921,
+        "probeMs": 0,
+        "ffmpegMs": 10299.279,
+        "frameReadMs": 9.935,
+        "videoReadMs": 0.712,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.003,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 354.361,
+          "totalMs": 370.452
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 10686.933
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:49981",
+      "status": "completed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 384.451,
+        "statMs": 0.37,
+        "probeMs": 0,
+        "ffmpegMs": 12174.072,
+        "frameReadMs": 16.968,
+        "videoReadMs": 1.159,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.003,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 352.261,
+          "totalMs": 383.651
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 12577.269
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:36646",
+      "status": "completed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 40101.687,
+        "statMs": 105.279,
+        "probeMs": 0,
+        "ffmpegMs": 6551.767,
+        "frameReadMs": 2.694,
+        "videoReadMs": 0.224,
+        "queueMs": 0.098,
+        "downloadMs": 4310.714,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.125,
+          "queueMs": 0.098,
+          "downloadMs": 4310.714,
+          "downloadBytes": 7972601,
+          "sourceProbeMs": 369.065,
+          "cropMs": 5634.172,
+          "transcodeMs": 26078.606,
+          "outputProbeMs": 1212.42,
+          "commitMs": 12.77,
+          "thumbnailMs": 2360.167,
+          "cacheProbeMs": 0,
+          "totalMs": 39997.492
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 46807.948
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 370.152,
+        "statMs": 3.586,
+        "probeMs": 0,
+        "ffmpegMs": 11861.968,
+        "frameReadMs": 11.575,
+        "videoReadMs": 1.64,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.01,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 359.308,
+          "totalMs": 369.307
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 12249.476
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:4006",
+      "status": "failed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 45024.772,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.01,
+        "downloadMs": 6300.579,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.007,
+          "queueMs": 0.01,
+          "downloadMs": 6300.579,
+          "downloadBytes": 12518329,
+          "sourceProbeMs": 2338.09,
+          "cropMs": 3664.992,
+          "transcodeMs": 32708.026,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45023.714
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45024.79
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:TnhH3rqEox",
+      "status": "failed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 45024.029,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.007,
+        "downloadMs": 13847.248,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.004,
+          "queueMs": 0.007,
+          "downloadMs": 13847.248,
+          "downloadBytes": 10645838,
+          "sourceProbeMs": 956.696,
+          "cropMs": 1627.553,
+          "transcodeMs": 28579.817,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45020.855
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45024.068
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:30154",
+      "status": "completed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 384.61,
+        "statMs": 2.999,
+        "probeMs": 0,
+        "ffmpegMs": 12098.164,
+        "frameReadMs": 46.473,
+        "videoReadMs": 0.509,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.003,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 362.861,
+          "totalMs": 383.966
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 12532.879
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:26115",
+      "status": "completed",
+      "at": "2026-11-11T09:10:11.856Z",
+      "timings": {
+        "playbackMs": 384.423,
+        "statMs": 4.206,
+        "probeMs": 0,
+        "ffmpegMs": 10302.798,
+        "frameReadMs": 7.147,
+        "videoReadMs": 1.084,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.003,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 354.973,
+          "totalMs": 383.794
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 10699.766
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:203449",
+      "status": "completed",
+      "durationMs": 10688,
+      "detail": "pixabay:203449"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:26115",
+      "status": "completed",
+      "durationMs": 10700,
+      "detail": "pixabay:26115"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "durationMs": 12250,
+      "detail": "pixabay:325069"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:30154",
+      "status": "completed",
+      "durationMs": 12533,
+      "detail": "pixabay:30154"
+    },
+    {
+      "stage": "visual-scene-4-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:10:24.390Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2659,
+        "outputTokens": 318,
+        "totalTokens": 2977
+      },
+      "durationMs": 6489
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:49981",
+      "status": "completed",
+      "durationMs": 12578,
+      "detail": "pixabay:49981"
+    },
+    {
+      "stage": "visual-scene-1-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:10:24.434Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2814,
+        "outputTokens": 383,
+        "totalTokens": 3197
+      },
+      "durationMs": 6353
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:71717",
+      "status": "failed",
+      "at": "2026-11-11T09:10:30.788Z",
+      "timings": {
+        "playbackMs": 45079.36,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.07,
+        "downloadMs": 3022.505,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.048,
+          "queueMs": 0.07,
+          "downloadMs": 3022.505,
+          "downloadBytes": 9589576,
+          "sourceProbeMs": 233.301,
+          "cropMs": 2634.084,
+          "transcodeMs": 39116.701,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45072.844
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45079.445
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:4071",
+      "status": "failed",
+      "at": "2026-11-11T09:10:30.788Z",
+      "timings": {
+        "playbackMs": 45310.704,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 21063.303,
+        "downloadMs": 13923.227,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 21063.303,
+          "downloadMs": 13923.227,
+          "downloadBytes": 26740039,
+          "sourceProbeMs": 320.677,
+          "cropMs": 3468.628,
+          "transcodeMs": 6228.696,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45121.06
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45317.585
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:pgvNsUoRMJ",
+      "status": "failed",
+      "at": "2026-11-11T09:10:30.879Z",
+      "timings": {
+        "playbackMs": 45766.274,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 25998.101,
+        "downloadMs": 11708.672,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.003,
+          "queueMs": 25998.101,
+          "downloadMs": 11708.672,
+          "downloadBytes": 5397841,
+          "sourceProbeMs": 449.089,
+          "cropMs": 4311.753,
+          "transcodeMs": 2542.412,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45735.806
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45766.398
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:552",
+      "status": "failed",
+      "at": "2026-11-11T09:10:30.879Z",
+      "timings": {
+        "playbackMs": 38383.598,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 26000.873,
+        "downloadMs": 8984.425,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 26000.873,
+          "downloadMs": 8984.425,
+          "downloadBytes": 1291148,
+          "sourceProbeMs": 822.716,
+          "cropMs": 2565.641,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 38380.039
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "原片清晰度不足 720p，已自动寻找高清版本或其他素材",
+      "durationMs": 38383.658
+    },
+    {
+      "stage": "media-3",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:4006：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-3",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:TnhH3rqEox：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "repair-search-3-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:10:56.882Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 232,
+        "outputTokens": 14,
+        "totalTokens": 246
+      },
+      "durationMs": 4981
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:36646",
+      "status": "completed",
+      "durationMs": 46809,
+      "detail": "pixabay:36646"
+    },
+    {
+      "stage": "visual-scene-2-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:10:58.665Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2942,
+        "outputTokens": 310,
+        "totalTokens": 3252
+      },
+      "durationMs": 10866
+    },
+    {
+      "stage": "repair-retrieval-3-2",
+      "engine": "commons+archive",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 12,
+      "detail": "补搜：glacier sea ice"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "commons:96293075",
+      "status": "failed",
+      "at": "2026-11-11T09:11:06.620Z",
+      "timings": {
+        "playbackMs": 45119.13,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 2639.099,
+        "downloadMs": 3698.463,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.004,
+          "queueMs": 2639.099,
+          "downloadMs": 3698.463,
+          "downloadBytes": 10166621,
+          "sourceProbeMs": 616.192,
+          "cropMs": 8414.363,
+          "transcodeMs": 29682.684,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45088.809
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45119.355
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "commons:96297445",
+      "status": "failed",
+      "at": "2026-11-11T09:11:06.620Z",
+      "timings": {
+        "playbackMs": 10361.943,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 9244.484,
+        "downloadMs": 821.162,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.003,
+          "queueMs": 9244.484,
+          "downloadMs": 821.162,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 10214.177
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "高清原片超过本次 48MB 下载上限，自动寻找其他高清素材",
+      "durationMs": 10362.004
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:rtVYXj8w2s",
+      "status": "failed",
+      "at": "2026-11-11T09:11:09.531Z",
+      "timings": {
+        "playbackMs": 45060.105,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 6348.042,
+        "downloadMs": 12739.332,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.01,
+          "queueMs": 6348.042,
+          "downloadMs": 12739.332,
+          "downloadBytes": 5806557,
+          "sourceProbeMs": 1205.853,
+          "cropMs": 3634.992,
+          "transcodeMs": 21096.242,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45057.863
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45060.165
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:106340",
+      "status": "completed",
+      "at": "2026-11-11T09:11:09.531Z",
+      "timings": {
+        "playbackMs": 476.158,
+        "statMs": 0.401,
+        "probeMs": 0,
+        "ffmpegMs": 21321.38,
+        "frameReadMs": 5.018,
+        "videoReadMs": 0.536,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.013,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 442.698,
+          "totalMs": 475.957
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 21803.592
+    },
+    {
+      "stage": "media-5",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:71717：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-5",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:4071：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "repair-search-5-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:11:16.131Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 268,
+        "outputTokens": 15,
+        "totalTokens": 283
+      },
+      "durationMs": 3613
+    },
+    {
+      "stage": "media-6",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:pgvNsUoRMJ：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-6",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:552：原片清晰度不足 720p，已自动寻找高清版本或其他素材"
+    },
+    {
+      "stage": "repair-search-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:11:16.647Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 330,
+        "outputTokens": 15,
+        "totalTokens": 345
+      },
+      "durationMs": 2094
+    },
+    {
+      "stage": "repair-retrieval-6-2",
+      "engine": "coverr+pixabay",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 21,
+      "detail": "补搜：holding seedling soil"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:23",
+      "status": "failed",
+      "at": "2026-11-11T09:11:20.912Z",
+      "timings": {
+        "playbackMs": 32374.918,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.026,
+        "downloadMs": 20807.92,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.069,
+          "queueMs": 0.026,
+          "downloadMs": 20807.92,
+          "downloadBytes": 7798811,
+          "sourceProbeMs": 5816.281,
+          "cropMs": 5698.954,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 32344.144
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "原片清晰度不足 720p，已自动寻找高清版本或其他素材",
+      "durationMs": 32375.33
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:260395",
+      "status": "failed",
+      "at": "2026-11-11T09:11:20.934Z",
+      "timings": {
+        "playbackMs": 45050.605,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.01,
+        "downloadMs": 9343.924,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.021,
+          "queueMs": 0.01,
+          "downloadMs": 9343.924,
+          "downloadBytes": 1747687,
+          "sourceProbeMs": 512.368,
+          "cropMs": 731.439,
+          "transcodeMs": 34410.7,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45036.56
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45050.772
+    },
+    {
+      "stage": "repair-retrieval-5-2",
+      "engine": "coverr+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：overcast gloomy sky"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:325289",
+      "status": "failed",
+      "at": "2026-11-11T09:11:23.714Z",
+      "timings": {
+        "playbackMs": 45016.304,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 29563.538,
+        "downloadMs": 6448.639,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 29563.538,
+          "downloadMs": 6448.639,
+          "downloadBytes": 16954847,
+          "sourceProbeMs": 2010.978,
+          "cropMs": 6973.683,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45015.332
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45016.421
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:38125",
+      "status": "failed",
+      "at": "2026-11-11T09:11:23.714Z",
+      "timings": {
+        "playbackMs": 45015.172,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 27987.367,
+        "downloadMs": 1626.285,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.006,
+          "queueMs": 27987.367,
+          "downloadMs": 1626.285,
+          "downloadBytes": 2543638,
+          "sourceProbeMs": 1008.136,
+          "cropMs": 6984.44,
+          "transcodeMs": 7389.648,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45012.591
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45015.373
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:106340",
+      "status": "completed",
+      "durationMs": 21804,
+      "detail": "pixabay:106340"
+    },
+    {
+      "stage": "media-3",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "commons:96293075：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-3",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "commons:96297445：高清原片超过本次 48MB 下载上限，自动寻找其他高清素材"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:228691",
+      "status": "failed",
+      "at": "2026-11-11T09:11:51.741Z",
+      "timings": {
+        "playbackMs": 51083.64,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 2840.981,
+        "downloadMs": 2619.315,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.03,
+          "queueMs": 2840.981,
+          "downloadMs": 2619.315,
+          "downloadBytes": 2055472,
+          "sourceProbeMs": 528.54,
+          "cropMs": 3792.712,
+          "transcodeMs": 40859.517,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 51059.29
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 51083.816
+    },
+    {
+      "stage": "media-7",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:rtVYXj8w2s：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-7-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:11:54.593Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1654,
+        "outputTokens": 157,
+        "totalTokens": 1811
+      },
+      "durationMs": 8130
+    },
+    {
+      "stage": "repair-search-7-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:12:02.724Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 340,
+        "outputTokens": 13,
+        "totalTokens": 353
+      },
+      "durationMs": 3362
+    },
+    {
+      "stage": "media-6",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:23：原片清晰度不足 720p，已自动寻找高清版本或其他素材"
+    },
+    {
+      "stage": "media-6",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:260395：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:375658",
+      "status": "completed",
+      "at": "2026-11-11T09:12:05.986Z",
+      "timings": {
+        "playbackMs": 1661.705,
+        "statMs": 1.037,
+        "probeMs": 0,
+        "ffmpegMs": 8744.93,
+        "frameReadMs": 5.859,
+        "videoReadMs": 0.594,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.009,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 1643.425,
+          "totalMs": 1661.4
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 10414.322
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:140111",
+      "status": "failed",
+      "at": "2026-11-11T09:12:05.987Z",
+      "timings": {
+        "playbackMs": 45273.093,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.004,
+        "downloadMs": 12567.09,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.004,
+          "downloadMs": 12567.09,
+          "downloadBytes": 7729699,
+          "sourceProbeMs": 553.184,
+          "cropMs": 7897.934,
+          "transcodeMs": 24015.926,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45265.68
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45273.207
+    },
+    {
+      "stage": "repair-retrieval-7-2",
+      "engine": "pixabay",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 24,
+      "detail": "补搜：silhouette looking sky twilight"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:223459",
+      "status": "failed",
+      "at": "2026-11-11T09:12:08.047Z",
+      "timings": {
+        "playbackMs": 45652.745,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 679.385,
+        "downloadMs": 17903.605,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.01,
+          "queueMs": 679.385,
+          "downloadMs": 17903.605,
+          "downloadBytes": 12530218,
+          "sourceProbeMs": 1327.564,
+          "cropMs": 4063.604,
+          "transcodeMs": 21323.34,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45650.038
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45652.837
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:206272",
+      "status": "failed",
+      "at": "2026-11-11T09:12:08.048Z",
+      "timings": {
+        "playbackMs": 45563.284,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 680.24,
+        "downloadMs": 15689.975,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.004,
+          "queueMs": 680.24,
+          "downloadMs": 15689.975,
+          "downloadBytes": 21564233,
+          "sourceProbeMs": 885.197,
+          "cropMs": 5940.795,
+          "transcodeMs": 22101.585,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45499.444
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45598.264
+    },
+    {
+      "stage": "media-5",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:325289：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-5",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:38125：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:375658",
+      "status": "completed",
+      "durationMs": 10415,
+      "detail": "pixabay:375658"
+    },
+    {
+      "stage": "media-8",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:228691：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-8-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:12:42.863Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1893,
+        "outputTokens": 143,
+        "totalTokens": 2036
+      },
+      "durationMs": 9631
+    },
+    {
+      "stage": "media-9",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:140111：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-9-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:12:51.261Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1352,
+        "outputTokens": 162,
+        "totalTokens": 1514
+      },
+      "durationMs": 5423
+    },
+    {
+      "stage": "repair-search-8-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:12:52.495Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 317,
+        "outputTokens": 15,
+        "totalTokens": 332
+      },
+      "durationMs": 4138
+    },
+    {
+      "stage": "media-7",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:223459：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-7",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:206272：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "repair-search-9-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:12:56.684Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 326,
+        "outputTokens": 12,
+        "totalTokens": 338
+      },
+      "durationMs": 3513
+    },
+    {
+      "stage": "repair-retrieval-8-2",
+      "engine": "coverr+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：raptor soaring clouds"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:263434",
+      "status": "failed",
+      "at": "2026-11-11T09:13:01.650Z",
+      "timings": {
+        "playbackMs": 47718.041,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.025,
+        "downloadMs": 16173.969,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.039,
+          "queueMs": 0.025,
+          "downloadMs": 16173.969,
+          "downloadBytes": 3624739,
+          "sourceProbeMs": 6562.342,
+          "cropMs": 12137.958,
+          "transcodeMs": 11340.643,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 47655.609
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 47724.113
+    },
+    {
+      "stage": "repair-retrieval-9-2",
+      "engine": "coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 4,
+      "detail": "补搜：birds flying sunset"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:aFBKPgqbnO",
+      "status": "failed",
+      "at": "2026-11-11T09:13:05.426Z",
+      "timings": {
+        "playbackMs": 46181.933,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.018,
+        "downloadMs": 30397.948,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.03,
+          "queueMs": 0.018,
+          "downloadMs": 30397.948,
+          "downloadBytes": 8809924,
+          "sourceProbeMs": 669.078,
+          "cropMs": 2312.045,
+          "transcodeMs": 12223.431,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 46181.371
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 46182.027
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:s1odLzX8vY",
+      "status": "failed",
+      "at": "2026-11-11T09:13:05.427Z",
+      "timings": {
+        "playbackMs": 46191.272,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.007,
+        "downloadMs": 46160.544,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.007,
+          "downloadMs": 46160.544,
+          "downloadBytes": 10338214,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 46190.646
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 46191.319
+    },
+    {
+      "stage": "media-8",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:263434：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-8-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:13:49.557Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1821,
+        "outputTokens": 143,
+        "totalTokens": 1964
+      },
+      "durationMs": 5031
+    },
+    {
+      "stage": "media-9",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:aFBKPgqbnO：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "media-9",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:s1odLzX8vY：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "whole-film-edit",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 8,
+      "at": "2026-11-11T09:13:54.597Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 10902,
+        "outputTokens": 1283,
+        "totalTokens": 12185
+      },
+      "durationMs": 11839
+    },
+    {
+      "stage": "recovery-plan-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:14:06.532Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 806,
+        "outputTokens": 563,
+        "totalTokens": 1369
+      },
+      "durationMs": 6742
+    },
+    {
+      "stage": "recovery-1",
+      "engine": "recovery",
+      "status": "completed",
+      "detail": "仅重试 6 个缺失镜头，拆分后共 11 个；保留已有画面"
+    },
+    {
+      "stage": "semantic-search-plan",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:14:13.275Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1098,
+        "outputTokens": 549,
+        "totalTokens": 1647
+      },
+      "durationMs": 5316
+    },
+    {
+      "stage": "narration-split-alignment",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "audio",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:14:13.847Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 362,
+        "outputTokens": 8,
+        "totalTokens": 370
+      },
+      "durationMs": 3446
+    },
+    {
+      "stage": "narration-split-alignment",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "audio",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:14:18.066Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 325,
+        "outputTokens": 8,
+        "totalTokens": 333
+      },
+      "durationMs": 3990
+    },
+    {
+      "stage": "semantic-retrieval-4",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 27,
+      "durationMs": 3065,
+      "detail": "检索词：massive glacier icefield；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-6",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 33,
+      "durationMs": 3256,
+      "detail": "检索词：gloomy windy sky；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-9",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 31,
+      "durationMs": 3297,
+      "detail": "检索词：hawk soaring sky；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-7",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 25,
+      "durationMs": 3355,
+      "detail": "检索词：hands protect sprout；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-3",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 26,
+      "durationMs": 3432,
+      "detail": "检索词：coastal mountains aerial；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-8",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 39,
+      "durationMs": 3378,
+      "detail": "检索词：woman looking sky；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "narration-timing",
+      "engine": "gemini-tts",
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": "completed",
+      "durationMs": 8833,
+      "inputType": "text",
+      "mediaCount": 11
+    },
+    {
+      "stage": "semantic-retrieval-11",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 26,
+      "durationMs": 1495,
+      "detail": "检索词：flock birds flying dusk；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-10",
+      "engine": "nasa+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 24,
+      "durationMs": 4425,
+      "detail": "检索词：planet earth orbit；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "catalog-shortlist",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:14:26.255Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 16272,
+        "outputTokens": 800,
+        "totalTokens": 17072
+      },
+      "durationMs": 8611
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:v3uyS9IwCn",
+      "status": "failed",
+      "at": "2026-11-11T09:14:34.868Z",
+      "timings": {
+        "playbackMs": 45009.412,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.008,
+        "downloadMs": 45002.708,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.008,
+          "downloadMs": 45002.708,
+          "downloadBytes": 4767095,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45009.258
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45009.549
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:320238",
+      "status": "completed",
+      "at": "2026-11-11T09:14:34.868Z",
+      "timings": {
+        "playbackMs": 19344.678,
+        "statMs": 0.12,
+        "probeMs": 0,
+        "ffmpegMs": 654.9,
+        "frameReadMs": 1.255,
+        "videoReadMs": 0.131,
+        "queueMs": 0.002,
+        "downloadMs": 16337.577,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.002,
+          "downloadMs": 16337.577,
+          "downloadBytes": 2947725,
+          "sourceProbeMs": 43.379,
+          "cropMs": 176.32,
+          "transcodeMs": 2568.728,
+          "outputProbeMs": 104.898,
+          "commitMs": 1.689,
+          "thumbnailMs": 108.037,
+          "cacheProbeMs": 0,
+          "totalMs": 19344.226
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 20001.133
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:53906",
+      "status": "failed",
+      "at": "2026-11-11T09:14:34.868Z",
+      "timings": {
+        "playbackMs": 45013.612,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.003,
+        "downloadMs": 45005.787,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.003,
+          "downloadMs": 45005.787,
+          "downloadBytes": 16973626,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45013.508
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45013.682
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:213424",
+      "status": "completed",
+      "at": "2026-11-11T09:14:34.868Z",
+      "timings": {
+        "playbackMs": 14572.328,
+        "statMs": 0.062,
+        "probeMs": 0,
+        "ffmpegMs": 579.667,
+        "frameReadMs": 1.781,
+        "videoReadMs": 0.181,
+        "queueMs": 0.001,
+        "downloadMs": 12083.224,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.001,
+          "queueMs": 0.001,
+          "downloadMs": 12083.224,
+          "downloadBytes": 1722647,
+          "sourceProbeMs": 104.33,
+          "cropMs": 156.745,
+          "transcodeMs": 1928.057,
+          "outputProbeMs": 149.592,
+          "commitMs": 3.808,
+          "thumbnailMs": 139.932,
+          "cacheProbeMs": 0,
+          "totalMs": 14571.369
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 15154.081
+    },
+    {
+      "stage": "scene-1",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-2",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:36646",
+      "status": "completed",
+      "at": "2026-11-11T09:14:34.872Z",
+      "timings": {
+        "playbackMs": 4.768,
+        "statMs": 0.172,
+        "probeMs": 0,
+        "ffmpegMs": 954.918,
+        "frameReadMs": 5.163,
+        "videoReadMs": 0.205,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.004,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 4.693
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 965.391
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:7399",
+      "status": "failed",
+      "at": "2026-11-11T09:14:34.872Z",
+      "timings": {
+        "playbackMs": 45010.486,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 14562.422,
+        "downloadMs": 30439.952,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 14562.422,
+          "downloadMs": 30439.952,
+          "downloadBytes": 11295398,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45010.376
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45010.52
+    },
+    {
+      "stage": "scene-5",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:152798",
+      "status": "completed",
+      "at": "2026-11-11T09:14:34.877Z",
+      "timings": {
+        "playbackMs": 41597.435,
+        "statMs": 0.162,
+        "probeMs": 0,
+        "ffmpegMs": 740.739,
+        "frameReadMs": 1.345,
+        "videoReadMs": 0.209,
+        "queueMs": 19332.808,
+        "downloadMs": 16136.613,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.003,
+          "queueMs": 19332.808,
+          "downloadMs": 16136.613,
+          "downloadBytes": 5544882,
+          "sourceProbeMs": 128.23,
+          "cropMs": 246.383,
+          "transcodeMs": 5527.931,
+          "outputProbeMs": 102.538,
+          "commitMs": 4.057,
+          "thumbnailMs": 114.39,
+          "cacheProbeMs": 0,
+          "totalMs": 41596.858
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 42339.939
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:31654",
+      "status": "failed",
+      "at": "2026-11-11T09:14:34.877Z",
+      "timings": {
+        "playbackMs": 45008.841,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 41594.635,
+        "downloadMs": 3405.972,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 41594.635,
+          "downloadMs": 3405.972,
+          "downloadBytes": 380608,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45008.773
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45008.865
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:36646",
+      "status": "completed",
+      "durationMs": 966,
+      "detail": "pixabay:36646"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:213424",
+      "status": "completed",
+      "durationMs": 15154,
+      "detail": "pixabay:213424"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:320238",
+      "status": "completed",
+      "durationMs": 20001,
+      "detail": "pixabay:320238"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:152798",
+      "status": "completed",
+      "durationMs": 42341,
+      "detail": "pixabay:152798"
+    },
+    {
+      "stage": "media-3",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:v3uyS9IwCn：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-3-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:15:19.878Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1756,
+        "outputTokens": 207,
+        "totalTokens": 1963
+      },
+      "durationMs": 7466
+    },
+    {
+      "stage": "media-4",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:53906：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-4-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:15:19.882Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1544,
+        "outputTokens": 205,
+        "totalTokens": 1749
+      },
+      "durationMs": 7667
+    },
+    {
+      "stage": "media-6",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:7399：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-6-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:15:19.884Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1749,
+        "outputTokens": 160,
+        "totalTokens": 1909
+      },
+      "durationMs": 7737
+    },
+    {
+      "stage": "media-7",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:31654：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-7-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:15:19.887Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1618,
+        "outputTokens": 103,
+        "totalTokens": 1721
+      },
+      "durationMs": 9454
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:106340",
+      "status": "completed",
+      "at": "2026-11-11T09:15:27.344Z",
+      "timings": {
+        "playbackMs": 0.415,
+        "statMs": 0.033,
+        "probeMs": 0,
+        "ffmpegMs": 1285.443,
+        "frameReadMs": 4.076,
+        "videoReadMs": 18.089,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.002,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 0.355
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 1308.143
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:142343",
+      "status": "completed",
+      "at": "2026-11-11T09:15:27.344Z",
+      "timings": {
+        "playbackMs": 147.362,
+        "statMs": 0.022,
+        "probeMs": 0,
+        "ffmpegMs": 885.444,
+        "frameReadMs": 2.671,
+        "videoReadMs": 0.653,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.006,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 145.947,
+          "totalMs": 147.32
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 1036.181
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:301718",
+      "status": "completed",
+      "at": "2026-11-11T09:15:27.549Z",
+      "timings": {
+        "playbackMs": 8377.344,
+        "statMs": 0.218,
+        "probeMs": 0,
+        "ffmpegMs": 945.918,
+        "frameReadMs": 3.844,
+        "videoReadMs": 0.152,
+        "queueMs": 0.001,
+        "downloadMs": 6386.437,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.001,
+          "queueMs": 0.001,
+          "downloadMs": 6386.437,
+          "downloadBytes": 2641348,
+          "sourceProbeMs": 61.748,
+          "cropMs": 131.252,
+          "transcodeMs": 1531.938,
+          "outputProbeMs": 118.981,
+          "commitMs": 4.14,
+          "thumbnailMs": 140.933,
+          "cacheProbeMs": 0,
+          "totalMs": 8376.805
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 9327.529
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "at": "2026-11-11T09:15:27.549Z",
+      "timings": {
+        "playbackMs": 0.579,
+        "statMs": 0.107,
+        "probeMs": 0,
+        "ffmpegMs": 1291.716,
+        "frameReadMs": 5.153,
+        "videoReadMs": 0.826,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.002,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 0.548
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 1298.41
+    },
+    {
+      "stage": "repair-search-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:15:27.621Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 269,
+        "outputTokens": 15,
+        "totalTokens": 284
+      },
+      "durationMs": 2210
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:142343",
+      "status": "completed",
+      "durationMs": 1036,
+      "detail": "pixabay:142343"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:106340",
+      "status": "completed",
+      "durationMs": 1308,
+      "detail": "pixabay:106340"
+    },
+    {
+      "stage": "visual-scene-8-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:15:28.653Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2552,
+        "outputTokens": 323,
+        "totalTokens": 2875
+      },
+      "durationMs": 5916
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "durationMs": 1299,
+      "detail": "pixabay:325069"
+    },
+    {
+      "stage": "repair-search-7-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:15:29.341Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 14,
+        "totalTokens": 284
+      },
+      "durationMs": 4001
+    },
+    {
+      "stage": "repair-retrieval-6-2",
+      "engine": "coverr+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：storm dark clouds timelapse"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:269",
+      "status": "completed",
+      "at": "2026-11-11T09:15:31.952Z",
+      "timings": {
+        "playbackMs": 38266.094,
+        "statMs": 0.053,
+        "probeMs": 0,
+        "ffmpegMs": 948.277,
+        "frameReadMs": 1.074,
+        "videoReadMs": 0.437,
+        "queueMs": 0.002,
+        "downloadMs": 23162.767,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.004,
+          "queueMs": 0.002,
+          "downloadMs": 23162.767,
+          "downloadBytes": 8591817,
+          "sourceProbeMs": 368.677,
+          "cropMs": 874.564,
+          "transcodeMs": 13660.907,
+          "outputProbeMs": 93.266,
+          "commitMs": 6.238,
+          "thumbnailMs": 97.37,
+          "cacheProbeMs": 0,
+          "totalMs": 38266.004
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 39216
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:272",
+      "status": "completed",
+      "at": "2026-11-11T09:15:31.952Z",
+      "timings": {
+        "playbackMs": 31676.916,
+        "statMs": 0.158,
+        "probeMs": 0,
+        "ffmpegMs": 1251.791,
+        "frameReadMs": 3.101,
+        "videoReadMs": 0.251,
+        "queueMs": 0.001,
+        "downloadMs": 20559.348,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.006,
+          "queueMs": 0.001,
+          "downloadMs": 20559.348,
+          "downloadBytes": 7264718,
+          "sourceProbeMs": 65.262,
+          "cropMs": 331.791,
+          "transcodeMs": 10514.379,
+          "outputProbeMs": 97.667,
+          "commitMs": 2.133,
+          "thumbnailMs": 104.022,
+          "cacheProbeMs": 0,
+          "totalMs": 31676.379
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 32932.266
+    },
+    {
+      "stage": "repair-retrieval-7-2",
+      "engine": "coverr+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 7,
+      "detail": "补搜：holding plant soil"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:ZCMM8szNY7",
+      "status": "completed",
+      "at": "2026-11-11T09:15:34.330Z",
+      "timings": {
+        "playbackMs": 27351.056,
+        "statMs": 0.516,
+        "probeMs": 0,
+        "ffmpegMs": 1508.75,
+        "frameReadMs": 5.413,
+        "videoReadMs": 0.349,
+        "queueMs": 1594.747,
+        "downloadMs": 19216.409,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 1594.747,
+          "downloadMs": 19216.409,
+          "downloadBytes": 4508782,
+          "sourceProbeMs": 425.41,
+          "cropMs": 1192.244,
+          "transcodeMs": 4450.416,
+          "outputProbeMs": 179.671,
+          "commitMs": 6.631,
+          "thumbnailMs": 276.832,
+          "cacheProbeMs": 0,
+          "totalMs": 27346.419
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 28866.24
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:8TtnfduhnE",
+      "status": "failed",
+      "at": "2026-11-11T09:15:34.330Z",
+      "timings": {
+        "playbackMs": 45014.838,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.003,
+        "downloadMs": 45006.899,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.006,
+          "queueMs": 0.003,
+          "downloadMs": 45006.899,
+          "downloadBytes": 9813998,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45014.564
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45014.89
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "commons:96292198",
+      "status": "failed",
+      "at": "2026-11-11T09:15:34.569Z",
+      "timings": {
+        "playbackMs": 45003.57,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 29058.224,
+        "downloadMs": 14596.057,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.004,
+          "queueMs": 29058.224,
+          "downloadMs": 14596.057,
+          "downloadBytes": 22966422,
+          "sourceProbeMs": 42.523,
+          "cropMs": 155.926,
+          "transcodeMs": 1149.066,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45003.391
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45003.633
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:732",
+      "status": "completed",
+      "at": "2026-11-11T09:15:34.569Z",
+      "timings": {
+        "playbackMs": 33145.747,
+        "statMs": 4.8,
+        "probeMs": 0,
+        "ffmpegMs": 853.757,
+        "frameReadMs": 3.298,
+        "videoReadMs": 0.491,
+        "queueMs": 27106.817,
+        "downloadMs": 1955.733,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.007,
+          "queueMs": 27106.817,
+          "downloadMs": 1955.733,
+          "downloadBytes": 598504,
+          "sourceProbeMs": 94.961,
+          "cropMs": 194.675,
+          "transcodeMs": 3446.021,
+          "outputProbeMs": 174.323,
+          "commitMs": 4.29,
+          "thumbnailMs": 163.586,
+          "cacheProbeMs": 0,
+          "totalMs": 33144.746
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 34008.309
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:301718",
+      "status": "completed",
+      "durationMs": 9328,
+      "detail": "pixabay:301718"
+    },
+    {
+      "stage": "visual-scene-9-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:15:36.877Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2815,
+        "outputTokens": 292,
+        "totalTokens": 3107
+      },
+      "durationMs": 11894
+    },
+    {
+      "stage": "repair-search-9-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:15:48.771Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 277,
+        "outputTokens": 14,
+        "totalTokens": 291
+      },
+      "durationMs": 1966
+    },
+    {
+      "stage": "repair-retrieval-9-2",
+      "engine": "coverr+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：eagle soaring clouds"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:yNcISz4G8t",
+      "status": "completed",
+      "at": "2026-11-11T09:15:52.189Z",
+      "timings": {
+        "playbackMs": 107.601,
+        "statMs": 0.021,
+        "probeMs": 0,
+        "ffmpegMs": 240.893,
+        "frameReadMs": 1.872,
+        "videoReadMs": 0.2,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.01,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 106.309,
+          "totalMs": 107.456
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 350.671
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:131648",
+      "status": "completed",
+      "at": "2026-11-11T09:15:52.189Z",
+      "timings": {
+        "playbackMs": 42636.665,
+        "statMs": 0.061,
+        "probeMs": 0,
+        "ffmpegMs": 1378.486,
+        "frameReadMs": 5.118,
+        "videoReadMs": 0.251,
+        "queueMs": 15524.561,
+        "downloadMs": 14894.07,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.005,
+          "queueMs": 15524.561,
+          "downloadMs": 14894.07,
+          "downloadBytes": 5080958,
+          "sourceProbeMs": 49.458,
+          "cropMs": 137.933,
+          "transcodeMs": 11747.349,
+          "outputProbeMs": 138.72,
+          "commitMs": 3.011,
+          "thumbnailMs": 139.025,
+          "cacheProbeMs": 0,
+          "totalMs": 42636.499
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 44020.659
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "coverr:yNcISz4G8t",
+      "status": "completed",
+      "durationMs": 351,
+      "detail": "coverr:yNcISz4G8t"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "coverr:ZCMM8szNY7",
+      "status": "completed",
+      "durationMs": 28867,
+      "detail": "coverr:ZCMM8szNY7"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:272",
+      "status": "completed",
+      "durationMs": 32932,
+      "detail": "pixabay:272"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:732",
+      "status": "completed",
+      "durationMs": 34009,
+      "detail": "pixabay:732"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:269",
+      "status": "completed",
+      "durationMs": 39216,
+      "detail": "pixabay:269"
+    },
+    {
+      "stage": "visual-scene-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:16:11.168Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2754,
+        "outputTokens": 256,
+        "totalTokens": 3010
+      },
+      "durationMs": 9291
+    },
+    {
+      "stage": "media-7",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "coverr:8TtnfduhnE：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-7-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:16:19.346Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1435,
+        "outputTokens": 129,
+        "totalTokens": 1564
+      },
+      "durationMs": 7534
+    },
+    {
+      "stage": "media-10",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "commons:96292198：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-10-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:16:19.574Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1479,
+        "outputTokens": 189,
+        "totalTokens": 1668
+      },
+      "durationMs": 6793
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:375658",
+      "status": "completed",
+      "at": "2026-11-11T09:16:20.459Z",
+      "timings": {
+        "playbackMs": 4.039,
+        "statMs": 0.093,
+        "probeMs": 0,
+        "ffmpegMs": 535.116,
+        "frameReadMs": 2.333,
+        "videoReadMs": 0.315,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.003,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 3.903
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 542.052
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:297674",
+      "status": "completed",
+      "at": "2026-11-11T09:16:20.459Z",
+      "timings": {
+        "playbackMs": 15881.708,
+        "statMs": 0.114,
+        "probeMs": 0,
+        "ffmpegMs": 1062.876,
+        "frameReadMs": 1.255,
+        "videoReadMs": 0.273,
+        "queueMs": 0.004,
+        "downloadMs": 4685.444,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.01,
+          "queueMs": 0.004,
+          "downloadMs": 4685.444,
+          "downloadBytes": 5657239,
+          "sourceProbeMs": 254.971,
+          "cropMs": 2357.061,
+          "transcodeMs": 8345.605,
+          "outputProbeMs": 115.383,
+          "commitMs": 5.795,
+          "thumbnailMs": 114.862,
+          "cacheProbeMs": 0,
+          "totalMs": 15881.613
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 16946.294
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:375658",
+      "status": "completed",
+      "durationMs": 542,
+      "detail": "pixabay:375658"
+    },
+    {
+      "stage": "repair-search-10-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:16:26.368Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 317,
+        "outputTokens": 14,
+        "totalTokens": 331
+      },
+      "durationMs": 2856
+    },
+    {
+      "stage": "repair-retrieval-10-2",
+      "engine": "nasa+archive",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：earth sunrise limb space"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "commons:92824765",
+      "status": "completed",
+      "at": "2026-11-11T09:16:30.719Z",
+      "timings": {
+        "playbackMs": 27941.993,
+        "statMs": 0.125,
+        "probeMs": 0,
+        "ffmpegMs": 618.714,
+        "frameReadMs": 3.346,
+        "videoReadMs": 0.272,
+        "queueMs": 0.005,
+        "downloadMs": 20348.365,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.009,
+          "queueMs": 0.005,
+          "downloadMs": 20348.365,
+          "downloadBytes": 27729233,
+          "sourceProbeMs": 97.544,
+          "cropMs": 188.811,
+          "transcodeMs": 7004.479,
+          "outputProbeMs": 126.906,
+          "commitMs": 5.835,
+          "thumbnailMs": 142.709,
+          "cacheProbeMs": 0,
+          "totalMs": 27941.446
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 28564.689
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "commons:96289630",
+      "status": "completed",
+      "at": "2026-11-11T09:16:30.720Z",
+      "timings": {
+        "playbackMs": 30731.576,
+        "statMs": 0.074,
+        "probeMs": 0,
+        "ffmpegMs": 349.742,
+        "frameReadMs": 1.61,
+        "videoReadMs": 0.106,
+        "queueMs": 0.005,
+        "downloadMs": 24501.71,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.027,
+          "queueMs": 0.005,
+          "downloadMs": 24501.71,
+          "downloadBytes": 47510312,
+          "sourceProbeMs": 139.042,
+          "cropMs": 432.703,
+          "transcodeMs": 5465.928,
+          "outputProbeMs": 76.829,
+          "commitMs": 5.001,
+          "thumbnailMs": 95.457,
+          "cacheProbeMs": 0,
+          "totalMs": 30731.325
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 31083.164
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:131648",
+      "status": "completed",
+      "durationMs": 44021,
+      "detail": "pixabay:131648"
+    },
+    {
+      "stage": "visual-scene-9-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:16:36.211Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2512,
+        "outputTokens": 303,
+        "totalTokens": 2815
+      },
+      "durationMs": 12713
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:297674",
+      "status": "completed",
+      "durationMs": 16947,
+      "detail": "pixabay:297674"
+    },
+    {
+      "stage": "visual-scene-11-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:16:37.406Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2310,
+        "outputTokens": 346,
+        "totalTokens": 2656
+      },
+      "durationMs": 13861
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "commons:92824765",
+      "status": "completed",
+      "durationMs": 28565,
+      "detail": "commons:92824765"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "commons:96289630",
+      "status": "completed",
+      "durationMs": 31083,
+      "detail": "commons:96289630"
+    },
+    {
+      "stage": "visual-scene-10-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:17:01.804Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2292,
+        "outputTokens": 277,
+        "totalTokens": 2569
+      },
+      "durationMs": 7400
+    },
+    {
+      "stage": "whole-film-edit",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 8,
+      "at": "2026-11-11T09:17:09.205Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 11145,
+        "outputTokens": 1538,
+        "totalTokens": 12683
+      },
+      "durationMs": 13822
+    },
+    {
+      "stage": "recovery-plan-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:17:23.143Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 592,
+        "outputTokens": 316,
+        "totalTokens": 908
+      },
+      "durationMs": 3740
+    },
+    {
+      "stage": "recovery-2",
+      "engine": "recovery",
+      "status": "completed",
+      "detail": "仅重试 4 个缺失镜头，拆分后共 11 个；保留已有画面"
+    },
+    {
+      "stage": "semantic-search-plan",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:17:27.132Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 757,
+        "outputTokens": 302,
+        "totalTokens": 1059
+      },
+      "durationMs": 5014
+    },
+    {
+      "stage": "narration-timing",
+      "engine": "gemini-tts",
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": "completed",
+      "durationMs": 893,
+      "inputType": "text",
+      "mediaCount": 11
+    },
+    {
+      "stage": "semantic-retrieval-7",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 20,
+      "durationMs": 1787,
+      "detail": "检索词：gardener planting sapling dirt；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-6",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 31,
+      "durationMs": 1874,
+      "detail": "检索词：overcast sky clouds timelapse；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-9",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 30,
+      "durationMs": 1949,
+      "detail": "检索词：bird soaring cloudscape；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-10",
+      "engine": "nasa",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 13,
+      "durationMs": 2872,
+      "detail": "检索词：earth atmosphere from space；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "catalog-shortlist",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:17:35.023Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 7056,
+        "outputTokens": 409,
+        "totalTokens": 7465
+      },
+      "durationMs": 4270
+    },
+    {
+      "stage": "scene-2",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-1",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:107130",
+      "status": "completed",
+      "at": "2026-11-11T09:17:39.295Z",
+      "timings": {
+        "playbackMs": 221.95,
+        "statMs": 0.094,
+        "probeMs": 0,
+        "ffmpegMs": 3647.042,
+        "frameReadMs": 3.545,
+        "videoReadMs": 0.321,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.001,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 219.175,
+          "totalMs": 221.833
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 3873.044
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "coverr:yNcISz4G8t",
+      "status": "completed",
+      "at": "2026-11-11T09:17:39.296Z",
+      "timings": {
+        "playbackMs": 4.392,
+        "statMs": 2.622,
+        "probeMs": 0,
+        "ffmpegMs": 1994.206,
+        "frameReadMs": 2.477,
+        "videoReadMs": 0.27,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.002,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 4.343
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 2004.028
+    },
+    {
+      "stage": "scene-3",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:22983",
+      "status": "failed",
+      "at": "2026-11-11T09:17:39.296Z",
+      "timings": {
+        "playbackMs": 45004.636,
+        "statMs": 0,
+        "probeMs": 0,
+        "ffmpegMs": 0,
+        "frameReadMs": 0,
+        "videoReadMs": 0,
+        "queueMs": 0.015,
+        "downloadMs": 38858.105,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.015,
+          "downloadMs": 38858.105,
+          "downloadBytes": 8191510,
+          "sourceProbeMs": 163.723,
+          "cropMs": 603.555,
+          "transcodeMs": 5376.848,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 45004.278
+        },
+        "ffmpegInvocations": 0,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "detail": "素材准备超时，来源响应或解码速度过慢",
+      "durationMs": 45004.704
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:145",
+      "status": "completed",
+      "at": "2026-11-11T09:17:39.296Z",
+      "timings": {
+        "playbackMs": 35648.38,
+        "statMs": 0.044,
+        "probeMs": 0,
+        "ffmpegMs": 889.54,
+        "frameReadMs": 1.919,
+        "videoReadMs": 0.572,
+        "queueMs": 0.002,
+        "downloadMs": 32446.061,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.001,
+          "queueMs": 0.002,
+          "downloadMs": 32446.061,
+          "downloadBytes": 3180174,
+          "sourceProbeMs": 56.428,
+          "cropMs": 227.812,
+          "transcodeMs": 2709.796,
+          "outputProbeMs": 103.694,
+          "commitMs": 1.391,
+          "thumbnailMs": 100.086,
+          "cacheProbeMs": 0,
+          "totalMs": 35648.341
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 36540.493
+    },
+    {
+      "stage": "scene-4",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-5",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "at": "2026-11-11T09:17:39.300Z",
+      "timings": {
+        "playbackMs": 5.952,
+        "statMs": 0.426,
+        "probeMs": 0,
+        "ffmpegMs": 4805.219,
+        "frameReadMs": 4.497,
+        "videoReadMs": 0.622,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.002,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 5.866
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 4816.774
+    },
+    {
+      "stage": "scene-8",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:732",
+      "status": "completed",
+      "at": "2026-11-11T09:17:39.303Z",
+      "timings": {
+        "playbackMs": 2.743,
+        "statMs": 2.011,
+        "probeMs": 0,
+        "ffmpegMs": 1848.006,
+        "frameReadMs": 119.727,
+        "videoReadMs": 5.062,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.001,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 2.688
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 1977.603
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "commons:96292198",
+      "status": "completed",
+      "at": "2026-11-11T09:17:39.303Z",
+      "timings": {
+        "playbackMs": 28994.26,
+        "statMs": 0.37,
+        "probeMs": 0,
+        "ffmpegMs": 870.077,
+        "frameReadMs": 1.597,
+        "videoReadMs": 0.273,
+        "queueMs": 0.003,
+        "downloadMs": 18907.162,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.002,
+          "queueMs": 0.003,
+          "downloadMs": 18907.162,
+          "downloadBytes": 22966422,
+          "sourceProbeMs": 130.083,
+          "cropMs": 202.865,
+          "transcodeMs": 9126.298,
+          "outputProbeMs": 156.431,
+          "commitMs": 16.661,
+          "thumbnailMs": 447.94,
+          "cacheProbeMs": 0,
+          "totalMs": 28992.462
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 29866.676
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:732",
+      "status": "completed",
+      "durationMs": 1978,
+      "detail": "pixabay:732"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "coverr:yNcISz4G8t",
+      "status": "completed",
+      "durationMs": 2004,
+      "detail": "coverr:yNcISz4G8t"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:107130",
+      "status": "completed",
+      "durationMs": 3874,
+      "detail": "pixabay:107130"
+    },
+    {
+      "stage": "visual-scene-6-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:17:43.169Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2560,
+        "outputTokens": 317,
+        "totalTokens": 2877
+      },
+      "durationMs": 6714
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "durationMs": 4817,
+      "detail": "pixabay:325069"
+    },
+    {
+      "stage": "visual-scene-9-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:17:44.117Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2608,
+        "outputTokens": 333,
+        "totalTokens": 2941
+      },
+      "durationMs": 11015
+    },
+    {
+      "stage": "repair-search-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:17:49.883Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 169,
+        "outputTokens": 14,
+        "totalTokens": 183
+      },
+      "durationMs": 2149
+    },
+    {
+      "stage": "scene-11",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "repair-retrieval-6-2",
+      "engine": "commons+archive",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：dark storm clouds timelapse"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:7399",
+      "status": "completed",
+      "at": "2026-11-11T09:17:55.198Z",
+      "timings": {
+        "playbackMs": 33212.866,
+        "statMs": 0.159,
+        "probeMs": 0,
+        "ffmpegMs": 1296.602,
+        "frameReadMs": 2.553,
+        "videoReadMs": 0.274,
+        "queueMs": 0.003,
+        "downloadMs": 21420.055,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.005,
+          "queueMs": 0.003,
+          "downloadMs": 21420.055,
+          "downloadBytes": 14495076,
+          "sourceProbeMs": 108.865,
+          "cropMs": 436.724,
+          "transcodeMs": 10900.401,
+          "outputProbeMs": 190.484,
+          "commitMs": 2.205,
+          "thumbnailMs": 148.898,
+          "cacheProbeMs": 0,
+          "totalMs": 33212.625
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 34512.644
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:4071",
+      "status": "completed",
+      "at": "2026-11-11T09:17:55.198Z",
+      "timings": {
+        "playbackMs": 35632.646,
+        "statMs": 0.106,
+        "probeMs": 0,
+        "ffmpegMs": 1546.684,
+        "frameReadMs": 1.532,
+        "videoReadMs": 0.171,
+        "queueMs": 13096.092,
+        "downloadMs": 6752.001,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.005,
+          "queueMs": 13096.092,
+          "downloadMs": 6752.001,
+          "downloadBytes": 26740039,
+          "sourceProbeMs": 83.331,
+          "cropMs": 608.491,
+          "transcodeMs": 14860.917,
+          "outputProbeMs": 104.103,
+          "commitMs": 1.359,
+          "thumbnailMs": 119.378,
+          "cacheProbeMs": 0,
+          "totalMs": 35632.414
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 37181.245
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "commons:96292198",
+      "status": "completed",
+      "durationMs": 29868,
+      "detail": "commons:96292198"
+    },
+    {
+      "stage": "visual-scene-10-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:18:09.171Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2280,
+        "outputTokens": 349,
+        "totalTokens": 2629
+      },
+      "durationMs": 5817
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:145",
+      "status": "completed",
+      "durationMs": 36541,
+      "detail": "pixabay:145"
+    },
+    {
+      "stage": "media-7",
+      "engine": "media-reader",
+      "status": "failed",
+      "detail": "pixabay:22983：素材准备超时，来源响应或解码速度过慢"
+    },
+    {
+      "stage": "visual-scene-7-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:18:24.301Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1644,
+        "outputTokens": 124,
+        "totalTokens": 1768
+      },
+      "durationMs": 7182
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:7399",
+      "status": "completed",
+      "durationMs": 34513,
+      "detail": "pixabay:7399"
+    },
+    {
+      "stage": "repair-search-7-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:18:31.484Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 192,
+        "outputTokens": 15,
+        "totalTokens": 207
+      },
+      "durationMs": 2151
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:4071",
+      "status": "completed",
+      "durationMs": 37182,
+      "detail": "pixabay:4071"
+    },
+    {
+      "stage": "visual-scene-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:18:32.380Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2902,
+        "outputTokens": 307,
+        "totalTokens": 3209
+      },
+      "durationMs": 10748
+    },
+    {
+      "stage": "repair-retrieval-7-2",
+      "engine": "coverr+commons",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：hands planting seedling soil"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:11006",
+      "status": "completed",
+      "at": "2026-11-11T09:18:35.060Z",
+      "timings": {
+        "playbackMs": 8627.251,
+        "statMs": 0.105,
+        "probeMs": 0,
+        "ffmpegMs": 1131.233,
+        "frameReadMs": 3.85,
+        "videoReadMs": 0.197,
+        "queueMs": 0.003,
+        "downloadMs": 2755.92,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.009,
+          "queueMs": 0.003,
+          "downloadMs": 2755.92,
+          "downloadBytes": 5005356,
+          "sourceProbeMs": 209.876,
+          "cropMs": 634.192,
+          "transcodeMs": 4762.372,
+          "outputProbeMs": 122.078,
+          "commitMs": 10.206,
+          "thumbnailMs": 130.987,
+          "cacheProbeMs": 0,
+          "totalMs": 8627.17
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 9762.75
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:109277",
+      "status": "completed",
+      "at": "2026-11-11T09:18:35.060Z",
+      "timings": {
+        "playbackMs": 6456.189,
+        "statMs": 0.11,
+        "probeMs": 0,
+        "ffmpegMs": 964.12,
+        "frameReadMs": 5.959,
+        "videoReadMs": 1.105,
+        "queueMs": 0.001,
+        "downloadMs": 1438.979,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.001,
+          "queueMs": 0.001,
+          "downloadMs": 1438.979,
+          "downloadBytes": 4615049,
+          "sourceProbeMs": 73.002,
+          "cropMs": 285.956,
+          "transcodeMs": 4358.174,
+          "outputProbeMs": 127.55,
+          "commitMs": 4.911,
+          "thumbnailMs": 164.942,
+          "cacheProbeMs": 0,
+          "totalMs": 6456.098
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 7427.602
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:109277",
+      "status": "completed",
+      "durationMs": 7428,
+      "detail": "pixabay:109277"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:11006",
+      "status": "completed",
+      "durationMs": 9763,
+      "detail": "pixabay:11006"
+    },
+    {
+      "stage": "visual-scene-7-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:18:44.823Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2536,
+        "outputTokens": 366,
+        "totalTokens": 2902
+      },
+      "durationMs": 7900
+    },
+    {
+      "stage": "whole-film-edit",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 10,
+      "at": "2026-11-11T09:18:52.724Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 13595,
+        "outputTokens": 1718,
+        "totalTokens": 15313
+      },
+      "durationMs": 16783
+    },
+    {
+      "stage": "recovery-plan-3",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:19:09.549Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 296,
+        "outputTokens": 122,
+        "totalTokens": 418
+      },
+      "durationMs": 2737
+    },
+    {
+      "stage": "recovery-3",
+      "engine": "recovery",
+      "status": "completed",
+      "detail": "仅重试 1 个缺失镜头，拆分后共 12 个；保留已有画面"
+    },
+    {
+      "stage": "semantic-search-plan",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:19:12.287Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 585,
+        "outputTokens": 145,
+        "totalTokens": 730
+      },
+      "durationMs": 2754
+    },
+    {
+      "stage": "narration-split-alignment",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "audio",
+      "mediaCount": 1,
+      "at": "2026-11-11T09:19:12.449Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 278,
+        "outputTokens": 8,
+        "totalTokens": 286
+      },
+      "durationMs": 4114
+    },
+    {
+      "stage": "semantic-retrieval-10",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 29,
+      "durationMs": 1085,
+      "detail": "检索词：solitary bird flying sky；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "semantic-retrieval-9",
+      "engine": "pixabay+coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 29,
+      "durationMs": 1087,
+      "detail": "检索词：bird wings flight clouds；目录返回不等于内容已审核"
+    },
+    {
+      "stage": "catalog-shortlist",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:19:16.128Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 3731,
+        "outputTokens": 275,
+        "totalTokens": 4006
+      },
+      "durationMs": 3870
+    },
+    {
+      "stage": "narration-timing",
+      "engine": "gemini-tts",
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": "completed",
+      "durationMs": 4278,
+      "inputType": "text",
+      "mediaCount": 12
+    },
+    {
+      "stage": "scene-3",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-4",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-1",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-2",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-6",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:107130",
+      "status": "completed",
+      "at": "2026-11-11T09:19:19.999Z",
+      "timings": {
+        "playbackMs": 0.487,
+        "statMs": 0.061,
+        "probeMs": 0,
+        "ffmpegMs": 325.753,
+        "frameReadMs": 0.774,
+        "videoReadMs": 0.079,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 0.473
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 327.18
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:49671",
+      "status": "completed",
+      "at": "2026-11-11T09:19:19.999Z",
+      "timings": {
+        "playbackMs": 3625.318,
+        "statMs": 0.091,
+        "probeMs": 0,
+        "ffmpegMs": 455.448,
+        "frameReadMs": 2.795,
+        "videoReadMs": 0.202,
+        "queueMs": 0.002,
+        "downloadMs": 1393.963,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.001,
+          "queueMs": 0.002,
+          "downloadMs": 1393.963,
+          "downloadBytes": 4189730,
+          "sourceProbeMs": 41.393,
+          "cropMs": 150.48,
+          "transcodeMs": 1894.139,
+          "outputProbeMs": 67.253,
+          "commitMs": 1.064,
+          "thumbnailMs": 76.116,
+          "cacheProbeMs": 0,
+          "totalMs": 3625.286
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 4083.888
+    },
+    {
+      "stage": "scene-5",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "at": "2026-11-11T09:19:19.999Z",
+      "timings": {
+        "playbackMs": 0.862,
+        "statMs": 0.381,
+        "probeMs": 0,
+        "ffmpegMs": 446.814,
+        "frameReadMs": 0.816,
+        "videoReadMs": 0.103,
+        "queueMs": 0,
+        "downloadMs": 0,
+        "playbackPhases": {
+          "cacheHit": true,
+          "metadataMs": 0.001,
+          "queueMs": 0,
+          "downloadMs": 0,
+          "downloadBytes": 0,
+          "sourceProbeMs": 0,
+          "cropMs": 0,
+          "transcodeMs": 0,
+          "outputProbeMs": 0,
+          "commitMs": 0,
+          "thumbnailMs": 0,
+          "cacheProbeMs": 0,
+          "totalMs": 0.858
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 448.987
+    },
+    {
+      "stage": "scene-7",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-8",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-12",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "scene-11",
+      "engine": "preserved-selection",
+      "status": "skipped",
+      "detail": "保留已完成的素材、取段和旁白边界"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:107130",
+      "status": "completed",
+      "durationMs": 327,
+      "detail": "pixabay:107130"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:325069",
+      "status": "completed",
+      "durationMs": 449,
+      "detail": "pixabay:325069"
+    },
+    {
+      "stage": "visual-scene-10-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:19:20.448Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2161,
+        "outputTokens": 314,
+        "totalTokens": 2475
+      },
+      "durationMs": 5775
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:49671",
+      "status": "completed",
+      "durationMs": 4084,
+      "detail": "pixabay:49671"
+    },
+    {
+      "stage": "visual-scene-9-1",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:19:24.083Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2107,
+        "outputTokens": 262,
+        "totalTokens": 2369
+      },
+      "durationMs": 5797
+    },
+    {
+      "stage": "repair-search-9-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-11T09:19:29.880Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 160,
+        "outputTokens": 13,
+        "totalTokens": 173
+      },
+      "durationMs": 1627
+    },
+    {
+      "stage": "repair-retrieval-9-2",
+      "engine": "coverr",
+      "status": "completed",
+      "inputType": "AI-query",
+      "mediaCount": 0,
+      "detail": "补搜：eagle soaring above clouds"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:329002",
+      "status": "completed",
+      "at": "2026-11-11T09:19:32.565Z",
+      "timings": {
+        "playbackMs": 7574.153,
+        "statMs": 0.057,
+        "probeMs": 0,
+        "ffmpegMs": 331.051,
+        "frameReadMs": 2.077,
+        "videoReadMs": 0.255,
+        "queueMs": 0.001,
+        "downloadMs": 2849.604,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.001,
+          "queueMs": 0.001,
+          "downloadMs": 2849.604,
+          "downloadBytes": 4342675,
+          "sourceProbeMs": 138.897,
+          "cropMs": 131.84,
+          "transcodeMs": 4247.27,
+          "outputProbeMs": 111.312,
+          "commitMs": 1.564,
+          "thumbnailMs": 92.083,
+          "cacheProbeMs": 0,
+          "totalMs": 7574.097
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 7907.702
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "assetId": "pixabay:44288",
+      "status": "completed",
+      "at": "2026-11-11T09:19:32.565Z",
+      "timings": {
+        "playbackMs": 18977.732,
+        "statMs": 0.044,
+        "probeMs": 0,
+        "ffmpegMs": 636.346,
+        "frameReadMs": 1.256,
+        "videoReadMs": 0.155,
+        "queueMs": 0.001,
+        "downloadMs": 14686.435,
+        "playbackPhases": {
+          "cacheHit": false,
+          "metadataMs": 0.003,
+          "queueMs": 0.001,
+          "downloadMs": 14686.435,
+          "downloadBytes": 16551839,
+          "sourceProbeMs": 51.432,
+          "cropMs": 196.788,
+          "transcodeMs": 3867.642,
+          "outputProbeMs": 79.375,
+          "commitMs": 5.692,
+          "thumbnailMs": 88.188,
+          "cacheProbeMs": 0,
+          "totalMs": 18977.697
+        },
+        "ffmpegInvocations": 1,
+        "playbackBypassed": false
+      },
+      "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+      "durationMs": 19615.558
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:329002",
+      "status": "completed",
+      "durationMs": 7907,
+      "detail": "pixabay:329002"
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "assetId": "pixabay:44288",
+      "status": "completed",
+      "durationMs": 19615,
+      "detail": "pixabay:44288"
+    },
+    {
+      "stage": "visual-scene-9-2",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "video",
+      "mediaCount": 2,
+      "at": "2026-11-11T09:19:52.181Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2194,
+        "outputTokens": 347,
+        "totalTokens": 2541
+      },
+      "durationMs": 4888
+    },
+    {
+      "stage": "whole-film-edit",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 4,
+      "at": "2026-11-11T09:19:57.069Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 6457,
+        "outputTokens": 1609,
+        "totalTokens": 8066
+      },
+      "durationMs": 14151
+    }
+  ]
+}

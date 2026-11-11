@@ -13,6 +13,7 @@ import { mediaQualityError } from './media-quality.mjs';
 import { sourceProvenanceError, assertSourceFiles } from './source-provenance.mjs';
 import languages from '../shared/languages.json' with { type: 'json' };
 import captionStyle from '../shared/caption-style.json' with { type: 'json' };
+import { retainTaskMedia } from './media-retention.mjs';
 
 const activeStatus = (status) => ['queued', 'running'].includes(status);
 const publicError = (message) => /401|403|鉴权|密钥|权限/.test(message) ? '服务连接暂不可用，请检查连接设置。' : /402|429|额度|配额/.test(message) ? '当前服务额度暂不可用，请稍后重试。' : '这次制作未能完成，已保留草稿，可以重新制作。';
@@ -34,6 +35,7 @@ export async function createProductionManager({ work, config, analyses, exports,
     return value;
   };
   const persist = () => {
+    retainTaskMedia(work, tasks.values(), assets);
     // Capture snapshots in invocation order; credentials never belong to a task.
     const data = JSON.stringify([...tasks.values()].map(({ controller, ...record }) => record));
     writeQueue = writeQueue.catch(() => {}).then(async () => { await writeFile(`${file}.partial`, data); await rename(`${file}.partial`, file); });
@@ -49,6 +51,7 @@ export async function createProductionManager({ work, config, analyses, exports,
       if (task.exportId && !activeStatus(task.status) && task.project.exportUrl) exports.set(task.exportId, { id: task.exportId, status: 'done', progress: 100, message: task.message, url: task.project.exportUrl, duration: task.project.narrationTrack?.duration, review: task.project.videoReview, size: task.exportSize, controller: new AbortController() });
     }
   } catch {}
+  retainTaskMedia(work, tasks.values(), assets);
   const busy = () => [...analyses.values()].some((j) => j.status === 'running') || [...exports.values()].some((j) => j.status === 'rendering');
   const waitIdle = async (signal) => {
     while (busy()) {

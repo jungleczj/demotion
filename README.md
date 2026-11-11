@@ -16,6 +16,10 @@ npm run dev
 
 生产构建：在应用目录运行 `npm run build`，然后 `npm start`。
 
+## 线上部署
+
+已补同项目原生API，正式站点配置与声音目录恢复，预览中文试听完整解码通过。[修复验收](outputs/vercel-native-connection-fix-2026-11-11.md)、[部署说明](outputs/gomotion-mvp/DEPLOYMENT.md)。完整云端视频制作仍需持久任务和媒体执行迁移，尚未通过；当前不能用目录恢复代替生成验收。
+
 ## 代码与任务
 
 - [应用说明](outputs/gomotion-mvp/README.md)

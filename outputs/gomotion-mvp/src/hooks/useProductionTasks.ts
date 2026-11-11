@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { api } from '../api';
 import { ProductionTask, Project, Provider, productionActive } from '../types';
 
-type Options = { onUpdate: (task: ProductionTask) => void; onFinished: (task: ProductionTask) => void };
+type Options = { enabled?: boolean; onUpdate: (task: ProductionTask) => void; onFinished: (task: ProductionTask) => void };
 export default function useProductionTasks(options: Options) {
   const callbacks = useRef(options); callbacks.current = options;
   const tasksRef = useRef<Record<string, ProductionTask>>({});
@@ -20,6 +20,7 @@ export default function useProductionTasks(options: Options) {
     tasksRef.current = next; setTasks(next);
   }
   useEffect(() => {
+    if (options.enabled === false) return;
     let stopped = false, cursor = 0;
     const abort = new AbortController();
     let timer: ReturnType<typeof setTimeout>;
@@ -34,7 +35,7 @@ export default function useProductionTasks(options: Options) {
     void poll();
     // Disconnecting the UI only stops polling. It never deletes a production task.
     return () => { stopped = true; clearTimeout(timer); abort.abort(); };
-  }, []);
+  }, [options.enabled]);
   async function submit(project: Project, providers: Provider[]) {
     const task = await api<ProductionTask>('/api/productions', { project, providers }, AbortSignal.timeout(20000));
     accept([task]); return task;

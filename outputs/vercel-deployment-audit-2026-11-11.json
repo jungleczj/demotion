@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-11-11T09:21:21Z",
+  "responses": [
+    {
+      "url": "https://gomotion-mvp.vercel.app/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "date": "Wed, 11 Nov 2026 09:21:21 GMT"
+    },
+    {
+      "url": "https://gomotion-mvp.vercel.app/api/config",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "vercelError": "NOT_FOUND",
+      "date": "Wed, 11 Nov 2026 09:21:21 GMT"
+    },
+    {
+      "url": "https://gomotion-mvp.vercel.app/api/voices",
+      "status": 404,
+      "contentType": "text/plain; charset=utf-8",
+      "vercelError": "NOT_FOUND",
+      "date": "Wed, 11 Nov 2026 09:21:21 GMT"
+    }
+  ],
+  "diagnosis": "Vite static frontend is deployed; API routes are absent",
+  "vercelCliLoggedIn": false,
+  "backendDestinationProvided": false,
+  "containerRuntimeVerified": false,
+  "localHttpChecks": {
+    "passed": 12,
+    "configStatus": 200,
+    "voicesStatus": 200,
+    "voiceCount": 30,
+    "sameQueuedTaskAfterRestart": true,
+    "realModelRequests": 0
+  }
+}

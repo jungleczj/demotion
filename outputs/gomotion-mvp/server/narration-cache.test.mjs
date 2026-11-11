@@ -5,6 +5,7 @@ import { mkdtemp, mkdir, writeFile, readFile, rm, stat, utimes } from 'node:fs/p
 import os from 'node:os';
 import path from 'node:path';
 import * as narration from './narration.mjs';
+import { createProductionManager } from './productions.mjs';
 
 const config = { visionProvider: 'gemini', visionKey: 'offline-fixture-only', visionBase: 'https://narration.invalid' };
 const project = { voice: 'gemini:Kore', language: 'zh-CN', voiceStyle: 'documentary' };
@@ -80,4 +81,19 @@ test('cache eviction only removes published recordings and leaves concurrent tem
     await rm(directory, { recursive: true, force: true });
     await assert.doesNotReject(narration.pruneNarrationCache(directory, current));
   } finally { await rm(directory, { recursive: true, force: true }); }
+});
+
+test('a persisted task protects its narration from age-based cache eviction after restart', async () => {
+  const work = await mkdtemp(path.join(os.tmpdir(), 'narration-retained-task-'));
+  const directory = path.join(work, 'narration'), key = 'd'.repeat(64), orphanKey = 'e'.repeat(64);
+  const old = new Date(Date.now() - 26 * 3600000);
+  try {
+    await mkdir(directory); await mkdir(path.join(work, 'productions'));
+    for (const hash of [key, orphanKey]) { const file = path.join(directory, hash + '.wav'); await writeFile(file, 'retention fixture only'); await utimes(file, old, old); }
+    await writeFile(path.join(work, 'productions/jobs.json'), JSON.stringify([{ id: randomUUID(), status: 'done', project: { id: randomUUID(), scenes: [], narrationTrack: { key } } }]));
+    await createProductionManager({ work, config: {}, analyses: new Map(), exports: new Map(), saveAssets: async () => {} });
+    await narration.pruneNarrationCache(directory, path.join(directory, 'another-current.wav'));
+    assert.equal(await readFile(path.join(directory, key + '.wav'), 'utf8'), 'retention fixture only');
+    await assert.rejects(stat(path.join(directory, orphanKey + '.wav')), { code: 'ENOENT' });
+  } finally { await rm(work, { recursive: true, force: true }); }
 });

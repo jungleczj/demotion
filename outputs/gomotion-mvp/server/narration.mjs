@@ -1,15 +1,16 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, writeFile, stat, rename, rm, readdir, utimes } from 'node:fs/promises';
 import path from 'node:path';
-import os from 'node:os';
+import { workDirectory } from './runtime.mjs';
 import { probe, run } from './process.mjs';
 import { requestNarration } from './narration-request.mjs';
 import { sharedOperations } from './shared-operation.mjs';
 import voiceCatalog from '../shared/voices.json' with { type: 'json' };
 import languages from '../shared/languages.json' with { type: 'json' };
+import { retainedMedia } from './media-retention.mjs';
 
 export const TTS_MODEL = 'gemini-2.5-flash-preview-tts';
-const folder = path.join(os.tmpdir(), 'gomotion-local-mvp', 'narration');
+const folder = path.join(workDirectory, 'narration');
 const recordingRequest = sharedOperations();
 const voices = new Set(voiceCatalog.map((v) => v.key));
 const deliveryStyles = { documentary: 'Calm, warm documentary narration with measured phrasing and restrained expression.', story: 'Tell an engaging story with gentle changes of emphasis and a connected narrative flow.', conversation: 'Speak conversationally, like one person naturally talking to another. Avoid formal announcing.', explainer: 'Explain clearly and confidently, with distinct phrasing and natural emphasis on the key ideas.', gentle: 'Gentle, warm narration at a relaxed pace, without whispering or exaggeration.' };
@@ -27,7 +28,7 @@ export async function pruneNarrationCache(directory, currentFile) {
   let bytes = files.reduce((sum, file) => sum + file.info.size, 0);
   for (const old of files.sort((a, b) => a.info.mtimeMs - b.info.mtimeMs)) {
     if (bytes <= 96 * 1024 * 1024 && Date.now() - old.info.mtimeMs < 24 * 3600_000) break;
-    if (old.file !== currentFile) {
+    if (old.file !== currentFile && !retainedMedia(old.file)) {
       try { await rm(old.file, { force: true }); bytes -= old.info.size; } catch {}
     }
   }

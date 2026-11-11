@@ -1,0 +1,31 @@
+✔ Vercel routes every API and media URL to the same real backend before the SPA fallback (1.975292ms)
+✔ reject unusable backend undefined (0.521917ms)
+✔ reject unusable backend http://api.example.com (0.134667ms)
+✔ reject unusable backend https://user:hidden@api.example.com (0.042625ms)
+✔ reject unusable backend https://api.example.com/path (0.040541ms)
+✔ reject unusable backend https://api.example.com/?key=hidden (0.032666ms)
+✔ reject unusable backend https://localhost (0.03025ms)
+✔ reject unusable backend https://127.0.0.1 (0.029583ms)
+✔ reject unusable backend https://gomotion-mvp.vercel.app (0.037416ms)
+✔ deployed Node backend serves config and voices, retains saved exports and restores queued tasks after restart (478.76525ms)
+ℹ {"configStatus":200,"voicesStatus":200,"voiceCount":30,"voicesMs":0.66,"queuedTaskRestored":true,"savedExportAndSourceFilesRetained":true,"orphanedExpiredDirectoryRemoved":true,"realModelRequests":0,"mainServiceRestarted":false}
+✔ the voice catalog loads without downloading thirty unrelated sample recordings (69.153ms)
+✔ all durable media paths follow the configured server data directory (86.97175ms)
+✔ removing a saved task releases its files without touching other workspaces or escaping the data root (1.566417ms)
+✔ references include registered upload sources and their ancestors but not an unrelated sibling (0.816167ms)
+✔ an undersized cached recording is regenerated instead of returned as valid narration (429.623834ms)
+✔ a corrupt legacy cache cannot permanently prevent generating a replacement (195.454875ms)
+✔ cache eviction only removes published recordings and leaves concurrent temporary WAV files intact (2.8085ms)
+✔ a persisted task protects its narration from age-based cache eviction after restart (1.877ms)
+✔ queued production persists independently of UI and only explicit stop cancels it (8.815292ms)
+✔ simultaneous submissions for the same project share one durable task (1.39675ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (4.041041ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (2.584459ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 777.627166

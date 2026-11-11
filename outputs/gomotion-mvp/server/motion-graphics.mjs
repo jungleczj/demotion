@@ -10,6 +10,7 @@ import { ensurePlayback, verifiedAsset } from './playback.mjs';
 import { run, probe } from './process.mjs';
 
 async function fontPath() {
+  if (process.env.MOTION_FONT_FILE) { const file = path.resolve(process.env.MOTION_FONT_FILE); await stat(file); return file; }
   const direct = '/System/Library/Fonts/PingFang.ttc';
   try { await stat(direct); return direct; } catch {}
   const root = '/System/Library/AssetsV2/com_apple_MobileAsset_Font8';

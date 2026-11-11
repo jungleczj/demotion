@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-11-11T13:01:48.713337+00:00",
+  "site": "https://gomotion-mvp.vercel.app/",
+  "previewDeployment": "dpl_6gTNmWER7y29ZGRcpZb83FT8c7ng",
+  "productionDeployment": "dpl_F5Mh8sYKJcof3gbD9qxsoaozftC1",
+  "production": {
+    "configStatus": 200,
+    "voicesStatus": 200,
+    "voiceCount": 30,
+    "languageCount": 15,
+    "credentialConfigured": {
+      "visionConfigured": true,
+      "pixabayConnected": true,
+      "coverrConnected": true,
+      "youtubeConnected": true
+    },
+    "videoProductionReady": false
+  },
+  "previewAudition": {
+    "status": 200,
+    "voice": "Kore",
+    "language": "zh-CN",
+    "duration": 5.210958333333333,
+    "bytes": 250170,
+    "sha256": "0a27912d463216be7d80d7582403a7e35b91e6cf13cbba7cfdaca4324ab187fe",
+    "fullDecode": true,
+    "browserPlayback": "not_assessed",
+    "humanListening": "not_assessed",
+    "realModelRequests": 1
+  },
+  "unknownNestedApi": {
+    "status": 404,
+    "json": true
+  },
+  "regression": {
+    "total": 241,
+    "passed": 241,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 52.263357584,
+    "log": "vercel-native-final-regression-2026-11-11.txt"
+  },
+  "notAccepted": [
+    "Cloud video production, durable task recovery and cloud Range playback",
+    "All voices and languages on cloud",
+    "Actual browser and human listening acceptance"
+  ],
+  "credentialsInReport": false,
+  "localServiceReload": {
+    "noActiveTaskBeforeReload": true,
+    "beforeTaskCount": 20,
+    "afterTaskCount": 20,
+    "sameTaskIds": true,
+    "userTasksCancelled": 0,
+    "musicInvalidInputStatus": 400
+  }
+}

@@ -1,0 +1,29 @@
+✔ Vercel routes every API and media URL to the same real backend before the SPA fallback (1.660959ms)
+✔ reject unusable backend undefined (0.101834ms)
+✔ reject unusable backend http://api.example.com (0.043458ms)
+✔ reject unusable backend https://user:hidden@api.example.com (0.03125ms)
+✔ reject unusable backend https://api.example.com/path (0.032167ms)
+✔ reject unusable backend https://api.example.com/?key=hidden (0.028375ms)
+✔ reject unusable backend https://localhost (0.030042ms)
+✔ reject unusable backend https://127.0.0.1 (0.029458ms)
+✔ reject unusable backend https://gomotion-mvp.vercel.app (0.03725ms)
+✔ deployed Node backend serves config and voices, retains saved exports and restores queued tasks after restart (329.254667ms)
+ℹ {"configStatus":200,"voicesStatus":200,"voiceCount":30,"voicesMs":0.78,"queuedTaskRestored":true,"realModelRequests":0,"mainServiceRestarted":false}
+✔ the voice catalog loads without downloading thirty unrelated sample recordings (55.84225ms)
+✔ all durable media paths follow the configured server data directory (53.848708ms)
+✔ an undersized cached recording is regenerated instead of returned as valid narration (278.465334ms)
+✔ a corrupt legacy cache cannot permanently prevent generating a replacement (187.22925ms)
+✔ cache eviction only removes published recordings and leaves concurrent temporary WAV files intact (3.20225ms)
+✔ a persisted task protects its narration from age-based cache eviction after restart (1.828417ms)
+✔ queued production persists independently of UI and only explicit stop cancels it (8.67475ms)
+✔ simultaneous submissions for the same project share one durable task (1.936916ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (2.657916ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (2.256292ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 556.952041

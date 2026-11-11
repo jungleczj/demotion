@@ -79,5 +79,39 @@ export function createYouTubeClient({ fetch: fetcher = globalThis.fetch, now = D
   };
 }
 
-const client = createYouTubeClient();
+const client = createYouTubeClient({ fetch: (...args) => globalThis.fetch(...args) });
 export const searchYouTubeReferences = (...args) => client.search(...args);
+
+// Automatic discovery has its own conservative budget. Ordinary per-scene
+// footage searches must not exhaust the project's separate Search Queries quota.
+export function createAutomaticYouTubeDiscovery({ search = searchYouTubeReferences, now = Date.now } = {}) {
+  const budgets = new Map();
+  const operations = sharedOperations();
+  return async (query, config = {}, { signal } = {}) => {
+    signal?.throwIfAborted();
+    if (!config.youtubeKey || config.youtubeDiscovery === false) return { references: [], skipped: 'not-enabled' };
+    const fingerprint = createHash('sha256').update(config.youtubeKey).digest('hex');
+    const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now());
+    const key = `${fingerprint}:${day}`;
+    let budget = budgets.get(key);
+    if (!budget) { budget = { count: 0, exhausted: false, queries: new Map() }; budgets.set(key, budget); }
+    while (budgets.size > 20) budgets.delete(budgets.keys().next().value);
+    const normalized = String(query).toLowerCase().trim();
+    if (budget.queries.has(normalized)) return structuredClone(budget.queries.get(normalized));
+    const limit = Math.max(0, Math.min(20, Number.isFinite(Number(config.youtubeDiscoveryLimit)) ? Number(config.youtubeDiscoveryLimit) : 5));
+    return structuredClone(await operations(`${key}:${normalized}`, signal, async (operationSignal) => {
+      if (budget.exhausted || budget.count >= limit) return { references: [], skipped: 'automatic-budget' };
+      budget.count++;
+      let result;
+      try { result = { ...await search(query, config, { signal: operationSignal, license: 'creativeCommon', maxResults: 5 }), discoveryOnly: true }; }
+      catch (error) {
+        operationSignal.throwIfAborted();
+        if (error.code === 'youtube-quota') budget.exhausted = true;
+        result = { references: [], warning: error.message, discoveryOnly: true };
+      }
+      budget.queries.set(normalized, result);
+      return result;
+    }));
+  };
+}
+export const discoverYouTubeReferences = createAutomaticYouTubeDiscovery();
