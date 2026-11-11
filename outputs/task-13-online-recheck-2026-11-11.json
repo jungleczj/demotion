@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-11T13:24:25.241988+00:00",
+  "site": "https://gomotion-mvp.vercel.app/",
+  "checks": [
+    {
+      "endpoint": "/api/config",
+      "status": 200,
+      "json": true,
+      "runtime": "vercel",
+      "videoProductionReady": false
+    },
+    {
+      "endpoint": "/api/voices",
+      "status": 200,
+      "json": true,
+      "voiceCount": 30,
+      "languageCount": 15
+    }
+  ],
+  "realModelRequests": 0,
+  "scope": "Task 13 connection and catalog; browser and full cloud video generation not accepted"
+}

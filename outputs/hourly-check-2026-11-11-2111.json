@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-11T13:13:03.634288+00:00",
+  "modelRequests": 0,
+  "checks": [
+    {
+      "name": "production-config",
+      "processExit": 0,
+      "status": 200,
+      "renderReady": false,
+      "runtime": "vercel"
+    },
+    {
+      "name": "production-voices",
+      "processExit": 0,
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "name": "local-tasks",
+      "processExit": 0,
+      "status": 200,
+      "savedTaskCount": 20,
+      "activeTasks": []
+    }
+  ]
+}
