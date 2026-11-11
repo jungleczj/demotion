@@ -1,0 +1,81 @@
+{
+  "at": "2026-11-11T14:31:51.457Z",
+  "taskId": "38d02967-94d3-ef39-9af3-80655162ec67",
+  "origin": "https://gomotion-mvp.vercel.app",
+  "observations": [
+    {
+      "at": "2026-11-11T14:31:51.859Z",
+      "status": "done",
+      "phase": "reviewing",
+      "progress": 100,
+      "scenes": 2
+    }
+  ],
+  "passed": true,
+  "browserVerified": false,
+  "submittedByThisScript": false,
+  "status": "done",
+  "message": "视频已准备好，可以播放或下载",
+  "createdAt": 1794407432078,
+  "startedAt": 1794406883169,
+  "finishedAt": 1794407458127,
+  "project": {
+    "title": "云端短片验收：晨光与海浪",
+    "scenes": 2,
+    "allScenesFilled": true,
+    "profile": {
+      "version": 1,
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "label": "720p",
+      "captionStyleVersion": 3
+    },
+    "duration": 9.525625,
+    "reviewPassed": true,
+    "audioReviewed": true,
+    "sequenceComplete": true,
+    "exportId": "b3f292d1-eb84-4604-afe2-8dcae924e4eb"
+  },
+  "productionSeconds": 26.049,
+  "range": {
+    "status": 206,
+    "bytes": 32,
+    "contentRange": "bytes 0-31/3588279"
+  },
+  "bytes": 3588279,
+  "sha256": "5c5f4b210047682b1a0ef7c2656acc147210ab9e2788ff1ee9f5924d8fc3bcb5",
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "30/1"
+      },
+      {
+        "codec_name": "aac",
+        "r_frame_rate": "0/0"
+      }
+    ],
+    "format": {
+      "duration": "9.767000"
+    }
+  },
+  "fullDecode": true,
+  "extras": {
+    "captions.srt": 200,
+    "sources.json": 200
+  },
+  "resumedFromVerifiedCheckpoint": true,
+  "coldGenerationBenchmark": false,
+  "productionSecondsMeaning": "本次恢复提交至持久化成片完成；复用了已选素材与旁白，不是首次冷生成耗时",
+  "largeSourceDownload": {
+    "status": 200,
+    "bytes": 11545388,
+    "fullDecode": true,
+    "overFunctionBufferedPayloadLimit": true
+  }
+}

@@ -41,14 +41,14 @@ const config = {
   llmBase: process.env.LLM_BASE_URL || 'https://api.deepseek.com',
   llmModel: process.env.LLM_MODEL || 'deepseek-flash',
   pexelsKey: process.env.PEXELS_API_KEY || '', pixabayKey: process.env.PIXABAY_API_KEY || '', coverrKey: process.env.COVERR_API_KEY || '',
-  youtubeKey: process.env.YOUTUBE_API_KEY || '',
+  youtubeKey: process.env.YOUTUBE_API_KEY || '', youtubeDiscovery: process.env.YOUTUBE_DISCOVERY !== 'false',
   visionProvider: process.env.VISION_PROVIDER || 'gemini',
   visionKey: process.env.VISION_API_KEY || process.env.GEMINI_API_KEY || '',
   visionBase: process.env.VISION_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta',
   visionModel: process.env.VISION_MODEL || 'gemini-3.8-flash', visionEnabled: true,
   textProvider: process.env.TEXT_AI_PROVIDER || 'vision',
 };
-const configView = () => ({ aiConnected: Boolean(config.llmKey), llmBase: config.llmBase, llmModel: config.llmModel, pexelsConnected: Boolean(config.pexelsKey), pixabayConnected: Boolean(config.pixabayKey), coverrConnected: Boolean(config.coverrKey), youtubeConnected: Boolean(config.youtubeKey), sources: ['commons', 'archive', 'nasa', ...(config.pexelsKey ? ['pexels'] : []), ...(config.pixabayKey ? ['pixabay'] : []), ...(config.coverrKey ? ['coverr'] : [])], localVoice: process.platform === 'darwin', render: true });
+const configView = () => ({ aiConnected: Boolean(config.llmKey), llmBase: config.llmBase, llmModel: config.llmModel, pexelsConnected: Boolean(config.pexelsKey), pixabayConnected: Boolean(config.pixabayKey), coverrConnected: Boolean(config.coverrKey), youtubeConnected: Boolean(config.youtubeKey), youtubeDiscovery: config.youtubeDiscovery, sources: ['commons', 'archive', 'nasa', ...(config.pexelsKey ? ['pexels'] : []), ...(config.pixabayKey ? ['pixabay'] : []), ...(config.coverrKey ? ['coverr'] : [])], localVoice: process.platform === 'darwin', render: true });
 const jobs = new Map();
 const requests = new Map();
 const analyses = new Map();
@@ -174,6 +174,7 @@ const server = http.createServer(async (req, res) => {
       if (narrationMatch && req.method === 'GET') return await serveFile(req, res, narrationPath(narrationMatch[1]), 'audio/wav');
       if (url.pathname === '/api/config' && req.method === 'POST') {
         const input = await json(req);
+        if (typeof input.youtubeDiscovery === 'boolean') config.youtubeDiscovery = input.youtubeDiscovery;
         const nextVision = { visionProvider: config.visionProvider, visionBase: config.visionBase, visionModel: config.visionModel, visionEnabled: config.visionEnabled, visionKey: config.visionKey };
         if (input.visionProvider && ['gemini', 'openai'].includes(input.visionProvider)) nextVision.visionProvider = input.visionProvider;
         if (typeof input.visionEnabled === 'boolean') nextVision.visionEnabled = input.visionEnabled;

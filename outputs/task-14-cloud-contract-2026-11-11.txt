@@ -1,0 +1,31 @@
+✔ cloud capability stays false until all resources and explicit activation are present (0.575333ms)
+✔ native API enables Generate only with durable API, sets owner cookie, and accepts full Chinese script bytes (6.933ms)
+✔ concurrent duplicate submissions across instances create one execution; navigation does not cancel it (1.010708ms)
+✔ explicit cancellation is durable before stop and a late callback cannot resurrect a task (0.530208ms)
+✔ unverified progress cannot expose media; completed video requires a verified object and passed review (1.738208ms)
+✔ worker cannot register another task object or arbitrary filesystem path as its own upload (0.893542ms)
+✔ restart uses committed checkpoint in a new attempt and fences the previous worker (0.599875ms)
+✔ retrying the same failed input retains verified media and resumes its committed checkpoint (0.592208ms)
+✔ cancellation while an execution is starting stops the late VM rather than leaving it running (0.66875ms)
+✔ private checkpoint metadata is not downloadable through the public artifact route (0.456625ms)
+✔ checkpoint hydration checks bytes and hashes and rejects directory traversal (8.150833ms)
+✔ checkpoint snapshots freeze mutable JSON and exclude a partially rendered movie (2.86125ms)
+✔ Sandbox starts a detached worker from a key-free snapshot and injects credentials only into execution (0.180583ms)
+✔ private Blob compare-and-swap retries contention rather than losing another update (0.379041ms)
+✔ same-origin private media streams requested bytes and rejects an invalid Range without exposing Blob URLs (0.310791ms)
+✔ real Blob missing-object errors keep their generic Error name and are still treated as an absent file (0.150792ms)
+✔ native config returns real capabilities without disclosing credentials or pretending a worker exists (2.321167ms)
+✔ voices returns the full catalog even without a provider key or external downloads (0.353459ms)
+✔ rewritten nested API routes return JSON errors instead of SPA HTML; methods are respected (0.523292ms)
+✔ preview uses the selected voice, style and language and returns a complete self-contained WAV (1.948916ms)
+✔ preview validates inputs and provider audio; no calls for missing key, invalid voice/language or long text (0.926792ms)
+✔ cross-origin mutations, oversized bodies, and upstream errors cannot disclose credentials (1.144875ms)
+✔ production endpoints explicitly reject work without durable worker instead of making transient fake tasks (0.23625ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 324.812

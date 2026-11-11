@@ -23,11 +23,26 @@ vercel deploy --yes --scope signflow2
 vercel deploy --prod --yes --scope signflow2
 ```
 
-## 完整视频后台仍需迁移
+## 同项目完整视频后台
 
-**目录恢复不等于云端视频制作恢复。** 当前原生API配置 `render:false`，制作/导出返回明确503；前台保留草稿并禁用相应动作。现有长任务依赖常驻Node、FFmpeg和持久文件；不能将入口改名或使用 `waitUntil` 就认为任务可跨重启保存。
+任务14已接入按任务启动的Sandbox执行器和private Blob持久任务/媒体，正式站一条真实短片已通过制作、视听审片、同域Range、完整下载与解码；记录见[任务14实施](../task-14-cloud-generation-progress-2026-11-11.md)及[结构化验收](../task-14-cloud-live-acceptance-2026-11-11.json)。这条恢复样片不能替代首次冷生成速度、长视频或实际浏览器验收。
 
-[同项目云端迁移方案](../vercel-video-async-migration-2026-11-11.md)建议 Workflow + 按任务Sandbox + private Blob；当前scope无可复用Blob store，尚未创建资源或接受新的计费。完整云端制作、恢复、Range播放、声音浏览器点击与听感仍未通过。
+云执行通过[云端API](server/cloud/api.mjs)与[独立worker](server/cloud/worker.mjs)，不把Function临时磁盘作为任务真相。发布前需要服务端配置：
+
+| 变量 | 用途 |
+|---|---|
+| `BLOB_READ_WRITE_TOKEN`或`BLOB_STORE_ID` | 当前项目连接的private Blob；OIDC须有相应项目/环境权限 |
+| `GOMOTION_SANDBOX_SNAPSHOT` | 已预装FFmpeg、字体和Linux依赖的执行快照 |
+| `GOMOTION_CLOUD_SECRET` | 至少32字符的随机服务端签名密钥；不得放进VITE变量 |
+| `GOMOTION_CLOUD_ENABLED=1` | 资源和实际预检通过后启用制作 |
+| `GOMOTION_DAILY_PRODUCTIONS` | 本MVP共享每日制作额度，默认20；不改变各镜头检索并发 |
+| `VISION_API_KEY`或`GEMINI_API_KEY`及素材源凭证 | 沿用上面的服务端连接 |
+
+在已授权云端用量后运行[快照准备脚本](scripts/prepare-cloud-snapshot.mjs)；更新源代码时可用`--from=已有快照ID`复用依赖。快照不包含环境文件和提供方密钥，执行时单独注入；旧版本快照不会自动读取本地新代码，必须准备并配置新的执行快照。单次执行45分钟，既有生成流水线40分钟上限继续生效。
+
+Production现已启用；Preview虽然已连接Blob，尚未配齐并启用上述执行变量，不能据此宣称预览环境也能制作。预览若启用Deployment Protection，worker回调还需对应的自动化绕过凭证，不能去掉整个站点保护代替鉴权。
+
+项目隔离采用服务端签名、HttpOnly/Secure浏览器会话；私有媒体经同域授权后流式返回，凭证与签名URL不进入前端。此版本仍为MVP：没有正式账号体系、长期媒体清理和多租户计费，不应宣称生产SaaS的全部运营能力已完成。
 
 ## 可选：独立容器后台
 

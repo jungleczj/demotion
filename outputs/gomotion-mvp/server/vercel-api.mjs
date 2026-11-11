@@ -1,6 +1,7 @@
 import voices from '../shared/voices.json' with { type: 'json' };
 import languages from '../shared/languages.json' with { type: 'json' };
 import { requestNarration } from './narration-request.mjs';
+import { createCloudAPI } from './cloud/api.mjs';
 
 const styles = {
   documentary: 'Calm, warm documentary narration with measured phrasing and restrained expression.',
@@ -15,7 +16,8 @@ const productionUnavailable = () => json({ error: '视频制作服务尚未就�
 
 // This adapter intentionally imports no local HTTP server, FFmpeg worker or task
 // pump. A function instance and its temporary disk cannot own durable tasks.
-export function createVercelHandler({ env = process.env, fetchImpl = fetch } = {}) {
+export function createVercelHandler({ env = process.env, fetchImpl = fetch, cloudAPI } = {}) {
+  const cloud = cloudAPI === undefined ? createCloudAPI({ env }) : cloudAPI;
   const config = {
     visionKey: env.VISION_API_KEY || env.GEMINI_API_KEY || '',
     visionBase: env.VISION_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta',
@@ -34,9 +36,9 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch } = {
       const mutation = !['GET', 'HEAD', 'OPTIONS'].includes(method);
       const origin = request.headers.get('origin');
       if (mutation && origin && origin !== url.origin) return json({ error: '请求来源不匹配' }, 403);
-      const body = async () => {
+      const body = async (limit = 6000) => {
         if (!request.headers.get('content-type')?.startsWith('application/json')) throw fail('请使用 JSON 请求', 415);
-        if (Number(request.headers.get('content-length')) > 6000) throw fail('请求内容过长', 413);
+        if (Number(request.headers.get('content-length')) > limit) throw fail('请求内容过长', 413);
         const reader = request.body?.getReader();
         let bytes = 0;
         const parts = [];
@@ -45,21 +47,25 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch } = {
             const { value, done } = await reader.read();
             if (done) break;
             bytes += value.byteLength;
-            if (bytes > 6000) { await reader.cancel(); throw fail('请求内容过长', 413); }
+            if (bytes > limit) { await reader.cancel(); throw fail('请求内容过长', 413); }
             parts.push(Buffer.from(value));
           }
         } finally { reader.releaseLock(); }
         try { return JSON.parse(Buffer.concat(parts).toString('utf8')); }
         catch { throw fail('请求不是有效的 JSON', 400); }
       };
-      if (route === '/api/health' && method === 'GET') return json({ status: 'ok', runtime: 'vercel', productionReady: false });
+      if (cloud) {
+        const response = await cloud.handle(request, route, body);
+        if (response) return response;
+      }
+      if (route === '/api/health' && method === 'GET') return json({ status: 'ok', runtime: 'vercel', productionReady: Boolean(cloud) });
       if (route === '/api/config' && method === 'GET') return json({
-        runtime: 'vercel', render: false, localVoice: false,
+        runtime: 'vercel', render: Boolean(cloud), localVoice: false,
         aiConnected: Boolean(config.visionKey), llmBase: '', llmModel: '', textProvider: 'vision',
-        pexelsConnected: Boolean(env.PEXELS_API_KEY), pixabayConnected: Boolean(env.PIXABAY_API_KEY), coverrConnected: Boolean(env.COVERR_API_KEY), youtubeConnected: Boolean(env.YOUTUBE_API_KEY),
+        pexelsConnected: Boolean(env.PEXELS_API_KEY), pixabayConnected: Boolean(env.PIXABAY_API_KEY), coverrConnected: Boolean(env.COVERR_API_KEY), youtubeConnected: Boolean(env.YOUTUBE_API_KEY), youtubeDiscovery: env.YOUTUBE_DISCOVERY !== 'false',
         sources: ['commons', 'archive', 'nasa', ...(env.PEXELS_API_KEY ? ['pexels'] : []), ...(env.PIXABAY_API_KEY ? ['pixabay'] : []), ...(env.COVERR_API_KEY ? ['coverr'] : [])],
         visionConfigured: Boolean(config.visionKey), visionEnabled: true, visionProvider: 'gemini', visionBase: config.visionBase, visionModel: config.visionModel,
-      });
+      }, 200, cloud?.responseHeaders(request));
       if (route === '/api/config' && method === 'POST') return json({ error: '线上连接配置请保存到 Vercel 项目的环境变量中，并重新部署。此页面不会临时保存密钥。', code: 'ENV_CONFIGURATION_REQUIRED' }, 409);
       if (route === '/api/voices' && method === 'GET') return json({ voices: voices.map((v) => v.key), languages });
       if (route === '/api/narration' && method === 'POST') {

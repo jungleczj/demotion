@@ -44,3 +44,5 @@ dialog{border:1px solid #e2e7f0;border-radius:14px;padding:0;background:#fff;col
 @media(max-width:700px){.generation-strip>.production-timing{order:3;width:100%;margin:0 0 0 20px;font-size:10px;gap:3px 12px}.generation-strip>button{margin-left:auto}.production-placeholder{padding:42px 20px}}
 
 .example-strip{flex-wrap:wrap}.example-strip .script-duration{margin-left:auto;white-space:nowrap;display:flex;align-items:center;gap:6px;font-size:11px;color:#77829a}.script-duration strong{font-weight:600;color:#4e69c9;font-variant-numeric:tabular-nums}
+
+.source-logo.youtube{background:#fff0f0;color:#d32f2f}

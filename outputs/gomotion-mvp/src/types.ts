@@ -39,6 +39,7 @@ export type SequenceResult = { scenePlan?: Scene[]; narrationTrack?: NarrationTr
 export type VideoReview = { passed?: boolean; audioReviewed?: boolean; watermarkFree?: boolean; exportId: string; provider: string; model: string; summary: string; analyzedUntil: number; totalDuration: number; limitations: string[]; events: AIEvent[]; issues: {time: number; sceneIndex: number; type: string; severity: string; description: string; suggestion: string}[] };
 export type AnalysisJob = { id: string; status: 'running' | 'done' | 'incomplete' | 'error' | 'cancelled'; progress: number; message: string; events: AIEvent[]; bytes: number; result?: SequenceResult; review?: VideoReview; error?: string };
 export type Config = {
+  runtime?: 'vercel'; youtubeConnected?: boolean; youtubeDiscovery?: boolean;
   aiConnected: boolean; llmBase: string; llmModel: string;
   pexelsConnected: boolean; pixabayConnected: boolean; coverrConnected: boolean; localVoice: boolean; render: boolean;
   sources: Provider[];

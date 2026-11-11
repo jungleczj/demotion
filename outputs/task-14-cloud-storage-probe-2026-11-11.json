@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-11T14:29:23.760Z",
+  "modelCalls": 0,
+  "passed": true,
+  "stage": "private-read",
+  "atomicUpdates": 2,
+  "uploadStatus": 200,
+  "integrity": true,
+  "idempotentUpload": true,
+  "captionUploadStatus": 200,
+  "rangeStatus": 206,
+  "rangeHeader": "bytes 0-31/4378",
+  "rangeBytes": 32,
+  "fullDecode": true
+}

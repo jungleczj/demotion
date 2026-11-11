@@ -49,6 +49,11 @@ test('deployed Node backend serves config and voices, retains saved exports and 
     await assert.rejects(stat(orphan), { code: 'ENOENT' });
     const config = await request('/api/config', { headers: { Origin: 'https://gomotion-mvp.vercel.app' } });
     assert.equal(config.status, 200); assert.equal((await config.json()).visionConfigured, false);
+    const youtubeConfig = await request('/api/config', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ youtubeKey: 'offline-youtube-fixture', youtubeDiscovery: false }) });
+    const youtubeView = await youtubeConfig.json();
+    assert.equal(youtubeView.youtubeConnected, true);
+    assert.equal(youtubeView.youtubeDiscovery, false);
+    assert.ok(!JSON.stringify(youtubeView).includes('offline-youtube-fixture'));
     const voicesStarted = performance.now();
     const voices = await request('/api/voices', { headers: { Origin: 'https://gomotion-mvp.vercel.app' } });
     assert.equal(voices.status, 200); const catalog = await voices.json();
