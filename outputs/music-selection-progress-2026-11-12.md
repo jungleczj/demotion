@@ -57,7 +57,7 @@ Undertow 原件 SHA-256：`4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a
 - 渲染入口已传入项目，混音版本2落入成片来源清单；旧版未循环的完整混音可复用，旧硬循环或缺少凭据不可冒充新版；标题/题材改变选曲时不复用旧配乐。音乐失败提示在任务完成状态保留，诊断详情不进入普通界面。
 - 独立只读复核发现的缓存题材匹配与丢失配乐失败提示两项均已修复并回归；其余循环、许可、取消与快照路径未发现重要问题。最终[完整本地回归335/335](music-selection-regression-2026-11-12.txt)，0失败/取消/跳过，47.553秒；类型检查与生产构建通过。首轮两个旧许可夹具及六个回环权限失败分别修正与在授权环境补验，保留[首轮日志](music-selection-regression-first-attempt-2026-11-12.txt)。
 
-18:51补验：[新版云快照](music-selection-cloud-snapshot-2026-11-12.json)已预装三首原件与完整凭据，全部在Linux严格离线校验；[Linux回归31/31](music-selection-linux-tests-2026-11-12.txt)，0失败/取消/跳过，6.628秒，[结构化结果](music-selection-linux-check-2026-11-12.json)。正式项目的执行快照环境变量已指向该版本，待代码发布后核对正式部署。
+18:51补验：[新版云快照](music-selection-cloud-snapshot-2026-11-12.json)已预装三首原件与完整凭据，全部在Linux严格离线校验；[Linux回归31/31](music-selection-linux-tests-2026-11-12.txt)，0失败/取消/跳过，6.628秒，[结构化结果](music-selection-linux-check-2026-11-12.json)。正式项目的执行快照环境变量已指向该版本。18:54代码[47f1432](https://github.com/jungleczj/demotion/commit/47f1432273fec87381dd6bdcc357224e7e14a5e0)已推送GitHub，自动正式部署READY，SHA一致；配置/声音200、render=true、30声音/15语言，[正式补验](music-selection-online-check-2026-11-12.json)。
 
 本地先核对活动任务0，再重载本会话自有服务；[重载后检查](music-selection-local-check-2026-11-12.json)确认原3条任务与状态保留、健康/配置/声音/任务200、30声音/15语言、既有旁白和成片Range206。未提交新的真实视频或配音、未取消用户任务。
 

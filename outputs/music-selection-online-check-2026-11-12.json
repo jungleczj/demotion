@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-12T10:54:01.202Z",
+  "commit": "47f1432273fec87381dd6bdcc357224e7e14a5e0",
+  "deploymentUrl": "https://gomotion-7977xszwk-signflow2.vercel.app",
+  "state": "READY",
+  "target": "production",
+  "checks": [
+    {
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 368,
+      "render": true,
+      "visionConfigured": true
+    },
+    {
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 289,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "newModelRequests": 0,
+  "newVideoProductions": 0,
+  "userTasksCancelled": 0,
+  "newCloudFilmAccepted": false
+}
