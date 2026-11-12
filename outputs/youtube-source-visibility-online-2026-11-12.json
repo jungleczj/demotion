@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-12T12:19:56.317Z",
+  "commit": "31ec2c2",
+  "homepageStatus": 200,
+  "bundle": {
+    "path": "/assets/index-DvReKZz2.js",
+    "status": 200,
+    "bytes": 381094,
+    "sha256": "32d7c3b8467b2563120fac00c141f06a91e143445895c4394266d3d613dc0317",
+    "matchesLocalBuild": true,
+    "hasYouTubeSourceLabel": true
+  },
+  "configuration": {
+    "status": 200,
+    "youtubeConnected": true,
+    "youtubeDiscovery": true,
+    "render": true
+  },
+  "nativeLocalBrowserVerified": true,
+  "productionBrowserVerified": false,
+  "newModelRequests": 0,
+  "newVideoProductions": 0
+}

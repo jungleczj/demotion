@@ -15,4 +15,4 @@
 - 类型检查与生产构建通过；构建产物为index-DvReKZz2.js。
 - [当前连接实测](task-status-service-check-2026-11-12-20.json)：本地与正式youtubeConnected=true、youtubeDiscovery=true。正式目录200不等于新版排序已发布。
 
-提交与正式发布正在同步；线上实际面板结果待后续补证。第15项本轮仅首屏可见性通过；完整原片取得与片段入片不在此窄结论内。
+已推送[31ec2c2](https://github.com/jungleczj/demotion/commit/31ec2c2e13e542a393cd9dc0d6107fe84bb5ddd0)，官方CLI核对正式部署READY。20:19正式首页、JS及配置均200，新JS的SHA256与本地构建相同，配置YouTube已连接且启用、render=true。[实际线上核对](youtube-source-visibility-online-2026-11-12.json)。线上实际弹窗尚未点击复核，不把JS发布等同浏览器验收；没有新增模型或视频生成请求。第15项本轮仅首屏可见性通过；完整原片取得与片段入片不在此窄结论内。
