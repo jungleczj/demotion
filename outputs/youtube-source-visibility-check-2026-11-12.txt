@@ -1,0 +1,12 @@
+✔ YouTube is the first visible source instead of being hidden below the stock library list (12.609ms)
+✔ the same source list includes the configured YouTube API as reference discovery with a real API documentation link (3.399167ms)
+✔ a missing YouTube key does not claim a connected source and keeps the reference toggle disabled (1.994167ms)
+✔ Vercel shows the true server-managed connection without claiming an in-memory key save (1.854584ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 176.368208

@@ -14,6 +14,15 @@ const { default: Settings } = await import(pathToFileURL(file));
 after(() => rm(folder, { recursive: true, force: true }));
 const render = (config) => renderToStaticMarkup(createElement(Settings, { config, selected: ['commons'], onSelect() {}, onConfig() {}, onClose() {}, onError() {} }));
 
+test('YouTube is the first visible source instead of being hidden below the stock library list', () => {
+  for (const config of [{ youtubeConnected: true }, { runtime: 'vercel', youtubeConnected: true }, { youtubeConnected: false }]) {
+    const html = render(config);
+    const sourceList = html.slice(html.indexOf('class="source-connections"'));
+    const firstSourceLink = sourceList.match(/aria-label="打开 ([^"]+)"/)?.[1];
+    assert.equal(firstSourceLink, 'YouTube Data API');
+  }
+});
+
 test('the same source list includes the configured YouTube API as reference discovery with a real API documentation link', () => {
   const html = render({ youtubeConnected: true, youtubeDiscovery: true });
   assert.match(html, /aria-label="打开 YouTube Data API"/);

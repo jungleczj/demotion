@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-11-12T12:12:23.439Z",
+  "checks": [
+    {
+      "environment": "local",
+      "route": "/api/health",
+      "status": 200,
+      "durationMs": 7
+    },
+    {
+      "environment": "local",
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 1,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "environment": "local",
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 1,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "environment": "local",
+      "route": "/api/productions",
+      "status": 200,
+      "durationMs": 2,
+      "tasks": [
+        {
+          "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+          "status": "done"
+        },
+        {
+          "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+          "status": "error"
+        },
+        {
+          "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+          "status": "error"
+        },
+        {
+          "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+          "status": "error"
+        }
+      ],
+      "active": 0
+    },
+    {
+      "environment": "production",
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 351,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "environment": "production",
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 266,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "newModelRequests": 0,
+  "newVideoProductions": 0,
+  "userTasksCancelled": 0,
+  "serviceRestarts": 0
+}

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-12T12:12:40.358Z",
+  "taskId": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+  "status": "error",
+  "title": "天空，永远属于生命",
+  "createdAt": 1794482288346,
+  "finishedAt": 1794482289019,
+  "message": "当前服务额度暂不可用，请稍后重试。",
+  "errorDetail": "配音服务计费或可用余额受限（HTTP 402）：Your prepayment credits are depleted. Please go to AI Studio at [url] to manage your project and billing. Learn more at [url] ",
+  "timings": {
+    "planningMs": 9,
+    "matchingMs": 638
+  },
+  "retry": 0,
+  "scenes": 12,
+  "selected": 0,
+  "noNewRequests": true
+}
