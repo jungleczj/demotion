@@ -35,6 +35,19 @@
         "start": 0,
         "docs": []
       }
+    },
+    {
+      "name": "wayback-english-captions",
+      "url": "https://archive.org/wayback/available?url=https%3A%2F%2Fwww.youtube.com%2Fapi%2Ftimedtext%3Fv%3DCSXelOdU8Yc%26lang%3Den",
+      "status": 200,
+      "result": {}
+    },
+    {
+      "name": "wayback-short-link",
+      "url": "https://archive.org/wayback/available?url=https%3A%2F%2Fyoutu.be%2FCSXelOdU8Yc",
+      "status": 200,
+      "result": {}
     }
-  ]
+  ],
+  "updatedAt": "2026-11-12T03:07:39.561642+00:00"
 }

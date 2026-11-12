@@ -8,7 +8,9 @@
 - 公开索引对应[YouTube视频](https://www.youtube.com/watch?v=CSXelOdU8Yc)；[加拿大海军协会推荐页](https://www.navalassoc.ca/nac-news-edition-k678-hmcs-runnymede/)的同名链接也指向同一ID，推荐页标注15:55。这是历史公开链接证据，不是当前可播放性或字幕证据。
 - 本次用已授权Data API做1次视频详情读取，没有返回可用条目；未取得频道、许可、字幕全文或视频原件。用户随后确认原视频已私有。没有尝试绕过私有权限。
 - 原教程只能看到15,926字符输入中的一个窗口，随后打开Kursk及波兰其他项目；不能把它们当作这份Sea Wolf稿的同稿成片。[教程核对](gomotion-tutorial-script-analysis-2026-11-11.md)。
-- 正在核对公开转写、作者重传及公开网页存档；[公开存档查询记录](sea-wolf-public-archive-search-2026-11-12.json)。没有拿到完整原稿前，不补写、反向编造所谓原稿。
+- 精确标题/视频ID的公开搜索未找到可用重传或全文；Internet Archive馆藏按ID及标题均返回0。Wayback可用性接口返回2026-11-06 09:58:48的页面快照，但实际页面读取未成功；英文timedtext字幕与短链接未返回存档。页面快照不能当作已取得字幕。[公开存档查询记录](sea-wolf-public-archive-search-2026-11-12.json)、[页面读取结果](sea-wolf-wayback-page-check-2026-11-12.json)。没有拿到完整原稿前，不补写、反向编造所谓原稿。
+
+可继续取得原稿的渠道是原作者、GoMotion教程制作者或已保存原转写的使用者；当前没有发送对外消息。若原作者私下分享原视频，观看者仍需使用被授权账号登录；普通API key不提供私有观看权限，见[YouTube说明](https://support.google.com/youtube/answer/77272?hl=en)。
 
 ## 同稿验收方法
 
