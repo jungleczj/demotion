@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-12T09:11:46.894Z",
+  "id": "dpl_CF4GjwtQ4YZgijVeXVY3yGEsFDV9",
+  "url": "https://gomotion-5t4prpae9-signflow2.vercel.app",
+  "state": "READY",
+  "target": "production",
+  "commit": "49bc3b07c00983b894b91fcc080dcae2d498e91f",
+  "aliases": [
+    "gomotion-mvp.vercel.app",
+    "gomotion-mvp-signflow2.vercel.app",
+    "gomotion-mvp-git-main-signflow2.vercel.app"
+  ]
+}

@@ -70,3 +70,7 @@ An earlier targeted run of existing request/cache/cancellation tests plus the th
 新版执行快照已准备：[快照记录](long-narration-cloud-snapshot-2026-11-12.json)。在独立Linux实例运行35项离线检查全部通过：[结构化结果](long-narration-linux-check-2026-11-12.json)、[完整日志](long-narration-linux-regression-2026-11-12.txt)；验收实例随后结束，没有运行用户制作任务。快照继续包含已验证的授权配乐缓存。正式环境已设置新版快照，待GitHub触发部署生效。
 
 本地确认活动任务0后重载自有服务，3条原任务与状态保留；原旁白及成片Range206、健康/配置/声音/任务200，30声音/15语言：[实际重载后核对](long-narration-local-check-2026-11-12.json)。用户任务取消0、真实模型请求0。
+
+## 发布确认（17:12）
+
+[代码49bc3b0](https://github.com/jungleczj/demotion/commit/49bc3b07c00983b894b91fcc080dcae2d498e91f)已推送到指定GitHub main。自动正式部署READY，SHA与代码一致，[部署元数据](long-narration-deployment-state-2026-11-12.json)。正式域名配置和声音目录均200，render=true、30声音/15语言、YouTube已连接：[发布后只读核对](long-narration-online-check-2026-11-12.json)。本次没有实际新配音或新视频生成，不能将线上目录恢复、Linux音调测试或已完成快照部署计为真实新版长片通过。

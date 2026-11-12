@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-12T09:12:17.631Z",
+  "deployment": "dpl_CF4GjwtQ4YZgijVeXVY3yGEsFDV9",
+  "commit": "49bc3b07c00983b894b91fcc080dcae2d498e91f",
+  "checks": [
+    {
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 428,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true
+    },
+    {
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 361,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "newModelRequests": 0,
+  "newVideoProductions": 0,
+  "userTasksCancelled": 0
+}
