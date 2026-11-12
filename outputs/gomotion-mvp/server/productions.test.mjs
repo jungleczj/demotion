@@ -51,6 +51,19 @@ test('simultaneous submissions for the same project share one durable task', asy
   } finally { await rm(work, { recursive: true, force: true }); }
 });
 
+test('local production accepts and persists 25,000 characters exactly and rejects 25,001', async () => {
+  const work = await mkdtemp(path.join(os.tmpdir(), 'production-script-limit-'));
+  try {
+    const manager = await createProductionManager({ work, config: { visionEnabled: false }, analyses: new Map(), exports: new Map(), saveAssets: async () => {} });
+    const project = { id: randomUUID(), script: '海'.repeat(25000), voice: 'gemini:Kore', format: 'landscape', scenes: [] };
+    const task = await manager.submit({ project });
+    assert.equal(task.status, 'queued');
+    assert.equal(task.project.script, project.script);
+    assert.equal(JSON.parse(await readFile(path.join(work, 'productions/jobs.json'), 'utf8'))[0].project.script.length, 25000);
+    await assert.rejects(manager.submit({ project: { ...project, id: randomUUID(), script: project.script + '洋' } }), { status: 400 });
+  } finally { await rm(work, { recursive: true, force: true }); }
+});
+
 test('completed arbitrary diagrams cannot be reused as source-backed productions', async () => {
   const work = await mkdtemp(path.join(os.tmpdir(), 'production-provenance-'));
   try {
@@ -85,6 +98,23 @@ test('remaking a subtitled project rebuilds an older small-caption export', asyn
     const manager = await createProductionManager({ work, config: { visionEnabled: false }, analyses: new Map(), exports: new Map(), saveAssets: async () => {} });
     const next = await manager.submit({ project: { ...old.project, id: randomUUID() } });
     assert.equal(next.status, 'queued', 'old burned captions must be rendered again');
+    assert.equal(next.project.exportUrl, undefined);
+  } finally { await rm(work, { recursive: true, force: true }); }
+});
+
+test('remaking a project does not reuse a pre-music export', async () => {
+  const work = await mkdtemp(path.join(os.tmpdir(), 'production-audio-cache-'));
+  try {
+    const directory = path.join(work, 'productions'); await mkdir(directory, { recursive: true });
+    const exportId = randomUUID(); await mkdir(path.join(work, exportId));
+    await writeFile(path.join(work, exportId, 'video.mp4'), 'eligibility fixture only; never decoded');
+    const text = '重新制作时应该采用新版整片声音处理，不能复用之前没有配乐步骤的旧成片。';
+    const scene = { id: randomUUID(), text, duration: 6, selected: { id: 'upload:audio-cache', provider: 'upload', kind: 'video' } };
+    const old = { id: randomUUID(), exportId, status: 'done', updatedAt: 1, project: { id: randomUUID(), script: text, voice: 'gemini:Kore', format: 'landscape', subtitles: false, scenes: [scene], exportUrl: `/api/exports/${exportId}/video.mp4`, videoProfile: { version: 1 }, videoReview: { passed: true, watermarkFree: true } } };
+    await writeFile(path.join(directory, 'jobs.json'), JSON.stringify([old]));
+    const manager = await createProductionManager({ work, config: { visionEnabled: false }, analyses: new Map(), exports: new Map(), saveAssets: async () => {} });
+    const next = await manager.submit({ project: { ...old.project, id: randomUUID() } });
+    assert.equal(next.status, 'queued');
     assert.equal(next.project.exportUrl, undefined);
   } finally { await rm(work, { recursive: true, force: true }); }
 });

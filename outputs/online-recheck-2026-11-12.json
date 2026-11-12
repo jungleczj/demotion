@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-12T02:43:14.961074+00:00",
+  "newDeployId": "dpl_3JTAXJbnGUoiwH6jRj7Pw8F7ae1Q",
+  "snapshotId": "snap_SYCXBM8TMLRiCW5caSHnxOiBAxN0",
+  "submittedCloudJobs": 0,
+  "cancelledUserTasks": 0,
+  "browserVerified": false,
+  "observations": [
+    {
+      "origin": "https://gomotion-mvp.vercel.app",
+      "route": "/api/config",
+      "status": 200,
+      "contentType": "application/json",
+      "render": null,
+      "visionConfigured": true
+    },
+    {
+      "origin": "https://gomotion-mvp.vercel.app",
+      "route": "/api/voices",
+      "status": 200,
+      "contentType": "application/json",
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "origin": "http://localhost:3027",
+      "route": "/api/config",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "render": null,
+      "visionConfigured": true
+    },
+    {
+      "origin": "http://localhost:3027",
+      "route": "/api/voices",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "passed": true,
+  "fieldReadCorrection": "render is a top-level field, not features.render; corrected by script-limit-online-2026-11-12.json"
+}

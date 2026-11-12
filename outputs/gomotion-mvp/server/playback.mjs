@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdir, stat, rm, readdir, rename, utimes, open } from 'node:fs/promises';
+import { mkdir, stat, rm, rename, utimes, open } from 'node:fs/promises';
 import { createWriteStream } from 'node:fs';
 import { Transform, Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
@@ -10,6 +10,7 @@ import { run, probe } from './process.mjs';
 import { mediaQualityError, outputProfile } from './media-quality.mjs';
 import { contentCrop } from './framing.mjs';
 import { sharedOperations } from './shared-operation.mjs';
+import { prunePlaybackCache } from './playback-cache.mjs';
 
 const folder = path.join(workDirectory, 'playback');
 const FILE_LIMIT = 24 * 1024 * 1024;
@@ -62,14 +63,7 @@ export const playbackPath = (key) => path.join(folder, `${key}.mp4`);
 const playbackAliases = (asset, key) => [...new Set([...(asset.playbackAliases || []), ...(asset.playbackKey && asset.playbackKey !== key ? [asset.playbackKey] : [])])].slice(-8);
 
 async function prune(reserve = 0) {
-  const files = await Promise.all((await readdir(folder)).filter((n) => /^[a-f0-9]{64}\.mp4$/.test(n)).map(async (n) => ({ file: path.join(folder, n), info: await stat(path.join(folder, n)) })));
-  let bytes = files.reduce((sum, f) => sum + f.info.size, 0);
-  for (const f of files.sort((a, b) => a.info.mtimeMs - b.info.mtimeMs)) {
-    if (bytes + reserve <= CACHE_LIMIT && Date.now() - f.info.mtimeMs < 24 * 3600_000) break;
-    if (Date.now() < (warm.get(path.basename(f.file, '.mp4')) || 0)) continue;
-    await Promise.all([f.file, f.file.replace(/\.mp4$/, '.jpg')].map((file) => rm(file, { force: true }))); bytes -= f.info.size;
-  }
-  if (bytes + reserve > CACHE_LIMIT) throw new Error('视频缓存正在被使用，请稍后再载入更多候选');
+  await prunePlaybackCache(folder, { reserve, limit: CACHE_LIMIT, warm });
 }
 
 async function createPlayback(asset, key, config, timings, started, operationSignal) {

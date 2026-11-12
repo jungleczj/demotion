@@ -2,6 +2,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { productionEstimate } from '../production-estimate.mjs';
 import voices from '../../shared/voices.json' with { type: 'json' };
 import languages from '../../shared/languages.json' with { type: 'json' };
+import scriptLimits from '../../shared/script-limits.json' with { type: 'json' };
 
 const active = (task) => ['queued', 'running'].includes(task?.status);
 const idPattern = /^[a-f0-9-]{36}$/;
@@ -14,7 +15,7 @@ const validateFile = (file) => {
 };
 function validateInput(input) {
   const p = input?.project;
-  if (!idPattern.test(p?.id || '') || typeof p.script !== 'string' || p.script.trim().length < 15 || p.script.length > 6000 || !['landscape', 'portrait'].includes(p.format) || !voices.some((v) => `gemini:${v.key}` === p.voice) || !languages.some((l) => l.code === p.language)) throw error('请提供有效脚本、声音、语言与画幅');
+  if (!idPattern.test(p?.id || '') || typeof p.script !== 'string' || p.script.trim().length < scriptLimits.minCharacters || p.script.length > scriptLimits.maxCharacters || !['landscape', 'portrait'].includes(p.format) || !voices.some((v) => `gemini:${v.key}` === p.voice) || !languages.some((l) => l.code === p.language)) throw error('请提供有效脚本、声音、语言与画幅');
   // Browser-supplied file paths, AI approvals and source receipts are never
   // trusted. The remote worker plans and reviews its own media from this input.
   const project = { id: p.id, title: String(p.title || 'Untitled').slice(0, 100), script: p.script.trim(), createdAt: p.createdAt || new Date().toISOString(), voice: p.voice, voiceStyle: ['documentary', 'story', 'conversation', 'explainer', 'gentle'].includes(p.voiceStyle) ? p.voiceStyle : 'documentary', language: p.language, format: p.format, fit: 'cover', subtitles: p.subtitles !== false, topic: String(p.topic || '').slice(0, 100), scenes: [] };

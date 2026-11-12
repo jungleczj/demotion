@@ -11,6 +11,7 @@ import { mediaQualityError, outputProfile } from './media-quality.mjs';
 import { assertSourceFiles } from './source-provenance.mjs';
 import { makeAss, captionFilter } from './captions.mjs';
 import captionStyle from '../shared/caption-style.json' with { type: 'json' };
+import { addBackgroundMusic, prepareBackgroundMusic } from './background-music.mjs';
 
 export { run, probe } from './process.mjs';
 import { run, probe } from './process.mjs';
@@ -29,14 +30,17 @@ export async function renderProject(job, project, directory, config = {}) {
   const signal = job.controller.signal;
   const folder = path.join(directory, job.id);
   await mkdir(folder, { recursive: true });
-  const profile = { ...outputProfile(project.format), captionStyleVersion: captionStyle.version };
+  const profile = { ...outputProfile(project.format), captionStyleVersion: captionStyle.version, audioMixVersion: 1 };
   const { width, height } = profile;
   config = { ...config, outputFormat: project.format };
   let total = 0;
   const manifest = [];
   const encodeTasks = [];
+  const musicController = new AbortController();
+  let musicPreparation;
   try {
     await Promise.all(project.scenes.map((scene) => assertSourceFiles(scene, assets.get(scene.selected?.id) || scene.selected, project.script, signal)));
+    musicPreparation = prepareBackgroundMusic(path.join(directory, 'music-sources'), { signal: AbortSignal.any([signal, musicController.signal]), enabled: config.backgroundMusic !== false });
     enterPhase('narrationMs');
     const narrated = await prepareNarrationTimeline(project, config, job, folder);
     project = { ...project, scenes: narrated.scenes };
@@ -140,10 +144,13 @@ export async function renderProject(job, project, directory, config = {}) {
     if (project.subtitles) { graph.push(`[${last}]${await captionFilter(captions)}[vout]`); last = 'vout'; }
     args.push('-filter_complex', graph.join(';'), '-map', `[${last}]`, '-map', '[aout]', '-t', total.toFixed(6), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p', '-threads', '2', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', path.join(folder, 'video.mp4'));
     await run('ffmpeg', args, signal);
+    job.message = '为整片配入连续背景音乐';
+    const music = await addBackgroundMusic(path.join(folder, 'video.mp4'), path.join(directory, 'music-sources'), { duration: total, signal, enabled: config.backgroundMusic !== false, preparation: musicPreparation });
+    job.music = music;
     const rendered = await probe(path.join(folder, 'video.mp4'), signal);
     if (!rendered.hasAudio || Math.abs(rendered.duration - total) > .15) throw new Error('成片音轨或时长未通过完整覆盖检查，已停止输出');
     await writeFile(path.join(folder, 'captions.srt'), manifest.map((s, i) => `${i + 1}\n${srtTime(s.start)} --> ${srtTime(s.end)}\n${s.text}\n`).join('\n'));
-    await writeFile(path.join(folder, 'sources.json'), JSON.stringify({ title: project.title, script: project.script, duration: total, width, height, captionStyleVersion: captionStyle.version, videoProfile: profile, createdAt: new Date().toISOString(), scenes: manifest }, null, 2));
+    await writeFile(path.join(folder, 'sources.json'), JSON.stringify({ title: project.title, script: project.script, duration: total, width, height, captionStyleVersion: captionStyle.version, videoProfile: profile, music, createdAt: new Date().toISOString(), scenes: manifest }, null, 2));
     await Promise.all(project.scenes.map((_, index) => rm(path.join(folder, `scene-${index}.mp4`), { force: true })));
     await rm(captions, { force: true });
     job.message = 'AI 正在审查整片画面、转场和真实配音'; job.progress = 96;
@@ -155,6 +162,7 @@ export async function renderProject(job, project, directory, config = {}) {
     job.events = [...(job.events || []), ...audit.events];
     job.review = audit.review; job.reviewError = audit.error; job.videoProfile = profile;
     job.status = 'done'; job.progress = 100; job.message = audit.review?.passed ? '画面与声音审查通过，请试听完整成片' : '成片草稿尚未通过质量要求，请查看审片结果'; job.duration = total;
+    if (music.status === 'unavailable') job.message += '；背景音乐未加入，已保留完整旁白';
     job.url = `/api/exports/${job.id}/video.mp4`;
     job.size = (await stat(path.join(folder, 'video.mp4'))).size;
   } catch (error) {
@@ -162,6 +170,8 @@ export async function renderProject(job, project, directory, config = {}) {
     job.error = signal.aborted ? '导出已取消' : error.message;
     await rm(folder, { recursive: true, force: true });
   } finally {
+    musicController.abort();
+    await musicPreparation;
     enterPhase(undefined);
     timings.totalMs = performance.now() - started;
   }

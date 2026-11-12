@@ -77,14 +77,21 @@ test('image search is bounded, rejects wrong subjects, and never creates assets 
   assert.equal(typeof module.findSourceImagePlan, 'function', 'source-driven fallback is missing');
   const folder = await mkdtemp(path.join(os.tmpdir(), 'source-image-search-'));
   try {
-    const input = await fixture(folder), job = { controller: new AbortController(), events: [] };
+    const inputs = [];
+    for (let index = 0; index < 5; index++) inputs.push(await fixture(folder, `${1600 - index}x1200`));
+    const job = { controller: new AbortController(), events: [] };
     const result = await module.findSourceImagePlan(scene, { script: scene.text, format: 'landscape' }, path.join(folder, 'candidates'), {}, job, { providers: ['commons'], search: async (query, providers, config, kind) => {
       assert.equal(query, scene.query); assert.equal(kind, 'image'); assert.deepEqual(providers, ['commons']);
-      return { assets: Array.from({ length: 12 }, (_, i) => ({ ...source(input), id: `fixture:${i}`, sourceId: String(i) })), warnings: [] };
+      return { assets: [{ ...source(inputs[0]), licenseUrl: '' }, ...inputs.map((input, index) => ({ ...source(input), id: `fixture:${index}`, sourceId: String(index), sourceUrl: `https://example.test/pattern/${index}` }))], warnings: [] };
     }, review: async () => ({ ...review, exactSubject: false }) });
     assert.equal(result.plan, null);
     assert.equal(result.attempted, 4);
+    assert.equal(result.reviewed, 4);
+    assert.equal(result.metadataRejected, 1, 'unclear rights must not spend one of the four pixel reads');
     assert.ok(result.warnings.length >= 4);
+    const rejected = job.events.filter((event) => event.rejectedImageReview);
+    assert.equal(rejected.length, 4);
+    assert.ok(rejected.every((event) => event.rejectedImageReview.exactSubject === false && event.rejectedImageReview.observed === review.observed && /^[a-f0-9]{64}$/.test(event.rejectedImageReview.inputSha256)));
     const abandoned = await readdir(path.join(folder, 'candidates'), { recursive: true });
     assert.equal(abandoned.filter((name) => /\.(source|png|download)$/.test(name)).length, 0, 'rejected images must not accumulate');
   } finally { await rm(folder, { recursive: true, force: true }); }
@@ -108,5 +115,96 @@ test('candidate cleanup isolates scenes and removes cancelled image reads', asyn
     const retained = (await readdir(directory, { recursive: true })).filter((name) => /\.(source|png|download)$/.test(name));
     assert.equal(retained.length, 2, 'only the selected source and its decoded pixels remain');
     assert.equal(createHash('sha256').update(await readFile(original.decodedPath)).digest('hex'), original.decodedSha256);
+  } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+// Repeated catalogs and cross-provider mirrors must not spend the four actual
+// image reads before a different source image can be inspected.
+test('subject-aware queries skip irrelevant metadata and deduplicate URLs and actual pixels across catalogs', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'source-image-query-dedup-'));
+  try {
+    const first = await fixture(folder), different = await fixture(folder, '1598x1200');
+    const samePixels = path.join(folder, 'copy-with-extra-bytes.png');
+    await writeFile(samePixels, Buffer.concat([await readFile(first), Buffer.from('trailing metadata')]));
+    const candidate = (id, localPath, extra = {}) => ({ ...source(localPath), id, sourceId: id, title: 'test pattern blue red', sourceUrl: `https://example.test/${id}`, ...extra });
+    const job = { controller: new AbortController(), events: [] }, searches = [];
+    let reads = 0;
+    const result = await module.findSourceImagePlan(scene, { script: scene.text, format: 'landscape' }, path.join(folder, 'candidates'), {}, job, {
+      providers: ['commons'], queryPlan: { subject: { text: '测试图', aliases: ['test pattern'] }, queries: ['test pattern upper lower', 'test pattern blue red'] },
+      search: async (query, _providers, config) => {
+        searches.push(query); assert.equal(config.signal, job.controller.signal);
+        return { assets: query.endsWith('upper lower')
+          ? [candidate('hiker', different, { title: 'Penguin Peak hiker' }), candidate('first', first), candidate('mirror', samePixels)]
+          : [candidate('first', first, { sourceUrl: 'https://example.test/first?utm_source=catalog' }), candidate('mirror', samePixels), candidate('different', different)], warnings: [] };
+      },
+      review: async () => { reads++; return reads === 1 ? { ...review, exactSubject: false } : review; },
+    });
+    assert.ok(result.plan, 'a unique second image should still receive a real image read');
+    assert.deepEqual(searches.sort(), ['test pattern blue red', 'test pattern upper lower']);
+    assert.equal(reads, 2);
+    assert.equal(result.reviewed, 2);
+    assert.ok(result.deduplicated >= 2);
+    assert.equal(result.metadataRejected, 1);
+    assert.notEqual(result.plan.sourceAssets[0].sha256, createHash('sha256').update(await readFile(first)).digest('hex'));
+  } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+test('failed acquisitions stop at twelve without spending or creating pixel review evidence', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'source-image-acquisition-cap-'));
+  try {
+    const candidates = [];
+    for (let index = 0; index < 20; index++) {
+      const file = path.join(folder, `${index}.png`); await writeFile(file, 'not an image');
+      candidates.push({ ...source(file), id: `fixture:${index}`, sourceId: String(index), sourceUrl: `https://example.test/${index}` });
+    }
+    let reads = 0;
+    const result = await module.findSourceImagePlan(scene, { script: scene.text, format: 'landscape' }, path.join(folder, 'candidates'), {}, { controller: new AbortController(), events: [] }, { providers: ['commons'], search: async () => ({ assets: candidates, warnings: [] }), review: async () => { reads++; return review; } });
+    assert.equal(result.plan, null);
+    assert.equal(result.attempted, 12);
+    assert.equal(result.reviewed, 0);
+    assert.equal(reads, 0);
+    assert.equal((await readdir(path.join(folder, 'candidates'), { recursive: true })).filter((name) => /\.(source|png|download)$/.test(name)).length, 0);
+  } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+test('catalog cancellation is forwarded and no pixel review starts after cancellation', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'source-image-search-cancel-'));
+  try {
+    const controller = new AbortController(), job = { controller, events: [] };
+    let started = 0, reads = 0;
+    const operation = module.findSourceImagePlan(scene, { script: scene.text, format: 'landscape' }, folder, {}, job, { providers: ['commons'], queryPlan: { subject: null, queries: ['first query', 'second query', 'third query'] }, search: async (_query, _providers, config) => {
+      assert.equal(config.signal, controller.signal); started++;
+      await new Promise((_resolve, reject) => config.signal.addEventListener('abort', () => reject(config.signal.reason), { once: true }));
+    }, review: async () => { reads++; return review; } });
+    await new Promise(setImmediate);
+    assert.equal(started, 3);
+    controller.abort(new Error('stop catalogs'));
+    await assert.rejects(operation, /stop catalogs/);
+    assert.equal(reads, 0);
+  } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+test('an image-host 429 skips that provider but preserves another source and its pixel budget', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'source-image-host-quota-')), originalFetch = globalThis.fetch;
+  try {
+    const file = await fixture(folder); let downloads = 0, reads = 0;
+    globalThis.fetch = async () => { downloads++; return new Response('', { status: 429 }); };
+    const failed = (id) => ({ ...source(file), localPath: undefined, provider: 'commons', id, sourceId: id, sourceUrl: `https://example.test/${id}`, url: `https://example.test/${id}.png` });
+    const result = await module.findSourceImagePlan(scene, { script: scene.text, format: 'landscape' }, path.join(folder, 'acquired'), {}, { controller: new AbortController(), events: [] }, { providers: ['commons'], search: async () => ({ assets: [failed('first'), failed('second'), source(file)], warnings: [] }), review: async () => { reads++; return review; } });
+    assert.ok(result.plan);
+    assert.equal(downloads, 1, 'a throttled host is not hammered with the next candidate');
+    assert.equal(reads, 1);
+    assert.equal(result.attempted, 2);
+    assert.equal(result.reviewed, 1);
+    assert.ok(result.warnings.some((warning) => warning.includes('429')));
+  } finally { globalThis.fetch = originalFetch; await rm(folder, { recursive: true, force: true }); }
+});
+
+test('a model quota failure after reading pixels still stops rather than consuming more sources', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'source-image-model-quota-'));
+  try {
+    const file = await fixture(folder); let reads = 0;
+    await assert.rejects(module.findSourceImagePlan(scene, { script: scene.text, format: 'landscape' }, folder, {}, { controller: new AbortController(), events: [] }, { providers: ['commons'], search: async () => ({ assets: [source(file)], warnings: [] }), review: async () => { reads++; throw Error('Model HTTP 429 quota exhausted'); } }), /429/);
+    assert.equal(reads, 1);
   } finally { await rm(folder, { recursive: true, force: true }); }
 });

@@ -2,6 +2,7 @@ import voices from '../shared/voices.json' with { type: 'json' };
 import languages from '../shared/languages.json' with { type: 'json' };
 import { requestNarration } from './narration-request.mjs';
 import { createCloudAPI } from './cloud/api.mjs';
+import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
 
 const styles = {
   documentary: 'Calm, warm documentary narration with measured phrasing and restrained expression.',
@@ -106,7 +107,7 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
         if (!response.ok) throw fail(`写作服务请求未完成（HTTP ${response.status}），请稍后重试`, response.status);
         const result = await response.json();
         const output = JSON.parse(result.candidates?.[0]?.content?.parts?.filter((p) => p.text && !p.thought).map((p) => p.text).join('') || '{}');
-        if (typeof output.title !== 'string' || typeof output.script !== 'string' || !output.script.trim() || output.script.length > 5000) throw fail('未生成可用的脚本，请重试', 502);
+        if (typeof output.title !== 'string' || typeof output.script !== 'string' || !output.script.trim() || output.script.length > scriptLimits.maxCharacters) throw fail('未生成可用的脚本，请重试', 502);
         return json({ title: output.title.slice(0, 100), script: output.script });
       }
       if (/^\/api\/(?:productions|export|exports|render|narration-track|analyze)(?:\/|$)/.test(route)) return productionUnavailable();

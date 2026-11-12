@@ -1,0 +1,13 @@
+✔ catalog media reuses verified playback dimensions and retains its measured preparation phases (889.681ms)
+✔ one decode preserves actual-video input, ten sample positions, pixels and boundary frames (21582.964542ms)
+ℹ {"fixture":{"width":1280,"height":720,"duration":30.966667},"times":[{"round":0,"outputCache":"first-local-file/fresh-output","oldSeconds":1.321736417,"newSeconds":0.7447901659999998,"phases":{"playbackMs":null,"statMs":0.1,"probeMs":50.242,"ffmpegMs":693.005,"frameReadMs":1.084,"videoReadMs":0.234,"queueMs":null,"downloadMs":null,"playbackPhases":null,"ffmpegInvocations":1,"playbackBypassed":true},"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true},{"round":1,"outputCache":"repeat-local-file/fresh-output","oldSeconds":1.3010666250000005,"newSeconds":0.7261221249999998,"phases":{"playbackMs":null,"statMs":0.063,"probeMs":46.848,"ffmpegMs":677.744,"frameReadMs":1.146,"videoReadMs":0.256,"queueMs":null,"downloadMs":null,"playbackPhases":null,"ffmpegInvocations":1,"playbackBypassed":true},"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true},{"round":2,"outputCache":"repeat-local-file/fresh-output","oldSeconds":1.2622061670000002,"newSeconds":0.69770975,"phases":{"playbackMs":null,"statMs":0.05,"probeMs":45.554,"ffmpegMs":650.255,"frameReadMs":1.541,"videoReadMs":0.206,"queueMs":null,"downloadMs":null,"playbackPhases":null,"ffmpegInvocations":1,"playbackBypassed":true},"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true}],"fractionalOffset":{"offset":2.173,"duration":8.125,"dimensions":[480,270],"decodedFrames":65,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true},"longWindow":{"duration":66.75,"dimensions":[320,180],"decodedFrames":267,"sampleCount":10,"jpegHashesEqual":true,"decodedFrameHashesEqual":true,"boundaryFramesEqual":true}}
+✔ audio review honors a bounded analysisDuration and original source offset (2100.243125ms)
+✔ preparation failures retain measured phases without inventing download or queue durations (0.394583ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24649.33675

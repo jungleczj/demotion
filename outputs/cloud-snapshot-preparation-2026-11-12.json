@@ -1,0 +1,23 @@
+{
+  "snapshotId": "snap_SYCXBM8TMLRiCW5caSHnxOiBAxN0",
+  "previousSnapshotId": "snap_o8oXVzSZQRyfK5cc4NL7CHQebawN",
+  "sourceFiles": 61,
+  "createdAt": "2026-11-12T02:38:17.164Z",
+  "providerCalls": 0,
+  "musicCache": {
+    "id": "scottbuckley:undertow",
+    "bytes": 10000906,
+    "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+    "license": "CC BY 4.0",
+    "cloudCacheDecodePassed": true
+  },
+  "newCloudFilmAccepted": false,
+  "supersededBy": {
+    "snapshotId": "snap_uAjMjqxboXJBxAVZHbtp35zlb0ac",
+    "sourceFiles": 62,
+    "createdAt": "2026-11-12T02:50:39.744Z",
+    "includes25000CharacterLimit": true,
+    "includesSourceHost429Isolation": true,
+    "cloudCacheDecodePassed": true
+  }
+}

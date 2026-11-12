@@ -2,6 +2,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, writeFile, stat, rename, rm, readdir, utimes } from 'node:fs/promises';
 import path from 'node:path';
 import { workDirectory } from './runtime.mjs';
+import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
 import { probe, run } from './process.mjs';
 import { requestNarration } from './narration-request.mjs';
 import { sharedOperations } from './shared-operation.mjs';
@@ -56,7 +57,7 @@ export async function narrationAudio(scene, project, config, signal) {
   if (!project.voice?.startsWith('gemini:') || !voices.has(voice)) throw new Error('请选择 Gemini 神经配音并重新选材；旧版本机朗读不满足本片的人声要求');
   if (config.visionProvider !== 'gemini' || !config.visionKey) throw new Error('自然配音需要已连接的 Gemini API key');
   const text = String(scene.text || '').trim();
-  if (!text || text.length > 6000) throw new Error('每个配音镜头需要 1–6000 字符的台词');
+  if (!text || text.length > scriptLimits.maxCharacters) throw new Error('配音文本需要 1–25,000 字符的台词');
   const language = languages.find((l) => l.code === project.language);
   const languageStyle = language ? `Speak fluent native ${language.speech}. The supplied narration is already in this language; do not translate or change any words.` : 'Speak in the language of the supplied narration, using standard Mandarin for Chinese.';
   const style = languageStyle + ' ' + (deliveryStyles[project.voiceStyle] || deliveryStyles.documentary) + ' Read the exact narration below as a human narrator. Natural human phrasing and breaths, medium pace, connected delivery consistent with the requested style. No announcer affectation, robotic rhythm, extra words, headings, music or sound effects. Do not read these instructions. Read only the narration verbatim.';

@@ -1,0 +1,2478 @@
+{
+  "at": "2026-11-12T02:39:02.338Z",
+  "kind": "cold-new-project-warm-music-cache",
+  "browserVerified": false,
+  "cancelledUserTasks": 0,
+  "submittedTasks": 1,
+  "passed": true,
+  "observations": [
+    {
+      "at": "2026-11-12T02:39:02.388Z",
+      "state": {
+        "status": "running",
+        "phase": "queued",
+        "progress": 0,
+        "scenes": 0
+      }
+    },
+    {
+      "at": "2026-11-12T02:39:05.396Z",
+      "state": {
+        "status": "running",
+        "phase": "planning",
+        "progress": 2,
+        "scenes": 0
+      }
+    },
+    {
+      "at": "2026-11-12T02:39:11.407Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 10,
+        "scenes": 4
+      }
+    },
+    {
+      "at": "2026-11-12T02:41:11.582Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 23,
+        "scenes": 4
+      }
+    },
+    {
+      "at": "2026-11-12T02:41:47.645Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 25,
+        "scenes": 4
+      }
+    },
+    {
+      "at": "2026-11-12T02:41:50.649Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 36,
+        "scenes": 4
+      }
+    },
+    {
+      "at": "2026-11-12T02:42:14.675Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 48,
+        "scenes": 4
+      }
+    },
+    {
+      "at": "2026-11-12T02:42:20.690Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 63,
+        "scenes": 4
+      }
+    },
+    {
+      "at": "2026-11-12T02:43:11.767Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 63,
+        "scenes": 5
+      }
+    },
+    {
+      "at": "2026-11-12T02:43:50.836Z",
+      "state": {
+        "status": "running",
+        "phase": "rendering",
+        "progress": 76,
+        "scenes": 5
+      }
+    },
+    {
+      "at": "2026-11-12T02:43:53.842Z",
+      "state": {
+        "status": "running",
+        "phase": "rendering",
+        "progress": 97,
+        "scenes": 5
+      }
+    },
+    {
+      "at": "2026-11-12T02:43:59.852Z",
+      "state": {
+        "status": "running",
+        "phase": "reviewing",
+        "progress": 98,
+        "scenes": 5
+      }
+    }
+  ],
+  "taskId": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+  "task": {
+    "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+    "project": {
+      "id": "0e122c79-27bd-4e38-ad71-e14dec716bd1",
+      "title": "海岸竖屏真实制作验收",
+      "script": "海浪不断涌向海岸，白色的浪花在沙滩边铺展开来。海面随着波浪起伏，水面的光影也不断变化。沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。",
+      "voice": "gemini:Kore",
+      "voiceStyle": "documentary",
+      "language": "zh-CN",
+      "format": "portrait",
+      "fit": "cover",
+      "subtitles": true,
+      "createdAt": "2026-11-12T02:39:02.380Z",
+      "scenes": [
+        {
+          "text": "海浪不断涌向海岸，",
+          "query": "ocean waves crashing coast",
+          "visual": "远景俯瞰海浪持续奔涌拍打海岸线",
+          "exact": false,
+          "id": "912d98dc-23e0-4340-b62d-1e3a164d6fa2",
+          "index": 0,
+          "duration": 2.54,
+          "start": 0,
+          "candidates": [
+            {
+              "provider": "pixabay",
+              "sourceId": "348909",
+              "title": "wave, rock, water, ocean, foam, sea, shore, beach, spray, power, coast, splash, storm, crash, coastline, crashing, rocky, seascape, dramatic, force, stone, cliff, stormy, powerful, splashing",
+              "description": "wave, rock, water, ocean, foam, sea, shore, beach, spray, power, coast, splash, storm, crash, coastline, crashing, rocky, seascape, dramatic, force, stone, cliff, stormy, powerful, splashing",
+              "url": "https://cdn.pixabay.com/video/2026/04/25/348909_medium.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2026/04/25/348909_medium.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2026/04/25/348909_small.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-348909/",
+              "author": "Mario_Krimer",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 19.866667,
+              "bytes": 9928430,
+              "kind": "video",
+              "id": "pixabay:348909",
+              "playbackChecked": true,
+              "playbackKey": "5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 19.875,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80.mp4",
+              "downloadUrl": "/api/playback/5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80.mp4?download=1",
+              "downloadBytes": 7723980,
+              "preferredStart": 0
+            },
+            {
+              "provider": "pixabay",
+              "sourceId": "133897",
+              "title": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+              "description": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+              "url": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_small.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-133897/",
+              "author": "stefaniejockschat",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 9.933008,
+              "bytes": 4024281,
+              "kind": "video",
+              "id": "pixabay:133897",
+              "playbackChecked": true,
+              "playbackKey": "d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 9.94,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4",
+              "downloadUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4?download=1",
+              "downloadBytes": 4027659,
+              "preferredStart": 0
+            }
+          ],
+          "selected": {
+            "provider": "pixabay",
+            "sourceId": "348909",
+            "title": "wave, rock, water, ocean, foam, sea, shore, beach, spray, power, coast, splash, storm, crash, coastline, crashing, rocky, seascape, dramatic, force, stone, cliff, stormy, powerful, splashing",
+            "description": "wave, rock, water, ocean, foam, sea, shore, beach, spray, power, coast, splash, storm, crash, coastline, crashing, rocky, seascape, dramatic, force, stone, cliff, stormy, powerful, splashing",
+            "url": "https://cdn.pixabay.com/video/2026/04/25/348909_medium.mp4",
+            "thumbnail": "https://cdn.pixabay.com/video/2026/04/25/348909_medium.jpg",
+            "analysisUrl": "https://cdn.pixabay.com/video/2026/04/25/348909_small.mp4",
+            "sourceUrl": "https://pixabay.com/videos/id-348909/",
+            "author": "Mario_Krimer",
+            "license": "Pixabay Content License",
+            "licenseUrl": "https://pixabay.com/service/license-summary/",
+            "width": 720,
+            "height": 1280,
+            "duration": 19.866667,
+            "bytes": 9928430,
+            "kind": "video",
+            "id": "pixabay:348909",
+            "playbackChecked": true,
+            "playbackKey": "5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80",
+            "playbackAliases": [],
+            "playbackSeconds": 30,
+            "sourceDuration": 19.875,
+            "playbackWidth": 720,
+            "playbackHeight": 1280,
+            "downloadChecked": true,
+            "playbackUrl": "/api/playback/5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80.mp4",
+            "downloadUrl": "/api/playback/5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80.mp4?download=1",
+            "downloadBytes": 7723980,
+            "preferredStart": 0,
+            "reason": "海浪拍打礁石激起白色泡沫与水花，画面平稳无跳切，契合海浪涌向海岸的叙述"
+          },
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": true,
+          "searchMethod": "semantic-query-api",
+          "trimEnd": 2.54,
+          "visualObservation": {
+            "assetId": "pixabay:348909",
+            "observed": "特写视角下海浪不断拍打岸边黑色的礁石，激起白色泡沫与水花。",
+            "medium": "live action",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 0,
+                "end": 3,
+                "reason": "海浪涌上礁石海岸激起白色浪花，符合海浪涌向海岸的叙述"
+              }
+            ],
+            "uncertainties": []
+          },
+          "continuityNote": "保留手动锁定素材；时长按配音更新",
+          "recoveryQueries": [
+            "beach wave foam"
+          ],
+          "narrationAnchor": {
+            "start": 0,
+            "end": 2.54
+          },
+          "transitionType": "cut",
+          "transitionDuration": 0
+        },
+        {
+          "text": "白色的浪花在沙滩边铺展开来。",
+          "query": "gentle waves sandy beach",
+          "visual": "白色的海浪缓缓涌上沙滩边缘并平缓铺开",
+          "exact": false,
+          "id": "57566102-392a-4c7d-864d-2f98ee4d8c6b",
+          "index": 1,
+          "duration": 4.46,
+          "start": 3.19,
+          "candidates": [
+            {
+              "provider": "pixabay",
+              "sourceId": "360803",
+              "title": "beach, sea, ocean, shoreline, sandy beach, water, surf, coast, seascape, gentle waves, foam, blue water, horizon, relaxing, peaceful, calm, nature, summer, travel, vacation, coastal, ambient, no people, waves, 4k",
+              "description": "beach, sea, ocean, shoreline, sandy beach, water, surf, coast, seascape, gentle waves, foam, blue water, horizon, relaxing, peaceful, calm, nature, summer, travel, vacation, coastal, ambient, no people, waves, 4k",
+              "url": "https://cdn.pixabay.com/video/2026/06/26/360803_tiny.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2026/06/26/360803_tiny.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2026/06/26/360803_tiny.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-360803/",
+              "author": "Shaakheh",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 30,
+              "bytes": 37584411,
+              "kind": "video",
+              "id": "pixabay:360803",
+              "playbackChecked": true,
+              "playbackKey": "44044e8672ecb28ef659bc32577b7427e2cc90440e9e67a8767bfd0d5030e176",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 33.766667,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/44044e8672ecb28ef659bc32577b7427e2cc90440e9e67a8767bfd0d5030e176.mp4",
+              "downloadUrl": "/api/playback/44044e8672ecb28ef659bc32577b7427e2cc90440e9e67a8767bfd0d5030e176.mp4?download=1",
+              "downloadBytes": 11530238,
+              "preferredStart": 3.19
+            },
+            {
+              "provider": "pixabay",
+              "sourceId": "133897",
+              "title": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+              "description": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+              "url": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_small.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-133897/",
+              "author": "stefaniejockschat",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 9.933008,
+              "bytes": 4024281,
+              "kind": "video",
+              "id": "pixabay:133897",
+              "playbackChecked": true,
+              "playbackKey": "d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 9.94,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4",
+              "downloadUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4?download=1",
+              "downloadBytes": 4027659,
+              "preferredStart": 0
+            }
+          ],
+          "selected": {
+            "provider": "pixabay",
+            "sourceId": "360803",
+            "title": "beach, sea, ocean, shoreline, sandy beach, water, surf, coast, seascape, gentle waves, foam, blue water, horizon, relaxing, peaceful, calm, nature, summer, travel, vacation, coastal, ambient, no people, waves, 4k",
+            "description": "beach, sea, ocean, shoreline, sandy beach, water, surf, coast, seascape, gentle waves, foam, blue water, horizon, relaxing, peaceful, calm, nature, summer, travel, vacation, coastal, ambient, no people, waves, 4k",
+            "url": "https://cdn.pixabay.com/video/2026/06/26/360803_tiny.mp4",
+            "thumbnail": "https://cdn.pixabay.com/video/2026/06/26/360803_tiny.jpg",
+            "analysisUrl": "https://cdn.pixabay.com/video/2026/06/26/360803_tiny.mp4",
+            "sourceUrl": "https://pixabay.com/videos/id-360803/",
+            "author": "Shaakheh",
+            "license": "Pixabay Content License",
+            "licenseUrl": "https://pixabay.com/service/license-summary/",
+            "width": 720,
+            "height": 1280,
+            "duration": 30,
+            "bytes": 37584411,
+            "kind": "video",
+            "id": "pixabay:360803",
+            "playbackChecked": true,
+            "playbackKey": "44044e8672ecb28ef659bc32577b7427e2cc90440e9e67a8767bfd0d5030e176",
+            "playbackAliases": [],
+            "playbackSeconds": 30,
+            "sourceDuration": 33.766667,
+            "playbackWidth": 720,
+            "playbackHeight": 1280,
+            "reason": "海浪涌上沙滩并展开白色浪花与泡沫，完美对应解说词，时间区间位于可用范围[3, 8]内且满足时长需求4.46秒",
+            "matchMethod": "ai-video",
+            "downloadChecked": true,
+            "playbackUrl": "/api/playback/44044e8672ecb28ef659bc32577b7427e2cc90440e9e67a8767bfd0d5030e176.mp4",
+            "downloadUrl": "/api/playback/44044e8672ecb28ef659bc32577b7427e2cc90440e9e67a8767bfd0d5030e176.mp4?download=1",
+            "downloadBytes": 11530238,
+            "preferredStart": 3.19
+          },
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": false,
+          "searchMethod": "semantic-query-api",
+          "trimEnd": 7.65,
+          "visualObservation": {
+            "assetId": "pixabay:360803",
+            "observed": "竖屏实拍画面，海浪翻滚着白色泡沫推向沙滩，浪花在沙滩边缘散开并逐渐回退。",
+            "medium": "live action",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 3,
+                "end": 8,
+                "reason": "海浪涌上沙滩并铺开白色的浪花和泡沫，动作完整且与解说词契合"
+              }
+            ],
+            "uncertainties": []
+          },
+          "continuityNote": "承接前一镜头海浪涌来的动态，切入近景沙滩浪花铺开，动作连贯",
+          "recoveryQueries": [
+            "beach wave foam",
+            "wash ashore white water"
+          ],
+          "narrationAnchor": {
+            "start": 2.54,
+            "end": 7
+          },
+          "transitionType": "cut",
+          "transitionDuration": 0
+        },
+        {
+          "text": "海面随着波浪起伏，水面的光影也不断变化。",
+          "query": "water surface ripple glitter",
+          "visual": "阳光照耀下起伏荡漾的海水波纹与闪烁光影",
+          "exact": false,
+          "id": "8d5e4b17-7d67-4981-825a-58d930b65b0c",
+          "index": 2,
+          "duration": 6.866666666666667,
+          "start": 0,
+          "candidates": [
+            {
+              "provider": "pixabay",
+              "sourceId": "133897",
+              "title": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+              "description": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+              "url": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_small.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-133897/",
+              "author": "stefaniejockschat",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 9.933008,
+              "bytes": 4024281,
+              "kind": "video",
+              "id": "pixabay:133897",
+              "playbackChecked": true,
+              "playbackKey": "d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 9.94,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4",
+              "downloadUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4?download=1",
+              "downloadBytes": 4027659,
+              "preferredStart": 0
+            }
+          ],
+          "selected": {
+            "provider": "pixabay",
+            "sourceId": "133897",
+            "title": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+            "description": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+            "url": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.mp4",
+            "thumbnail": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_medium.jpg",
+            "analysisUrl": "https://cdn.pixabay.com/video/2022/10/07/133897-758328031_small.mp4",
+            "sourceUrl": "https://pixabay.com/videos/id-133897/",
+            "author": "stefaniejockschat",
+            "license": "Pixabay Content License",
+            "licenseUrl": "https://pixabay.com/service/license-summary/",
+            "width": 720,
+            "height": 1280,
+            "duration": 9.933008,
+            "bytes": 4024281,
+            "kind": "video",
+            "id": "pixabay:133897",
+            "playbackChecked": true,
+            "playbackKey": "d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b",
+            "playbackAliases": [],
+            "playbackSeconds": 30,
+            "sourceDuration": 9.94,
+            "playbackWidth": 720,
+            "playbackHeight": 1280,
+            "downloadChecked": true,
+            "playbackUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4",
+            "downloadUrl": "/api/playback/d0328eaa64efc8a5698fa6b6c266333c435583a87af31e1695f16f5c35f5954b.mp4?download=1",
+            "downloadBytes": 4027659,
+            "preferredStart": 0,
+            "reason": "金光粼粼的起伏波浪特写，光影流转贴合海面波浪与光影变化的解说"
+          },
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": true,
+          "searchMethod": "semantic-query-api",
+          "trimEnd": 6.866666666666667,
+          "continuityNote": "保留手动锁定素材；时长按配音更新",
+          "transitionType": "cut",
+          "transitionDuration": 0,
+          "visualObservation": {
+            "assetId": "pixabay:133897",
+            "observed": "夕阳金光映照下的海面波纹，波浪起伏荡漾，水面闪烁着金色光斑与倒影，画面呈竖屏实拍。",
+            "medium": "live action",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 0,
+                "end": 9.933008,
+                "reason": "海面波浪起伏荡漾，阳光光影随水面流动闪烁，契合解说词关于海面波浪与光影变化的描述"
+              }
+            ],
+            "uncertainties": []
+          },
+          "narrationAnchor": {
+            "start": 7,
+            "end": 13.866666666666667
+          }
+        },
+        {
+          "text": "沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。",
+          "query": "tide rolling seashore",
+          "visual": "沿着海岸线拍摄的海浪冲刷沙滩后缓缓退入海洋的动态画面",
+          "exact": false,
+          "id": "4a950c10-0126-426d-9b83-7e8a10f2b01b",
+          "index": 3,
+          "duration": 7.833333333333332,
+          "start": 0,
+          "candidates": [
+            {
+              "provider": "pixabay",
+              "sourceId": "348911",
+              "title": "pebble, sunset, beach, sea, shore, wave, coast, ocean, horizon, stone, light, peaceful, coastline, sun, splash, paradise, shoreline, sundown, shallow, bokeh, foreground",
+              "description": "pebble, sunset, beach, sea, shore, wave, coast, ocean, horizon, stone, light, peaceful, coastline, sun, splash, paradise, shoreline, sundown, shallow, bokeh, foreground",
+              "url": "https://cdn.pixabay.com/video/2026/04/25/348911_medium.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2026/04/25/348911_medium.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2026/04/25/348911_small.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-348911/",
+              "author": "Mario_Krimer",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 9.133333,
+              "bytes": 2901941,
+              "kind": "video",
+              "id": "pixabay:348911",
+              "playbackChecked": true,
+              "playbackKey": "de363d72df7603466e51ef35b70847695999e9f8dbe1b9f245352beda9a7e5f2",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 9.125,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/de363d72df7603466e51ef35b70847695999e9f8dbe1b9f245352beda9a7e5f2.mp4",
+              "downloadUrl": "/api/playback/de363d72df7603466e51ef35b70847695999e9f8dbe1b9f245352beda9a7e5f2.mp4?download=1",
+              "downloadBytes": 2835290,
+              "preferredStart": 0
+            }
+          ],
+          "selected": {
+            "provider": "pixabay",
+            "sourceId": "348911",
+            "title": "pebble, sunset, beach, sea, shore, wave, coast, ocean, horizon, stone, light, peaceful, coastline, sun, splash, paradise, shoreline, sundown, shallow, bokeh, foreground",
+            "description": "pebble, sunset, beach, sea, shore, wave, coast, ocean, horizon, stone, light, peaceful, coastline, sun, splash, paradise, shoreline, sundown, shallow, bokeh, foreground",
+            "url": "https://cdn.pixabay.com/video/2026/04/25/348911_medium.mp4",
+            "thumbnail": "https://cdn.pixabay.com/video/2026/04/25/348911_medium.jpg",
+            "analysisUrl": "https://cdn.pixabay.com/video/2026/04/25/348911_small.mp4",
+            "sourceUrl": "https://pixabay.com/videos/id-348911/",
+            "author": "Mario_Krimer",
+            "license": "Pixabay Content License",
+            "licenseUrl": "https://pixabay.com/service/license-summary/",
+            "width": 720,
+            "height": 1280,
+            "duration": 9.133333,
+            "bytes": 2901941,
+            "kind": "video",
+            "id": "pixabay:348911",
+            "playbackChecked": true,
+            "playbackKey": "de363d72df7603466e51ef35b70847695999e9f8dbe1b9f245352beda9a7e5f2",
+            "playbackAliases": [],
+            "playbackSeconds": 30,
+            "sourceDuration": 9.125,
+            "playbackWidth": 720,
+            "playbackHeight": 1280,
+            "downloadChecked": true,
+            "playbackUrl": "/api/playback/de363d72df7603466e51ef35b70847695999e9f8dbe1b9f245352beda9a7e5f2.mp4",
+            "downloadUrl": "/api/playback/de363d72df7603466e51ef35b70847695999e9f8dbe1b9f245352beda9a7e5f2.mp4?download=1",
+            "downloadBytes": 2835290,
+            "preferredStart": 0,
+            "reason": "夕阳下潮水拍打砾石滩接连退去，景别自然扩展到海滩与落日，贴合浪花靠近又退回的文意"
+          },
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": true,
+          "searchMethod": "semantic-query-api",
+          "trimEnd": 7.833333333333332,
+          "continuityNote": "保留手动锁定素材；时长按配音更新",
+          "transitionType": "dissolve",
+          "transitionDuration": 0.25,
+          "visualObservation": {
+            "assetId": "pixabay:348911",
+            "observed": "夕阳下的海滩，前景为砾石滩，海浪不断涌上砾石滩又退去，背景是落日余晖洒在海面上形成的金色倒影与虚焦海平线。",
+            "medium": "live action",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 0,
+                "end": 8.5,
+                "reason": "海浪持续涌上岸边砾石滩后退去，水面光影流动，符合浪花接连靠近又退回海中的旁白描述"
+              }
+            ],
+            "uncertainties": []
+          },
+          "narrationAnchor": {
+            "start": 13.866666666666667,
+            "end": 21.7
+          }
+        },
+        {
+          "text": "站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。",
+          "query": "coastal landscape horizon",
+          "visual": "海滩与广阔海洋相连、天海相接的壮丽远景大全景",
+          "exact": false,
+          "id": "06602503-2455-4c48-973f-afd2bdb78289",
+          "index": 4,
+          "duration": 7.666666666666668,
+          "start": 0,
+          "candidates": [
+            {
+              "provider": "pixabay",
+              "sourceId": "218569",
+              "title": "ocean, sea, waves, water, beach, seascape, horizon, scenery",
+              "description": "ocean, sea, waves, water, beach, seascape, horizon, scenery",
+              "url": "https://cdn.pixabay.com/video/2024/06/28/218569_tiny.mp4",
+              "thumbnail": "https://cdn.pixabay.com/video/2024/06/28/218569_tiny.jpg",
+              "analysisUrl": "https://cdn.pixabay.com/video/2024/06/28/218569_small.mp4",
+              "sourceUrl": "https://pixabay.com/videos/id-218569/",
+              "author": "u_eev4107wtr",
+              "license": "Pixabay Content License",
+              "licenseUrl": "https://pixabay.com/service/license-summary/",
+              "width": 720,
+              "height": 1280,
+              "duration": 8.266016,
+              "bytes": 3049361,
+              "kind": "video",
+              "id": "pixabay:218569",
+              "playbackChecked": true,
+              "playbackKey": "3cbd30b031a2c6cf9a80ebd5301a32ccdd721b64067c168b58a114c5495cb92d",
+              "playbackAliases": [],
+              "playbackSeconds": 30,
+              "sourceDuration": 8.266667,
+              "playbackWidth": 720,
+              "playbackHeight": 1280,
+              "downloadChecked": true,
+              "playbackUrl": "/api/playback/3cbd30b031a2c6cf9a80ebd5301a32ccdd721b64067c168b58a114c5495cb92d.mp4",
+              "downloadUrl": "/api/playback/3cbd30b031a2c6cf9a80ebd5301a32ccdd721b64067c168b58a114c5495cb92d.mp4?download=1",
+              "downloadBytes": 2793686,
+              "preferredStart": 0
+            }
+          ],
+          "selected": {
+            "provider": "pixabay",
+            "sourceId": "218569",
+            "title": "ocean, sea, waves, water, beach, seascape, horizon, scenery",
+            "description": "ocean, sea, waves, water, beach, seascape, horizon, scenery",
+            "url": "https://cdn.pixabay.com/video/2024/06/28/218569_tiny.mp4",
+            "thumbnail": "https://cdn.pixabay.com/video/2024/06/28/218569_tiny.jpg",
+            "analysisUrl": "https://cdn.pixabay.com/video/2024/06/28/218569_small.mp4",
+            "sourceUrl": "https://pixabay.com/videos/id-218569/",
+            "author": "u_eev4107wtr",
+            "license": "Pixabay Content License",
+            "licenseUrl": "https://pixabay.com/service/license-summary/",
+            "width": 720,
+            "height": 1280,
+            "duration": 8.266016,
+            "bytes": 3049361,
+            "kind": "video",
+            "id": "pixabay:218569",
+            "playbackChecked": true,
+            "playbackKey": "3cbd30b031a2c6cf9a80ebd5301a32ccdd721b64067c168b58a114c5495cb92d",
+            "playbackAliases": [],
+            "playbackSeconds": 30,
+            "sourceDuration": 8.266667,
+            "playbackWidth": 720,
+            "playbackHeight": 1280,
+            "downloadChecked": true,
+            "playbackUrl": "/api/playback/3cbd30b031a2c6cf9a80ebd5301a32ccdd721b64067c168b58a114c5495cb92d.mp4",
+            "downloadUrl": "/api/playback/3cbd30b031a2c6cf9a80ebd5301a32ccdd721b64067c168b58a114c5495cb92d.mp4?download=1",
+            "downloadBytes": 2793686,
+            "preferredStart": 0,
+            "reason": "俯瞰岩石海岸与翻滚流动的浪花，展现海岸形态与海水流动，时长满足解说需求"
+          },
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": true,
+          "searchMethod": "semantic-query-api",
+          "trimEnd": 7.666666666666668,
+          "continuityNote": "保留手动锁定素材；时长按配音更新",
+          "transitionType": "cut",
+          "transitionDuration": 0,
+          "visualObservation": {
+            "assetId": "pixabay:218569",
+            "observed": "垂直俯瞰岩石海岸，暗礁与悬崖边浪花拍打翻滚，海水与海岸接壤并流动。画面虽然展示了海岸线与波浪，但在光线较暗且为局部垂直航拍视角，未完全体现开阔远景，但符合海岸辽阔与海水流动的解说。然而整体时长8.26秒，画质偏暗。",
+            "medium": "live action",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 0,
+                "end": 8.266016,
+                "reason": "俯瞰视角展现海岸与涌动的海水浪花，契合解说词关于海水流动与海岸的描写"
+              }
+            ],
+            "uncertainties": []
+          },
+          "narrationAnchor": {
+            "start": 21.7,
+            "end": 29.366666666666667
+          }
+        }
+      ],
+      "exportId": "ffb74b04-871c-4664-b781-ef82fa5b6fd9",
+      "exportUrl": "/api/exports/ffb74b04-871c-4664-b781-ef82fa5b6fd9/video.mp4",
+      "videoReview": {
+        "exportId": "ffb74b04-871c-4664-b781-ef82fa5b6fd9",
+        "provider": "gemini",
+        "model": "gemini-3.8-flash",
+        "passed": true,
+        "audioReviewed": true,
+        "watermarkFree": true,
+        "summary": "视频画面与旁白内容对应良好，音画同步且画面流畅无水印，整体制作质量合格。",
+        "issues": [],
+        "analyzedUntil": 29.366666666666667,
+        "totalDuration": 29.366666666666667,
+        "limitations": [
+          "已读取实际画面和声音；AI 审片不能替代人工试听及最终审看"
+        ],
+        "events": [
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "export:ffb74b04-871c-4664-b781-ef82fa5b6fd9",
+            "status": "completed",
+            "at": "2026-11-12T02:43:58.811Z",
+            "timings": {
+              "playbackMs": null,
+              "statMs": 0.022,
+              "probeMs": 36.766,
+              "ffmpegMs": 1710.589,
+              "frameReadMs": 0.003,
+              "videoReadMs": 0.66,
+              "queueMs": null,
+              "downloadMs": null,
+              "playbackPhases": null,
+              "ffmpegInvocations": 1,
+              "playbackBypassed": true
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 1748.09
+          },
+          {
+            "stage": "rendered-audiovisual-review-0",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:44:00.559Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3772,
+              "outputTokens": 80,
+              "totalTokens": 3852
+            },
+            "durationMs": 11024
+          }
+        ]
+      },
+      "originalScript": "海浪不断涌向海岸，白色的浪花在沙滩边铺展开来。海面随着波浪起伏，水面的光影也不断变化。沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。",
+      "aiTrace": [
+        {
+          "stage": "text-planning",
+          "engine": "gemini",
+          "model": "gemini-3.8-flash",
+          "status": "completed",
+          "inputType": "text",
+          "mediaCount": 0,
+          "at": "2026-11-12T02:39:06.258Z",
+          "httpStatus": 200,
+          "usage": {
+            "inputTokens": 297,
+            "outputTokens": 235,
+            "totalTokens": 532
+          },
+          "durationMs": 3990
+        }
+      ],
+      "narrationTrack": {
+        "processingVersion": 2,
+        "key": "ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1",
+        "url": "/api/narration/ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1.wav",
+        "voice": "gemini:Kore",
+        "style": "documentary",
+        "language": "zh-CN",
+        "duration": 29.1195,
+        "scenes": [
+          {
+            "id": "912d98dc-23e0-4340-b62d-1e3a164d6fa2",
+            "text": "海浪不断涌向海岸，",
+            "start": 0,
+            "end": 2.54
+          },
+          {
+            "id": "57566102-392a-4c7d-864d-2f98ee4d8c6b",
+            "text": "白色的浪花在沙滩边铺展开来。",
+            "start": 2.54,
+            "end": 7
+          },
+          {
+            "id": "8d5e4b17-7d67-4981-825a-58d930b65b0c",
+            "text": "海面随着波浪起伏，水面的光影也不断变化。",
+            "start": 7,
+            "end": 13.866666666666667
+          },
+          {
+            "id": "4a950c10-0126-426d-9b83-7e8a10f2b01b",
+            "text": "沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。",
+            "start": 13.866666666666667,
+            "end": 21.7
+          },
+          {
+            "id": "06602503-2455-4c48-973f-afd2bdb78289",
+            "text": "站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。",
+            "start": 21.7,
+            "end": 29.366666666666667
+          }
+        ]
+      },
+      "sequenceReport": {
+        "complete": true,
+        "missingScenes": [],
+        "analyzed": 2,
+        "candidates": 2,
+        "method": "ai-video-director",
+        "provider": "gemini",
+        "model": "gemini-3.8-flash",
+        "summary": "为第二幕选定了符合白色浪花铺展在沙滩边的实拍素材，各镜头衔接自然顺畅。",
+        "warnings": [],
+        "bytes": 72562150,
+        "events": [
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:39:10.271Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 692,
+              "outputTokens": 303,
+              "totalTokens": 995
+            },
+            "durationMs": 3375
+          },
+          {
+            "stage": "semantic-retrieval-1",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 1,
+            "durationMs": 1243,
+            "detail": "检索词：beach wave foam topdown；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-2",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 1,
+            "durationMs": 1311,
+            "detail": "检索词：glistening sea waves ripple；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-3",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 0,
+            "durationMs": 1814,
+            "detail": "检索词：tide ebbing sandy coast；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-4",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 0,
+            "durationMs": 3017,
+            "detail": "检索词：panoramic seashore horizon landscape；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "catalog-shortlist",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:39:16.665Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 619,
+              "outputTokens": 193,
+              "totalTokens": 812
+            },
+            "durationMs": 3516
+          },
+          {
+            "stage": "selection-pass-0",
+            "engine": "director",
+            "status": "failed",
+            "detail": "配音请求超时，请稍后重试"
+          },
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:41:10.287Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 692,
+              "outputTokens": 303,
+              "totalTokens": 995
+            },
+            "durationMs": 11173
+          },
+          {
+            "stage": "semantic-retrieval-3",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 1,
+            "durationMs": 1111,
+            "detail": "检索词：tide rolling seashore；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-1",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 2,
+            "durationMs": 1215,
+            "detail": "检索词：beach wave foam；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-4",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 2,
+            "durationMs": 1357,
+            "detail": "检索词：coastal landscape horizon；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-2",
+            "engine": "coverr+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 2,
+            "durationMs": 1399,
+            "detail": "检索词：water surface ripple glitter；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "catalog-shortlist",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:41:22.859Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1113,
+              "outputTokens": 222,
+              "totalTokens": 1335
+            },
+            "durationMs": 3649
+          },
+          {
+            "stage": "narration-alignment",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "audio",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:41:25.545Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1025,
+              "outputTokens": 97,
+              "totalTokens": 1122
+            },
+            "durationMs": 5024
+          },
+          {
+            "stage": "narration-timing",
+            "engine": "gemini-tts",
+            "model": "gemini-2.5-flash-preview-tts",
+            "status": "completed",
+            "durationMs": 20284,
+            "inputType": "text",
+            "mediaCount": 4
+          },
+          {
+            "stage": "repair-search-3-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:41:30.571Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 152,
+              "outputTokens": 15,
+              "totalTokens": 167
+            },
+            "durationMs": 2954
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:227567",
+            "status": "failed",
+            "at": "2026-11-12T02:41:30.574Z",
+            "timings": {
+              "playbackMs": 528.702,
+              "statMs": 0,
+              "probeMs": 0,
+              "ffmpegMs": 0,
+              "frameReadMs": 0,
+              "videoReadMs": 0,
+              "queueMs": 0.004,
+              "downloadMs": 523.022,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.002,
+                "queueMs": 0.004,
+                "downloadMs": 523.022,
+                "downloadBytes": 0,
+                "sourceProbeMs": 0,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 527.287
+              },
+              "ffmpegInvocations": 0,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "detail": "高清原片超过本次 48MB 下载上限，自动寻找其他高清素材",
+            "durationMs": 528.841
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "coverr:Pvvw8EyofT",
+            "status": "completed",
+            "at": "2026-11-12T02:41:30.574Z",
+            "timings": {
+              "playbackMs": 37391.791,
+              "statMs": 0.029,
+              "probeMs": 0,
+              "ffmpegMs": 888.728,
+              "frameReadMs": 0.981,
+              "videoReadMs": 0.333,
+              "queueMs": 0.006,
+              "downloadMs": 30691.702,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.12,
+                "queueMs": 0.006,
+                "downloadMs": 30691.702,
+                "downloadBytes": 20849655,
+                "sourceProbeMs": 66.895,
+                "cropMs": 435.422,
+                "transcodeMs": 6056.017,
+                "outputProbeMs": 64.848,
+                "commitMs": 0.557,
+                "thumbnailMs": 72.188,
+                "cacheProbeMs": 0,
+                "totalMs": 37391.152
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 38281.921
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:133897",
+            "status": "completed",
+            "at": "2026-11-12T02:41:30.574Z",
+            "timings": {
+              "playbackMs": 6657.354,
+              "statMs": 0.924,
+              "probeMs": 0,
+              "ffmpegMs": 1803.243,
+              "frameReadMs": 2.208,
+              "videoReadMs": 0.578,
+              "queueMs": 0.004,
+              "downloadMs": 2794.359,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.003,
+                "queueMs": 0.004,
+                "downloadMs": 2794.359,
+                "downloadBytes": 4025695,
+                "sourceProbeMs": 63.518,
+                "cropMs": 311.997,
+                "transcodeMs": 3274.179,
+                "outputProbeMs": 86.853,
+                "commitMs": 0.736,
+                "thumbnailMs": 120.704,
+                "cacheProbeMs": 0,
+                "totalMs": 6656.702
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 8464.413
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:369107",
+            "status": "completed",
+            "at": "2026-11-12T02:41:30.575Z",
+            "timings": {
+              "playbackMs": 5685.816,
+              "statMs": 0.143,
+              "probeMs": 0,
+              "ffmpegMs": 1260.972,
+              "frameReadMs": 2.375,
+              "videoReadMs": 0.872,
+              "queueMs": 0.057,
+              "downloadMs": 3119.527,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.004,
+                "queueMs": 0.057,
+                "downloadMs": 3119.527,
+                "downloadBytes": 3817848,
+                "sourceProbeMs": 41.407,
+                "cropMs": 199.445,
+                "transcodeMs": 2102.023,
+                "outputProbeMs": 98.284,
+                "commitMs": 1.46,
+                "thumbnailMs": 120.326,
+                "cacheProbeMs": 0,
+                "totalMs": 5685.077
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 6950.316
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:369105",
+            "status": "completed",
+            "at": "2026-11-12T02:41:30.575Z",
+            "timings": {
+              "playbackMs": 9222.806,
+              "statMs": 0.08,
+              "probeMs": 0,
+              "ffmpegMs": 981.347,
+              "frameReadMs": 1.318,
+              "videoReadMs": 0.246,
+              "queueMs": 523.824,
+              "downloadMs": 5050.021,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.004,
+                "queueMs": 523.824,
+                "downloadMs": 5050.021,
+                "downloadBytes": 3280772,
+                "sourceProbeMs": 93.311,
+                "cropMs": 391.513,
+                "transcodeMs": 2924.595,
+                "outputProbeMs": 87.701,
+                "commitMs": 0.75,
+                "thumbnailMs": 146.448,
+                "cacheProbeMs": 0,
+                "totalMs": 9222.324
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 10205.858
+          },
+          {
+            "stage": "repair-retrieval-3-1",
+            "engine": "coverr+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 1,
+            "detail": "补搜：ocean waves shoreline"
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:348911",
+            "status": "completed",
+            "at": "2026-11-12T02:41:34.726Z",
+            "timings": {
+              "playbackMs": 6369.37,
+              "statMs": 0.036,
+              "probeMs": 0,
+              "ffmpegMs": 562.979,
+              "frameReadMs": 0.942,
+              "videoReadMs": 0.198,
+              "queueMs": 1534.344,
+              "downloadMs": 1893.691,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.003,
+                "queueMs": 1534.344,
+                "downloadMs": 1893.691,
+                "downloadBytes": 2901941,
+                "sourceProbeMs": 126.402,
+                "cropMs": 391.37,
+                "transcodeMs": 2303.94,
+                "outputProbeMs": 55.682,
+                "commitMs": 0.528,
+                "thumbnailMs": 62.663,
+                "cacheProbeMs": 0,
+                "totalMs": 6369.324
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 6933.585
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:369107",
+            "status": "completed",
+            "durationMs": 6950,
+            "detail": "pixabay:369107"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:133897",
+            "status": "completed",
+            "durationMs": 8465,
+            "detail": "pixabay:133897"
+          },
+          {
+            "stage": "visual-scene-2-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:41:39.039Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1515,
+              "outputTokens": 216,
+              "totalTokens": 1731
+            },
+            "durationMs": 5358
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:369105",
+            "status": "completed",
+            "durationMs": 10206,
+            "detail": "pixabay:369105"
+          },
+          {
+            "stage": "visual-scene-4-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-12T02:41:40.781Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3067,
+              "outputTokens": 316,
+              "totalTokens": 3383
+            },
+            "durationMs": 7392
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:348911",
+            "status": "completed",
+            "durationMs": 6933,
+            "detail": "pixabay:348911"
+          },
+          {
+            "stage": "visual-scene-3-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:41:41.659Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1462,
+              "outputTokens": 216,
+              "totalTokens": 1678
+            },
+            "durationMs": 6052
+          },
+          {
+            "stage": "repair-search-4-2",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:41:48.174Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 171,
+              "outputTokens": 14,
+              "totalTokens": 185
+            },
+            "durationMs": 1862
+          },
+          {
+            "stage": "repair-retrieval-4-2",
+            "engine": "coverr+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 3,
+            "detail": "补搜：vast ocean horizon"
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:360429",
+            "status": "completed",
+            "at": "2026-11-12T02:41:51.603Z",
+            "timings": {
+              "playbackMs": 7738.184,
+              "statMs": 0.021,
+              "probeMs": 0,
+              "ffmpegMs": 766.616,
+              "frameReadMs": 0.95,
+              "videoReadMs": 0.21,
+              "queueMs": 0.002,
+              "downloadMs": 4501.247,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.004,
+                "queueMs": 0.002,
+                "downloadMs": 4501.247,
+                "downloadBytes": 16029729,
+                "sourceProbeMs": 68.02,
+                "cropMs": 161.182,
+                "transcodeMs": 2916.584,
+                "outputProbeMs": 40.524,
+                "commitMs": 0.395,
+                "thumbnailMs": 49.168,
+                "cacheProbeMs": 0,
+                "totalMs": 7738.14
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 8506.032
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:218569",
+            "status": "completed",
+            "at": "2026-11-12T02:41:51.603Z",
+            "timings": {
+              "playbackMs": 2122.248,
+              "statMs": 0.019,
+              "probeMs": 0,
+              "ffmpegMs": 379.889,
+              "frameReadMs": 0.735,
+              "videoReadMs": 0.132,
+              "queueMs": 0.001,
+              "downloadMs": 1026.583,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 0.001,
+                "downloadMs": 1026.583,
+                "downloadBytes": 3049361,
+                "sourceProbeMs": 78.216,
+                "cropMs": 179.125,
+                "transcodeMs": 742.296,
+                "outputProbeMs": 41.057,
+                "commitMs": 0.413,
+                "thumbnailMs": 53.596,
+                "cacheProbeMs": 0,
+                "totalMs": 2122.206
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 2503.058
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:218569",
+            "status": "completed",
+            "durationMs": 2503,
+            "detail": "pixabay:218569"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:360429",
+            "status": "completed",
+            "durationMs": 8506,
+            "detail": "pixabay:360429"
+          },
+          {
+            "stage": "visual-scene-4-2",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-12T02:42:00.109Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 2643,
+              "outputTokens": 294,
+              "totalTokens": 2937
+            },
+            "durationMs": 10930
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "coverr:Pvvw8EyofT",
+            "status": "completed",
+            "durationMs": 38282,
+            "detail": "coverr:Pvvw8EyofT"
+          },
+          {
+            "stage": "media-1",
+            "engine": "media-reader",
+            "status": "failed",
+            "detail": "pixabay:227567：高清原片超过本次 48MB 下载上限，自动寻找其他高清素材"
+          },
+          {
+            "stage": "visual-scene-1-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:42:08.857Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1856,
+              "outputTokens": 222,
+              "totalTokens": 2078
+            },
+            "durationMs": 6089
+          },
+          {
+            "stage": "repair-search-1-2",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:42:14.947Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 204,
+              "outputTokens": 17,
+              "totalTokens": 221
+            },
+            "durationMs": 1633
+          },
+          {
+            "stage": "repair-retrieval-1-2",
+            "engine": "coverr+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 0,
+            "detail": "补搜：ocean wave shore topdown"
+          },
+          {
+            "stage": "whole-film-edit",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "timestamped-images",
+            "mediaCount": 6,
+            "at": "2026-11-12T02:42:18.069Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 8112,
+              "outputTokens": 695,
+              "totalTokens": 8807
+            },
+            "durationMs": 8739
+          },
+          {
+            "stage": "recovery-plan-2",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:42:26.827Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 287,
+              "outputTokens": 117,
+              "totalTokens": 404
+            },
+            "durationMs": 3754
+          },
+          {
+            "stage": "recovery-2",
+            "engine": "recovery",
+            "status": "completed",
+            "detail": "仅重试 1 个缺失镜头，拆分后共 5 个；保留已有画面"
+          },
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:42:30.583Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 468,
+              "outputTokens": 147,
+              "totalTokens": 615
+            },
+            "durationMs": 3365
+          },
+          {
+            "stage": "narration-split-alignment",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "audio",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:42:30.776Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 316,
+              "outputTokens": 8,
+              "totalTokens": 324
+            },
+            "durationMs": 3610
+          },
+          {
+            "stage": "narration-timing",
+            "engine": "gemini-tts",
+            "model": "gemini-2.5-flash-preview-tts",
+            "status": "completed",
+            "durationMs": 3804,
+            "inputType": "text",
+            "mediaCount": 5
+          },
+          {
+            "stage": "semantic-retrieval-2",
+            "engine": "coverr+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 3,
+            "durationMs": 1585,
+            "detail": "检索词：wash ashore white water；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-1",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 8,
+            "durationMs": 1776,
+            "detail": "检索词：ocean waves crashing coast；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "catalog-shortlist",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:42:35.724Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1340,
+              "outputTokens": 177,
+              "totalTokens": 1517
+            },
+            "durationMs": 3145
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "coverr:Pvvw8EyofT",
+            "status": "completed",
+            "at": "2026-11-12T02:42:38.870Z",
+            "timings": {
+              "playbackMs": 2.457,
+              "statMs": 0.979,
+              "probeMs": 0,
+              "ffmpegMs": 580.733,
+              "frameReadMs": 0.912,
+              "videoReadMs": 0.347,
+              "queueMs": 0,
+              "downloadMs": 0,
+              "playbackPhases": {
+                "cacheHit": true,
+                "metadataMs": 0.01,
+                "queueMs": 0,
+                "downloadMs": 0,
+                "downloadBytes": 0,
+                "sourceProbeMs": 0,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 2.194
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 586.072
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:348909",
+            "status": "completed",
+            "at": "2026-11-12T02:42:38.870Z",
+            "timings": {
+              "playbackMs": 13193.987,
+              "statMs": 0.052,
+              "probeMs": 0,
+              "ffmpegMs": 556.421,
+              "frameReadMs": 0.776,
+              "videoReadMs": 0.192,
+              "queueMs": 0.054,
+              "downloadMs": 9542.407,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.004,
+                "queueMs": 0.054,
+                "downloadMs": 9542.407,
+                "downloadBytes": 9928430,
+                "sourceProbeMs": 66.31,
+                "cropMs": 211.855,
+                "transcodeMs": 3259.794,
+                "outputProbeMs": 49.665,
+                "commitMs": 0.585,
+                "thumbnailMs": 61.853,
+                "cacheProbeMs": 0,
+                "totalMs": 13193.799
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 13751.503
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:133897",
+            "status": "completed",
+            "at": "2026-11-12T02:42:38.870Z",
+            "timings": {
+              "playbackMs": 3.255,
+              "statMs": 5.773,
+              "probeMs": 0,
+              "ffmpegMs": 665.486,
+              "frameReadMs": 0.665,
+              "videoReadMs": 0.255,
+              "queueMs": 0,
+              "downloadMs": 0,
+              "playbackPhases": {
+                "cacheHit": true,
+                "metadataMs": 0.001,
+                "queueMs": 0,
+                "downloadMs": 0,
+                "downloadBytes": 0,
+                "sourceProbeMs": 0,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 3.198
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 675.493
+          },
+          {
+            "stage": "scene-4",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "scene-3",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "scene-5",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "coverr:Pvvw8EyofT",
+            "status": "completed",
+            "durationMs": 586,
+            "detail": "coverr:Pvvw8EyofT"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:133897",
+            "status": "completed",
+            "durationMs": 675,
+            "detail": "pixabay:133897"
+          },
+          {
+            "stage": "visual-scene-2-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-12T02:42:39.546Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 2145,
+              "outputTokens": 200,
+              "totalTokens": 2345
+            },
+            "durationMs": 5502
+          },
+          {
+            "stage": "repair-search-2-2",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:42:45.048Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 185,
+              "outputTokens": 16,
+              "totalTokens": 201
+            },
+            "durationMs": 2347
+          },
+          {
+            "stage": "repair-retrieval-2-2",
+            "engine": "coverr+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 0,
+            "detail": "补搜：foamy surf sand"
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:218569",
+            "status": "completed",
+            "at": "2026-11-12T02:42:49.076Z",
+            "timings": {
+              "playbackMs": 0.213,
+              "statMs": 0.021,
+              "probeMs": 0,
+              "ffmpegMs": 483.135,
+              "frameReadMs": 0.936,
+              "videoReadMs": 0.143,
+              "queueMs": 0,
+              "downloadMs": 0,
+              "playbackPhases": {
+                "cacheHit": true,
+                "metadataMs": 0.002,
+                "queueMs": 0,
+                "downloadMs": 0,
+                "downloadBytes": 0,
+                "sourceProbeMs": 0,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 0.19
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 484.467
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:218569",
+            "status": "completed",
+            "durationMs": 484,
+            "detail": "pixabay:218569"
+          },
+          {
+            "stage": "visual-scene-2-2",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-12T02:42:49.560Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1317,
+              "outputTokens": 214,
+              "totalTokens": 1531
+            },
+            "durationMs": 4869
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:348909",
+            "status": "completed",
+            "durationMs": 13751,
+            "detail": "pixabay:348909"
+          },
+          {
+            "stage": "visual-scene-1-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-12T02:42:52.622Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 2017,
+              "outputTokens": 373,
+              "totalTokens": 2390
+            },
+            "durationMs": 7980
+          },
+          {
+            "stage": "whole-film-edit",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "timestamped-images",
+            "mediaCount": 6,
+            "at": "2026-11-12T02:43:00.602Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 8145,
+              "outputTokens": 922,
+              "totalTokens": 9067
+            },
+            "durationMs": 10078
+          },
+          {
+            "stage": "recovery-plan-3",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:43:10.696Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 286,
+              "outputTokens": 83,
+              "totalTokens": 369
+            },
+            "durationMs": 2211
+          },
+          {
+            "stage": "recovery-3",
+            "engine": "recovery",
+            "status": "completed",
+            "detail": "仅重试 1 个缺失镜头，拆分后共 5 个；保留已有画面"
+          },
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:43:12.907Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 390,
+              "outputTokens": 77,
+              "totalTokens": 467
+            },
+            "durationMs": 2572
+          },
+          {
+            "stage": "narration-timing",
+            "engine": "gemini-tts",
+            "model": "gemini-2.5-flash-preview-tts",
+            "status": "completed",
+            "durationMs": 109,
+            "inputType": "text",
+            "mediaCount": 5
+          },
+          {
+            "stage": "semantic-retrieval-2",
+            "engine": "pixabay+coverr",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 9,
+            "durationMs": 1659,
+            "detail": "检索词：gentle waves sandy beach；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "catalog-shortlist",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-12T02:43:17.138Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1186,
+              "outputTokens": 106,
+              "totalTokens": 1292
+            },
+            "durationMs": 3460
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:360803",
+            "status": "completed",
+            "at": "2026-11-12T02:43:20.598Z",
+            "timings": {
+              "playbackMs": 15351.086,
+              "statMs": 0.025,
+              "probeMs": 0,
+              "ffmpegMs": 829.192,
+              "frameReadMs": 0.859,
+              "videoReadMs": 0.314,
+              "queueMs": 0.023,
+              "downloadMs": 9214.192,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.002,
+                "queueMs": 0.023,
+                "downloadMs": 9214.192,
+                "downloadBytes": 37584411,
+                "sourceProbeMs": 61.248,
+                "cropMs": 363.572,
+                "transcodeMs": 5574.41,
+                "outputProbeMs": 57.517,
+                "commitMs": 0.477,
+                "thumbnailMs": 77.093,
+                "cacheProbeMs": 0,
+                "totalMs": 15350.979
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 16181.536
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:133897",
+            "status": "completed",
+            "at": "2026-11-12T02:43:20.598Z",
+            "timings": {
+              "playbackMs": 4.642,
+              "statMs": 0.091,
+              "probeMs": 0,
+              "ffmpegMs": 589.032,
+              "frameReadMs": 0.937,
+              "videoReadMs": 0.219,
+              "queueMs": 0,
+              "downloadMs": 0,
+              "playbackPhases": {
+                "cacheHit": true,
+                "metadataMs": 0.001,
+                "queueMs": 0,
+                "downloadMs": 0,
+                "downloadBytes": 0,
+                "sourceProbeMs": 0,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 4.614
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 594.983
+          },
+          {
+            "stage": "scene-1",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "scene-4",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "scene-3",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "scene-5",
+            "engine": "preserved-selection",
+            "status": "skipped",
+            "detail": "保留已完成的素材、取段和旁白边界"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:133897",
+            "status": "completed",
+            "durationMs": 595,
+            "detail": "pixabay:133897"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:360803",
+            "status": "completed",
+            "durationMs": 16182,
+            "detail": "pixabay:360803"
+          },
+          {
+            "stage": "visual-scene-2-1",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-12T02:43:36.780Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 2410,
+              "outputTokens": 317,
+              "totalTokens": 2727
+            },
+            "durationMs": 7872
+          },
+          {
+            "stage": "whole-film-edit",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "completed",
+            "inputType": "timestamped-images",
+            "mediaCount": 2,
+            "at": "2026-11-12T02:43:44.652Z",
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3286,
+              "outputTokens": 236,
+              "totalTokens": 3522
+            },
+            "durationMs": 4989
+          }
+        ],
+        "usage": {
+          "inputTokens": 47101,
+          "outputTokens": 6116,
+          "totalTokens": 53217
+        },
+        "analyzedUntil": 10.928,
+        "retries": 3,
+        "retryLimit": 3
+      },
+      "videoProfile": {
+        "version": 1,
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "label": "720p",
+        "captionStyleVersion": 3,
+        "audioMixVersion": 1
+      },
+      "music": {
+        "status": "mixed",
+        "mixed": true,
+        "narrationPreserved": true,
+        "source": {
+          "provider": "scottbuckley",
+          "sourceId": "undertow",
+          "title": "Undertow",
+          "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+          "kind": "audio",
+          "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+          "thumbnail": "",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "author": "Scott Buckley",
+          "authorUrl": "https://www.scottbuckley.com.au/",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+          "rights": {
+            "attributionRequired": true,
+            "shareAlike": false,
+            "synchronisationOnly": true,
+            "noFingerprinting": true,
+            "youtubeDescriptionCredit": true,
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+          },
+          "licenseEvidence": {
+            "method": "official-track-page",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+            "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+            "requiresSourceVerification": false
+          },
+          "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+          "width": 0,
+          "height": 0,
+          "duration": 249.930975,
+          "bytes": 10000906,
+          "id": "scottbuckley:undertow",
+          "hasAudio": true,
+          "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+          "downloadedBytes": 0,
+          "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+          "downloadMethod": "verified-byte-ranges",
+          "remoteValidator": {
+            "header": "last-modified",
+            "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+          },
+          "acquiredAt": "2026-11-12T01:43:22.289Z",
+          "fullDecode": true,
+          "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+          "cacheHit": true
+        },
+        "mix": {
+          "version": 1,
+          "continuous": true,
+          "start": 0,
+          "end": 29.366666666666667,
+          "sourceOffset": 0,
+          "looped": false,
+          "narrationLufs": -16.3,
+          "targetMusicLufs": -30.3,
+          "narrationGain": 1,
+          "ducking": {
+            "threshold": 0.015,
+            "ratio": 6,
+            "attackMs": 15,
+            "releaseMs": 500
+          },
+          "fadeInSeconds": 0.8,
+          "fadeOutSeconds": 2,
+          "changes": "Music trimmed or looped continuously, loudness adjusted, ducked beneath narration, faded at film boundaries."
+        }
+      }
+    },
+    "providers": [
+      "pixabay",
+      "coverr",
+      "commons"
+    ],
+    "status": "done",
+    "phase": "reviewing",
+    "progress": 100,
+    "message": "视频已准备好，可以播放或下载",
+    "createdAt": 1794451142384,
+    "estimate": {
+      "videoSeconds": 29.1195,
+      "minSeconds": 90,
+      "maxSeconds": 360
+    },
+    "retry": 3,
+    "retryLimit": 3,
+    "updatedAt": 1794451451584,
+    "startedAt": 1794451142387,
+    "exportId": "ffb74b04-871c-4664-b781-ef82fa5b6fd9",
+    "exportSize": 9407463,
+    "finishedAt": 1794451451584
+  },
+  "elapsedSeconds": 405.457,
+  "updatedAt": "2026-11-12T02:45:48.557Z",
+  "monitorResumedWithoutNewSubmission": true,
+  "range": {
+    "status": 206,
+    "contentRange": "bytes 0-31/9407463",
+    "bytes": 32
+  },
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "30/1"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "r_frame_rate": "0/0"
+      }
+    ],
+    "format": {
+      "duration": "29.366667"
+    }
+  },
+  "fullDecode": true,
+  "bytes": 9407463,
+  "sha256": "2ea79cf62a32a3b10178b845274d3f75fca7abdf3cb04e3fad5aadafd4722234",
+  "sources": {
+    "title": "海岸竖屏真实制作验收",
+    "script": "海浪不断涌向海岸，白色的浪花在沙滩边铺展开来。海面随着波浪起伏，水面的光影也不断变化。沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。",
+    "duration": 29.366666666666667,
+    "width": 720,
+    "height": 1280,
+    "captionStyleVersion": 3,
+    "videoProfile": {
+      "version": 1,
+      "width": 720,
+      "height": 1280,
+      "fps": 30,
+      "label": "720p",
+      "captionStyleVersion": 3,
+      "audioMixVersion": 1
+    },
+    "music": {
+      "status": "mixed",
+      "mixed": true,
+      "narrationPreserved": true,
+      "source": {
+        "provider": "scottbuckley",
+        "sourceId": "undertow",
+        "title": "Undertow",
+        "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+        "kind": "audio",
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "thumbnail": "",
+        "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+        "author": "Scott Buckley",
+        "authorUrl": "https://www.scottbuckley.com.au/",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+        "rights": {
+          "attributionRequired": true,
+          "shareAlike": false,
+          "synchronisationOnly": true,
+          "noFingerprinting": true,
+          "youtubeDescriptionCredit": true,
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "licenseEvidence": {
+          "method": "official-track-page",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+          "requiresSourceVerification": false
+        },
+        "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+        "width": 0,
+        "height": 0,
+        "duration": 249.930975,
+        "bytes": 10000906,
+        "id": "scottbuckley:undertow",
+        "hasAudio": true,
+        "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "downloadedBytes": 0,
+        "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "downloadMethod": "verified-byte-ranges",
+        "remoteValidator": {
+          "header": "last-modified",
+          "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+        },
+        "acquiredAt": "2026-11-12T01:43:22.289Z",
+        "fullDecode": true,
+        "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+        "cacheHit": true
+      },
+      "mix": {
+        "version": 1,
+        "continuous": true,
+        "start": 0,
+        "end": 29.366666666666667,
+        "sourceOffset": 0,
+        "looped": false,
+        "narrationLufs": -16.3,
+        "targetMusicLufs": -30.3,
+        "narrationGain": 1,
+        "ducking": {
+          "threshold": 0.015,
+          "ratio": 6,
+          "attackMs": 15,
+          "releaseMs": 500
+        },
+        "fadeInSeconds": 0.8,
+        "fadeOutSeconds": 2,
+        "changes": "Music trimmed or looped continuously, loudness adjusted, ducked beneath narration, faded at film boundaries."
+      }
+    },
+    "createdAt": "2026-11-12T02:43:58.810Z",
+    "scenes": [
+      {
+        "id": "912d98dc-23e0-4340-b62d-1e3a164d6fa2",
+        "text": "海浪不断涌向海岸，",
+        "start": 0,
+        "end": 2.54,
+        "renderKind": "footage",
+        "source": {
+          "id": "pixabay:348909",
+          "title": "wave, rock, water, ocean, foam, sea, shore, beach, spray, power, coast, splash, storm, crash, coastline, crashing, rocky, seascape, dramatic, force, stone, cliff, stormy, powerful, splashing",
+          "provider": "pixabay",
+          "kind": "video",
+          "url": "https://pixabay.com/videos/id-348909/",
+          "author": "Mario_Krimer",
+          "license": "Pixabay Content License",
+          "licenseUrl": "https://pixabay.com/service/license-summary/"
+        },
+        "sourceStart": 0,
+        "voice": "gemini:Kore",
+        "narrationModel": "gemini-2.5-flash-preview-tts",
+        "narrationTrackKey": "ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1",
+        "incomingTransition": "cut",
+        "outgoingFade": 0
+      },
+      {
+        "id": "57566102-392a-4c7d-864d-2f98ee4d8c6b",
+        "text": "白色的浪花在沙滩边铺展开来。",
+        "start": 2.54,
+        "end": 7,
+        "renderKind": "footage",
+        "source": {
+          "id": "pixabay:360803",
+          "title": "beach, sea, ocean, shoreline, sandy beach, water, surf, coast, seascape, gentle waves, foam, blue water, horizon, relaxing, peaceful, calm, nature, summer, travel, vacation, coastal, ambient, no people, waves, 4k",
+          "provider": "pixabay",
+          "kind": "video",
+          "url": "https://pixabay.com/videos/id-360803/",
+          "author": "Shaakheh",
+          "license": "Pixabay Content License",
+          "licenseUrl": "https://pixabay.com/service/license-summary/"
+        },
+        "sourceStart": 3.19,
+        "voice": "gemini:Kore",
+        "narrationModel": "gemini-2.5-flash-preview-tts",
+        "narrationTrackKey": "ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1",
+        "incomingTransition": "cut",
+        "outgoingFade": 0
+      },
+      {
+        "id": "8d5e4b17-7d67-4981-825a-58d930b65b0c",
+        "text": "海面随着波浪起伏，水面的光影也不断变化。",
+        "start": 7,
+        "end": 13.866666666666667,
+        "renderKind": "footage",
+        "source": {
+          "id": "pixabay:133897",
+          "title": "ocean, waves, sea, beach, water, shore, seashore, surface, sunset, seaside, nature, landscape, reflection, sunlight, atmosphere, seaview, pattern, texture, ripples",
+          "provider": "pixabay",
+          "kind": "video",
+          "url": "https://pixabay.com/videos/id-133897/",
+          "author": "stefaniejockschat",
+          "license": "Pixabay Content License",
+          "licenseUrl": "https://pixabay.com/service/license-summary/"
+        },
+        "sourceStart": 0,
+        "voice": "gemini:Kore",
+        "narrationModel": "gemini-2.5-flash-preview-tts",
+        "narrationTrackKey": "ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1",
+        "incomingTransition": "cut",
+        "outgoingFade": 0.26666666666666666
+      },
+      {
+        "id": "4a950c10-0126-426d-9b83-7e8a10f2b01b",
+        "text": "沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。",
+        "start": 13.866666666666667,
+        "end": 21.7,
+        "renderKind": "footage",
+        "source": {
+          "id": "pixabay:348911",
+          "title": "pebble, sunset, beach, sea, shore, wave, coast, ocean, horizon, stone, light, peaceful, coastline, sun, splash, paradise, shoreline, sundown, shallow, bokeh, foreground",
+          "provider": "pixabay",
+          "kind": "video",
+          "url": "https://pixabay.com/videos/id-348911/",
+          "author": "Mario_Krimer",
+          "license": "Pixabay Content License",
+          "licenseUrl": "https://pixabay.com/service/license-summary/"
+        },
+        "sourceStart": 0,
+        "voice": "gemini:Kore",
+        "narrationModel": "gemini-2.5-flash-preview-tts",
+        "narrationTrackKey": "ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1",
+        "incomingTransition": "dissolve",
+        "outgoingFade": 0
+      },
+      {
+        "id": "06602503-2455-4c48-973f-afd2bdb78289",
+        "text": "站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。",
+        "start": 21.7,
+        "end": 29.366666666666667,
+        "renderKind": "footage",
+        "source": {
+          "id": "pixabay:218569",
+          "title": "ocean, sea, waves, water, beach, seascape, horizon, scenery",
+          "provider": "pixabay",
+          "kind": "video",
+          "url": "https://pixabay.com/videos/id-218569/",
+          "author": "u_eev4107wtr",
+          "license": "Pixabay Content License",
+          "licenseUrl": "https://pixabay.com/service/license-summary/"
+        },
+        "sourceStart": 0,
+        "voice": "gemini:Kore",
+        "narrationModel": "gemini-2.5-flash-preview-tts",
+        "narrationTrackKey": "ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1",
+        "incomingTransition": "cut",
+        "outgoingFade": 0
+      }
+    ]
+  },
+  "productionSeconds": 309.2,
+  "duration": 29.366667,
+  "ratio": 10.528944261873503
+}

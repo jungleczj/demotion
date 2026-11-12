@@ -9,11 +9,34 @@ import { visionJSON } from './vision-client.mjs';
 import { run, probe } from './process.mjs';
 import { outputProfile } from './media-quality.mjs';
 import { sourceLayout, validateAnnotation, validateMotionPlan } from './motion-graphics-template.mjs';
+import { imageServiceBlocked, planSourceImageQueries } from './source-image-query.mjs';
 
 const FILE_LIMIT = 24 * 1024 * 1024;
 const sha = (data) => createHash('sha256').update(data).digest('hex');
 const text = (s) => typeof s === 'string' && s.trim();
 const serviceUnavailable = (error) => /视觉 AI|402|429|额度|配额|达到上限|未返回|模型|启用视觉/i.test(error.message || '');
+const canonicalUrl = (value) => {
+  if (!value) return '';
+  try {
+    const url = new URL(value); url.hash = '';
+    for (const key of [...url.searchParams.keys()]) if (/^utm_|^(fbclid|gclid)$/i.test(key)) url.searchParams.delete(key);
+    url.searchParams.sort(); return url.href;
+  } catch { return ''; }
+};
+const normalized = (value) => String(value || '').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+function catalogSubjectMatch(asset, subject) {
+  if (!subject) return true;
+  const metadata = normalized(`${asset.title || ''} ${asset.description || ''}`);
+  // Catalog text is only a rejection prefilter. A matching name cannot pass
+  // identity, action, region, rights or actual-image validation below.
+  return [subject.text, ...(subject.aliases || [])].some((alias) => {
+    const term = normalized(alias);
+    return term && (/[\u3400-\u9fff]/u.test(alias) ? metadata.includes(term) : [` ${term} `, ` ${term}s `].some((name) => ` ${metadata} `.includes(name)));
+  });
+}
+function candidateKeys(asset) {
+  return [asset.id && `id:${asset.id}`, asset.provider && asset.sourceId && `source:${asset.provider}:${asset.sourceId}`, asset.localPath && `local:${path.resolve(asset.localPath)}`, ...[asset.sourceUrl, asset.url].map((value) => { const url = canonicalUrl(value); return url && `url:${url}`; })].filter(Boolean);
+}
 export function imageLicenseError(asset) {
   if (['id', 'provider', 'sourceId', 'sourceUrl', 'author', 'license', 'licenseUrl'].some((key) => !text(asset?.[key])) || !/^https:\/\//.test(asset.sourceUrl) || !/^https:\/\//.test(asset.licenseUrl)) return '图片来源、作者或许可信息不完整';
   const license = `${asset.license} ${asset.licenseUrl}`;
@@ -77,8 +100,15 @@ const reviewPrompt = `Inspect the ACTUAL supplied source image pixels against th
 export async function inspectSourceImage(acquired, scene, story, config, job, reviewer = visionJSON) {
   const pixels = await readFile(acquired.decodedPath), original = await readFile(acquired.localPath);
   if (sha(original) !== acquired.sha256 || sha(pixels) !== acquired.decodedSha256) throw new Error('来源图片实际文件哈希已变化');
-  const response = await reviewer(config, reviewPrompt, [{ text: JSON.stringify({ sceneId: scene.id, narration: scene.text, story, desiredVisual: scene.visual, requiredExactSubject: true, source: { id: acquired.id, provider: acquired.provider, title: acquired.catalogTitle, description: acquired.catalogDescription, author: acquired.author, license: acquired.license, licenseUrl: acquired.licenseUrl, width: acquired.width, height: acquired.height }, catalogIsUntrusted: true }) }, { mime: 'image/png', data: pixels.toString('base64') }], job, `source-image-review-${scene.id}`);
-  if (['matched', 'exactSubject', 'clear', 'watermarkFree', 'licenseUsable'].some((key) => response?.[key] !== true) || !text(response.observed)) throw new Error('实际图片内容、主体、物种、清晰度或许可未通过匹配审查');
+  const response = await reviewer(config, reviewPrompt, [{ text: JSON.stringify({ sceneId: scene.id, narration: scene.text, story, desiredVisual: scene.visual, requiredExactSubject: true, retrievalContext: acquired.queryEvidence || null, retrievalIsNotPixelEvidence: true, source: { id: acquired.id, provider: acquired.provider, title: acquired.catalogTitle, description: acquired.catalogDescription, author: acquired.author, license: acquired.license, licenseUrl: acquired.licenseUrl, width: acquired.width, height: acquired.height }, catalogIsUntrusted: true }) }, { mime: 'image/png', data: pixels.toString('base64') }], job, `source-image-review-${scene.id}`);
+  const gates = ['matched', 'exactSubject', 'clear', 'watermarkFree', 'licenseUsable'];
+  if (gates.some((key) => response?.[key] !== true) || !text(response.observed)) {
+    const error = new Error('实际图片内容、主体、物种、清晰度或许可未通过匹配审查');
+    // Preserve bounded observations for diagnosis; they are not acceptance
+    // evidence and do not retain rejected images or trust catalog assertions.
+    error.imageReview = { actualRead: true, inputSha256: acquired.sha256, reviewedImageSha256: acquired.decodedSha256, ...Object.fromEntries(gates.map((key) => [key, response?.[key] === true])), observed: String(response?.observed || '').slice(0, 1500), limitations: (Array.isArray(response?.limitations) ? response.limitations : []).map(String).slice(0, 8) };
+    throw error;
+  }
   const annotations = (response.annotations || []).map((a) => validateAnnotation({ ...a, sourceAssetId: acquired.id }, scene, acquired.id));
   const reviewed = { ...acquired, contentReview: { actualRead: true, inputSha256: acquired.sha256, reviewedImageSha256: acquired.decodedSha256, matched: true, exactSubject: true, clear: true, watermarkFree: true, licenseUsable: true, observed: String(response.observed).slice(0, 1500), limitations: (Array.isArray(response.limitations) ? response.limitations : []).map(String).slice(0, 8), annotations, reviewedAt: new Date().toISOString(), reviewer: { provider: config.visionProvider || 'offline-fixture', model: config.visionModel || 'offline-fixture' } } };
   // Validation happens before this observation may become a renderable plan.
@@ -92,29 +122,75 @@ export async function findSourceImagePlan(scene, project, folder, config, job, o
   if (!providers.length) return { plan: null, attempted: 0, warnings: ['当前项目未启用可检索图片的素材源'] };
   const signal = job.controller.signal, search = options.search || searchSources;
   signal.throwIfAborted();
-  let results;
-  try { results = await search(scene.query || scene.text, providers, { ...config, outputFormat: project.format }, 'image'); }
-  catch (error) { if (signal.aborted || serviceUnavailable(error)) throw error; return { plan: null, attempted: 0, warnings: [`图片检索未完成：${error.message}`] }; }
-  const warnings = [...(results.warnings || [])]; let attempted = 0;
-  for (const asset of (results.assets || []).slice(0, 4)) {
-    signal.throwIfAborted(); attempted++;
+  const planning = options.queryPlan ? null : await planSourceImageQueries(project, [scene], config, job, options);
+  const queryPlan = options.queryPlan || planning.plans.get(scene.id);
+  const queries = [...new Set(queryPlan.queries)].filter((query) => typeof query === 'string' && query.trim()).slice(0, 3);
+  const warnings = [...(planning?.warnings || [])];
+  const searchSlot = options.withSearchSlot || (async (operation) => operation());
+  // Run the bounded variants together. The batch caller shares four catalog
+  // slots across scenes, so query expansion cannot multiply active requests.
+  const outcomes = await Promise.allSettled(queries.map((query) => searchSlot(async () => {
+    signal.throwIfAborted();
+    return search(query, providers, { ...config, outputFormat: project.format, signal }, 'image');
+  })));
+  signal.throwIfAborted();
+  const catalogs = outcomes.map((outcome, index) => {
+    if (outcome.status === 'rejected') {
+      if (imageServiceBlocked(outcome.reason)) throw outcome.reason;
+      warnings.push(`图片检索未完成：${outcome.reason.message}`); return [];
+    }
+    warnings.push(...(outcome.value.warnings || []));
+    return (outcome.value.assets || []).slice(0, 24).map((asset) => ({ asset, query: queries[index] }));
+  });
+  // Round-robin variants rather than letting the first query exhaust the
+  // candidate cap. Downloads have their own finite cap; only actual reads use
+  // the per-gap four-image allowance.
+  const candidates = [];
+  for (let index = 0; index < 24; index++) for (const catalog of catalogs) if (catalog[index]) candidates.push(catalog[index]);
+  const seen = new Set(), hashes = new Set(), throttledProviders = new Set();
+  let attempted = 0, reviewedCount = 0, deduplicated = 0, metadataRejected = 0;
+  const result = (plan) => {
+    job.events.push({ stage: `source-image-search-${scene.id}`, engine: 'source-image-catalog', status: plan ? 'completed' : 'unfilled', queries, subject: queryPlan.subject, attempted, acquisitionLimit: 12, reviewed: reviewedCount, reviewLimit: 4, deduplicated, metadataRejected });
+    return { plan, attempted, reviewed: reviewedCount, deduplicated, metadataRejected, queries, warnings };
+  };
+  for (const { asset, query } of candidates) {
+    signal.throwIfAborted();
+    if (reviewedCount >= 4 || attempted >= 12) break;
+    if (throttledProviders.has(asset.provider)) continue;
+    const rightsError = imageLicenseError(asset);
+    if (rightsError || !catalogSubjectMatch(asset, queryPlan.subject)) {
+      metadataRejected++;
+      warnings.push(`${asset.id} 图片目录初筛排除：${rightsError || '未保留原稿准确主体，仅为目录初筛判断'}`);
+      continue;
+    }
+    const keys = candidateKeys(asset);
+    if (keys.some((key) => seen.has(key))) { deduplicated++; continue; }
+    keys.forEach((key) => seen.add(key));
+    attempted++;
     const attemptFolder = path.join(folder, sha(scene.id).slice(0, 20), randomUUID());
-    let retained = false;
+    let retained = false, reviewStarted = false;
     try {
       const acquired = await acquireSourceImage(asset, attemptFolder, signal), profile = outputProfile(project.format), layout = sourceLayout(acquired, profile);
+      if (hashes.has(acquired.sha256) || hashes.has(acquired.decodedSha256)) { deduplicated++; continue; }
+      hashes.add(acquired.sha256); hashes.add(acquired.decodedSha256);
       if (layout.scale > 1.001 || layout.width < profile.width * .25 || layout.height < profile.height * .2) throw new Error('实际来源图片清晰度不足，不能通过放大或极小摆放通过');
+      acquired.queryEvidence = { query, subject: queryPlan.subject, catalogOnly: true };
+      reviewedCount++; reviewStarted = true;
       const reviewed = await inspectSourceImage(acquired, scene, project.script, config, job, options.review || visionJSON);
       const plan = validateMotionPlan({ schemaVersion: 2, type: 'source-annotation', sceneId: scene.id, title: reviewed.reviewedTitle, explanation: reviewed.contentReview.observed, sourceAssets: [reviewed], annotations: reviewed.contentReview.annotations }, scene, project.script);
       signal.throwIfAborted();
       retained = true;
-      return { plan, attempted, warnings };
+      return result(plan);
     } catch (error) {
-      if (signal.aborted || serviceUnavailable(error)) throw error;
+      // An image-host 429 is not a model quota failure. Cool that provider for
+      // this bounded search and preserve the other providers' remaining reads.
+      if (signal.aborted || reviewStarted && (imageServiceBlocked(error) || serviceUnavailable(error))) throw error;
+      if (!reviewStarted && /\b429\b/.test(error.message || '')) throttledProviders.add(asset.provider);
       warnings.push(`${asset.id} 图片已排除：${error.message}`);
-      job.events.push({ stage: `source-image-${scene.id}`, engine: 'source-image-reader', assetId: asset.id, status: 'failed', detail: error.message });
+      job.events.push({ stage: `source-image-${scene.id}`, engine: 'source-image-reader', assetId: asset.id, status: 'failed', detail: error.message, ...(error.imageReview ? { rejectedImageReview: error.imageReview } : {}) });
     } finally {
       if (!retained) await rm(attemptFolder, { recursive: true, force: true });
     }
   }
-  return { plan: null, attempted, warnings };
+  return result(null);
 }

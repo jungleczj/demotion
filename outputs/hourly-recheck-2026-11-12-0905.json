@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-12T01:07:28.409972+00:00",
+  "newGenerationRequests": 0,
+  "userTasksCancelled": 0,
+  "browserVerified": false,
+  "checks": [
+    {
+      "url": "https://gomotion-mvp.vercel.app/api/config",
+      "status": 200,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true
+    },
+    {
+      "url": "https://gomotion-mvp.vercel.app/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "url": "http://127.0.0.1:3027/api/productions",
+      "failed": true,
+      "errorType": "URLError"
+    }
+  ],
+  "git": {
+    "localHead": "33332b634ae81570f49b3c26b86afc4b9e30afda",
+    "remoteMain": "33332b634ae81570f49b3c26b86afc4b9e30afda",
+    "matched": true
+  },
+  "agents": {
+    "runningSubagents": 0
+  },
+  "browser": {
+    "inventoryReadable": true,
+    "existingChromeTab": "timeout; kernel reset after 30s",
+    "independentInAppTab": "timeout; kernel reset after 30s",
+    "uiInteractionVerified": false
+  },
+  "localStorage": {
+    "oldTemporaryTaskFileFound": false,
+    "causeEstablished": false
+  },
+  "newImplementationThisHour": false
+}

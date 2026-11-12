@@ -1,11 +1,12 @@
 import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
-import { mkdir, readFile, stat, writeFile, rm, copyFile, mkdtemp } from 'node:fs/promises';
+import { mkdir, readFile, readdir, stat, writeFile, rm, copyFile, mkdtemp } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { pipeline } from 'node:stream/promises';
 import { Readable } from 'node:stream';
+import { musicLicenseError } from '../music-sources.mjs';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const digest = async (file) => { const hash = createHash('sha256'); for await (const chunk of createReadStream(file)) hash.update(chunk); return hash.digest('hex'); };
@@ -40,6 +41,21 @@ export async function checkpointFiles(work, task, staging) {
   try { catalog = JSON.parse(await readFile(path.join(work, 'assets.json'), 'utf8')); } catch {}
   const assets = new Map(catalog.map((a) => [a.id, a]));
   const project = task.project;
+  // Carry only complete, attributable music originals across worker restarts.
+  // Part files and receipts whose bytes no longer match never become uploads.
+  const musicDirectory = path.join(work, 'music-sources');
+  let musicReceipts = [];
+  try { musicReceipts = (await readdir(musicDirectory)).filter((name) => /^[a-f0-9]{64}\.audio\.json$/.test(name)).slice(0, 8); } catch {}
+  for (const name of musicReceipts) {
+    try {
+      const receipt = JSON.parse(await readFile(path.join(musicDirectory, name), 'utf8'));
+      const audio = path.join(musicDirectory, name.slice(0, -5));
+      const expectedName = createHash('sha256').update(JSON.stringify([receipt.url, receipt.license, receipt.licenseUrl])).digest('hex') + '.audio.json';
+      const info = await stat(audio);
+      if (name !== expectedName || musicLicenseError(receipt) || receipt.fullDecode !== true || !/^[a-f0-9]{64}$/.test(receipt.sha256 || '') || !info.isFile() || info.size !== receipt.bytes || info.size > 48 * 1024 * 1024 || await digest(audio) !== receipt.sha256) continue;
+      add(audio); add(path.join(musicDirectory, name));
+    } catch {}
+  }
   for (const scene of project.scenes) {
     const asset = assets.get(scene.selected?.id) || scene.selected;
     if (!asset) continue;

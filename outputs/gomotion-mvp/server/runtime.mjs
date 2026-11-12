@@ -1,10 +1,19 @@
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+import { initializeDataDirectory } from './data-directory.mjs';
 
 // One volume must own jobs, source receipts, playback and narration together.
 export const workDirectory = process.env.GOMOTION_DATA_DIR
   ? path.resolve(process.env.GOMOTION_DATA_DIR)
-  : path.join(os.tmpdir(), 'gomotion-local-mvp');
+  : fileURLToPath(new URL('../work', import.meta.url));
+
+export async function initializeWorkDirectory() {
+  const result = await initializeDataDirectory({ directory: workDirectory,
+    legacyDirectory: process.env.GOMOTION_DATA_DIR ? undefined : path.join(os.tmpdir(), 'gomotion-local-mvp') });
+  if (result.legacyPreserved) console.warn(`本地数据目录已存在，旧数据未合并或覆盖。当前：${workDirectory}；旧目录：${path.join(os.tmpdir(), 'gomotion-local-mvp')}`);
+  return result;
+}
 
 export function allowedOrigins(port, value = process.env.APP_ORIGINS || '') {
   const origins = new Set([`http://localhost:${port}`, `http://127.0.0.1:${port}`]);

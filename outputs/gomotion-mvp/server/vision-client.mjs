@@ -33,7 +33,7 @@ export async function visionJSON(config, system, parts, job, stage) {
     let response;
     for (let attempt = 0; attempt < 3; attempt++) {
       response = await fetch(endpoint, { method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal });
-      if (response.status !== 429 || attempt === 2) break;
+      if (response.status !== 429 || job.disableTransientRetries || attempt === 2) break;
       let detail = '';
       try { detail = String((await response.clone().json()).error?.message || ''); } catch {}
       if (/daily|per.day|per_day|billing|credits|payment|insufficient|每日|余额/i.test(detail)) break;

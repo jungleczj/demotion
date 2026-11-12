@@ -4,6 +4,7 @@ import { mkdir, stat, readdir, readFile, writeFile, rm } from 'node:fs/promises'
 import path from 'node:path';
 import { assets, registerUpload } from './sources.mjs';
 import { findSourceImagePlan } from './source-images.mjs';
+import { planSourceImageQueries } from './source-image-query.mjs';
 import { validateMotionPlan, sourceLayout } from './motion-graphics-template.mjs';
 import { outputProfile, mediaQualityError } from './media-quality.mjs';
 import { ensurePlayback, verifiedAsset } from './playback.mjs';
@@ -129,7 +130,7 @@ export async function fillMissingWithMotion(job, project, work, config, options 
   if (!missing.length) return project;
   const folder = path.join(work, `motion-${project.id}`);
   await mkdir(folder, { recursive: true });
-  const style = project.motionStyle || await filmStyle(project, folder, config, signal);
+  let style = project.motionStyle;
   const results = new Map(), plans = [], warnings = [...(project.sequenceReport?.warnings || [])];
   const baseCalls = Number(job.calls) || 0, phaseController = new AbortController();
   const phaseSignal = AbortSignal.any([signal, phaseController.signal]);
@@ -137,19 +138,20 @@ export async function fillMissingWithMotion(job, project, work, config, options 
   (job.phaseBudgets ||= {}).sourceImages = budget;
   const phaseJob = { ...job, controller: { signal: phaseSignal }, callLimit: budget.limit, events: job.events };
   Object.defineProperty(phaseJob, 'calls', { get: () => budget.calls, set: (value) => { budget.calls = value; } });
-  const withRenderSlot = createMotionLimiter(2);
+  const withRenderSlot = createMotionLimiter(2), withSearchSlot = createMotionLimiter(4);
+  let queryPlanning;
   let cursor = 0, failure, checkpointQueue = Promise.resolve();
   const snapshot = () => {
     const scenes = project.scenes.map((s) => results.get(s.id) || s), gaps = scenes.filter((s) => !s.selected).map((s) => s.id);
-    return { ...project, motionStyle: style, scenes, sequenceReport: { ...project.sequenceReport, complete: gaps.length === 0, missingScenes: gaps, summary: gaps.length ? '仍有画面未找到满足来源与内容要求的素材，已保留草稿' : '实拍与来源图片加工已覆盖全部旁白，成片继续实际视听审查', sourceBackedMotionVersion: 2, motionGraphicCount: scenes.filter((s) => s.motionGraphic?.schemaVersion === 2).length, sourceImageBudget: { ...budget }, warnings: [...new Set(warnings)], events: job.events.map((e) => ({ ...e })) } };
+    return { ...project, motionStyle: style, scenes, sequenceReport: { ...project.sequenceReport, complete: gaps.length === 0, missingScenes: gaps, summary: gaps.length ? '仍有画面未找到满足来源与内容要求的素材，已保留草稿' : '实拍与来源图片加工已覆盖全部旁白，成片继续实际视听审查', sourceBackedMotionVersion: 2, motionGraphicCount: scenes.filter((s) => s.motionGraphic?.schemaVersion === 2).length, sourceImageBudget: { ...budget }, sourceImageQueryBudget: { ...job.phaseBudgets.sourceImageQueries }, warnings: [...new Set(warnings)], events: job.events.map((e) => ({ ...e })) } };
   };
   const processScene = async (scene) => {
     phaseSignal.throwIfAborted();
     const started = Date.now();
-    const found = await findSourceImagePlan(scene, project, path.join(folder, 'source-images'), config, phaseJob, options);
+    const found = await findSourceImagePlan(scene, project, path.join(folder, 'source-images'), config, phaseJob, { ...options, queryPlan: queryPlanning.plans.get(scene.id), withSearchSlot });
     warnings.push(...found.warnings);
     if (!found.plan) {
-      job.events.push({ stage: `motion-graphic-${scene.id}`, engine: 'source-image-reader', status: 'failed', detail: '未找到可追溯且可忠实加工的相关图片，保留缺口', attempted: found.attempted });
+      job.events.push({ stage: `motion-graphic-${scene.id}`, engine: 'source-image-reader', status: 'failed', detail: '未找到可追溯且可忠实加工的相关图片，保留缺口', attempted: found.attempted, reviewed: found.reviewed, deduplicated: found.deduplicated, metadataRejected: found.metadataRejected, queries: found.queries });
       return;
     }
     const plan = found.plan;
@@ -192,12 +194,20 @@ export async function fillMissingWithMotion(job, project, work, config, options 
     }
   };
   try {
+    // One text-only batch request overlaps the existing palette work. Its
+    // separate 12-second/one-call allowance cannot consume image-read slots.
+    [style, queryPlanning] = await Promise.all([style || filmStyle(project, folder, config, phaseSignal), planSourceImageQueries(project, missing, config, { ...job, controller: { signal: phaseSignal } }, options)]).catch((error) => { failure = error; phaseController.abort(error); throw error; });
+    warnings.push(...queryPlanning.warnings);
     // Four scenes acquire/review images concurrently; at most two encode at once.
     await Promise.allSettled(Array.from({ length: Math.min(4, missing.length) }, worker));
     budget.status = failure ? 'failed' : 'completed';
     await checkpointQueue.catch(() => {});
-    await writeFile(path.join(folder, 'plans.json'), JSON.stringify({ schemaVersion: 2, style, plans, warnings, sourceImageBudget: budget }, null, 2));
+    await writeFile(path.join(folder, 'plans.json'), JSON.stringify({ schemaVersion: 2, style, plans, warnings, sourceImageBudget: budget, sourceImageQueryBudget: job.phaseBudgets.sourceImageQueries, queries: [...queryPlanning.plans.values()] }, null, 2));
     if (failure) { failure.partialProject = snapshot(); throw failure; }
     return snapshot();
-  } finally { job.calls = baseCalls + budget.calls; }
+  } catch (error) {
+    budget.status = 'failed';
+    error.partialProject ||= snapshot();
+    throw error;
+  } finally { job.calls = baseCalls + budget.calls + (job.phaseBudgets.sourceImageQueries?.calls || 0); }
 }

@@ -1,0 +1,113 @@
+{
+  "at": "2026-11-12T02:42:37.152Z",
+  "scene": {
+    "id": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "text": "它们将蛋放在双脚上，"
+  },
+  "historicalProject": true,
+  "submittedProduction": false,
+  "cancelledUserTasks": 0,
+  "passed": false,
+  "queryPlanning": {
+    "source": "reused-prior-successful-grounded-plan",
+    "sourceReport": "source-relevance-live-2026-11-12.json",
+    "calls": 0,
+    "plan": {
+      "sceneId": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "mode": "grounded-translation",
+      "subject": {
+        "text": "帝企鹅",
+        "quote": "它们，就是帝企鹅。",
+        "aliases": [
+          "帝企鹅",
+          "emperor penguin",
+          "Aptenodytes forsteri"
+        ]
+      },
+      "queries": [
+        "emperor penguin holding egg on feet",
+        "emperor penguin father brooding egg on feet",
+        "Aptenodytes forsteri"
+      ]
+    }
+  },
+  "error": "来源图片下载失败（HTTP 429）",
+  "originalProjectUnchanged": true,
+  "calls": 2,
+  "events": [
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-12T02:42:43.412Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2089,
+        "outputTokens": 91,
+        "totalTokens": 2180
+      },
+      "durationMs": 8095
+    },
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "pixabay:429134",
+      "status": "failed",
+      "detail": "实际图片内容、主体、物种、清晰度或许可未通过匹配审查",
+      "rejectedImageReview": {
+        "actualRead": true,
+        "inputSha256": "819530f60249de54b2f0a2d153e2851882a93e41354c1d3af7201d1c2c116dbe",
+        "reviewedImageSha256": "867794d5c91971fb3a954eb12e9694b0025e537322c8113cd179399076df4683",
+        "matched": false,
+        "exactSubject": true,
+        "clear": true,
+        "watermarkFree": true,
+        "licenseUsable": true,
+        "observed": "An adult emperor penguin stands on snow with a hatched grey chick standing in front of it; no egg is present.",
+        "limitations": [
+          "The image shows a hatched chick rather than an egg being held on the feet as required by the narration."
+        ]
+      }
+    },
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-12T02:42:53.745Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 2019,
+        "outputTokens": 142,
+        "totalTokens": 2161
+      },
+      "durationMs": 9875
+    },
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:30473524",
+      "status": "failed",
+      "detail": "实际图片内容、主体、物种、清晰度或许可未通过匹配审查",
+      "rejectedImageReview": {
+        "actualRead": true,
+        "inputSha256": "de73c89e5ba4cb64d3992c2522e2d577334ddc1b21128ea700cd958ed1577d50",
+        "reviewedImageSha256": "b943d0f56425b5e41d61a95ade1687da6b76fee43e05e1cfa9e84cc3c9fb9185",
+        "matched": false,
+        "exactSubject": true,
+        "clear": true,
+        "watermarkFree": true,
+        "licenseUsable": true,
+        "observed": "The image shows emperor penguins (Aptenodytes forsteri) in Antarctica, with one penguin leaping out of the water onto the ice edge and a group of penguins standing in the background. There are no eggs visible, nor any close-up or depiction of penguins holding eggs on their feet.",
+        "limitations": [
+          "The narration specifically states '它们将蛋放在双脚上' (They place the egg on their feet), but no egg or egg-incubating posture is visible in this image."
+        ]
+      }
+    }
+  ]
+}

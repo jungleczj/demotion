@@ -26,3 +26,22 @@ test('references include registered upload sources and their ancestors but not a
   assert.equal(retainedMedia(path.join(root, 'unrelated/file')), false);
   retainTaskMedia(root, []);
 });
+
+test('saved task playback cache keys and aliases retain their corresponding video and thumbnail files', () => {
+  const root = path.join(os.tmpdir(), `media-retention-${randomUUID()}`), key = 'a'.repeat(64), alias = 'b'.repeat(64);
+  retainTaskMedia(root, [{ project: { scenes: [{ selected: { playbackKey: key, playbackAliases: [alias, '../invalid'] } }] } }]);
+  for (const kept of [key, alias]) for (const extension of ['mp4', 'jpg']) assert.equal(retainedMedia(path.join(root, 'playback', `${kept}.${extension}`)), true);
+  assert.equal(retainedMedia(path.join(root, 'playback', `${'c'.repeat(64)}.mp4`)), false);
+  retainTaskMedia(root, []);
+  assert.equal(retainedMedia(path.join(root, 'playback', `${key}.mp4`)), false);
+});
+
+test('mixed music retains its original and license receipt until the saved task is removed', () => {
+  const root = path.join(os.tmpdir(), `music-retention-${randomUUID()}`), original = path.join(root, 'music-sources', `${'e'.repeat(64)}.audio`);
+  retainTaskMedia(root, [{ project: { music: { mixed: true, source: { localPath: original } } } }]);
+  assert.equal(retainedMedia(original), true);
+  assert.equal(retainedMedia(`${original}.json`), true);
+  assert.equal(retainedMedia(`${original}.part`), false);
+  retainTaskMedia(root, []);
+  assert.equal(retainedMedia(original), false);
+});

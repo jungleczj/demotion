@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: legacy migration preserves receipt paths, source hashes and cached playback names and can repair its alias
+ok 1 - legacy migration preserves receipt paths, source hashes and cached playback names and can repair its alias
+  ---
+  duration_ms: 333.565208
+  type: 'test'
+  ...
+# Subtest: repairing a migrated alias refuses to replace a new occupant of the legacy path
+ok 2 - repairing a migrated alias refuses to replace a new occupant of the legacy path
+  ---
+  duration_ms: 37.946083
+  type: 'test'
+  ...
+# Subtest: an explicit data directory creates no temporary-directory migration or fabricated records
+ok 3 - an explicit data directory creates no temporary-directory migration or fabricated records
+  ---
+  duration_ms: 19.28175
+  type: 'test'
+  ...
+# Subtest: an existing durable directory and legacy files are never merged or overwritten
+ok 4 - an existing durable directory and legacy files are never merged or overwritten
+  ---
+  duration_ms: 54.169042
+  type: 'test'
+  ...
+# Subtest: a missing legacy directory creates storage without fabricating a jobs file
+ok 5 - a missing legacy directory creates storage without fabricating a jobs file
+  ---
+  duration_ms: 15.450958
+  type: 'test'
+  ...
+# Subtest: the default durable directory belongs to the application and survives a changed temporary directory or cwd
+ok 6 - the default durable directory belongs to the application and survives a changed temporary directory or cwd
+  ---
+  duration_ms: 721.424375
+  type: 'test'
+  ...
+# Subtest: the voice catalog loads without downloading thirty unrelated sample recordings
+ok 7 - the voice catalog loads without downloading thirty unrelated sample recordings
+  ---
+  duration_ms: 263.618541
+  type: 'test'
+  ...
+# Subtest: all durable media paths follow the configured server data directory
+ok 8 - all durable media paths follow the configured server data directory
+  ---
+  duration_ms: 247.903708
+  type: 'test'
+  ...
+# Subtest: the explicit cloud worker directory keeps its existing absolute contract
+ok 9 - the explicit cloud worker directory keeps its existing absolute contract
+  ---
+  duration_ms: 237.366875
+  type: 'test'
+  ...
+# Subtest: default storage restores the same task after a process restart and retains only an explicit stop
+ok 10 - default storage restores the same task after a process restart and retains only an explicit stop
+  ---
+  duration_ms: 1831.925584
+  type: 'test'
+  ...
+# Subtest: removing a saved task releases its files without touching other workspaces or escaping the data root
+ok 11 - removing a saved task releases its files without touching other workspaces or escaping the data root
+  ---
+  duration_ms: 54.012625
+  type: 'test'
+  ...
+# Subtest: references include registered upload sources and their ancestors but not an unrelated sibling
+ok 12 - references include registered upload sources and their ancestors but not an unrelated sibling
+  ---
+  duration_ms: 1.384334
+  type: 'test'
+  ...
+# Subtest: saved task playback cache keys and aliases retain their corresponding video and thumbnail files
+ok 13 - saved task playback cache keys and aliases retain their corresponding video and thumbnail files
+  ---
+  duration_ms: 3.220875
+  type: 'test'
+  ...
+# Subtest: disk pruning keeps saved task and warm cache files while removing expired unreferenced media
+ok 14 - disk pruning keeps saved task and warm cache files while removing expired unreferenced media
+  ---
+  duration_ms: 377.532375
+  type: 'test'
+  ...
+# Subtest: capacity pressure refuses a new reservation instead of deleting a saved task cache
+ok 15 - capacity pressure refuses a new reservation instead of deleting a saved task cache
+  ---
+  duration_ms: 59.342708
+  type: 'test'
+  ...
+# Subtest: queued production persists independently of UI and only explicit stop cancels it
+ok 16 - queued production persists independently of UI and only explicit stop cancels it
+  ---
+  duration_ms: 200.743333
+  type: 'test'
+  ...
+# Subtest: simultaneous submissions for the same project share one durable task
+ok 17 - simultaneous submissions for the same project share one durable task
+  ---
+  duration_ms: 33.75325
+  type: 'test'
+  ...
+# Subtest: completed arbitrary diagrams cannot be reused as source-backed productions
+ok 18 - completed arbitrary diagrams cannot be reused as source-backed productions
+  ---
+  duration_ms: 33.407416
+  type: 'test'
+  ...
+# Subtest: remaking a subtitled project rebuilds an older small-caption export
+ok 19 - remaking a subtitled project rebuilds an older small-caption export
+  ---
+  duration_ms: 40.052458
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3755.867792

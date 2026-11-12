@@ -6,21 +6,22 @@ import path from 'node:path';
 import { Readable, Transform } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { searchOpenverse } from './source-adapters/openverse.mjs';
-import { searchScottBuckley } from './source-adapters/scottbuckley.mjs';
+import { searchScottBuckley, SCOTT_BUCKLEY_TRACKS } from './source-adapters/scottbuckley.mjs';
 import { sharedOperations } from './shared-operation.mjs';
 import { run, probe } from './process.mjs';
 
 export const musicAssets = new Map();
 const cache = new Map(), shared = sharedOperations(), MAX_BYTES = 48 * 1024 * 1024;
 const hash = (value) => createHash('sha256').update(value).digest('hex');
+const cacheKey = (asset) => hash(JSON.stringify([asset.url, asset.license, asset.licenseUrl]));
 const allowedURL = (value) => {
   try { const u = new URL(value), host = u.hostname.replace(/^\[|\]$/g, ''); return u.protocol === 'https:' && !u.username && !u.password && (!u.port || u.port === '443') && !isIP(host) && host.includes('.') && !/(?:^|\.)(?:localhost|local|internal|test|invalid)$/.test(host) ? u.href : ''; } catch { return ''; }
 };
-async function response(url, { signal, fetch: fetcher = globalThis.fetch } = {}) {
+async function response(url, { signal, fetch: fetcher = globalThis.fetch, method = 'GET', headers = {} } = {}) {
   let next = allowedURL(url);
   if (!next) throw new Error('音乐来源必须是公开 HTTPS 地址');
   for (let redirects = 0; redirects <= 3; redirects++) {
-    const r = await fetcher(next, { signal, redirect: 'manual', headers: { 'User-Agent': 'GoMotionLocalMVP/0.1', 'Accept-Encoding': 'identity' } });
+    const r = await fetcher(next, { signal, method, redirect: 'manual', headers: { 'User-Agent': 'GoMotionLocalMVP/0.1', 'Accept-Encoding': 'identity', ...headers } });
     if ([301, 302, 303, 307, 308].includes(r.status)) {
       const location = r.headers.get('location'); await r.body?.cancel();
       next = location && allowedURL(new URL(location, next).href);
@@ -82,21 +83,68 @@ async function validateFile(file, signal) {
   return { ...metadata, bytes: info.size, sha256: hash(await readFile(file)) };
 }
 
+async function downloadOriginal(url, temporary, { signal, fetch: fetcher }) {
+  let head;
+  try { head = await response(url, { signal, fetch: fetcher, method: 'HEAD' }); await head.body?.cancel(); }
+  catch { signal.throwIfAborted(); }
+  const size = Number(head?.headers.get('content-length'));
+  if (size > MAX_BYTES) throw new Error('音乐文件超过 48MB 上限');
+  const etag = head?.headers.get('etag'), modified = head?.headers.get('last-modified');
+  const validator = etag && !etag.startsWith('W/') ? ['etag', etag] : modified && Number.isFinite(Date.parse(modified)) ? ['last-modified', modified] : undefined;
+  if (head?.headers.get('accept-ranges') === 'bytes' && Number.isSafeInteger(size) && size > 2 * 1024 * 1024 && validator) {
+    // A bounded set of verified ranges avoids stalled large responses. Each
+    // byte belongs to one range and every range must still be the same object.
+    const chunkSize = 64 * 1024, count = Math.ceil(size / chunkSize), controller = new AbortController();
+    const bounded = AbortSignal.any([signal, controller.signal]);
+    let cursor = 0, downloadedBytes = 0, failure;
+    await writeFile(temporary, Buffer.alloc(0), { flag: 'wx' });
+    const worker = async () => {
+      try {
+        while (cursor < count) {
+          bounded.throwIfAborted();
+          const start = cursor++ * chunkSize, end = Math.min(start + chunkSize, size) - 1;
+          const r = await response(url, { signal: bounded, fetch: fetcher, headers: { Range: `bytes=${start}-${end}`, 'If-Range': validator[1] } });
+          if (r.status !== 206 || r.headers.get('content-range') !== `bytes ${start}-${end}/${size}` || r.headers.get(validator[0]) !== validator[1] || Number(r.headers.get('content-length')) !== end - start + 1 || !r.body) {
+            await r.body?.cancel(); throw new Error('音乐原件范围或版本校验失败');
+          }
+          let bytes = 0;
+          const limiter = new Transform({ transform(chunk, _encoding, callback) { bytes += chunk.length; callback(bytes > end - start + 1 ? new Error('音乐原件范围超出长度') : null, chunk); } });
+          await pipeline(Readable.fromWeb(r.body), limiter, createWriteStream(temporary, { flags: 'r+', start }), { signal: bounded });
+          if (bytes !== end - start + 1) throw new Error('音乐原件范围传输不完整');
+          downloadedBytes += bytes;
+        }
+      } catch (error) { if (!failure) failure = error; controller.abort(error); throw error; }
+    };
+    await Promise.allSettled(Array.from({ length: Math.min(4, count) }, worker));
+    if (failure) throw failure;
+    if (downloadedBytes !== size) throw new Error('音乐原件传输不完整');
+    return { downloadedBytes, acquiredUrl: head.url || url, downloadMethod: 'verified-byte-ranges', remoteValidator: { header: validator[0], value: validator[1] } };
+  }
+  const r = await response(url, { signal, fetch: fetcher });
+  if (r.status !== 200) { await r.body?.cancel(); throw new Error('音乐源未返回完整文件（需要 HTTP 200）'); }
+  if (!r.body || Number(r.headers.get('content-length')) > MAX_BYTES) { await r.body?.cancel(); throw new Error('音乐文件超过 48MB 上限'); }
+  let bytes = 0;
+  const limiter = new Transform({ transform(chunk, _encoding, callback) { bytes += chunk.length; callback(bytes > MAX_BYTES ? new Error('音乐文件超过 48MB 上限') : null, chunk); } });
+  await pipeline(Readable.fromWeb(r.body), limiter, createWriteStream(temporary, { flags: 'wx' }), { signal });
+  if (r.headers.has('content-length') && bytes !== Number(r.headers.get('content-length'))) throw new Error('音乐文件传输不完整');
+  return { downloadedBytes: bytes, acquiredUrl: r.url || url, downloadMethod: 'complete-http-200' };
+}
+
 // This does not add music to the video asset registry or silently change a mix.
 // Caller receives an original audio file plus a receipt for the export manifest.
 export async function acquireMusicAsset(id, directory, { signal, fetch: fetcher = globalThis.fetch } = {}) {
   const asset = musicAssets.get(typeof id === 'string' ? id : id?.id);
   if (!asset) throw new Error('请先检索并选取有效音乐来源');
   const licenseError = musicLicenseError(asset); if (licenseError) throw new Error(licenseError);
-  const key = hash(JSON.stringify([asset.url, asset.license, asset.licenseUrl])), folder = path.resolve(directory);
+  const key = cacheKey(asset), folder = path.resolve(directory);
   return shared(`download:${folder}:${key}`, signal, async (operationSignal) => {
     const bounded = AbortSignal.any([operationSignal, AbortSignal.timeout(120000)]);
     await mkdir(folder, { recursive: true });
     const file = path.join(folder, `${key}.audio`), receipt = `${file}.json`;
     try {
       const previous = JSON.parse(await readFile(receipt, 'utf8')), actual = await validateFile(file, bounded);
-      if (actual.sha256 !== previous.sha256 || previous.sourceUrl !== asset.sourceUrl || previous.license !== asset.license) throw new Error('音乐缓存凭据不一致');
-      return { ...asset, ...previous, ...actual, localPath: file, cacheHit: true, downloadedBytes: 0 };
+      if (actual.sha256 !== previous.sha256 || previous.fullDecode !== true || ['id', 'provider', 'url', 'sourceUrl', 'author', 'license', 'licenseUrl', 'attribution'].some((key) => previous[key] !== asset[key])) throw new Error('音乐缓存凭据不一致');
+      return { ...asset, ...previous, ...actual, fullDecode: true, localPath: file, cacheHit: true, downloadedBytes: 0 };
     } catch (error) { bounded.throwIfAborted(); }
     const temporary = `${file}.${randomUUID()}.part`;
     try {
@@ -107,17 +155,30 @@ export async function acquireMusicAsset(id, directory, { signal, fetch: fetcher 
         if (!links.includes(asset.url) || !links.includes(asset.licenseUrl)) throw new Error('Openverse 原来源页未同时确认当前音频文件与许可，已暂停下载');
         licenseEvidence = { method: 'source-page-links', sourceUrl: asset.sourceUrl, sha256: hash(html), requiresSourceVerification: false, checkedAt: new Date().toISOString() };
       }
-      const r = await response(asset.url, { signal: bounded, fetch: fetcher });
-      if (r.status !== 200) { await r.body?.cancel(); throw new Error('音乐源未返回完整文件（需要 HTTP 200）'); }
-      if (!r.body || Number(r.headers.get('content-length')) > MAX_BYTES) { await r.body?.cancel(); throw new Error('音乐文件超过 48MB 上限'); }
-      let bytes = 0;
-      const limiter = new Transform({ transform(chunk, _encoding, callback) { bytes += chunk.length; callback(bytes > MAX_BYTES ? new Error('音乐文件超过 48MB 上限') : null, chunk); } });
-      await pipeline(Readable.fromWeb(r.body), limiter, createWriteStream(temporary, { flags: 'wx' }), { signal: bounded });
-      if (r.headers.has('content-length') && bytes !== Number(r.headers.get('content-length'))) throw new Error('音乐文件传输不完整');
+      const downloaded = await downloadOriginal(asset.url, temporary, { signal: bounded, fetch: fetcher });
       const actual = await validateFile(temporary, bounded);
-      const record = { ...asset, ...actual, licenseEvidence, acquiredAt: new Date().toISOString(), acquiredUrl: r.url || asset.url, fullDecode: true };
+      const record = { ...asset, ...actual, ...downloaded, licenseEvidence, acquiredAt: new Date().toISOString(), fullDecode: true };
       await rename(temporary, file); await writeFile(receipt, JSON.stringify(record, null, 2));
-      return { ...record, localPath: file, cacheHit: false, downloadedBytes: bytes };
+      return { ...record, localPath: file, cacheHit: false };
     } finally { await rm(temporary, { force: true }); }
   });
+}
+
+// One conservative documentary bed, selected without a model or search quota.
+// A verified receipt restores the registry after a restart; the audio is still
+// hashed and fully decoded on reuse. No network request is needed for that path.
+export async function acquireDefaultMusic(directory, options = {}) {
+  const track = SCOTT_BUCKLEY_TRACKS[0];
+  const expected = { id: 'scottbuckley:undertow', provider: 'scottbuckley', sourceId: track.slug, title: track.title, author: 'Scott Buckley', kind: 'audio', url: track.url,
+    sourceUrl: 'https://www.scottbuckley.com.au/library/undertow/', license: 'CC BY 4.0', licenseUrl: 'https://creativecommons.org/licenses/by/4.0/' };
+  try {
+    const record = JSON.parse(await readFile(path.join(path.resolve(directory), `${cacheKey(expected)}.audio.json`), 'utf8'));
+    if (!Object.entries(expected).every(([key, value]) => record[key] === value) || musicLicenseError(record) || !record.fullDecode || !/^[a-f0-9]{64}$/.test(record.sha256 || '') || record.licenseEvidence?.method !== 'official-track-page' || !/^[a-f0-9]{64}$/.test(record.licenseEvidence.sha256 || '') || record.licenseEvidence.requiresSourceVerification !== false || !record.licenseCheckedAt) throw new Error('默认音乐缓存凭据无效');
+    musicAssets.set(expected.id, record);
+  } catch { options.signal?.throwIfAborted(); }
+  if (!musicAssets.has(expected.id)) {
+    const result = await searchMusicSources('reflective', {}, { ...options, providers: ['scottbuckley'] });
+    if (!result.assets.some((asset) => asset.id === expected.id)) throw new Error('默认音乐暂无已核实的授权来源');
+  }
+  return acquireMusicAsset(expected.id, directory, options);
 }

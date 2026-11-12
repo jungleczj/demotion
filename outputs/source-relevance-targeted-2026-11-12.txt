@@ -1,0 +1,37 @@
+✔ rejects legacy freehand plans and sources that were not actually read (2.713917ms)
+✔ only permits source-supported regions and exact narration annotations (2.222291ms)
+✔ source remains fixed while grounded region highlights and labels animate (3984.810084ms)
+✔ worker decodes acquired source and renders HD annotation layers in both orientations (2942.336292ms)
+✔ cancelled source animations leave no partial video or worker behind (2355.17925ms)
+✔ fallback revalidates saved source files and keeps unfilled scenes incomplete (87.552334ms)
+✔ source-backed fallback retains successful files and provenance while another gap remains (3182.649125ms)
+✔ four independent missing scenes can search images together without serial waiting (6.329209ms)
+✔ missing-scene batch shares one grounded query plan and records its allowance separately from image reads (4.499ms)
+✔ a batch planning quota failure stops before catalogs and preserves unresolved scene evidence (2.214ms)
+✔ render slots cap active workers and release queued work after a failure (0.880917ms)
+✔ render rejection removes the unselected source files (658.931792ms)
+✔ a later service block preserves completed source scenes in a durable checkpoint (3556.827625ms)
+✔ malformed v2 render plans are rejected before accessing annotation arrays (1.149667ms)
+✔ worker rejects legacy or malformed source plans with a controlled validation error (111.655875ms)
+✔ one bounded batch plan grounds exact-subject queries in untouched story and neighboring narration (4.782666ms)
+✔ ungrounded identities and details are rejected without a second planning call (0.486375ms)
+✔ planning quota errors and user cancellation stop without search fallback (0.918167ms)
+✔ image query planning stops a transient 429 after one actual HTTP request (46.546083ms)
+✔ ordinary vision requests retain their existing transient 429 retry behavior (1005.215375ms)
+✔ a hanging planning HTTP request is aborted by its twelve-second allowance and falls back once (12002.358208ms)
+✔ acquires the actual file and derives dimensions and checksum from full decoding (560.134791ms)
+✔ large source images retain the original file while bounding full-frame review pixels (1053.891042ms)
+✔ content inspection sends real acquired image bytes and binds the decision to those bytes (507.644ms)
+✔ image search is bounded, rejects wrong subjects, and never creates assets when sources fail (3145.800958ms)
+✔ candidate cleanup isolates scenes and removes cancelled image reads (1730.352375ms)
+✔ subject-aware queries skip irrelevant metadata and deduplicate URLs and actual pixels across catalogs (1382.011042ms)
+✔ failed acquisitions stop at twelve without spending or creating pixel review evidence (17.868167ms)
+✔ catalog cancellation is forwarded and no pixel review starts after cancellation (1.263292ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17068.951166

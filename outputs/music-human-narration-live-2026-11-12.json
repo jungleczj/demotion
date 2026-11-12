@@ -1,0 +1,208 @@
+{
+  "operations": [
+    {
+      "name": "verified-range-original-download",
+      "ok": true,
+      "elapsedMs": 334,
+      "result": {
+        "provider": "scottbuckley",
+        "sourceId": "undertow",
+        "title": "Undertow",
+        "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+        "kind": "audio",
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "thumbnail": "",
+        "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+        "author": "Scott Buckley",
+        "authorUrl": "https://www.scottbuckley.com.au/",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+        "rights": {
+          "attributionRequired": true,
+          "shareAlike": false,
+          "synchronisationOnly": true,
+          "noFingerprinting": true,
+          "youtubeDescriptionCredit": true,
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "licenseEvidence": {
+          "method": "official-track-page",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+          "requiresSourceVerification": false
+        },
+        "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+        "width": 0,
+        "height": 0,
+        "duration": 249.930975,
+        "bytes": 10000906,
+        "id": "scottbuckley:undertow",
+        "hasAudio": true,
+        "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "downloadedBytes": 0,
+        "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "downloadMethod": "verified-byte-ranges",
+        "remoteValidator": {
+          "header": "last-modified",
+          "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+        },
+        "acquiredAt": "2026-11-12T01:43:22.289Z",
+        "fullDecode": true,
+        "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+        "cacheHit": true
+      }
+    },
+    {
+      "name": "restart-cache-without-network",
+      "ok": true,
+      "elapsedMs": 339,
+      "result": {
+        "provider": "scottbuckley",
+        "sourceId": "undertow",
+        "title": "Undertow",
+        "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+        "kind": "audio",
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "thumbnail": "",
+        "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+        "author": "Scott Buckley",
+        "authorUrl": "https://www.scottbuckley.com.au/",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+        "rights": {
+          "attributionRequired": true,
+          "shareAlike": false,
+          "synchronisationOnly": true,
+          "noFingerprinting": true,
+          "youtubeDescriptionCredit": true,
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "licenseEvidence": {
+          "method": "official-track-page",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+          "requiresSourceVerification": false
+        },
+        "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+        "width": 0,
+        "height": 0,
+        "duration": 249.930975,
+        "bytes": 10000906,
+        "id": "scottbuckley:undertow",
+        "hasAudio": true,
+        "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "downloadedBytes": 0,
+        "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "downloadMethod": "verified-byte-ranges",
+        "remoteValidator": {
+          "header": "last-modified",
+          "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+        },
+        "acquiredAt": "2026-11-12T01:43:22.289Z",
+        "fullDecode": true,
+        "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+        "cacheHit": true
+      }
+    },
+    {
+      "name": "actual-licensed-music-short-local-mix",
+      "ok": true,
+      "elapsedMs": 2369,
+      "result": {
+        "video": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-delivery-acceptance/music-verification.mp4",
+        "actual": {
+          "hasAudio": true,
+          "duration": 9.767,
+          "width": 1280,
+          "height": 720
+        },
+        "fullDecode": true,
+        "narration": "existing-audio-no-new-model-call",
+        "music": {
+          "status": "mixed",
+          "mixed": true,
+          "narrationPreserved": true,
+          "source": {
+            "provider": "scottbuckley",
+            "sourceId": "undertow",
+            "title": "Undertow",
+            "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+              "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+              "requiresSourceVerification": false
+            },
+            "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+            "width": 0,
+            "height": 0,
+            "duration": 249.930975,
+            "bytes": 10000906,
+            "id": "scottbuckley:undertow",
+            "hasAudio": true,
+            "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+            },
+            "acquiredAt": "2026-11-12T01:43:22.289Z",
+            "fullDecode": true,
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+            "cacheHit": true
+          },
+          "mix": {
+            "version": 1,
+            "continuous": true,
+            "start": 0,
+            "end": 9.767,
+            "sourceOffset": 0,
+            "looped": false,
+            "narrationLufs": -18.13,
+            "targetMusicLufs": -32.129999999999995,
+            "narrationGain": 1,
+            "ducking": {
+              "threshold": 0.015,
+              "ratio": 6,
+              "attackMs": 15,
+              "releaseMs": 500
+            },
+            "fadeInSeconds": 0.8,
+            "fadeOutSeconds": 2,
+            "changes": "Music trimmed or looped continuously, loudness adjusted, ducked beneath narration, faded at film boundaries."
+          }
+        },
+        "finalCloudFilmAccepted": false
+      }
+    }
+  ],
+  "updatedAt": "2026-11-12T02:26:08.967Z",
+  "network": {
+    "source": "direct",
+    "configured": false
+  },
+  "modelRequests": 0,
+  "youtubeRequests": 0,
+  "cloudJobs": 0
+}

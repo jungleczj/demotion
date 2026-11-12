@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-12T02:54:38.096996+00:00",
+  "deploymentId": "dpl_J6adbWkq75krFLPF8nAUAiAE8K2M",
+  "snapshotId": "snap_uAjMjqxboXJBxAVZHbtp35zlb0ac",
+  "browserVerified": false,
+  "submittedCloudJobs": 0,
+  "checks": {
+    "config": {
+      "status": 200,
+      "render": true,
+      "visionConfigured": true
+    },
+    "voices": {
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    },
+    "publishedScriptLimit": {
+      "asset": "/assets/index-CGp9jg5W.js",
+      "limit25000Present": true,
+      "initialProbeMatchedOnlyInlineNumber": false,
+      "resolvedCharacterLimit": 25000,
+      "matchesLocalBuiltArtifact": true,
+      "sha256": "21a220b78ddba24c32d61312ee055c50c79ecf776ac29a215405052c5e8a041d"
+    },
+    "oversizeRejected": {
+      "status": 400
+    }
+  },
+  "passed": true
+}

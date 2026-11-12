@@ -1,0 +1,32 @@
+✔ a single continuous music bed loops past its source duration, ducks beneath speech and fades at the film end (1733.001625ms)
+ℹ {"fixtureOnly":true,"gapDb":-37.9,"duckedMusicDb":-50.7,"voiceDb":-21.3,"originalVoiceDb":-21.3,"endingDb":-60.2}
+✔ unavailable music preserves the completed narration video and cannot claim a successful mix (42.391292ms)
+✔ optional music preparation aborts its download within its budget without claiming a mix (32.629042ms)
+✔ cloud capability stays false until all resources and explicit activation are present (0.623666ms)
+✔ native API enables Generate only with durable API, sets owner cookie, and accepts full Chinese script bytes (7.119833ms)
+✔ concurrent duplicate submissions across instances create one execution; navigation does not cancel it (0.99925ms)
+✔ explicit cancellation is durable before stop and a late callback cannot resurrect a task (0.616542ms)
+✔ unverified progress cannot expose media; completed video requires a verified object and passed review (0.882834ms)
+✔ worker cannot register another task object or arbitrary filesystem path as its own upload (0.377291ms)
+✔ restart uses committed checkpoint in a new attempt and fences the previous worker (0.657667ms)
+✔ retrying the same failed input retains verified media and resumes its committed checkpoint (0.652834ms)
+✔ cancellation while an execution is starting stops the late VM rather than leaving it running (0.519333ms)
+✔ private checkpoint metadata is not downloadable through the public artifact route (0.589666ms)
+✔ checkpoint hydration checks bytes and hashes and rejects directory traversal (10.963708ms)
+✔ checkpoint snapshots freeze mutable JSON and exclude a partially rendered movie (4.35975ms)
+✔ Sandbox starts a detached worker from a key-free snapshot and injects credentials only into execution (0.248417ms)
+✔ cloud checkpoints retain verified music original and license receipt but exclude partial or changed bytes (7.54975ms)
+✔ private Blob compare-and-swap retries contention rather than losing another update (26.939458ms)
+✔ same-origin private media streams requested bytes and rejects an invalid Range without exposing Blob URLs (0.444625ms)
+✔ real Blob missing-object errors keep their generic Error name and are still treated as an absent file (0.1785ms)
+✔ removing a saved task releases its files without touching other workspaces or escaping the data root (2.200708ms)
+✔ references include registered upload sources and their ancestors but not an unrelated sibling (0.336375ms)
+✔ saved task playback cache keys and aliases retain their corresponding video and thumbnail files (0.513875ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1882.629875

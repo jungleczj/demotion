@@ -70,6 +70,20 @@ test('concurrent duplicate submissions across instances create one execution; na
   assert.equal((await s.manager().list('another-owner')).tasks.length, 0);
   await assert.rejects(s.manager().get('another-owner', tasks[0].id), { status: 404 });
 });
+
+test('native cloud API accepts 25,000 Chinese characters without truncation and rejects 25,001', async () => {
+  const s = setup();
+  const handler = createVercelHandler({ env: {}, cloudAPI: createCloudAPI({ env: { GOMOTION_CLOUD_SECRET: secret }, store: s.store, executor: s.executor, now: s.now }) });
+  const cookie = (await handler(request('/api/config'))).headers.get('set-cookie').split(';')[0];
+  const draft = input(); draft.project.script = '海'.repeat(25000);
+  const accepted = await handler(request('/api/productions', draft, cookie));
+  assert.equal(accepted.status, 202);
+  assert.equal((await accepted.json()).project.script, draft.project.script);
+  assert.equal(s.starts.length, 1);
+  draft.project.id = randomUUID(); draft.project.script += '洋';
+  assert.equal((await handler(request('/api/productions', draft, cookie))).status, 400);
+  assert.equal(s.starts.length, 1, 'oversized input must not start any extra executor');
+});
 test('explicit cancellation is durable before stop and a late callback cannot resurrect a task', async () => {
   const s = setup(), task = await s.manager().submit('owner', input());
   const oldToken = s.auth.worker((await s.store.read(`tasks/${task.id}.json`)).value);
@@ -169,6 +183,23 @@ test('Sandbox starts a detached worker from a key-free snapshot and injects cred
   assert.equal(commands[0].detached, true); assert.equal(commands[0].env.GEMINI_API_KEY, 'private-provider-key');
   assert.doesNotMatch(writes[0].content.toString(), /private-provider-key/);
   assert.equal(result.commandId, 'cmd-offline');
+});
+
+test('cloud checkpoints retain verified music original and license receipt but exclude partial or changed bytes', async () => {
+  const work = await mkdtemp(path.join(os.tmpdir(), 'gomotion-cloud-music-'));
+  try {
+    const record = { kind: 'audio', provider: 'scottbuckley', author: 'Scott Buckley', attribution: 'Offline storage fixture only', url: 'https://www.scottbuckley.com.au/library/fixture.mp3', sourceUrl: 'https://www.scottbuckley.com.au/library/undertow/', license: 'CC BY 4.0', licenseUrl: 'https://creativecommons.org/licenses/by/4.0/', fullDecode: true, sha256: createHash('sha256').update('fixture-audio').digest('hex'), bytes: 13 };
+    const key = createHash('sha256').update(JSON.stringify([record.url, record.license, record.licenseUrl])).digest('hex');
+    const folder = path.join(work, 'music-sources'); await mkdir(folder);
+    await writeFile(path.join(folder, `${key}.audio`), 'fixture-audio');
+    await writeFile(path.join(folder, `${key}.audio.json`), JSON.stringify(record));
+    await writeFile(path.join(folder, `${key}.audio.download.part`), 'unfinished');
+    const task = { status: 'running', project: input().project };
+    const files = await checkpointFiles(work, task);
+    assert.deepEqual(files.map(f => f.relativePath).sort(), [`music-sources/${key}.audio`, `music-sources/${key}.audio.json`]);
+    await writeFile(path.join(folder, `${key}.audio`), 'changed-audio');
+    assert.deepEqual(await checkpointFiles(work, task), []);
+  } finally { await rm(work, {recursive:true, force:true}); }
 });
 test('private Blob compare-and-swap retries contention rather than losing another update', async () => {
   let saved = { count: 0 }, etag = '0', conflicted = false; const options = [];

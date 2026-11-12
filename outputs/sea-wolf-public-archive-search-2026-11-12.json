@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-12T03:03:32.410258+00:00",
+  "videoId": "CSXelOdU8Yc",
+  "fullTranscriptObtained": false,
+  "checks": [
+    {
+      "name": "wayback-watch",
+      "url": "https://archive.org/wayback/available?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DCSXelOdU8Yc",
+      "status": 200,
+      "result": {
+        "closest": {
+          "status": "200",
+          "available": true,
+          "url": "http://web.archive.org/web/20261106095848/https://www.youtube.com/watch?si=Taj5FQkeOtz06L_y&v=CSXelOdU8Yc",
+          "timestamp": "20261106095848"
+        }
+      }
+    },
+    {
+      "name": "archive-id",
+      "url": "https://archive.org/advancedsearch.php?q=%22CSXelOdU8Yc%22&output=json&rows=5&fl%5B%5D=identifier&fl%5B%5D=title",
+      "status": 200,
+      "result": {
+        "numFound": 0,
+        "start": 0,
+        "docs": []
+      }
+    },
+    {
+      "name": "archive-title",
+      "url": "https://archive.org/advancedsearch.php?q=title%3A%28%22Obsolete%22+AND+%22British%22+AND+%22Missile%22%29&output=json&rows=5&fl%5B%5D=identifier&fl%5B%5D=title",
+      "status": 200,
+      "result": {
+        "numFound": 0,
+        "start": 0,
+        "docs": []
+      }
+    }
+  ]
+}

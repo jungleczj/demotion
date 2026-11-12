@@ -25,3 +25,22 @@ test('Generate stays disabled while config is loading or production resources ar
 test('Generate still requires a usable material source', () => {
   assert.match(button({ runtime: 'vercel', render: true }, []), /disabled/);
 });
+
+test('script input and visible counter share the 25,000 character limit', () => {
+  const html = renderToStaticMarkup(createElement(Creator, { config: { render: true }, providers: ['pixabay'], onSources() {}, onGenerate() {}, onError() {} }));
+  assert.match(html, /<textarea[^>]*aria-label="视频脚本"[^>]*maxLength="25000"/i);
+  assert.match(html, /\/ 25,000/);
+  assert.doesNotMatch(html, /\/ 5,000/);
+});
+
+test('a saved 25,000-character draft can generate while an oversized restored draft cannot', () => {
+  const previous = globalThis.localStorage;
+  try {
+    for (const length of [25000, 25001]) {
+      globalThis.localStorage = { getItem: () => JSON.stringify({ script: '海'.repeat(length) }) };
+      const html = button({ render: true });
+      if (length === 25000) assert.doesNotMatch(html, /disabled/);
+      else assert.match(html, /disabled/);
+    }
+  } finally { if (previous === undefined) delete globalThis.localStorage; else globalThis.localStorage = previous; }
+});

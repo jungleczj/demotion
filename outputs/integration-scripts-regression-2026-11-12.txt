@@ -1,0 +1,22 @@
+✔ Vercel routes every API and media URL to the same real backend before the SPA fallback (1.09525ms)
+✔ reject unusable backend undefined (0.095917ms)
+✔ reject unusable backend http://api.example.com (0.04175ms)
+✔ reject unusable backend https://user:hidden@api.example.com (0.030542ms)
+✔ reject unusable backend https://api.example.com/path (0.031583ms)
+✔ reject unusable backend https://api.example.com/?key=hidden (0.028167ms)
+✔ reject unusable backend https://localhost (0.032583ms)
+✔ reject unusable backend https://127.0.0.1 (0.030375ms)
+✔ reject unusable backend https://gomotion-mvp.vercel.app (0.041042ms)
+✔ loopback bridge serves one fixed source, validates ranges and reuses bounded blocks (15.838625ms)
+✔ HTTP 200 is rejected rather than represented as a range (0.416542ms)
+✔ later 200 responses and changed range headers fail closed (2.502917ms)
+✔ enforces cumulative body budget and rejects non-HTTPS or credential sources (1.41125ms)
+✔ caller cancellation closes loopback connections and prevents new reads (1.088541ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 212.342083

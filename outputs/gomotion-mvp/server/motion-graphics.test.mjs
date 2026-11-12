@@ -145,15 +145,55 @@ test('four independent missing scenes can search images together without serial 
   try {
     const scenes = Array.from({ length: 5 }, (_, i) => ({ ...scene, id: `concurrent-${i}` }));
     const project = { id: 'concurrent', format: 'landscape', script: scenes.map((s) => s.text).join(''), scenes, motionStyle: style };
-    const operation = fillMissingWithMotion({ controller: new AbortController(), events: [] }, project, folder, {}, { providers: ['commons'], search: async (query) => { started.push(query); await gate; return { assets: [], warnings: [] }; } });
+    const operation = fillMissingWithMotion({ controller: new AbortController(), events: [] }, project, folder, {}, { providers: ['commons'], planQueries: async () => ({ scenes: scenes.map((item) => ({ sceneId: item.id, subject: { text: '测试图', quote: item.text, aliases: ['test pattern'] }, queries: [{ subjectAlias: 'test pattern', detail: 'blue', quote: item.text }, { subjectAlias: 'test pattern', detail: 'red', quote: item.text }] })) }), search: async (query) => { started.push(query); await gate; return { assets: [], warnings: [] }; } });
     for (let i = 0; i < 20 && !started.length; i++) await new Promise(setImmediate);
     const simultaneous = started.length;
     release();
     const result = await operation;
     assert.equal(simultaneous, 4);
+    assert.equal(started.length, 15, 'detailed and entity-only queries share the same global four catalog slots');
     assert.equal(result.sequenceReport.complete, false);
     assert.equal(result.sequenceReport.missingScenes.length, 5);
   } finally { release(); await rm(folder, { recursive: true, force: true }); }
+});
+
+test('missing-scene batch shares one grounded query plan and records its allowance separately from image reads', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'motion-query-batch-'));
+  try {
+    const scenes = [{ id: 'intro', text: '帝企鹅生活在南极。', duration: 2, query: 'penguin ice' }, { id: 'egg', text: '它们将蛋放在双脚上，', duration: 2, query: 'penguin feet snow' }];
+    const project = { id: 'query-batch', format: 'landscape', script: scenes.map((item) => item.text).join(''), scenes, motionStyle: style };
+    const before = JSON.stringify(project), job = { controller: new AbortController(), events: [], calls: 36 }, queries = [];
+    let planningCalls = 0;
+    const result = await fillMissingWithMotion(job, project, folder, {}, {
+      providers: ['commons'], planQueries: async () => { planningCalls++; return { scenes: scenes.map((item) => ({ sceneId: item.id, subject: { text: '帝企鹅', quote: scenes[0].text, aliases: ['emperor penguin'] }, queries: [{ subjectAlias: 'emperor penguin', detail: item.id === 'egg' ? 'egg feet' : 'Antarctica', quote: item.text }] })) }; },
+      search: async (query) => { queries.push(query); return { assets: [], warnings: [] }; },
+    });
+    assert.equal(planningCalls, 1);
+    assert.deepEqual(queries.sort(), ['emperor penguin', 'emperor penguin', 'emperor penguin Antarctica', 'emperor penguin egg feet']);
+    assert.equal(job.calls, 37);
+    assert.equal(result.sequenceReport.sourceImageQueryBudget.calls, 1);
+    assert.equal(result.sequenceReport.sourceImageBudget.calls, 0);
+    assert.equal(result.sequenceReport.sourceImageBudget.limit, 8);
+    assert.equal(result.sequenceReport.complete, false);
+    assert.equal(JSON.stringify(project), before);
+    assert.deepEqual(result.scenes.map(({ id, text, duration }) => ({ id, text, duration })), scenes.map(({ id, text, duration }) => ({ id, text, duration })));
+  } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
+test('a batch planning quota failure stops before catalogs and preserves unresolved scene evidence', async () => {
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'motion-query-quota-'));
+  try {
+    const project = { id: 'query-quota', format: 'landscape', script: scene.text, scenes: [scene], motionStyle: style };
+    const job = { controller: new AbortController(), events: [], calls: 36 };
+    let catalogs = 0, failure;
+    try { await fillMissingWithMotion(job, project, folder, {}, { providers: ['commons'], planQueries: async () => { throw new Error('HTTP 429 daily quota exhausted'); }, search: async () => { catalogs++; return { assets: [], warnings: [] }; } }); } catch (error) { failure = error; }
+    assert.match(failure?.message || '', /429/);
+    assert.equal(catalogs, 0);
+    assert.equal(job.calls, 37);
+    assert.equal(job.phaseBudgets.sourceImageQueries.status, 'failed');
+    assert.equal(failure.partialProject.sequenceReport.complete, false);
+    assert.deepEqual(failure.partialProject.sequenceReport.missingScenes, [scene.id]);
+  } finally { await rm(folder, { recursive: true, force: true }); }
 });
 
 test('render slots cap active workers and release queued work after a failure', async () => {

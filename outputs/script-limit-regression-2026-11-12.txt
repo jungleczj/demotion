@@ -1,0 +1,38 @@
+✔ cloud capability stays false until all resources and explicit activation are present (1.41725ms)
+✔ native API enables Generate only with durable API, sets owner cookie, and accepts full Chinese script bytes (14.650667ms)
+✔ concurrent duplicate submissions across instances create one execution; navigation does not cancel it (2.383458ms)
+✔ native cloud API accepts 25,000 Chinese characters without truncation and rejects 25,001 (7.551292ms)
+✔ explicit cancellation is durable before stop and a late callback cannot resurrect a task (1.141792ms)
+✔ unverified progress cannot expose media; completed video requires a verified object and passed review (1.9145ms)
+✔ worker cannot register another task object or arbitrary filesystem path as its own upload (0.719042ms)
+✔ restart uses committed checkpoint in a new attempt and fences the previous worker (0.994125ms)
+✔ retrying the same failed input retains verified media and resumes its committed checkpoint (1.129375ms)
+✔ cancellation while an execution is starting stops the late VM rather than leaving it running (0.846166ms)
+✔ private checkpoint metadata is not downloadable through the public artifact route (0.736625ms)
+✔ checkpoint hydration checks bytes and hashes and rejects directory traversal (14.6805ms)
+✔ checkpoint snapshots freeze mutable JSON and exclude a partially rendered movie (7.111375ms)
+✔ Sandbox starts a detached worker from a key-free snapshot and injects credentials only into execution (0.439ms)
+✔ cloud checkpoints retain verified music original and license receipt but exclude partial or changed bytes (14.300291ms)
+✔ private Blob compare-and-swap retries contention rather than losing another update (26.809084ms)
+✔ same-origin private media streams requested bytes and rejects an invalid Range without exposing Blob URLs (0.712333ms)
+✔ real Blob missing-object errors keep their generic Error name and are still treated as an absent file (0.355ms)
+✔ queued production persists independently of UI and only explicit stop cancels it (19.332583ms)
+✔ simultaneous submissions for the same project share one durable task (4.7585ms)
+✔ local production accepts and persists 25,000 characters exactly and rejects 25,001 (7.226416ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (3.86425ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (6.351833ms)
+✔ remaking a project does not reuse a pre-music export (4.7065ms)
+(node:60280) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Generate video becomes enabled when the production API reports a ready durable worker (49.206958ms)
+✔ Generate stays disabled while config is loading or production resources are unavailable (33.020459ms)
+✔ Generate still requires a usable material source (10.321917ms)
+✔ script input and visible counter share the 25,000 character limit (11.194541ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 693.655375

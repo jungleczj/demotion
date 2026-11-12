@@ -11,6 +11,8 @@ import { narrationAudio } from './narration.mjs';
 import { fixtureAudioResponse } from './narration-fixture-utils.mjs';
 import { assets } from './sources.mjs';
 import { playbackPath } from './playback.mjs';
+import { acquireDefaultMusic } from './music-sources.mjs';
+import { SCOTT_BUCKLEY_TRACKS } from './source-adapters/scottbuckley.mjs';
 
 test('a failed render retains the measured time spent in its failing phase', async (t) => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'render-failure-timing-'));
@@ -45,6 +47,12 @@ test('independent render inputs prepare together while the final HD timeline and
   });
   try {
     await run('ffmpeg', ['-y', '-v', 'error', '-f', 'lavfi', '-i', 'testsrc2=size=1280x720:rate=30:duration=2', '-c:v', 'libx264', '-preset', 'ultrafast', '-threads', '2', '-pix_fmt', 'yuv420p', source], t.signal);
+    const musicFixture = path.join(directory, 'music-fixture.wav');
+    await run('ffmpeg', ['-y', '-v', 'error', '-f', 'lavfi', '-i', 'sine=frequency=220:duration=1.25', musicFixture], t.signal);
+    const musicBytes = await readFile(musicFixture);
+    await acquireDefaultMusic(path.join(directory, 'music-sources'), { signal: t.signal, fetch: async (url, options) => url === SCOTT_BUCKLEY_TRACKS[0].url
+      ? new Response(options.method === 'HEAD' ? null : musicBytes, { headers: { 'Content-Length': String(musicBytes.length) } })
+      : new Response(`<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></p><a href="${SCOTT_BUCKLEY_TRACKS[0].url}">MP3</a>`) });
     project.scenes = ids.map((id, index) => {
       const asset = { id, sourceId: id.slice(7), provider: 'coverr', title: `Local scene ${index}`, description: '', kind: 'video', width: 1280, height: 720, duration: 2, localPath: source, sourceUrl: 'https://coverr.co/', author: 'offline fixture', license: 'fixture only', licenseUrl: 'https://coverr.co/license' };
       assets.set(id, asset);
@@ -62,6 +70,11 @@ test('independent render inputs prepare together while the final HD timeline and
     const manifest = JSON.parse(await readFile(path.join(directory, job.id, 'sources.json'), 'utf8'));
     assert.deepEqual(manifest.scenes.map((s) => s.id), ['scene-0', 'scene-1', 'scene-2', 'scene-3']);
     assert.equal(new Set(manifest.scenes.map((s) => s.narrationTrackKey)).size, 1);
+    assert.equal(manifest.music.status, 'mixed', 'the default render must actually include the prepared music');
+    assert.equal(job.music.status, 'mixed');
+    assert.equal(manifest.music.mix.continuous, true);
+    assert.equal(manifest.music.mix.start, 0);
+    assert.equal(manifest.music.mix.end, total);
     assert.equal(manifest.scenes[0].start, 0);
     manifest.scenes.slice(1).forEach((scene, i) => assert.equal(scene.start, manifest.scenes[i].end));
     const output = path.join(directory, job.id, 'video.mp4'), info = await probe(output, t.signal);

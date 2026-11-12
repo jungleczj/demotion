@@ -1,0 +1,70 @@
+{
+  "at": "2026-11-12T02:33:37.712Z",
+  "scene": {
+    "id": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "text": "它们将蛋放在双脚上，"
+  },
+  "historicalProject": true,
+  "submittedProduction": false,
+  "cancelledUserTasks": 0,
+  "passed": false,
+  "queryPlanning": {
+    "plans": [
+      {
+        "sceneId": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+        "mode": "original-text",
+        "subject": null,
+        "queries": [
+          "并非所有鸟类，都属于天空。 在地球的最南端，一群鸟类放弃了飞行，却征服了另一片广阔的世界。 它们，就是帝企鹅。 南极的冬季，气温可能降 而企鹅爸爸，则承担起孵化的责任。 它们将蛋放在双脚上， 用腹部的育儿袋保护着这个脆弱的新生命。",
+          "penguin feet snow"
+        ]
+      }
+    ],
+    "budget": {
+      "calls": 1,
+      "limit": 1,
+      "timeoutMs": 12000,
+      "maxQueriesPerScene": 3,
+      "status": "fallback",
+      "durationMs": 2987,
+      "plannedScenes": 0
+    },
+    "warnings": [
+      "baac21f7-5c79-44ca-9093-598ed9697eeb：图片查询细节缺少当前镜头或邻近原文依据，已有限回退原文查询"
+    ]
+  },
+  "error": "Live query planning did not complete; image acquisition was not started",
+  "originalProjectUnchanged": true,
+  "calls": 1,
+  "events": [
+    {
+      "stage": "source-image-query-plan",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "completed",
+      "inputType": "text",
+      "mediaCount": 0,
+      "at": "2026-11-12T02:33:37.714Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 635,
+        "outputTokens": 167,
+        "totalTokens": 802
+      },
+      "durationMs": 2985
+    },
+    {
+      "stage": "source-image-query-budget",
+      "engine": "source-image-query-planner",
+      "inputType": "text",
+      "mediaCount": 0,
+      "calls": 1,
+      "limit": 1,
+      "timeoutMs": 12000,
+      "maxQueriesPerScene": 3,
+      "status": "fallback",
+      "durationMs": 2987,
+      "plannedScenes": 0
+    }
+  ]
+}
