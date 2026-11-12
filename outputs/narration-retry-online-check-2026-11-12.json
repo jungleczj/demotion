@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-12T07:44:17.676Z",
+  "site": "https://gomotion-mvp.vercel.app",
+  "network": {
+    "source": "macOS-system",
+    "configured": true,
+    "address": "http://127.0.0.1:7897"
+  },
+  "checks": [
+    {
+      "route": "/api/config",
+      "status": 200,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true
+    },
+    {
+      "route": "/api/voices",
+      "status": 200,
+      "voiceCount": 30,
+      "languageCount": 15
+    }
+  ],
+  "generatedAudioRequests": 0,
+  "generatedVideoRequests": 0,
+  "directNetworkAttempt": "Earlier direct request hit a DNS/connect timeout; these checks use the application standard system proxy."
+}

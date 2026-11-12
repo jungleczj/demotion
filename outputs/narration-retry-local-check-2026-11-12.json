@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-12T07:42:54.498Z",
+  "healthStatus": 200,
+  "configStatus": 200,
+  "render": true,
+  "voicesStatus": 200,
+  "voiceCount": 30,
+  "languageCount": 15,
+  "taskStatus": 200,
+  "previousTaskIds": [
+    "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+    "4504a49c-f4dd-449a-8410-9a773cacede7",
+    "841647ad-7113-47b1-b63f-bfa484645e36"
+  ],
+  "currentTaskIds": [
+    "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+    "4504a49c-f4dd-449a-8410-9a773cacede7",
+    "841647ad-7113-47b1-b63f-bfa484645e36"
+  ],
+  "allPreviousTasksPreserved": true,
+  "activeTasks": 0,
+  "cancelledByThisCheck": 0
+}

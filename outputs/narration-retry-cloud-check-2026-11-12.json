@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-12T03:37:02.895Z",
+  "snapshotId": "snap_EfNKLcTju9qGW58A0Y38j5dWXKg0",
+  "passed": true,
+  "narrationRequests": 1,
+  "unexpectedSearchRequests": 0,
+  "stalledAttemptRecovered": true,
+  "providerCalls": 0,
+  "scope": "Offline transport and real orchestration in Linux; no real speech or production job."
+}

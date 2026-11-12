@@ -36,3 +36,14 @@
 - 25,000字符长片：目前单条录音仍有600秒校验上限，提供方还有输入/输出token限制。需要在保持原文与同一声音、检查拼接边界的前提下实现长录音编排，并完成真实长片验收，不能只放大上限或用短片通过替代。
 
 官方规格：[当前模型](https://aistudio.google.com/docs/models/gemini-2.5-flash-preview-tts)、[配音指南](https://aistudio.google.com/docs/speech-generation)。
+
+## 发布及15:44补验
+
+- 修复已提交并推送：[84307c3](https://github.com/jungleczj/demotion/commit/84307c3d3fb1d072d45b0e1442f5d8512b0ac910)。GitHub关联的正式部署`dpl_7aBn7dS2GoGR7pTqcDmqgX5VxKQW`为READY，提交SHA一致；没有额外手动触发第二次相同部署。[部署记录](narration-retry-deployment-state-2026-11-12.json)。
+- 正式环境执行快照已更新；新Linux实例中实际运行离线编排，确认配音拒绝只请求1次、不触发素材补搜，单次停滞可在总预算内恢复。验收实例已经停止，提供方调用0，未停止用户任务。[Linux行为验收](narration-retry-cloud-check-2026-11-12.json)。
+- 本地服务在确认0个运行/排队任务后重载；15:42补验健康、配置、声音、任务接口均200，30声音/15语言，3个既有任务的ID与状态全部保留，取消0项。[本地补验](narration-retry-local-check-2026-11-12.json)。前次该项因自动审批用量上限没有执行，本次在提示的恢复时间后已完成原检查。
+- 15:44正式站配置和声音接口仍为200，`render=true`，30声音/15语言。直连先遇本机DNS/连接超时；使用应用现有系统代理后通过。没有调用配音或视频生成。[正式站补验](narration-retry-online-check-2026-11-12.json)。
+- 15:43浏览器控制仍返回`Local browser use is disabled in Work settings`，因此没有把接口检查记成按钮点击、切镜录屏或自然度听审通过。
+- 当前没有正在运行的子智能体：持久目录与素材相关性两路已结束；配乐子智能体此前用量错误结束，其集成已由主代理接手。15:42本地无活动制作任务；不据此推断其他浏览器会话的云端任务状态。
+
+本小时没有新增实现或完整成片；补齐的是发布、任务保留和目录接口验收。最近真实配音仍只有11:27那次402失败记录，尚无额度恢复确认，不重复发起收费生成来探测。
