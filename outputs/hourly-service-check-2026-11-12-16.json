@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-11-12T08:53:59.257Z",
+  "checks": [
+    {
+      "name": "localHealth",
+      "httpStatus": 200,
+      "durationMs": 10
+    },
+    {
+      "name": "localTasks",
+      "httpStatus": 200,
+      "durationMs": 14,
+      "tasks": [
+        {
+          "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+          "status": "done"
+        },
+        {
+          "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+          "status": "error"
+        },
+        {
+          "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+          "status": "error"
+        }
+      ],
+      "active": 0
+    },
+    {
+      "name": "productionConfig",
+      "httpStatus": 200,
+      "durationMs": 518,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true
+    },
+    {
+      "name": "productionVoices",
+      "httpStatus": 200,
+      "durationMs": 563,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "newModelOrFilmRequests": 0,
+  "userTasksCancelled": 0,
+  "mainServiceRestarted": false
+}

@@ -1,0 +1,26 @@
+✔ removing a saved task releases its files without touching other workspaces or escaping the data root (1.755541ms)
+✔ references include registered upload sources and their ancestors but not an unrelated sibling (0.310834ms)
+✔ saved task playback cache keys and aliases retain their corresponding video and thumbnail files (0.452959ms)
+✔ mixed music retains its original and license receipt until the saved task is removed (0.512333ms)
+✔ saved partial narration keeps only its own chunk directory and complete track receipt until removal (0.467667ms)
+✔ chunk manifest binds every part to the exact script, selected voice, language/style and model (2.79275ms)
+✔ cloud checkpoint carries only attributable complete chunk WAV/receipt pairs and can hydrate them offline (201.352292ms)
+✔ a corrupt manifest discards its partial cache instead of making an unrelated recording reusable (2.029166ms)
+✔ queued cancellation frees no other caller and never starts its provider work (1.677ms)
+✔ continuous WAV assembly preserves every PCM sample in the supplied chunk order (119.733541ms)
+✔ a long script is requested in bounded exact-text chunks with the selected voice (497.805625ms)
+✔ 25,000 characters split at natural boundaries without altering Unicode, whitespace, or punctuation (19.615625ms)
+✔ resume reuses completed chunks and regenerates only a corrupt partial (1032.864333ms)
+✔ a long assembled WAV exceeding 600 seconds is complete and reused without provider requests (776.230166ms)
+✔ long recordings share bounded work while cancellation removes only its subscriber (387.271584ms)
+✔ an already aligned whole-film recording survives the chunking upgrade without another paid request (443.987542ms)
+✔ a production failure persists completed narration progress without publishing an incomplete track (90.950334ms)
+✔ chunk pruning protects active and persisted partial work and removes expired abandoned directories (3.2585ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3342.5125

@@ -23,13 +23,13 @@ const applySequence = (project, result) => {
   return { ...project, narrationTrack: result.narrationTrack, sequenceReport: result.report, visualError: undefined, scenes: (result.scenePlan || project.scenes).map((s, index) => ({ ...s, ...patches.get(s.id), index, status: 'done' })) };
 };
 
-export async function createProductionManager({ work, config, analyses, exports, saveAssets }) {
+export async function createProductionManager({ work, config, analyses, exports, saveAssets, autoStart = true }) {
   const directory = path.join(work, 'productions');
   await mkdir(directory, { recursive: true });
   const file = path.join(directory, 'jobs.json');
   const tasks = new Map();
   const submissions = new Map();
-  let clock = Date.now(), active = false, billingBlocked = false, writeQueue = Promise.resolve();
+  let clock = Date.now(), active = false, billingBlocked = false, started = autoStart, writeQueue = Promise.resolve();
   const bump = (task) => { task.updatedAt = clock = Math.max(Date.now(), clock + 1); };
   const view = (task) => {
     const { controller, errorDetail, timings, ...value } = task;
@@ -70,7 +70,17 @@ export async function createProductionManager({ work, config, analyses, exports,
     let stage, renderJob, syncTimer;
     // Bound total execution; navigation is never a reason to cancel.
     const deadline = setTimeout(() => task.controller.abort(new Error('制作时间已达到本次上限')), 40 * 60000);
-    const checkpoint = async () => { task.estimate = productionEstimate(task.project, task.retry || 0); bump(task); await saveAssets(); await persist(); };
+    const syncNarrationProgress = () => {
+      if (stage?.narrationProgress) task.project = { ...task.project, narrationWork: structuredClone(stage.narrationProgress) };
+      if (stage?.narrationTrack) {
+        if (task.project.narrationTrack?.key !== stage.narrationTrack.key) {
+          const spans = new Map(stage.narrationTrack.scenes.map((s) => [s.id, s]));
+          task.project = { ...task.project, narrationTrack: stage.narrationTrack, scenes: task.project.scenes.map((s) => spans.has(s.id) ? { ...s, duration: spans.get(s.id).end - spans.get(s.id).start } : s) };
+        }
+        if (task.project.narrationWork?.key !== stage.narrationTrack.key) delete task.project.narrationWork;
+      }
+    };
+    const checkpoint = async () => { syncNarrationProgress(); task.estimate = productionEstimate(task.project, task.retry || 0); bump(task); await saveAssets(); await persist(); };
     try {
       task.timings ||= {}; const executionStart = Date.now();
       task.status = 'running'; task.startedAt ||= Date.now(); task.message = '正在制作视频…';
@@ -107,10 +117,7 @@ export async function createProductionManager({ work, config, analyses, exports,
       syncTimer = setInterval(() => {
         task.retry = stage.retry || 0;
         task.progress = Math.max(task.progress, Math.min(75, 10 + Math.round((stage.progress || 0) * .65)));
-        if (stage.narrationTrack && task.project.narrationTrack?.key !== stage.narrationTrack.key) {
-          const spans = new Map(stage.narrationTrack.scenes.map((s) => [s.id, s]));
-          task.project = { ...task.project, narrationTrack: stage.narrationTrack, scenes: task.project.scenes.map((s) => spans.has(s.id) ? { ...s, duration: spans.get(s.id).end - spans.get(s.id).start } : s) };
-        }
+        syncNarrationProgress();
         task.estimate = productionEstimate(task.project, task.retry); bump(task);
         void persist().catch(() => {});
       }, 2000);
@@ -163,6 +170,7 @@ export async function createProductionManager({ work, config, analyses, exports,
       if (/402|prepayment.*depleted|预付费额度/i.test(error?.message || '')) { billingBlocked = true; for (const waiting of tasks.values()) if (waiting.status === 'queued') { waiting.message = '服务额度暂不可用，恢复连接后继续制作'; bump(waiting); } }
     } finally {
       clearTimeout(deadline); clearInterval(syncTimer);
+      syncNarrationProgress();
       if (stage?.status === 'running') stage.status = signal.aborted ? 'cancelled' : 'error';
       if (renderJob?.status === 'rendering') renderJob.status = signal.aborted ? 'cancelled' : 'error';
       task.finishedAt = Date.now(); bump(task);
@@ -170,7 +178,7 @@ export async function createProductionManager({ work, config, analyses, exports,
     }
   }
   async function pump() {
-    if (active || billingBlocked || busy() || !visionConfigured(config)) return;
+    if (!started || active || billingBlocked || busy() || !visionConfigured(config)) return;
     const next = [...tasks.values()].find((t) => t.status === 'queued');
     if (!next) return;
     active = true;
@@ -194,6 +202,7 @@ export async function createProductionManager({ work, config, analyses, exports,
     task.estimate = productionEstimate(task.project); return true;
   };
   const manager = {
+    start() { started = true; void pump().catch(() => {}); },
     resume() { billingBlocked = false; void pump().catch(() => {}); },
     async recover(input) {
       let saved;

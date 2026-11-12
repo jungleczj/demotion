@@ -1,0 +1,58 @@
+✔ cloud capability stays false until all resources and explicit activation are present (0.571208ms)
+✔ native API enables Generate only with durable API, sets owner cookie, and accepts full Chinese script bytes (5.979083ms)
+✔ concurrent duplicate submissions across instances create one execution; navigation does not cancel it (0.904167ms)
+✔ native cloud API accepts 25,000 Chinese characters without truncation and rejects 25,001 (3.175708ms)
+✔ explicit cancellation is durable before stop and a late callback cannot resurrect a task (0.422292ms)
+✔ unverified progress cannot expose media; completed video requires a verified object and passed review (0.755542ms)
+✔ worker cannot register another task object or arbitrary filesystem path as its own upload (0.308083ms)
+✔ restart uses committed checkpoint in a new attempt and fences the previous worker (0.437334ms)
+✔ retrying the same failed input retains verified media and resumes its committed checkpoint (0.505041ms)
+✔ cancellation while an execution is starting stops the late VM rather than leaving it running (0.360208ms)
+✔ private checkpoint metadata is not downloadable through the public artifact route (0.256209ms)
+✖ 25,000-character narration checkpoints support all chunk receipts and still reject an oversized file list (10.292208ms)
+✖ cloud worker retries terminal drafts with their saved project and reuses an already active task (0.62075ms)
+✔ checkpoint hydration checks bytes and hashes and rejects directory traversal (6.3625ms)
+✔ checkpoint snapshots freeze mutable JSON and exclude a partially rendered movie (2.71725ms)
+✔ Sandbox starts a detached worker from a key-free snapshot and injects credentials only into execution (0.164375ms)
+✔ cloud checkpoints retain verified music original and license receipt but exclude partial or changed bytes (4.934959ms)
+✔ private Blob compare-and-swap retries contention rather than losing another update (27.614541ms)
+✔ same-origin private media streams requested bytes and rejects an invalid Range without exposing Blob URLs (0.293917ms)
+✔ real Blob missing-object errors keep their generic Error name and are still treated as an absent file (0.150666ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 18
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 327.172334
+
+✖ failing tests:
+
+test at server/cloud-production.test.mjs:155:1
+✖ 25,000-character narration checkpoints support all chunk receipts and still reject an oversized file list (10.292208ms)
+  Error: 文件清单无效
+      at error (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud/productions.mjs:9:56)
+      at Object.callback (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud/productions.mjs:157:80)
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud-production.test.mjs:165:18)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    status: 400
+  }
+
+test at server/cloud-production.test.mjs:173:1
+✖ cloud worker retries terminal drafts with their saved project and reuses an already active task (0.62075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'queued'
+  
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud-production.test.mjs:183:12)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'queued',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

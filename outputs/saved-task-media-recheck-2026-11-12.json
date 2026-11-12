@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-12T08:57:46.408Z",
+  "checks": [
+    {
+      "taskId": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+      "status": "done",
+      "media": [
+        {
+          "kind": "narration",
+          "exists": true,
+          "bytes": 1397814
+        },
+        {
+          "kind": "export",
+          "exists": true,
+          "bytes": 9407463
+        }
+      ]
+    },
+    {
+      "taskId": "4504a49c-f4dd-449a-8410-9a773cacede7",
+      "status": "error",
+      "media": []
+    },
+    {
+      "taskId": "841647ad-7113-47b1-b63f-bfa484645e36",
+      "status": "error",
+      "media": []
+    }
+  ],
+  "writesToUserMedia": 0
+}

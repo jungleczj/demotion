@@ -21,7 +21,7 @@ export function createCloudAPI({ env = process.env, store, executor, now } = {})
         return new Response(encoded, { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store', ...headers } });
       };
       const callback = /^\/api\/cloud-callback\/([a-f0-9-]{36})$/.exec(route);
-      if (callback && method === 'POST') return reply(await manager.callback(request, callback[1], await body(1_000_000)));
+      if (callback && method === 'POST') return reply(await manager.callback(request, callback[1], await body(MAX_CHECKPOINT_BYTES)));
       const { owner, cookie } = auth.session(request);
       const json = (value, status) => reply(value, status, cookie ? { 'set-cookie': cookie } : {});
       const redirect = (target) => target instanceof Response ? target : new Response(null, { status: 307, headers: { location: target, 'cache-control': 'private, no-store', ...(cookie ? { 'set-cookie': cookie } : {}) } });
@@ -63,3 +63,4 @@ export function createCloudAPI({ env = process.env, store, executor, now } = {})
     },
   };
 }
+import { MAX_CHECKPOINT_BYTES } from './checkpoint-limits.mjs';

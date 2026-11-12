@@ -1,0 +1,13 @@
+{
+  "snapshotId": "snap_6DlDAEidNeeLG7j1pr8LigEgnBW8",
+  "sourceFiles": 64,
+  "createdAt": "2026-11-12T09:06:23.884Z",
+  "providerCalls": 0,
+  "musicCache": {
+    "id": "scottbuckley:undertow",
+    "bytes": 10000906,
+    "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+    "license": "CC BY 4.0",
+    "cloudCacheDecodePassed": true
+  }
+}

@@ -1,0 +1,48 @@
+✖ an occupied port exits before restoring work, cleaning files or calling a provider (4026.477959ms)
+✖ production execution waits for explicit startup readiness, including after resume (113.23025ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4237.684041
+
+✖ failing tests:
+
+test at server/startup-guard.test.mjs:19:1
+✖ an occupied port exits before restoring work, cleaning files or calling a provider (4026.477959ms)
+  AssertionError [ERR_ASSERTION]: failed duplicate service must exit instead of leaving its task pump alive: WebSocket server error: Port 24678 is already in use
+  端口 64795 已被占用，请设置 PORT 后重启。
+  
+  
+  null !== 1
+  
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/startup-guard.test.mjs:37:12)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server/startup-guard.test.mjs:50:1
+✖ production execution waits for explicit startup readiness, including after resume (113.23025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'queued'
+  
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/startup-guard.test.mjs:61:12)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'queued',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,19 @@
+✔ deployed Node backend serves config and voices, retains saved exports and restores queued tasks after restart (316.810625ms)
+ℹ {"configStatus":200,"voicesStatus":200,"voiceCount":30,"voicesMs":1.42,"queuedTaskRestored":true,"savedExportAndSourceFilesRetained":true,"orphanedExpiredDirectoryRemoved":true,"realModelRequests":0,"mainServiceRestarted":false}
+✔ queued production persists independently of UI and only explicit stop cancels it (7.228958ms)
+✔ simultaneous submissions for the same project share one durable task (1.384375ms)
+✔ local production accepts and persists 25,000 characters exactly and rejects 25,001 (3.658584ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (1.5495ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (1.612ms)
+✔ remaking a project does not reuse a pre-music export (1.460333ms)
+✔ an occupied port exits before restoring work, cleaning files or calling a provider (139.15ms)
+ℹ {"duplicateExitCode":1,"taskFileUnchanged":true,"cleanupNotStarted":true,"providerRequests":0,"mainServiceRestarted":false}
+✔ production execution waits for explicit startup readiness, including after resume (117.179459ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4105.981042

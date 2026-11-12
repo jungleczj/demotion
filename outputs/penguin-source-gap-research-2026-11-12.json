@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-11-12T08:54:29.366289+00:00",
+  "researchDate": "2026-11-12",
+  "scene": {
+    "id": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "text": "它们将蛋放在双脚上，",
+    "subject": "帝企鹅",
+    "scientificName": "Aptenodytes forsteri",
+    "subjectQuote": "它们，就是帝企鹅。"
+  },
+  "scope": {
+    "researchOnly": true,
+    "providerOrPaidModelCalls": 0,
+    "applicationAIReviewCalls": 0,
+    "productionJobsSubmitted": 0,
+    "serviceRestarts": 0,
+    "cloudResourcesOpenedOrCreated": 0,
+    "gitOperations": 0,
+    "codeChanged": false,
+    "narrationChanged": false,
+    "task11Accepted": false,
+    "candidateImageFilesDownloaded": 2,
+    "distinctIllustrationsDownloaded": 1,
+    "maxCandidateDownloads": 3,
+    "perFileByteLimit": 10000000
+  },
+  "finding": {
+    "status": "source_backed_scientific_illustration_candidate_found_not_application_accepted",
+    "realPhotoFoundWithBothVisibleEggAndVerifiedReusableRights": false,
+    "manualSubjectAndStateMatch": true,
+    "showsTemporalPlacementAction": false,
+    "rightsStatus": "Commons explicitly marks the original as PD-US-NSF; primary scientific publication republishes the figure under an article CC BY 4.0 statement with no figure-specific exclusion visible. Original USAP item rights record could not be retrieved; NSF current general visual-media policy requires item-specific checking. Preserve all evidence and do not turn this into an application approval.",
+    "applicationAcceptance": "not_run",
+    "wholeFilmAcceptance": false
+  },
+  "work": {
+    "title": "Lifecycle of the Emperor Penguin",
+    "author": "Zina Deretsky, National Science Foundation",
+    "year": 2006,
+    "medium": "published scientific explanatory illustration",
+    "canonicalSourcePage": "https://commons.wikimedia.org/wiki/File:PENGUIN_LIFECYCLE_H.JPG",
+    "originalInstitutionItemPage": "https://photolibrary.usap.gov/PhotoDetails.aspx?filename=PENGUIN_LIFECYCLE_H.JPG",
+    "publication": {
+      "title": "Emperor Penguins on Thin Sea Ice",
+      "authors": [
+        "Stephanie Jenouvrier",
+        "Michelle La Rue",
+        "Philip Trathan",
+        "Christophe Barbraud"
+      ],
+      "published": "2023-11-02",
+      "doi": "10.3389/frym.2023.1052262",
+      "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1052262",
+      "figure": 1,
+      "credit": "Zina Deretsky, National Science Foundation",
+      "articleLicense": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "figureSpecificExclusionFound": false,
+      "figureLicenseScopeCaveat": "Publisher article-wide license and figure credit were observed. An item-specific original NSF permission confirmation was not obtained."
+    },
+    "files": [
+      {
+        "id": "commons-original",
+        "path": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/source-gap-research/candidate-1-nsf-penguin-lifecycle-original.jpg",
+        "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/PENGUIN_LIFECYCLE_H.JPG",
+        "bytes": 1304056,
+        "sha256": "4950715fe9969e6e1067398610828d2beecfb96e600369eae9293484e28eb00f",
+        "mime": "image/jpeg",
+        "width": 1800,
+        "height": 1216,
+        "originalPixelsPreserved": true,
+        "viewedWith": "view_image",
+        "manualInspection": "completed",
+        "preferredForClarity": true
+      },
+      {
+        "id": "frontiers-published-figure-1",
+        "path": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/source-gap-research/candidate-2-frontiers-figure-1-published.jpg",
+        "downloadUrl": "https://www.frontiersin.org/files/Articles/1052262/frym-11-1052262-HTML-r2/image_m/figure-1.jpg",
+        "bytes": 383953,
+        "sha256": "d0994adf394e296965d5805678fe3a21d40020208b42cd9438a72c171aecd45c",
+        "mime": "image/jpeg",
+        "width": 765,
+        "height": 518,
+        "originalPixelsPreserved": true,
+        "viewedWith": "view_image",
+        "manualInspection": "completed",
+        "sameUnderlyingWorkAs": "commons-original",
+        "preferredForClarity": false
+      }
+    ],
+    "sourcePageCapture": {
+      "path": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/source-gap-research/frontiers-article-source-page.html",
+      "bytes": 96439,
+      "sha256": "b6aab556f31219c2dcd6109cea801e4fdf7259d4b4d0067cae5bef9a7f4e2c25",
+      "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1052262"
+    }
+  },
+  "rightsEvidence": [
+    {
+      "kind": "specific_catalog_rights_record",
+      "url": "https://commons.wikimedia.org/wiki/File:PENGUIN_LIFECYCLE_H.JPG",
+      "observedLicense": "Public domain / PD-US-NSF",
+      "basis": "Catalog identifies creator and treats work as created in official NSF duties. This is a specific catalog declaration, not a direct newly obtained NSF confirmation.",
+      "lastRevisionUrl": "https://commons.wikimedia.org/w/index.php?title=File:PENGUIN_LIFECYCLE_H.JPG&oldid=956453316"
+    },
+    {
+      "kind": "primary_scientific_publication",
+      "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1052262",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "observed": "Article copyright statement links CC BY 4.0; Figure 1 expressly credits Deretsky/NSF and links the USAP item. No figure-specific restrictive license or excluded-credit clause was visible.",
+      "suggestedAttribution": "Zina Deretsky / National Science Foundation, Lifecycle of the Emperor Penguin (2006), reproduced as Fig. 1 in Jenouvrier et al. (2023), doi:10.3389/frym.2023.1052262. Article: CC BY 4.0. State any permitted presentation changes."
+    },
+    {
+      "kind": "primary_general_policy_limitation",
+      "url": "https://www.nsf.gov/policies/digital",
+      "observed": "Current NSF visual-media policy distinguishes public-domain assets, contractor work, and third-party assets and says use permission is determined case by case. The fact that an image is on a government website alone is not clearance."
+    },
+    {
+      "kind": "unavailable_original_rights_record",
+      "url": "https://photolibrary.usap.gov/PhotoDetails.aspx?filename=PENGUIN_LIFECYCLE_H.JPG",
+      "webToolResult": "fetch error; library home returned 502",
+      "directPublicFetchResult": "SSL unexpected EOF",
+      "bypassedAccessRestriction": false,
+      "permissionRequestSent": false
+    }
+  ],
+  "manualVisualInspection": {
+    "reviewer": "research subagent visual inspection of actual downloaded files; not application AI review",
+    "fullImageObserved": "A dense annual lifecycle illustration on sea ice with blue routes, adult emperor penguin drawings, chicks and English seasonal labels.",
+    "relevantRegionApproxNormalized": [
+      0.145,
+      0.555,
+      0.165,
+      0.255
+    ],
+    "relevantRegionCoordinateStatus": "Approximate visual location for research only; not approved application annotations.",
+    "observedRelevantPixels": "Lower-left incubating-adult group includes three adult penguins. Small pale ovals are shown at their foot/belly boundary and emphasized by existing red dashed circles and arrows to an enlarged egg inset. The original graphic labels this incubation stage.",
+    "specificStateSupported": "A published emperor-penguin incubation schematic explicitly locates the egg at the feet; this is more specific than a generic standing penguin or chick photograph.",
+    "limitations": [
+      "This is an illustration, not photographic documentation.",
+      "The small foot-level eggs and feet occupy few pixels within a large multistage graphic; clarity after target-format fitting remains unverified.",
+      "The magnified egg next to the group is a callout; it must not be presented as an egg lying free on the ice.",
+      "The adjacent hatching region contains a chick and must not be used as evidence of an unhatched egg.",
+      "A still schematic supports position/incubation; it does not show the temporal act of laying, transferring or moving an egg.",
+      "The original film frame/style was not reconstructed or verified in this research."
+    ]
+  },
+  "applicationIntegrationSuggestions": {
+    "notExecuted": true,
+    "suggestedCatalogQueries": [
+      "emperor penguin lifecycle",
+      "PENGUIN LIFECYCLE H",
+      "Zina Deretsky emperor penguin"
+    ],
+    "pipelineNotes": [
+      "Keep the original scene text, narration and timing.",
+      "Only submit source evidence through the existing full-file acquisition, decode, hashes, rights and actual-image-review gates once calls are authorized/available.",
+      "Do not synthesize a contentReview or an accepted source-annotation plan from this research.",
+      "Current implementation keeps the full source image fixed and requires 2–4 useful distinct regions with exact scene-substring labels; this very short scene and tiny eggs may legitimately fail.",
+      "Use only existing source shapes/callouts if a later reviewer accepts the image; no invented egg, feet, transfer animation, new causal arrows, or reconstructed anatomy.",
+      "Preserve the source and copyright marks. Prefer full original resolution over the lower-resolution journal rendering if the recorded rights basis is accepted.",
+      "If the rights basis or actual pixel review is rejected, retain the missing scene. Do not force acceptance or replace it with king penguins, chicks, egg specimens, or decorative graphics."
+    ]
+  },
+  "otherSourceLeadsNotDownloaded": [
+    {
+      "url": "https://www.discoverwildlife.com/photo-galleries/penguin-a-story-of-survival",
+      "reason": "Specific emperor egg-on-feet photograph described and credited to Stefan Christmann, but commercial/all-rights-reserved publishing context; no reusable CC/public-domain terms obtained."
+    },
+    {
+      "url": "https://www.superstock.com/asset/close-up-shot-emperor-penguin-aptenodytes-forsteri-feet-before-male/4070-V20300693",
+      "reason": "Commercial licensed video footage; excluded from this nonvideo and open-rights research."
+    },
+    {
+      "url": "https://www.fws.gov/media/emperor-penguin",
+      "reason": "Official public-domain record identifies two adults with young; no visible-egg claim in source metadata. Not downloaded as a solution to this egg-specific gap."
+    },
+    {
+      "url": "https://collections.museumsvictoria.com.au/specimens/420152",
+      "reason": "Verified CC BY emperor egg specimen photograph; no adult feet, therefore rejected at source-description stage."
+    },
+    {
+      "url": "https://penguinsblog.com/where-do-penguins-keep-their-eggs/",
+      "reason": "Blog labels Chris Pearson image as emperor; another reuse identifies it as king penguin. Not a reliable emperor source and not downloaded."
+    },
+    {
+      "url": "https://www.treehugger.com/masterfully-painted-eggs-straight-from-the-bird-4862517",
+      "reason": "Identifies the Chris Pearson image as king penguin, supporting rejection of the mislabeled blog lead."
+    }
+  ],
+  "existingApplicationEvidenceReviewed": [
+    "outputs/source-relevance-progress-2026-11-12.md",
+    "outputs/source-image-diagnosis-2026-11-11.md",
+    "outputs/source-relevance-live-2026-11-12.json",
+    "outputs/source-relevance-reused-query-live-2026-11-12.json",
+    "outputs/source-relevance-broad-query-live-2026-11-12.json"
+  ],
+  "remainingGap": "A relevant published illustration is now available with explicit Commons PD and publisher CC BY evidence, but source-specific NSF confirmation was not retrievable, application actual-pixel/rights/annotation review was not run, target-format clarity/style was not verified, and the full historical film is not accepted."
+}

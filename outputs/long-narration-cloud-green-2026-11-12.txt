@@ -1,0 +1,44 @@
+✔ cloud capability stays false until all resources and explicit activation are present (1.681833ms)
+✔ native API enables Generate only with durable API, sets owner cookie, and accepts full Chinese script bytes (8.290167ms)
+✔ concurrent duplicate submissions across instances create one execution; navigation does not cancel it (1.05975ms)
+✔ native cloud API accepts 25,000 Chinese characters without truncation and rejects 25,001 (3.659958ms)
+✔ explicit cancellation is durable before stop and a late callback cannot resurrect a task (0.450333ms)
+✔ unverified progress cannot expose media; completed video requires a verified object and passed review (0.806583ms)
+✔ worker cannot register another task object or arbitrary filesystem path as its own upload (0.300708ms)
+✔ restart uses committed checkpoint in a new attempt and fences the previous worker (0.670417ms)
+✔ retrying the same failed input retains verified media and resumes its committed checkpoint (0.545292ms)
+✔ cancellation while an execution is starting stops the late VM rather than leaving it running (0.474916ms)
+✔ private checkpoint metadata is not downloadable through the public artifact route (0.268542ms)
+✔ 25,000-character narration checkpoints support all chunk receipts and still reject an oversized file list (16.81675ms)
+✔ cloud worker retries terminal drafts with their saved project and reuses an already active task (0.647542ms)
+✔ checkpoint hydration checks bytes and hashes and rejects directory traversal (9.878959ms)
+✔ checkpoint snapshots freeze mutable JSON and exclude a partially rendered movie (4.22825ms)
+✔ Sandbox starts a detached worker from a key-free snapshot and injects credentials only into execution (0.38225ms)
+✔ cloud checkpoints retain verified music original and license receipt but exclude partial or changed bytes (8.576458ms)
+✔ private Blob compare-and-swap retries contention rather than losing another update (27.831834ms)
+✔ same-origin private media streams requested bytes and rejects an invalid Range without exposing Blob URLs (0.335083ms)
+✔ real Blob missing-object errors keep their generic Error name and are still treated as an absent file (0.16225ms)
+✔ chunk manifest binds every part to the exact script, selected voice, language/style and model (3.334458ms)
+✔ cloud checkpoint carries only attributable complete chunk WAV/receipt pairs and can hydrate them offline (246.922542ms)
+✔ a corrupt manifest discards its partial cache instead of making an unrelated recording reusable (2.487333ms)
+✔ queued cancellation frees no other caller and never starts its provider work (1.733625ms)
+✔ continuous WAV assembly preserves every PCM sample in the supplied chunk order (122.699875ms)
+✔ a long script is requested in bounded exact-text chunks with the selected voice (528.470333ms)
+✔ 25,000 characters split at natural boundaries without altering Unicode, whitespace, or punctuation (19.715041ms)
+✔ resume reuses completed chunks and regenerates only a corrupt partial (1007.749292ms)
+✔ a long assembled WAV exceeding 600 seconds is complete and reused without provider requests (735.597292ms)
+✔ long recordings share bounded work while cancellation removes only its subscriber (369.46575ms)
+✔ an already aligned whole-film recording survives the chunking upgrade without another paid request (433.101084ms)
+✔ a production failure persists completed narration progress without publishing an incomplete track (91.106834ms)
+✔ chunk pruning protects active and persisted partial work and removes expired abandoned directories (3.102708ms)
+✔ an occupied port exits before restoring work, cleaning files or calling a provider (209.484333ms)
+ℹ {"duplicateExitCode":1,"taskFileUnchanged":true,"cleanupNotStarted":true,"providerRequests":0,"mainServiceRestarted":false}
+✔ production execution waits for explicit startup readiness, including after resume (118.289542ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4108.946875

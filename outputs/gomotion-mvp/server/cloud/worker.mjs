@@ -7,10 +7,35 @@ import { pathToFileURL } from 'node:url';
 import { pipeline } from 'node:stream/promises';
 import { Readable } from 'node:stream';
 import { musicLicenseError } from '../music-sources.mjs';
+import { verifiedNarrationChunkFiles } from '../narration-chunks.mjs';
+import { MAX_UPLOAD_FILES, MAX_CHECKPOINT_FILES } from './checkpoint-limits.mjs';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const digest = async (file) => { const hash = createHash('sha256'); for await (const chunk of createReadStream(file)) hash.update(chunk); return hash.digest('hex'); };
 const typeOf = (file) => ({ '.mp4': 'video/mp4', '.wav': 'audio/wav', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.json': 'application/json', '.srt': 'text/plain' }[path.extname(file)] || 'application/octet-stream');
+export async function ensureLocalProduction(local, input, fetchImpl = fetch) {
+  const list = await fetchImpl(`${local}/api/productions`).then((r) => r.json());
+  const matches = list.tasks.filter((t) => t.project.id === input.project.id);
+  const active = matches.find((t) => ['queued', 'running'].includes(t.status));
+  const saved = matches.at(-1);
+  if (active || saved?.status === 'done') return active || saved;
+  // A terminal local draft needs a new local attempt; preserve the server's
+  // saved project and verified chunk paths rather than restarting from input.
+  const resumed = saved ? { ...input, project: saved.project } : input;
+  const response = await fetchImpl(`${local}/api/productions`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(resumed) });
+  if (!response.ok) throw Error('Video worker rejected the task');
+  return response.json();
+}
+export async function checkpointUploadGrants(files, callback) {
+  if (files.length > MAX_CHECKPOINT_FILES) throw Error('Checkpoint file count exceeded');
+  const uploads = [];
+  for (let offset = 0; offset < files.length; offset += MAX_UPLOAD_FILES) {
+    const result = await callback('upload-request', { files: files.slice(offset, offset + MAX_UPLOAD_FILES) });
+    if (result.cancelRequested) return result;
+    uploads.push(...result.uploads);
+  }
+  return { uploads, cancelRequested: false };
+}
 export function checkpointTarget(work, relative) {
   if (typeof relative !== 'string' || relative.startsWith('/') || relative.split('/').some((p) => !p || p === '..' || p === '.') || !/^[a-zA-Z0-9/_ .-]+$/.test(relative)) throw Error('Invalid checkpoint path');
   const file = path.resolve(work, relative);
@@ -65,6 +90,7 @@ export async function checkpointFiles(work, task, staging) {
   }
   const key = project.narrationTrack?.key;
   if (/^[a-f0-9]{64}$/.test(key || '')) { wanted.add(`narration/${key}.wav`); wanted.add(`narration/${key}.json`); }
+  for (const file of await verifiedNarrationChunkFiles(work, project.narrationWork)) add(file);
   if (!['queued', 'running'].includes(task.status) && /^[a-f0-9-]{36}$/.test(project.exportId || '')) for (const name of ['video.mp4', 'captions.srt', 'sources.json']) wanted.add(`${project.exportId}/${name}`);
   const files = [];
   for (const relativePath of wanted) {
@@ -80,6 +106,13 @@ export async function checkpointFiles(work, task, staging) {
       target = copy; info = await stat(target);
     }
     files.push({ relativePath, size: info.size, contentType: typeOf(target), sha256: await digest(target) });
+  }
+  if (staging && project.narrationWork?.key) {
+    // Generation may finish another chunk while staging is copied. Publish only
+    // receipt/audio pairs that still agree in the immutable checkpoint copy.
+    const valid = new Set((await verifiedNarrationChunkFiles(staging, project.narrationWork)).map((file) => path.relative(staging, file)));
+    const prefix = `narration/chunks/${project.narrationWork.key}/`;
+    return files.filter((file) => !file.relativePath.startsWith(prefix) || valid.has(file.relativePath));
   }
   return files;
 }
@@ -120,14 +153,8 @@ export async function runCloudWorker(envelope, { fetchImpl = fetch, work = proce
     }
     let heartbeatRunning = false;
     heartbeat = setInterval(() => { if (heartbeatRunning) return; heartbeatRunning = true; void callback('heartbeat').catch(() => {}).finally(() => { heartbeatRunning = false; }); }, 10_000);
-    const list = await fetchImpl(`${local}/api/productions`).then((r) => r.json());
     phase = 'submitting';
-    localTask = list.tasks.find((t) => t.project.id === envelope.input.project.id);
-    if (!localTask) {
-      const response = await fetchImpl(`${local}/api/productions`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(envelope.input) });
-      if (!response.ok) throw Error('Video worker rejected the task');
-      localTask = await response.json();
-    }
+    localTask = await ensureLocalProduction(local, envelope.input, fetchImpl);
     const uploaded = new Map((envelope.checkpoint?.files || []).map((f) => [f.relativePath, f]));
     let lastCheckpoint = 0;
     phase = 'producing';
@@ -142,7 +169,7 @@ export async function runCloudWorker(envelope, { fetchImpl = fetch, work = proce
         try {
         const files = await checkpointFiles(work, localTask, staging);
         const changed = files.filter((f) => uploaded.get(f.relativePath)?.sha256 !== f.sha256);
-        const prepared = await callback('upload-request', { files: changed });
+        const prepared = await checkpointUploadGrants(changed, callback);
         if (cancelled) return;
         for (const file of changed) {
           const grant = prepared.uploads.find((f) => f.relativePath === file.relativePath);

@@ -36,7 +36,6 @@ const port = Number(process.env.PORT) || 3027;
 const host = process.env.HOST || '127.0.0.1';
 const requestOrigins = allowedOrigins(port);
 const work = workDirectory;
-await initializeWorkDirectory();
 const config = {
   llmKey: process.env.LLM_API_KEY || process.env.SECRET_DEEPSEEK_API_KEY || '',
   llmBase: process.env.LLM_BASE_URL || 'https://api.deepseek.com',
@@ -58,7 +57,6 @@ function analysisView(job) {
   const { controller, mediaIndex, calls, ...view } = job;
   return view;
 }
-try { for (const asset of JSON.parse(await readFile(path.join(work, 'assets.json'), 'utf8'))) assets.set(asset.id, asset); } catch {}
 let assetWriteQueue = Promise.resolve();
 const saveAssets = () => {
   assetWriteQueue = assetWriteQueue.catch(() => {}).then(async () => {
@@ -69,7 +67,8 @@ const saveAssets = () => {
   return assetWriteQueue;
 };
 
-const productions = await createProductionManager({ work, config, analyses, exports: jobs, saveAssets });
+let productions, vite;
+let ready = false;
 
 function send(res, status, body) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -99,11 +98,11 @@ async function serveFile(req, res, file, type, downloadName) {
   }
 }
 const production = process.env.NODE_ENV === 'production';
-const vite = production ? null : await createViteServer({ root, server: { middlewareMode: true }, appType: 'spa' });
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://127.0.0.1:${port}`);
   try {
+    if (!ready) return send(res, 503, { error: '工作台正在启动，请稍后重试' });
     if (url.pathname.startsWith('/api/')) {
       const origin = req.headers.origin;
       if (origin && !requestOrigins.has(origin)) return send(res, 403, { error: '该工作台地址未获允许' });
@@ -440,6 +439,28 @@ async function cleanup() {
     try { if (Date.now() - (await stat(file)).mtimeMs > 24 * 60 * 60 * 1000) await rm(file, { recursive: true, force: true }); } catch {}
   }
 }
-await cleanup(); setInterval(cleanup, 60 * 60 * 1000).unref();
-server.listen(port, host, () => console.log(`\n  GoMotion local MVP\n  Local: http://localhost:${port}\n  AI planner: ${config.llmKey ? 'configured' : 'not connected'}\n`));
-server.on('error', (error) => { console.error(error.code === 'EADDRINUSE' ? `端口 ${port} 已被占用，请设置 PORT 后重启。` : error.message); process.exitCode = 1; });
+async function start() {
+  // Own the listening port before opening shared task data or starting any work.
+  // A second failed dev process must not retain a task pump or a Vite listener.
+  await new Promise((resolve, reject) => {
+    const failed = (error) => { server.off('listening', listening); reject(error); };
+    const listening = () => { server.off('error', failed); resolve(); };
+    server.once('error', failed); server.once('listening', listening);
+    server.listen(port, host);
+  });
+  try {
+    await initializeWorkDirectory();
+    try { for (const asset of JSON.parse(await readFile(path.join(work, 'assets.json'), 'utf8'))) assets.set(asset.id, asset); } catch {}
+    productions = await createProductionManager({ work, config, analyses, exports: jobs, saveAssets, autoStart: false });
+    vite = production ? null : await createViteServer({ root, server: { middlewareMode: true }, appType: 'spa' });
+    await cleanup(); setInterval(cleanup, 60 * 60 * 1000).unref();
+    ready = true;
+    productions.start();
+    console.log(`\n  GoMotion local MVP\n  Local: http://localhost:${port}\n  AI planner: ${config.llmKey ? 'configured' : 'not connected'}\n`);
+  } catch (error) {
+    await vite?.close();
+    await new Promise((resolve) => server.close(resolve));
+    throw error;
+  }
+}
+await start().catch((error) => { console.error(error.code === 'EADDRINUSE' ? `端口 ${port} 已被占用，请设置 PORT 后重启。` : error.message); process.exitCode = 1; });

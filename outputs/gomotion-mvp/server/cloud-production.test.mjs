@@ -8,7 +8,8 @@ import { createCloudAPI, cloudConfigured } from './cloud/api.mjs';
 import { createVercelHandler } from './vercel-api.mjs';
 import { createCloudAuth } from './cloud/auth.mjs';
 import { createCloudProductions } from './cloud/productions.mjs';
-import { checkpointFiles, hydrateCheckpoint } from './cloud/worker.mjs';
+import { checkpointFiles, hydrateCheckpoint, ensureLocalProduction, checkpointUploadGrants } from './cloud/worker.mjs';
+import { splitNarration } from './narration-chunks.mjs';
 import { createSandboxExecutor } from './cloud/executor.mjs';
 import { createBlobStore } from './cloud/blob-store.mjs';
 
@@ -150,6 +151,44 @@ test('private checkpoint metadata is not downloadable through the public artifac
   const data = file('productions/jobs.json', '{}', 'application/json'); data.blobRef = `files/${task.id}/${data.sha256}/${data.relativePath}`;
   await callback(s, task.id, 'checkpoint', { task, files: [data] });
   await assert.rejects(s.manager().file('owner', task.id, data.relativePath), { status: 404 });
+});
+test('25,000-character narration checkpoints support all chunk receipts and still reject an oversized file list', async () => {
+  const s = setup(), draft = input(); draft.project.script = '海'.repeat(25000);
+  const task = await s.manager().submit('owner', draft);
+  const chunks = splitNarration(draft.project.script, 'documentary'), key = 'b'.repeat(64);
+  const files = chunks.flatMap((_, index) => {
+    const chunk = createHash('sha256').update(String(index)).digest('hex');
+    return [file(`narration/chunks/${key}/${chunk}.wav`, 'tone fixture', 'audio/wav'), file(`narration/chunks/${key}/${chunk}.json`, '{}', 'application/json')];
+  });
+  files.push(file(`narration/chunks/${key}/manifest.json`, '{}', 'application/json'), file('assets.json', '[]', 'application/json'), file('productions/jobs.json', '[]', 'application/json'));
+  assert.ok(files.length > 200, 'fixture must reproduce the former production cap');
+  let sequence = 0, batches = 0;
+  const grants = await checkpointUploadGrants(files, async (type, payload) => { batches++; assert.ok(payload.files.length <= 200); return callback(s, task.id, type, payload, ++sequence); });
+  assert.equal(batches, Math.ceil(files.length / 200));
+  assert.equal(grants.uploads.length, files.length);
+  const committed = files.map((f) => ({ ...f, blobRef: grants.uploads.find((g) => g.relativePath === f.relativePath).blobRef }));
+  await callback(s, task.id, 'checkpoint', { task, files: committed }, ++sequence);
+  assert.equal(Object.keys((await s.store.read(`tasks/${task.id}.json`)).value.files).length, files.length);
+  await assert.rejects(callback(s, task.id, 'upload-request', { files: Array.from({ length: 2049 }, () => files[0]) }, 3), { status: 400 });
+  await assert.rejects(callback(s, task.id, 'checkpoint', { task, files: Array.from({ length: 2049 }, () => committed[0]) }, 4), { status: 400 });
+});
+test('cloud worker retries terminal drafts with their saved project and reuses an already active task', async () => {
+  const draft = input(), local = 'http://127.0.0.1:fixture';
+  for (const status of ['error', 'incomplete', 'cancelled']) {
+    const saved = { id: randomUUID(), status, project: { ...draft.project, narrationWork: { key: 'a'.repeat(64) }, scenes: [{ id: 'saved-scene', text: '原文', selected: { id: 'fixture:retained' } }] } };
+    let posted;
+    const result = await ensureLocalProduction(local, draft, async (url, options) => {
+      assert.equal(url, local + '/api/productions');
+      if (!options?.method) return Response.json({ tasks: [saved] });
+      posted = JSON.parse(options.body); return Response.json({ id: 'new-local-task', status: 'queued', project: posted.project });
+    });
+    assert.equal(result.status, 'queued'); assert.deepEqual(posted.project, saved.project);
+    assert.deepEqual(posted.providers, draft.providers);
+  }
+  const failed = { id: 'old', status: 'error', project: draft.project }, running = { id: 'current', status: 'running', project: draft.project };
+  const fetchExisting = async (_url, options) => { assert.ok(!options?.method, 'active or completed tasks must not be resubmitted'); return Response.json({ tasks: [failed, running] }); };
+  assert.equal((await ensureLocalProduction(local, draft, fetchExisting)).id, running.id);
+  assert.equal((await ensureLocalProduction(local, draft, async () => Response.json({ tasks: [{ ...running, status: 'done' }] }))).status, 'done');
 });
 test('checkpoint hydration checks bytes and hashes and rejects directory traversal', async () => {
   const work = await mkdtemp(path.join(os.tmpdir(), 'gomotion-cloud-hydrate-'));

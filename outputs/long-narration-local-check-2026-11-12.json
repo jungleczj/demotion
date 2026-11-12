@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-12T09:09:49.054Z",
+  "checks": [
+    {
+      "route": "/api/health",
+      "status": 200
+    },
+    {
+      "route": "/api/config",
+      "status": 200,
+      "visionConfigured": true,
+      "render": true
+    },
+    {
+      "route": "/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "route": "/api/productions",
+      "status": 200,
+      "tasks": [
+        {
+          "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+          "status": "done"
+        },
+        {
+          "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+          "status": "error"
+        },
+        {
+          "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+          "status": "error"
+        }
+      ],
+      "active": 0
+    },
+    {
+      "route": "/api/narration/[saved-id].wav",
+      "status": 206,
+      "bytes": 4096
+    },
+    {
+      "route": "/api/exports/[saved-id]/video.mp4",
+      "status": 206,
+      "bytes": 4096
+    }
+  ],
+  "originalTaskCount": 3,
+  "userTasksCancelled": 0,
+  "newModelRequests": 0,
+  "reloadedOwnIdleServer": true
+}

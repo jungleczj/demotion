@@ -3,6 +3,7 @@ import { productionEstimate } from '../production-estimate.mjs';
 import voices from '../../shared/voices.json' with { type: 'json' };
 import languages from '../../shared/languages.json' with { type: 'json' };
 import scriptLimits from '../../shared/script-limits.json' with { type: 'json' };
+import { MAX_UPLOAD_FILES, MAX_CHECKPOINT_FILES } from './checkpoint-limits.mjs';
 
 const active = (task) => ['queued', 'running'].includes(task?.status);
 const idPattern = /^[a-f0-9-]{36}$/;
@@ -154,7 +155,7 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
         return { cancelRequested: false };
       }
       if (type === 'upload-request') {
-        if (!Array.isArray(payload.files) || payload.files.length > 200) throw error('文件清单无效');
+        if (!Array.isArray(payload.files) || payload.files.length > MAX_UPLOAD_FILES) throw error('文件清单无效');
         payload.files.forEach(validateFile);
         const uploads = await Promise.all(payload.files.map(async (file) => {
           const old = task.files[file.relativePath];
@@ -165,7 +166,7 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
       }
       if (!['progress', 'checkpoint', 'complete', 'failed'].includes(type)) throw error('任务状态类型无效');
       const files = payload.files || [];
-      if (!Array.isArray(files) || files.length > 200) throw error('文件清单无效');
+      if (!Array.isArray(files) || files.length > MAX_CHECKPOINT_FILES) throw error('文件清单无效');
       for (const file of files) {
         validateFile(file);
         if (file.blobRef !== filePath(task, file)) throw error('文件不属于本任务', 403);

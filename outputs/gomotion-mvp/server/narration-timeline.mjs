@@ -14,11 +14,15 @@ export async function prepareNarrationTimeline(project, config, job, directory) 
   if (!texts.length || texts.some((s) => !s)) throw new Error('每个镜头需要对应的旁白文本');
   job.events ||= [];
   job.message = '正在准备统一旁白';
-  // One generation for the whole film keeps the selected speaker and delivery continuous.
+  // One verified film track uses the selected voice throughout; long recordings
+  // are generated in bounded chunks before this authoritative alignment pass.
   const compact = (value) => String(value || '').replace(/\s+/gu, '');
   // Splitting a visual beat must not regenerate or change the film's voice.
   const narration = compact(project.script) === compact(texts.join('')) ? project.script : texts.join('\n\n');
-  const spoken = await narrationAudio({ text: narration }, project, config, signal);
+  const spoken = await narrationAudio({ text: narration }, project, config, signal, (progress) => {
+    job.narrationProgress = progress;
+    job.message = `正在准备统一旁白（${progress.completed}/${progress.total} 段）`;
+  });
   // Cached timing must cover the actual recording. Normal output adds .22s
   // then rounds to a 30fps frame; .3s allows that padding without accepting a
   // truncated final sentence or a stale, much longer recording's timeline.

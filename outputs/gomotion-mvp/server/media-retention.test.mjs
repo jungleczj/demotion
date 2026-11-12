@@ -45,3 +45,16 @@ test('mixed music retains its original and license receipt until the saved task 
   retainTaskMedia(root, []);
   assert.equal(retainedMedia(original), false);
 });
+
+test('saved partial narration keeps only its own chunk directory and complete track receipt until removal', () => {
+  const root = path.join(os.tmpdir(), `narration-retention-${randomUUID()}`), key = 'f'.repeat(64), chunk = 'a'.repeat(64);
+  retainTaskMedia(root, [{ project: { scenes: [], narrationWork: { version: 1, key }, narrationTrack: { key } } }]);
+  assert.equal(retainedMedia(path.join(root, 'narration', 'chunks', key, `${chunk}.wav`)), true);
+  assert.equal(retainedMedia(path.join(root, 'narration', `${key}.json`)), true);
+  assert.equal(retainedMedia(path.join(root, 'narration', 'chunks', 'b'.repeat(64), `${chunk}.wav`)), false);
+  retainTaskMedia(root, []);
+  assert.equal(retainedMedia(path.join(root, 'narration', 'chunks', key, `${chunk}.wav`)), false);
+  retainTaskMedia(root, [{ project: { narrationWork: { version: 1, key: '../outside' } } }]);
+  assert.equal(retainedMedia(path.join(root, 'outside')), false);
+  retainTaskMedia(root, []);
+});
