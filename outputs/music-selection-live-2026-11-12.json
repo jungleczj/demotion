@@ -1,0 +1,234 @@
+{
+  "startedAt": "2026-11-12T10:42:21.184Z",
+  "modelRequests": 0,
+  "musicGenerationRequests": 0,
+  "youtubeRequests": 0,
+  "cloudJobs": 0,
+  "existingNarrationOnly": true,
+  "humanListeningAccepted": false,
+  "finalCloudFilmAccepted": false,
+  "operations": [
+    {
+      "name": "all-three-actual-files-full-decode-hash-and-restart-cache-with-no-network",
+      "ok": false,
+      "elapsedMs": 276,
+      "error": "已验证的小曲库缓存不完整：scottbuckley:the-great-sea: 音乐缓存不可用：ENOENT: no such file or directory, open '/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/3f450da8d421b1e491076ea48d052e17672c90a53f97726e6dca20107d866b12.audio.json'; scottbuckley:machina: 音乐缓存不可用：ENOENT: no such file or directory, open '/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/42014bd5d8678867436a98f67e31d6c5ac2839b28e30693886fc7666da793166.audio.json'"
+    },
+    {
+      "name": "existing-default-original-remains-verified-and-available-offline",
+      "ok": true,
+      "elapsedMs": 267,
+      "result": {
+        "tracks": [
+          {
+            "provider": "scottbuckley",
+            "sourceId": "undertow",
+            "title": "Undertow",
+            "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+              "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+              "requiresSourceVerification": false
+            },
+            "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+            "width": 0,
+            "height": 0,
+            "duration": 249.930975,
+            "bytes": 10000906,
+            "id": "scottbuckley:undertow",
+            "hasAudio": true,
+            "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+            },
+            "acquiredAt": "2026-11-12T01:43:22.289Z",
+            "fullDecode": true,
+            "mood": "reflective",
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+            "cacheHit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "actual-licensed-original-short-crossfade-loop-boundary",
+      "ok": true,
+      "elapsedMs": 779,
+      "result": {
+        "audio": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-selection-acceptance/Undertow-loop-boundary.m4a",
+        "sourceId": "scottbuckley:undertow",
+        "sourceSha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "loop": {
+          "loopCrossfadeSeconds": 0.35,
+          "loopPeriodSeconds": 249.58097916666668,
+          "sourceOffset": 0.35
+        },
+        "actual": {
+          "hasAudio": true,
+          "duration": 12,
+          "width": 0,
+          "height": 0
+        },
+        "sha256": "afccde275caf9e25f41178ac42bae6b1990ff9f630fb0dcd2c22da764bb53193",
+        "fullDecode": true,
+        "boundaryAtSeconds": 6,
+        "humanListeningAccepted": false
+      }
+    },
+    {
+      "name": "actual-selected-or-fallback-music-with-existing-narration-no-new-tts",
+      "ok": true,
+      "elapsedMs": 2240,
+      "result": {
+        "video": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-selection-acceptance/existing-narration-selected-mix.mp4",
+        "actual": {
+          "hasAudio": true,
+          "duration": 29,
+          "width": 1280,
+          "height": 720
+        },
+        "music": {
+          "status": "mixed",
+          "mixed": true,
+          "narrationPreserved": true,
+          "source": {
+            "provider": "scottbuckley",
+            "sourceId": "undertow",
+            "title": "Undertow",
+            "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+              "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+              "requiresSourceVerification": false
+            },
+            "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+            "width": 0,
+            "height": 0,
+            "duration": 249.930975,
+            "bytes": 10000906,
+            "id": "scottbuckley:undertow",
+            "hasAudio": true,
+            "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+            },
+            "acquiredAt": "2026-11-12T01:43:22.289Z",
+            "fullDecode": true,
+            "mood": "reflective",
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+            "cacheHit": true
+          },
+          "mix": {
+            "version": 2,
+            "continuous": true,
+            "start": 0,
+            "end": 29,
+            "loopCrossfadeSeconds": 0,
+            "loopPeriodSeconds": 249.930975,
+            "sourceOffset": 0,
+            "looped": false,
+            "narrationLufs": -16.3,
+            "targetMusicLufs": -30.3,
+            "narrationGain": 1,
+            "ducking": {
+              "threshold": 0.015,
+              "ratio": 6,
+              "attackMs": 15,
+              "releaseMs": 500
+            },
+            "fadeInSeconds": 0.8,
+            "fadeOutSeconds": 2,
+            "changes": "Music trimmed, loudness adjusted, ducked beneath narration, faded at film boundaries."
+          },
+          "selection": {
+            "version": 1,
+            "mood": "exploration",
+            "requestedTrackId": "scottbuckley:the-great-sea",
+            "reason": "Existing title/topic/script cues: exploration",
+            "scores": {
+              "tension": 0,
+              "exploration": 11,
+              "reflective": 0
+            },
+            "rankedTrackIds": [
+              "scottbuckley:the-great-sea",
+              "scottbuckley:undertow",
+              "scottbuckley:machina"
+            ],
+            "selectedTrackId": "scottbuckley:undertow",
+            "cachePreferred": true,
+            "fallback": true,
+            "attempts": [
+              {
+                "id": "scottbuckley:the-great-sea",
+                "mode": "cache",
+                "status": "unavailable",
+                "reason": "音乐缓存不可用：ENOENT: no such file or directory, open '/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/3f450da8d421b1e491076ea48d052e17672c90a"
+              },
+              {
+                "id": "scottbuckley:undertow",
+                "mode": "cache",
+                "status": "ready"
+              }
+            ]
+          }
+        },
+        "fullDecode": true,
+        "narration": {
+          "file": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/narration/ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1.wav",
+          "sha256": "5a58efe6bafbbc4434dc5157a40c383def0dc1d0bf9fc63c67c6f1a4a1923114",
+          "reused": true,
+          "newTTSRequests": 0
+        },
+        "humanListeningAccepted": false,
+        "finalCloudFilmAccepted": false
+      }
+    }
+  ],
+  "completeCuratedCache": false,
+  "finishedAt": "2026-11-12T10:42:24.748Z"
+}

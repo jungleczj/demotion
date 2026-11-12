@@ -15,6 +15,8 @@ import languages from '../shared/languages.json' with { type: 'json' };
 import captionStyle from '../shared/caption-style.json' with { type: 'json' };
 import { retainTaskMedia } from './media-retention.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
+import { audioMixCompatible } from './audio-mix-profile.mjs';
+import { rankMusicForProject } from './music-selection.mjs';
 
 const activeStatus = (status) => ['queued', 'running'].includes(status);
 const publicError = (message) => /401|403|鉴权|密钥|权限/.test(message) ? '服务连接暂不可用，请检查连接设置。' : /402|429|额度|配额/.test(message) ? '当前服务额度暂不可用，请稍后重试。' : '这次制作未能完成，已保留草稿，可以重新制作。';
@@ -22,6 +24,11 @@ const applySequence = (project, result) => {
   const patches = new Map(result.scenes.map((s) => [s.id, s]));
   return { ...project, narrationTrack: result.narrationTrack, sequenceReport: result.report, visualError: undefined, scenes: (result.scenePlan || project.scenes).map((s, index) => ({ ...s, ...patches.get(s.id), index, status: 'done' })) };
 };
+
+export function productionCompletionMessage(rendered) {
+  const ready = rendered.review?.passed ? '视频已准备好，可以播放或下载' : '视频草稿已保存，还有画面或声音需要调整';
+  return ready + (rendered.music?.status === 'unavailable' ? '；背景音乐未加入，已保留完整旁白' : '');
+}
 
 export async function createProductionManager({ work, config, analyses, exports, saveAssets, autoStart = true }) {
   const directory = path.join(work, 'productions');
@@ -162,7 +169,7 @@ export async function createProductionManager({ work, config, analyses, exports,
       task.project = { ...task.project, exportUrl: rendered.url, videoReview: rendered.review, videoProfile: rendered.videoProfile, music: rendered.music };
       task.exportSize = rendered.size;
       task.status = rendered.review?.passed ? 'done' : 'incomplete'; task.progress = 100;
-      task.message = rendered.review?.passed ? '视频已准备好，可以播放或下载' : '视频草稿已保存，还有画面或声音需要调整';
+      task.message = productionCompletionMessage(rendered);
     } catch (error) {
       task.status = signal.aborted ? (task.stopRequested ? 'cancelled' : 'incomplete') : 'error';
       task.message = task.stopRequested ? '已停止制作，草稿已保留' : signal.aborted ? '制作时间达到上限，草稿已保留' : publicError(error?.message || '');
@@ -185,10 +192,10 @@ export async function createProductionManager({ work, config, analyses, exports,
     try { await execute(next); } finally { active = false; void pump(); }
   }
   setInterval(() => { void pump().catch(() => {}); }, 2000).unref();
-  const fingerprint = (p) => JSON.stringify({ text: (p.scenes.length ? p.scenes.map((s) => s.text).join('') : p.script).replace(/\s+/gu, ''), voice: p.voice, style: p.voiceStyle || 'documentary', language: p.language || 'auto', format: p.format, fit: p.fit, subtitles: p.subtitles });
+  const fingerprint = (p) => JSON.stringify({ text: (p.scenes.length ? p.scenes.map((s) => s.text).join('') : p.script).replace(/\s+/gu, ''), voice: p.voice, style: p.voiceStyle || 'documentary', language: p.language || 'auto', format: p.format, fit: p.fit, subtitles: p.subtitles, musicTrack: rankMusicForProject(p).requestedTrackId });
   const reuseCompleted = async (task) => {
     if (task.project.scenes.some((s) => s.confirmed)) return false;
-    const match = [...tasks.values()].reverse().find((t) => t.id !== task.id && t.status === 'done' && t.project.videoProfile?.version === 1 && t.project.videoProfile.audioMixVersion === 1 && (!task.project.subtitles || t.project.videoProfile.captionStyleVersion === captionStyle.version) && t.project.videoReview?.passed && t.project.videoReview.watermarkFree === true && t.exportId && fingerprint(t.project) === fingerprint(task.project) && t.project.scenes.every((s) => !sourceProvenanceError(s, assets.get(s.selected?.id) || s.selected, t.project.script)));
+    const match = [...tasks.values()].reverse().find((t) => t.id !== task.id && t.status === 'done' && t.project.videoProfile?.version === 1 && audioMixCompatible(t.project) && (!task.project.subtitles || t.project.videoProfile.captionStyleVersion === captionStyle.version) && t.project.videoReview?.passed && t.project.videoReview.watermarkFree === true && t.exportId && fingerprint(t.project) === fingerprint(task.project) && t.project.scenes.every((s) => !sourceProvenanceError(s, assets.get(s.selected?.id) || s.selected, t.project.script)));
     if (!match) return false;
     try {
       await stat(path.join(work, match.exportId, 'video.mp4'));

@@ -1,0 +1,450 @@
+{
+  "startedAt": "2026-11-12T10:48:07.571Z",
+  "modelRequests": 0,
+  "musicGenerationRequests": 0,
+  "youtubeRequests": 0,
+  "cloudJobs": 0,
+  "existingNarrationOnly": true,
+  "humanListeningAccepted": false,
+  "finalCloudFilmAccepted": false,
+  "operations": [
+    {
+      "name": "all-three-actual-files-full-decode-hash-and-restart-cache-with-no-network",
+      "ok": true,
+      "elapsedMs": 670,
+      "result": {
+        "tracks": [
+          {
+            "provider": "scottbuckley",
+            "sourceId": "undertow",
+            "title": "Undertow",
+            "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+              "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+              "requiresSourceVerification": false
+            },
+            "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+            "width": 0,
+            "height": 0,
+            "duration": 249.930975,
+            "bytes": 10000906,
+            "id": "scottbuckley:undertow",
+            "hasAudio": true,
+            "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+            },
+            "acquiredAt": "2026-11-12T01:43:22.289Z",
+            "fullDecode": true,
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+            "cacheHit": true,
+            "mood": "reflective"
+          },
+          {
+            "id": "scottbuckley:the-great-sea",
+            "provider": "scottbuckley",
+            "sourceId": "the-great-sea",
+            "title": "The Great Sea",
+            "description": "Grand sweeping orchestral solo cello growing momentum emotion; ocean sea wildlife exploration journey. 宏大 管弦 大提琴 海洋 大海 野生动物 探索 旅程",
+            "mood": "exploration",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/the-great-sea/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'The Great Sea' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/the-great-sea/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "width": 0,
+            "height": 0,
+            "duration": 281.911791,
+            "bytes": 11279896,
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/the-great-sea/",
+              "sha256": "9d84f5c3a14e904efe34ea35aae3dc0ee295759ecc8be1bace5f14a5c08cb615",
+              "requiresSourceVerification": false,
+              "trackTitle": "The Great Sea",
+              "author": "Scott Buckley",
+              "audioUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+              "declarationLink": "http://www.scottbuckley.com.au/library/using-this-music/",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseCheckedAt": "2026-11-12T10:44:10.049Z",
+            "hasAudio": true,
+            "sha256": "f2c2d69a0c89656e676c0fac3da23a201237951c8be7e77dcaa1705dca5b9cf8",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Sat, 27 Jan 2024 06:34:43 GMT"
+            },
+            "acquiredAt": "2026-11-12T10:44:21.515Z",
+            "fullDecode": true,
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/3f450da8d421b1e491076ea48d052e17672c90a53f97726e6dca20107d866b12.audio",
+            "cacheHit": true
+          },
+          {
+            "id": "scottbuckley:machina",
+            "provider": "scottbuckley",
+            "sourceId": "machina",
+            "title": "Machina",
+            "description": "Glitchy electronic ambient science fiction atmosphere; restrained tension mystery uncertainty. 电子 氛围 科幻 紧张 悬念 未知",
+            "mood": "tension",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/machina/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'Machina' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/machina/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "width": 0,
+            "height": 0,
+            "duration": 290.895737,
+            "bytes": 11639298,
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/machina/",
+              "sha256": "d45595974a68f332d2b3f4410bedc07c3d3627393e10e11d3e3dfc02860d160c",
+              "requiresSourceVerification": false,
+              "trackTitle": "Machina",
+              "author": "Scott Buckley",
+              "audioUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+              "declarationLink": "http://www.scottbuckley.com.au/library/using-this-music/",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseCheckedAt": "2026-11-12T10:44:10.034Z",
+            "hasAudio": true,
+            "sha256": "72f479c583fd1cb894584c51d4fb9b33200b098bd1b13195bd41d29586d9d344",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Fri, 20 Dec 2019 10:19:01 GMT"
+            },
+            "acquiredAt": "2026-11-12T10:44:21.851Z",
+            "fullDecode": true,
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/42014bd5d8678867436a98f67e31d6c5ac2839b28e30693886fc7666da793166.audio",
+            "cacheHit": true
+          }
+        ],
+        "warnings": [],
+        "totalBytes": 32920100,
+        "downloadedBytes": 0
+      }
+    },
+    {
+      "name": "deterministic-topics-select-different-relevant-files-offline",
+      "ok": true,
+      "elapsedMs": 879,
+      "result": [
+        {
+          "project": {
+            "title": "海洋探索",
+            "script": "跟随探险队发现自然世界。"
+          },
+          "selection": {
+            "version": 1,
+            "mood": "exploration",
+            "requestedTrackId": "scottbuckley:the-great-sea",
+            "reason": "Existing title/topic/script cues: exploration",
+            "scores": {
+              "tension": 0,
+              "exploration": 11,
+              "reflective": 0
+            },
+            "rankedTrackIds": [
+              "scottbuckley:the-great-sea",
+              "scottbuckley:undertow",
+              "scottbuckley:machina"
+            ],
+            "selectedTrackId": "scottbuckley:the-great-sea",
+            "cachePreferred": true,
+            "fallback": false,
+            "attempts": [
+              {
+                "id": "scottbuckley:the-great-sea",
+                "mode": "cache",
+                "status": "ready"
+              }
+            ]
+          },
+          "id": "scottbuckley:the-great-sea",
+          "sha256": "f2c2d69a0c89656e676c0fac3da23a201237951c8be7e77dcaa1705dca5b9cf8",
+          "downloadedBytes": 0
+        },
+        {
+          "project": {
+            "title": "Danger and survival",
+            "script": "A storm threatens the expedition."
+          },
+          "selection": {
+            "version": 1,
+            "mood": "tension",
+            "requestedTrackId": "scottbuckley:machina",
+            "reason": "Existing title/topic/script cues: tension",
+            "scores": {
+              "tension": 9,
+              "exploration": 1,
+              "reflective": 0
+            },
+            "rankedTrackIds": [
+              "scottbuckley:machina",
+              "scottbuckley:undertow",
+              "scottbuckley:the-great-sea"
+            ],
+            "selectedTrackId": "scottbuckley:machina",
+            "cachePreferred": true,
+            "fallback": false,
+            "attempts": [
+              {
+                "id": "scottbuckley:machina",
+                "mode": "cache",
+                "status": "ready"
+              }
+            ]
+          },
+          "id": "scottbuckley:machina",
+          "sha256": "72f479c583fd1cb894584c51d4fb9b33200b098bd1b13195bd41d29586d9d344",
+          "downloadedBytes": 0
+        },
+        {
+          "project": {
+            "title": "回忆与故乡",
+            "script": "岁月中的记忆。"
+          },
+          "selection": {
+            "version": 1,
+            "mood": "reflective",
+            "requestedTrackId": "scottbuckley:undertow",
+            "reason": "Existing title/topic/script cues: reflective",
+            "scores": {
+              "tension": 0,
+              "exploration": 0,
+              "reflective": 4
+            },
+            "rankedTrackIds": [
+              "scottbuckley:undertow",
+              "scottbuckley:the-great-sea",
+              "scottbuckley:machina"
+            ],
+            "selectedTrackId": "scottbuckley:undertow",
+            "cachePreferred": true,
+            "fallback": false,
+            "attempts": [
+              {
+                "id": "scottbuckley:undertow",
+                "mode": "cache",
+                "status": "ready"
+              }
+            ]
+          },
+          "id": "scottbuckley:undertow",
+          "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+          "downloadedBytes": 0
+        }
+      ]
+    },
+    {
+      "name": "actual-licensed-original-short-crossfade-loop-boundary",
+      "ok": true,
+      "elapsedMs": 792,
+      "result": {
+        "audio": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-selection-acceptance/Undertow-loop-boundary.m4a",
+        "sourceId": "scottbuckley:undertow",
+        "sourceSha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "loop": {
+          "loopCrossfadeSeconds": 0.35,
+          "loopPeriodSeconds": 249.58097916666668,
+          "sourceOffset": 0.35
+        },
+        "actual": {
+          "hasAudio": true,
+          "duration": 12,
+          "width": 0,
+          "height": 0
+        },
+        "sha256": "afccde275caf9e25f41178ac42bae6b1990ff9f630fb0dcd2c22da764bb53193",
+        "fullDecode": true,
+        "boundaryAtSeconds": 6,
+        "humanListeningAccepted": false
+      }
+    },
+    {
+      "name": "actual-selected-or-fallback-music-with-existing-narration-no-new-tts",
+      "ok": true,
+      "elapsedMs": 2814,
+      "result": {
+        "video": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-selection-acceptance/existing-narration-selected-mix.mp4",
+        "actual": {
+          "hasAudio": true,
+          "duration": 29,
+          "width": 1280,
+          "height": 720
+        },
+        "music": {
+          "status": "mixed",
+          "mixed": true,
+          "narrationPreserved": true,
+          "source": {
+            "id": "scottbuckley:the-great-sea",
+            "provider": "scottbuckley",
+            "sourceId": "the-great-sea",
+            "title": "The Great Sea",
+            "description": "Grand sweeping orchestral solo cello growing momentum emotion; ocean sea wildlife exploration journey. 宏大 管弦 大提琴 海洋 大海 野生动物 探索 旅程",
+            "mood": "exploration",
+            "kind": "audio",
+            "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+            "thumbnail": "",
+            "sourceUrl": "https://www.scottbuckley.com.au/library/the-great-sea/",
+            "author": "Scott Buckley",
+            "authorUrl": "https://www.scottbuckley.com.au/",
+            "license": "CC BY 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+            "attribution": "'The Great Sea' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/the-great-sea/; https://creativecommons.org/licenses/by/4.0/",
+            "rights": {
+              "attributionRequired": true,
+              "shareAlike": false,
+              "synchronisationOnly": true,
+              "noFingerprinting": true,
+              "youtubeDescriptionCredit": true,
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "width": 0,
+            "height": 0,
+            "duration": 281.911791,
+            "bytes": 11279896,
+            "licenseEvidence": {
+              "method": "official-track-page",
+              "sourceUrl": "https://www.scottbuckley.com.au/library/the-great-sea/",
+              "sha256": "9d84f5c3a14e904efe34ea35aae3dc0ee295759ecc8be1bace5f14a5c08cb615",
+              "requiresSourceVerification": false,
+              "trackTitle": "The Great Sea",
+              "author": "Scott Buckley",
+              "audioUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+              "declarationLink": "http://www.scottbuckley.com.au/library/using-this-music/",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+            },
+            "licenseCheckedAt": "2026-11-12T10:44:10.049Z",
+            "hasAudio": true,
+            "sha256": "f2c2d69a0c89656e676c0fac3da23a201237951c8be7e77dcaa1705dca5b9cf8",
+            "downloadedBytes": 0,
+            "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+            "downloadMethod": "verified-byte-ranges",
+            "remoteValidator": {
+              "header": "last-modified",
+              "value": "Sat, 27 Jan 2024 06:34:43 GMT"
+            },
+            "acquiredAt": "2026-11-12T10:44:21.515Z",
+            "fullDecode": true,
+            "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/3f450da8d421b1e491076ea48d052e17672c90a53f97726e6dca20107d866b12.audio",
+            "cacheHit": true
+          },
+          "mix": {
+            "version": 2,
+            "continuous": true,
+            "start": 0,
+            "end": 29,
+            "loopCrossfadeSeconds": 0,
+            "loopPeriodSeconds": 281.911791,
+            "sourceOffset": 0,
+            "looped": false,
+            "narrationLufs": -16.3,
+            "targetMusicLufs": -30.3,
+            "narrationGain": 1,
+            "ducking": {
+              "threshold": 0.015,
+              "ratio": 6,
+              "attackMs": 15,
+              "releaseMs": 500
+            },
+            "fadeInSeconds": 0.8,
+            "fadeOutSeconds": 2,
+            "changes": "Music trimmed, loudness adjusted, ducked beneath narration, faded at film boundaries."
+          },
+          "selection": {
+            "version": 1,
+            "mood": "exploration",
+            "requestedTrackId": "scottbuckley:the-great-sea",
+            "reason": "Existing title/topic/script cues: exploration",
+            "scores": {
+              "tension": 0,
+              "exploration": 11,
+              "reflective": 0
+            },
+            "rankedTrackIds": [
+              "scottbuckley:the-great-sea",
+              "scottbuckley:undertow",
+              "scottbuckley:machina"
+            ],
+            "selectedTrackId": "scottbuckley:the-great-sea",
+            "cachePreferred": true,
+            "fallback": false,
+            "attempts": [
+              {
+                "id": "scottbuckley:the-great-sea",
+                "mode": "cache",
+                "status": "ready"
+              }
+            ]
+          }
+        },
+        "fullDecode": true,
+        "narration": {
+          "file": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/narration/ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1.wav",
+          "sha256": "5a58efe6bafbbc4434dc5157a40c383def0dc1d0bf9fc63c67c6f1a4a1923114",
+          "reused": true,
+          "newTTSRequests": 0
+        },
+        "humanListeningAccepted": false,
+        "finalCloudFilmAccepted": false
+      }
+    }
+  ],
+  "completeCuratedCache": true,
+  "finishedAt": "2026-11-12T10:48:12.729Z"
+}

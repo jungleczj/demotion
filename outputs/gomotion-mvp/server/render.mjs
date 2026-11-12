@@ -12,6 +12,7 @@ import { assertSourceFiles } from './source-provenance.mjs';
 import { makeAss, captionFilter } from './captions.mjs';
 import captionStyle from '../shared/caption-style.json' with { type: 'json' };
 import { addBackgroundMusic, prepareBackgroundMusic } from './background-music.mjs';
+import { AUDIO_MIX_VERSION } from './audio-mix-profile.mjs';
 
 export { run, probe } from './process.mjs';
 import { run, probe } from './process.mjs';
@@ -30,7 +31,7 @@ export async function renderProject(job, project, directory, config = {}) {
   const signal = job.controller.signal;
   const folder = path.join(directory, job.id);
   await mkdir(folder, { recursive: true });
-  const profile = { ...outputProfile(project.format), captionStyleVersion: captionStyle.version, audioMixVersion: 1 };
+  const profile = { ...outputProfile(project.format), captionStyleVersion: captionStyle.version, audioMixVersion: AUDIO_MIX_VERSION };
   const { width, height } = profile;
   config = { ...config, outputFormat: project.format };
   let total = 0;
@@ -40,7 +41,7 @@ export async function renderProject(job, project, directory, config = {}) {
   let musicPreparation;
   try {
     await Promise.all(project.scenes.map((scene) => assertSourceFiles(scene, assets.get(scene.selected?.id) || scene.selected, project.script, signal)));
-    musicPreparation = prepareBackgroundMusic(path.join(directory, 'music-sources'), { signal: AbortSignal.any([signal, musicController.signal]), enabled: config.backgroundMusic !== false });
+    musicPreparation = prepareBackgroundMusic(path.join(directory, 'music-sources'), { project, signal: AbortSignal.any([signal, musicController.signal]), enabled: config.backgroundMusic !== false });
     enterPhase('narrationMs');
     const narrated = await prepareNarrationTimeline(project, config, job, folder);
     project = { ...project, scenes: narrated.scenes };
@@ -145,7 +146,7 @@ export async function renderProject(job, project, directory, config = {}) {
     args.push('-filter_complex', graph.join(';'), '-map', `[${last}]`, '-map', '[aout]', '-t', total.toFixed(6), '-r', '30', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p', '-threads', '2', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', path.join(folder, 'video.mp4'));
     await run('ffmpeg', args, signal);
     job.message = '为整片配入连续背景音乐';
-    const music = await addBackgroundMusic(path.join(folder, 'video.mp4'), path.join(directory, 'music-sources'), { duration: total, signal, enabled: config.backgroundMusic !== false, preparation: musicPreparation });
+    const music = await addBackgroundMusic(path.join(folder, 'video.mp4'), path.join(directory, 'music-sources'), { project, duration: total, signal, enabled: config.backgroundMusic !== false, preparation: musicPreparation });
     job.music = music;
     const rendered = await probe(path.join(folder, 'video.mp4'), signal);
     if (!rendered.hasAudio || Math.abs(rendered.duration - total) > .15) throw new Error('成片音轨或时长未通过完整覆盖检查，已停止输出');

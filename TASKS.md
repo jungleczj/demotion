@@ -1,6 +1,6 @@
 # GoMotion MVP 任务与验收
 
-最后更新：2026-11-12 17:12（Asia/Shanghai）
+最后更新：2026-11-12 18:52（Asia/Shanghai）
 工作台：<http://localhost:3027/>
 应用入口：[MVP README](outputs/gomotion-mvp/README.md)
 
@@ -16,7 +16,7 @@
 
 ## 最新编号任务总览
 
-本小时完成长旁白分段缓存/续做、重复服务启动保护，并修复独立复核发现的云检查点文件数与旧失败恢复问题。完整323/323回归、类型/构建和新版Linux快照35/35离线检查通过；本地空闲重载后3个原任务及状态保留，原旁白与成片Range206可读。GitHub代码已同步49bc3b0，正式部署READY且提交一致，[本轮集成证据](outputs/long-narration-progress-2026-11-12.md)。来源补查找到且实际查看1幅脚部孵蛋科学插图，但第11项应用审核及整片未通过。最近真实配音402尚无恢复确认，本小时真实生成0；既有2倍速度、播放浏览器/自然度、新云端配乐整片和长片仍未通过。研究代理和独立复核均已结束。原视频私有，完整原稿及对应GoMotion参考片未取得，[同稿基线](outputs/sea-wolf-same-script-benchmark-2026-11-12.md)仍待锁定。
+截至18:52，自动背景音乐已补齐三首官方授权缓存、按题材选曲、整片混音与长片循环交叉淡化。完整本地335/335、Linux31/31通过；三首原件共32.92MB在云端取得并完整解码，云内准备14.25秒，本地离线复验通过。既有旁白29秒实际配入探索曲，无新TTS；本地空闲重载后原3任务与状态保留，目录200、既有旁白/成片Range206。[本轮配乐实现与证据](outputs/music-selection-progress-2026-11-12.md)。代码及正式站正在同步，不能计为新版云端完整影片或人工听审通过。第11项真实科学插图已完成获取、解码及布局初筛，实际视觉请求1次返回402，立即停止，无审批计划、补片或整片验收：[独立应用审查](outputs/source-gap-application-review-2026-11-12.md)。浏览器尚未恢复、Sea Wolf完整原稿及同稿参考片仍缺；[同稿基线](outputs/sea-wolf-same-script-benchmark-2026-11-12.md)保持待锁定。
 
 | 编号 | 用户要求 | 验收标准 | 当前状态 | 已有进展 / 证据与下一步 |
 |---|---|---|---|---|
@@ -30,7 +30,7 @@
 | 8 | 调研 vid.ai 用户、视频类型、与 GoMotion 区别和技术 | 覆盖目标买家、类型、流程及技术；与GoMotion对照；供应商须有出处，未披露标未知。 | 已完成（调研） | 已交付官方证据报告；区分网页与 API 时长上限，标记已披露和未披露的技术。未做付费成片评测。 [vid.ai 对照报告](outputs/vid-ai-comparison-2026-11-11.md)。 |
 | 9 | 切镜仍有几帧闪屏，继续处理过渡 | 逐边界核对播放器与导出文件；无闪屏/黑帧、字幕或配音重启；提供实际前后录屏。 | 实施中 | 已修复逐镜重挂载与切镜重启旁白，8 项状态回归及构建通过；尚缺实际浏览器逐边界录屏，**不计为已验收**。 [播放状态检查](outputs/gomotion-mvp/src/hooks/usePreviewPlayback.test.mjs)、[素材就绪检查](outputs/gomotion-mvp/src/components/AssetVideo.test.mjs)。 |
 | 10 | 调研不同脚本切分是否能提高素材命中；先不实现 | 比较三种切法并给失败归因及A/B/C指标；保留原文；只调研，不修改拆分行为。 | 已完成（调研） | [拆分研究](outputs/script-segmentation-research-2026-11-11.md)：真实失败归因、三种方案、原文不变样例、A/B/C 指标；未跑命中提升实验，拆分文件不变。 |
-| 11 | 缺视频时从素材源寻找非视频类相关素材，再加工制作，不能随意创造 | 非视频基底来自真实素材源；原文件/作者/许可/哈希和读图证据齐全；忠实加工补齐真实失败项目并整片审查。 | 实施中 | 新增整批主体查询、有限变体、来源/像素去重及实际拒绝原因记录。原缺口4张实图未通过；进一步读到正确帝企鹅但没有蛋的画面，随后下载429暴露单源限流误判，已修隔离并通过回归。新版真实补片整片尚未通过。[相关性实现](outputs/source-relevance-progress-2026-11-12.md)、[实际4图检查](outputs/source-relevance-live-2026-11-12.json)、[主体词补查与429证据](outputs/source-relevance-reused-query-live-2026-11-12.json)。本小时找到且实际查看一幅包含脚部孵蛋信息的已发表NSF科学插图，许可及可读性边界已记录；未伪造应用审核通过凭证。[新来源报告](outputs/penguin-source-gap-research-2026-11-12.md)。 |
+| 11 | 缺视频时从素材源寻找非视频类相关素材，再加工制作，不能随意创造 | 非视频基底来自真实素材源；原文件/作者/许可/哈希和读图证据齐全；忠实加工补齐真实失败项目并整片审查。 | 实施中 | 新增真实科学插图原件/解码/布局检查通过；实际视觉审核1次返回402（预付费额度耗尽），0重试，无审批/补片，不计整片通过。[本次实际审核](outputs/source-gap-application-review-2026-11-12.md)、[HTTP与各阶段记录](outputs/source-gap-application-review-2026-11-12.json)。前置相关性与429隔离修复保留，[实现记录](outputs/source-relevance-progress-2026-11-12.md)。 |
 | 12 | 分析截图中 GoMotion 轨道与右上动效暴露的处理逻辑 | 逐项解释V1/A1/FX及地图；与官方接口交叉核对；区分截图事实、架构推断和未知；明确素材/事实来源及对MVP影响，不能把演示当后台日志。 | 已完成（调研） | 已追加创建页参数、背景文件映射和编辑器公开包：确认Remotion播放器、数据驱动图形组件、多轨编排与烘焙缓存分支。后台最终引擎、主素材库和失败补片条件仍未知。补充[深入报告](outputs/gomotion-page-controls-architecture-2026-11-11.md)。 [轨道与处理逻辑报告](outputs/gomotion-timeline-architecture-2026-11-11.md)、[截图存档](outputs/gomotion-timeline-reference-2026-11-11.png)。 |
 | 13 | 先修复线上“工作台暂时无法连接／声音列表暂时无法加载” | 正式站点配置和声音目录返回真实JSON与200；目录包含30声音/15语言；真实所选语言试听可生成并完整解码；用户刷新复核页面两个报错消失。 | 已部署；线上接口通过，用户界面复核待完成 | 正式域两个接口从404恢复200；预览Kore中文试听5.21秒完整解码通过。第14项现已补真实云端短片；本行保留目录恢复的独立验收证据，详情见[任务14最新实测](outputs/task-14-cloud-live-acceptance-2026-11-11.json)。[修复记录](outputs/vercel-native-connection-fix-2026-11-11.md)、[结构化验收](outputs/vercel-native-api-acceptance-2026-11-11.json)、[最终241项回归](outputs/vercel-native-final-regression-2026-11-11.txt)。 用户要求提交前再次复核正式接口，结果仍为200。[本次复核](outputs/task-13-online-recheck-2026-11-11.json)。 |
 | 14 | 线上 Generate video 按钮无法点击，优先接通完整制作 | 有效脚本可实际提交持久任务；真实短片制作、审片、完整解码、Range播放/下载通过；离开/刷新任务继续，只有主动停止取消；记录真实耗时。 | 已部署；真实云端短片通过，页面点击待用户复核 | 正式render=true；两幕、9.77秒实际MP4、720p/30fps/H.264+AAC；审片、Range206、下载/解码、SRT/来源文件均通过；11.55MB镜头流式播放文件通过。失败后从已保存镜头/旁白在新实例恢复，续做26.049秒，不是冷生成或2倍速度达标。[实施记录](outputs/task-14-cloud-generation-progress-2026-11-11.md)、[真实验收](outputs/task-14-cloud-live-acceptance-2026-11-11.json)、[存储实测](outputs/task-14-cloud-storage-probe-2026-11-11.json)、[回归日志](outputs/task-14-full-regression-2026-11-11.txt)。 |
@@ -42,10 +42,10 @@
 | 编号 | 用户要求 | 验收标准 | 当前状态 | 已有进展 / 证据与下一步 |
 |---|---|---|---|---|
 | Y1 | 接入用户提供的 YouTube Data API 凭证 | 凭证仅服务端配置，不进入前端和Git；实际检索与详情读取成功；缓存节约配额；错误脱敏；只有拿到并验证原文件才进可剪素材列表。 | 已完成（后台检索接入） | 检索 / 信息核对 / 24小时缓存 / 同请求合并 / 取消隔离 / 额度错误处理已实现，7项离线检查通过；保持现有UI。真实检索200返回5条，首次978ms、重复10ms且cacheHit=true；主服务已加载；线上已安全配置敏感环境变量。Data API不返回原MP4。 [接入进展](outputs/youtube-integration-progress-2026-11-11.md)。 |
-| Y2 | 后台接入更多视频、图片、音乐来源，不增加前台入口 | 自动检索新来源；原件/许可/作者可追溯；视频须有验证原件；音乐须真实下载与完整解码，失败不伪装成功。 | 已实现；部分真实来源验收通过 | Openverse+Cleveland及既有stock自动增源已接入；Cleveland实际原图与Scott Buckley实际音乐下载/解码通过。音乐已进入真实本地竖片；Openverse网络问题仍存在；YouTube仍仅是元数据线索。[增源报告](outputs/youtube-expanded-media-sources-2026-11-11.md)、[配乐实测](outputs/music-delivery-progress-2026-11-12.md)、[实际竖片](outputs/portrait-production-progress-2026-11-12.md)。 |
-| M1 | 不消耗模型/视频检索额度的授权背景音乐 | 原件/许可可核对；音频真实可播可缓存；整片连续且不盖旁白；来源署名可交付。 | 本地真实混音与竖片通过；新版云端整片/人工听审待验收 | Undertow官方CC BY音乐10MB真实取得并完整解码；缓存可无网络复用，旁白响度测量/侧链/整片淡入淡出已集成。Linux快照预装验证缓存、云检查点保留原件与许可；新云端配乐成片及人工听感尚待验收。[配乐进展及证据](outputs/music-delivery-progress-2026-11-12.md)。 |
+| Y2 | 后台接入更多视频、图片、音乐来源，不增加前台入口 | 自动检索新来源；原件/许可/作者可追溯；视频须有验证原件；音乐须真实下载与完整解码，失败不伪装成功。 | 已实现；部分真实来源验收通过 | Openverse+Cleveland及既有stock自动增源已接入；Cleveland实际原图与Scott Buckley实际音乐下载/解码通过。音乐已进入真实本地竖片；Openverse网络问题仍存在；YouTube仍仅是元数据线索。[增源报告](outputs/youtube-expanded-media-sources-2026-11-11.md)、[配乐实测](outputs/music-delivery-progress-2026-11-12.md)、[实际竖片](outputs/portrait-production-progress-2026-11-12.md)。 新增三首真实官方音乐的自动选择与缓存已通过本地/Linux检查，正式同步中，[最新配乐进展](outputs/music-selection-progress-2026-11-12.md)。 |
+| M1 | 不消耗模型/视频检索额度的授权背景音乐 | 原件/许可可核对；音频真实可播可缓存；整片连续且不盖旁白；来源署名可交付。 | 三曲缓存/本地混音/Linux通过；正式同步中，听审与新版云整片待验收 | 三首官方CC BY曲目32.92MB实际取得、哈希与解码通过；按主题自动选曲、循环交叉淡化、侧链保护旁白已接入。29秒已有旁白配实际探索曲通过；完整335/335、Linux31/31。下载/缓存/混音不调用TTS或YouTube API。[本轮完整证据](outputs/music-selection-progress-2026-11-12.md)、[云缓存](outputs/music-cloud-cache-2026-11-12.json)、[三曲实际复验](outputs/music-selection-three-track-live-2026-11-12.json)。GoMotion纯音乐[试听样本](outputs/gomotion-music-American-Frontiers-Aaron-Kenny.mp3)已下载，未作为已核实授权默认曲目，[来源与许可记录](outputs/gomotion-background-music-2026-11-11.md)。 |
 | C1 | 字幕清晰；按最新要求恢复原来大小 | 草稿与导出恢复原字号（画面高度×0.038），保留白字/描边/底色；成片无二次暗层；中文无方框；横竖实际帧及浏览器检查。 | 已实现；实际文件通过，浏览器待验收 | 已按用户最新反馈恢复横屏27、竖屏49字号；保留对比度与字体修复，样式版本3防止复用放大版缓存。最新9项通过，实际横竖字形18/35像素；类型检查与构建通过。本地服务已加载。已有成片需重新导出。[字号恢复检查](outputs/subtitle-size-restored-regression-2026-11-11.txt)、[字幕报告](outputs/subtitle-readability-progress-2026-11-11.md)。 |
-| G1 | 推送到 jungleczj/demotion | 源码/任务/报告可克隆，排除密钥/依赖/媒体/第三方代码；核对远端分支和提交。 | 最新代码49bc3b0已同步并正式部署 | 完整323/323通过，正式部署READY且SHA一致，新Linux快照35/35离线通过；发布凭证/排除内容扫描0匹配。[代码提交](https://github.com/jungleczj/demotion/commit/49bc3b07c00983b894b91fcc080dcae2d498e91f)、[发布检查](outputs/publication-check-2026-11-12.json)、[正式接口补验](outputs/long-narration-online-check-2026-11-12.json)、[部署记录](outputs/long-narration-deployment-state-2026-11-12.json)。 |
+| G1 | 推送到 jungleczj/demotion | 源码/任务/报告可克隆，排除密钥/依赖/媒体/第三方代码；核对远端分支和提交。 | 既有49bc3b0已发布；新增配乐335/335及Linux31/31通过，正在同步 | 完整323/323通过，正式部署READY且SHA一致，新Linux快照35/35离线通过；发布凭证/排除内容扫描0匹配。[代码提交](https://github.com/jungleczj/demotion/commit/49bc3b07c00983b894b91fcc080dcae2d498e91f)、[发布检查](outputs/publication-check-2026-11-12.json)、[正式接口补验](outputs/long-narration-online-check-2026-11-12.json)、[部署记录](outputs/long-narration-deployment-state-2026-11-12.json)。 |
 | D1 | 修复Vercel线上“工作台无法连接／声音列表无法加载” | 线上配置/声音/任务接口返回真实JSON；实际试听、完整制作、Range播放和下载可用；离开/刷新不取消任务，后台重启可恢复；目标平台实际验证。 | 连接、声音目录和真实短片云端通过；浏览器待验收 | 配置/声音200、30声音/15语言；真实中文试听此前通过。现已补private Blob与独立Linux执行，实际两幕短片制作、审片、Range、完整解码和失败检查点恢复通过；本地已有任务未取消。浏览器录屏/听感与长视频仍未验收。[任务14最新实测](outputs/task-14-cloud-live-acceptance-2026-11-11.json)、[实施记录](outputs/task-14-cloud-generation-progress-2026-11-11.md)、[部署说明](outputs/gomotion-mvp/DEPLOYMENT.md)。 |
 | S1 | 输入框上限由5,000放开到25,000 | 输入与计数同步；本地/云端25,000完整接收、25,001拒绝；发布文件与前后端一致；不把字数接受当作长片已验证。 | 已发布；边界及构建通过，浏览器待验收 | 前后端共享限制、翻译与配音文本校验、视觉上下文同步；正式文件验证25,000，301项完整回归通过。本地在用户任务结束后重载并保留记录。[字数进展](outputs/script-limit-progress-2026-11-12.md)、[线上证据](outputs/script-limit-online-2026-11-12.json)。 |
 | B1 | 用Sea Wolf同一脚本对标GoMotion成片来驱动开发 | 完整原稿身份/散列固定；取得同稿参考片；逐段核内容、真实来源/图文动效、100%覆盖、同一人声、无闪屏及全流程计时。 | 来源核对中；同稿基线待取得 | 已定位历史公开视频ID，用户确认已私有；API未返回全文。11:21补查：Wayback CDX返回历史页面索引，但正文429；字幕网站目标查询页403，是否有缓存未知；公开搜索未找到可核验的全文或重传。建议优先向GoMotion教程制作者索取当时粘贴的TXT/SRT。[替代渠道及HTTP证据](outputs/sea-wolf-alternative-access-2026-11-12.md)、[此前存档查询](outputs/sea-wolf-public-archive-search-2026-11-12.json)。原稿未取得，其他题材不计同稿验证。[基线与验收方法](outputs/sea-wolf-same-script-benchmark-2026-11-12.md)。 |
@@ -53,6 +53,10 @@
 | L1 | 25,000字长稿旁白分段缓存与续做 | 原文逐字保留，同一所选声音/语言/讲述方式；超过600秒不截断；失败只续做缺段；本地及云检查点保留真实文件，不把半段标成完整旁白。 | 已发布；323项完整离线回归通过，真实长片待验收 | 原文分段、3路并发、校验缓存、云端检查点与明确重试恢复已接入；新增修正长稿文件数上限与旧失败直接返回，独立复核结束。真实人声自然度、长片在线对齐和完整覆盖仍未通过；测试音调不计真实配音。[实现与验收](outputs/long-narration-progress-2026-11-12.md)。 |
 
 ## 本轮本地验收摘要
+
+- **18:52配乐集成**：三路代理均已结束。新增自动选曲、三曲严格缓存、循环交叉淡化与缓存兼容已实现；完整335/335，类型/构建通过，新Linux31/31通过。三首实际取得、缓存与已有旁白混音通过，未新增旁白/生产任务、未取消用户任务；实际浏览器与新版云整片待验收。[本轮证据](outputs/music-selection-progress-2026-11-12.md)、[完整日志](outputs/music-selection-regression-2026-11-12.txt)、[Linux结果](outputs/music-selection-linux-check-2026-11-12.json)、[本地记录保留](outputs/music-selection-local-check-2026-11-12.json)。第11项另一次实际视觉请求402后立即停止，[真实请求记录](outputs/source-gap-application-review-2026-11-12.json)。
+
+- **17:52每小时核对**：上次汇报以来新增实现/真实生成0，三路代理均已结束；正式与本地目录接口200，30声音/15语言，本地3任务状态保留、活动0，已保存旁白和成片Range206。官方CLI确认正式READY/67b30ac；来源图与音乐原件哈希一致。没有新增测试通过或整片验收；最近配音402未确认恢复，浏览器仍禁用且Mac锁定，同稿原文仍缺。下一步及完整边界见[本小时报告](outputs/hourly-status-2026-11-12-17.md)、[实际证据](outputs/hourly-status-2026-11-12-17.json)。
 
 - **17:12发布核对**：代码49bc3b0已推送指定GitHub main；自动正式部署READY且SHA一致，新Linux执行快照已配置。正式配置/声音200、render=true、30声音/15语言，YouTube仍已连接；本轮真实配音/视频请求0、取消0。[正式发布记录](outputs/long-narration-deployment-state-2026-11-12.json)、[正式接口补验](outputs/long-narration-online-check-2026-11-12.json)。研究、实现及复核代理均已结束，任务没有描述成仍并行运行。新版真实长片/自然度/2倍速度、第11项整片、浏览器播放、云端整片配乐和同稿对标仍未通过；配音402、浏览器控制和原稿缺失三项外部条件未变化。
 

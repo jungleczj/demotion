@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-12T10:50:15.458Z",
+  "snapshotId": "snap_tzXVfKQs9nUuZzrNsAnGceETsjGG",
+  "modelRequests": 0,
+  "productionJobs": 0,
+  "scope": "Isolated Linux offline music, cache reuse, loop PCM, completed task messages, render with fixture audio; not real video generation or human listening.",
+  "exitCode": 0,
+  "passed": true,
+  "ownSandboxStopped": true
+}

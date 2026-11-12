@@ -24,9 +24,10 @@ test('Cleveland accepts only individual CC0 image records and API-published boun
 });
 
 test('Scott Buckley catalog rechecks exact official MP3 and per-track license; never scrapes remixes or invents paths', async () => {
-  const html = `<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p><a href="${SCOTT_BUCKLEY_TRACKS[0].url}">MP3</a>`;
+  const html = `<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p><a href="${SCOTT_BUCKLEY_TRACKS[0].url}">MP3</a><pre>'Undertow' by Scott Buckley - released under CC-BY 4.0.</pre>`;
   const tracks = await searchScottBuckley('reflective', { requestText: async (url) => { assert.equal(url, 'https://www.scottbuckley.com.au/library/undertow/'); return html; } });
   assert.equal(tracks.length, 1); assert.equal(tracks[0].license, 'CC BY 4.0'); assert.equal(tracks[0].rights.youtubeDescriptionCredit, true);
+  await assert.rejects(searchScottBuckley('reflective', { requestText: async () => html.replace("'Undertow' by Scott Buckley", "'Other track' by Other author") }), /已变化/);
   await assert.rejects(searchScottBuckley('reflective', { requestText: async () => '<a href="https://other.example.org/preview.mp3">MP3</a>' }), /已变化/);
   assert.deepEqual(await searchScottBuckley('unrelated-nonmatching-query', { requestText: () => { throw new Error('should not fetch'); } }), []);
 });

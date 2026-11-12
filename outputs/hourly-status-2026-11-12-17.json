@@ -1,0 +1,129 @@
+{
+  "checkedAt": "2026-11-12T09:48:24.677Z",
+  "gitHead": "67b30ac10db414e23efb7a5d3e48e63f32b32b02",
+  "workingTreeInitiallyClean": true,
+  "checks": [
+    {
+      "name": "localHealth",
+      "httpStatus": 200,
+      "durationMs": 10
+    },
+    {
+      "name": "localTasks",
+      "httpStatus": 200,
+      "durationMs": 8,
+      "tasks": [
+        {
+          "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+          "status": "done"
+        },
+        {
+          "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+          "status": "error"
+        },
+        {
+          "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+          "status": "error"
+        }
+      ],
+      "active": 0
+    },
+    {
+      "name": "localVoices",
+      "httpStatus": 200,
+      "durationMs": 8,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "name": "productionConfig",
+      "httpStatus": 200,
+      "durationMs": 387,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true
+    },
+    {
+      "name": "productionVoices",
+      "httpStatus": 200,
+      "durationMs": 432,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "deployment": {
+    "httpStatus": 403
+  },
+  "savedMedia": [
+    {
+      "kind": "savedNarration",
+      "httpStatus": 206,
+      "bytes": 4096
+    },
+    {
+      "kind": "savedVideo",
+      "httpStatus": 206,
+      "bytes": 4096
+    }
+  ],
+  "sourceCandidate": {
+    "exists": true,
+    "bytes": 1304056,
+    "sha256": "4950715fe9969e6e1067398610828d2beecfb96e600369eae9293484e28eb00f",
+    "expectedHashMatches": true,
+    "applicationReviewPassed": false,
+    "wholeFilmPassed": false
+  },
+  "music": {
+    "verifiedCachedOriginalFound": true,
+    "bytes": 10000906,
+    "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+    "license": "CC BY 4.0",
+    "receiptPreviouslyFullyDecoded": true,
+    "measurementNote": "Receipt stores adjacent artifact identity; acquisition return value alone includes localPath."
+  },
+  "newModelRequests": 0,
+  "newVideoProductions": 0,
+  "userTasksCancelled": 0,
+  "localServiceRestarted": false,
+  "subagents": {
+    "longNarration": "completed",
+    "sourceResearch": "completed",
+    "codeReview": "completed"
+  },
+  "deploymentCLI": {
+    "exitCode": 0,
+    "latest": [
+      {
+        "url": "gomotion-1czhomq45-signflow2.vercel.app",
+        "state": "READY",
+        "target": "production",
+        "commit": "67b30ac10db414e23efb7a5d3e48e63f32b32b02"
+      },
+      {
+        "url": "gomotion-5t4prpae9-signflow2.vercel.app",
+        "state": "READY",
+        "target": "production",
+        "commit": "49bc3b07c00983b894b91fcc080dcae2d498e91f"
+      }
+    ]
+  },
+  "browser": {
+    "checkedThisTurn": true,
+    "available": false,
+    "errors": [
+      "The Mac is locked and automatic unlock could not unlock it.",
+      "Local browser use is disabled in Work settings"
+    ],
+    "browserAcceptancePerformed": false
+  },
+  "deploymentManagement": {
+    "directApiStatus": 403,
+    "officialCliExitCode": 0,
+    "productionVerifiedReady": true,
+    "verifiedCommit": "67b30ac10db414e23efb7a5d3e48e63f32b32b02",
+    "latestUrl": "https://gomotion-1czhomq45-signflow2.vercel.app",
+    "inspectionMethod": "Official logged-in Vercel CLI; no deployment started."
+  },
+  "reportUpdatedAt": "2026-11-12T09:52:16.117Z"
+}

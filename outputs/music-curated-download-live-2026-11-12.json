@@ -1,0 +1,1437 @@
+{
+  "startedAt": "2026-11-12T10:35:15.538Z",
+  "finishedAt": "2026-11-12T10:35:37.455Z",
+  "elapsedMs": 21915,
+  "network": {
+    "source": "macOS-system",
+    "configured": true,
+    "address": "http://127.0.0.1:7897"
+  },
+  "modelRequests": 0,
+  "youtubeRequests": 0,
+  "cloudJobs": 0,
+  "tracks": [
+    {
+      "provider": "scottbuckley",
+      "sourceId": "undertow",
+      "title": "Undertow",
+      "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+      "kind": "audio",
+      "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+      "thumbnail": "",
+      "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+      "author": "Scott Buckley",
+      "authorUrl": "https://www.scottbuckley.com.au/",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+      "rights": {
+        "attributionRequired": true,
+        "shareAlike": false,
+        "synchronisationOnly": true,
+        "noFingerprinting": true,
+        "youtubeDescriptionCredit": true,
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "licenseEvidence": {
+        "method": "official-track-page",
+        "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+        "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+        "requiresSourceVerification": false
+      },
+      "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+      "width": 0,
+      "height": 0,
+      "duration": 249.930975,
+      "bytes": 10000906,
+      "id": "scottbuckley:undertow",
+      "hasAudio": true,
+      "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+      "downloadedBytes": 0,
+      "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+      "downloadMethod": "verified-byte-ranges",
+      "remoteValidator": {
+        "header": "last-modified",
+        "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+      },
+      "acquiredAt": "2026-11-12T01:43:22.289Z",
+      "fullDecode": true,
+      "mood": "reflective",
+      "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+      "cacheHit": true
+    }
+  ],
+  "warnings": [
+    "scottbuckley:the-great-sea: fetch failed",
+    "scottbuckley:machina: fetch failed"
+  ],
+  "totalBytes": 10000906,
+  "downloadedBytes": 0,
+  "retry": {
+    "startedAt": "2026-11-12T10:37:38.161Z",
+    "elapsedMs": 19680,
+    "tracks": [
+      {
+        "provider": "scottbuckley",
+        "sourceId": "undertow",
+        "title": "Undertow",
+        "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+        "kind": "audio",
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "thumbnail": "",
+        "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+        "author": "Scott Buckley",
+        "authorUrl": "https://www.scottbuckley.com.au/",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+        "rights": {
+          "attributionRequired": true,
+          "shareAlike": false,
+          "synchronisationOnly": true,
+          "noFingerprinting": true,
+          "youtubeDescriptionCredit": true,
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "licenseEvidence": {
+          "method": "official-track-page",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+          "requiresSourceVerification": false
+        },
+        "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+        "width": 0,
+        "height": 0,
+        "duration": 249.930975,
+        "bytes": 10000906,
+        "id": "scottbuckley:undertow",
+        "hasAudio": true,
+        "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "downloadedBytes": 0,
+        "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "downloadMethod": "verified-byte-ranges",
+        "remoteValidator": {
+          "header": "last-modified",
+          "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+        },
+        "acquiredAt": "2026-11-12T01:43:22.289Z",
+        "fullDecode": true,
+        "mood": "reflective",
+        "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+        "cacheHit": true
+      }
+    ],
+    "warnings": [
+      "scottbuckley:the-great-sea: fetch failed",
+      "scottbuckley:machina: fetch failed"
+    ],
+    "totalBytes": 10000906,
+    "downloadedBytes": 0
+  },
+  "curlAcceptance": {
+    "startedAt": "2026-11-12T10:39:49.328Z",
+    "elapsedMs": 91864,
+    "transport": "curl HTTP/1.1 via fetch injection; exact status/headers/bytes retained; production default remains native fetch",
+    "modelRequests": 0,
+    "youtubeRequests": 0,
+    "requests": [
+      {
+        "url": "https://www.scottbuckley.com.au/library/the-great-sea/",
+        "method": "GET",
+        "status": 200,
+        "bytes": 75973,
+        "elapsedMs": 2636,
+        "contentRange": null
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "HEAD",
+        "status": 200,
+        "bytes": 0,
+        "elapsedMs": 1107,
+        "contentRange": null
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/machina/",
+        "method": "GET",
+        "status": 200,
+        "bytes": 75294,
+        "elapsedMs": 5908,
+        "contentRange": null
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=0-65535",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2943,
+        "contentRange": "bytes 0-65535/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=196608-262143",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3544,
+        "contentRange": "bytes 196608-262143/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "HEAD",
+        "status": 200,
+        "bytes": 0,
+        "elapsedMs": 1093,
+        "contentRange": null
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=131072-196607",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3638,
+        "contentRange": "bytes 131072-196607/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=65536-131071",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3656,
+        "contentRange": "bytes 65536-131071/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=262144-327679",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2511,
+        "contentRange": "bytes 262144-327679/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=65536-131071",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2210,
+        "contentRange": "bytes 65536-131071/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=196608-262143",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2686,
+        "contentRange": "bytes 196608-262143/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=458752-524287",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3093,
+        "contentRange": "bytes 458752-524287/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=524288-589823",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 1740,
+        "contentRange": "bytes 524288-589823/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=327680-393215",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3826,
+        "contentRange": "bytes 327680-393215/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=0-65535",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4587,
+        "contentRange": "bytes 0-65535/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=262144-327679",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3643,
+        "contentRange": "bytes 262144-327679/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=720896-786431",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2456,
+        "contentRange": "bytes 720896-786431/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=589824-655359",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3124,
+        "contentRange": "bytes 589824-655359/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=131072-196607",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 6656,
+        "contentRange": "bytes 131072-196607/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=393216-458751",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2242,
+        "contentRange": "bytes 393216-458751/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=393216-458751",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 6879,
+        "contentRange": "bytes 393216-458751/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=458752-524287",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2498,
+        "contentRange": "bytes 458752-524287/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=786432-851967",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2685,
+        "contentRange": "bytes 786432-851967/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=589824-655359",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2863,
+        "contentRange": "bytes 589824-655359/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=655360-720895",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2267,
+        "contentRange": "bytes 655360-720895/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=524288-589823",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4215,
+        "contentRange": "bytes 524288-589823/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=327680-393215",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 8231,
+        "contentRange": "bytes 327680-393215/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=655360-720895",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7370,
+        "contentRange": "bytes 655360-720895/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=720896-786431",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2233,
+        "contentRange": "bytes 720896-786431/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=851968-917503",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 1898,
+        "contentRange": "bytes 851968-917503/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=983040-1048575",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4780,
+        "contentRange": "bytes 983040-1048575/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1048576-1114111",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2886,
+        "contentRange": "bytes 1048576-1114111/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=917504-983039",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7232,
+        "contentRange": "bytes 917504-983039/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=786432-851967",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3862,
+        "contentRange": "bytes 786432-851967/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=983040-1048575",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2603,
+        "contentRange": "bytes 983040-1048575/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=851968-917503",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 8872,
+        "contentRange": "bytes 851968-917503/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1048576-1114111",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2554,
+        "contentRange": "bytes 1048576-1114111/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=917504-983039",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4695,
+        "contentRange": "bytes 917504-983039/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1114112-1179647",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2505,
+        "contentRange": "bytes 1114112-1179647/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1245184-1310719",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2174,
+        "contentRange": "bytes 1245184-1310719/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1114112-1179647",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2380,
+        "contentRange": "bytes 1114112-1179647/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1179648-1245183",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3435,
+        "contentRange": "bytes 1179648-1245183/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1310720-1376255",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2340,
+        "contentRange": "bytes 1310720-1376255/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1310720-1376255",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2693,
+        "contentRange": "bytes 1310720-1376255/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1245184-1310719",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3462,
+        "contentRange": "bytes 1245184-1310719/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1179648-1245183",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4835,
+        "contentRange": "bytes 1179648-1245183/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1507328-1572863",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2205,
+        "contentRange": "bytes 1507328-1572863/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1572864-1638399",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2373,
+        "contentRange": "bytes 1572864-1638399/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1441792-1507327",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3993,
+        "contentRange": "bytes 1441792-1507327/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1376256-1441791",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4203,
+        "contentRange": "bytes 1376256-1441791/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1441792-1507327",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2623,
+        "contentRange": "bytes 1441792-1507327/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1376256-1441791",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4442,
+        "contentRange": "bytes 1376256-1441791/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1638400-1703935",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2592,
+        "contentRange": "bytes 1638400-1703935/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1703936-1769471",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2584,
+        "contentRange": "bytes 1703936-1769471/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1835008-1900543",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2644,
+        "contentRange": "bytes 1835008-1900543/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1703936-1769471",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 1837,
+        "contentRange": "bytes 1703936-1769471/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1572864-1638399",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3937,
+        "contentRange": "bytes 1572864-1638399/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1507328-1572863",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4843,
+        "contentRange": "bytes 1507328-1572863/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1769472-1835007",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2565,
+        "contentRange": "bytes 1769472-1835007/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1638400-1703935",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4861,
+        "contentRange": "bytes 1638400-1703935/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1966080-2031615",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3355,
+        "contentRange": "bytes 1966080-2031615/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2031616-2097151",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3181,
+        "contentRange": "bytes 2031616-2097151/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1900544-1966079",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 6085,
+        "contentRange": "bytes 1900544-1966079/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2031616-2097151",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2627,
+        "contentRange": "bytes 2031616-2097151/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2097152-2162687",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2966,
+        "contentRange": "bytes 2097152-2162687/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1900544-1966079",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 5608,
+        "contentRange": "bytes 1900544-1966079/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1966080-2031615",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3594,
+        "contentRange": "bytes 1966080-2031615/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2162688-2228223",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3200,
+        "contentRange": "bytes 2162688-2228223/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=1769472-1835007",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 9521,
+        "contentRange": "bytes 1769472-1835007/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2228224-2293759",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2306,
+        "contentRange": "bytes 2228224-2293759/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2228224-2293759",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2181,
+        "contentRange": "bytes 2228224-2293759/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2359296-2424831",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2204,
+        "contentRange": "bytes 2359296-2424831/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=1835008-1900543",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 8475,
+        "contentRange": "bytes 1835008-1900543/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2097152-2162687",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3490,
+        "contentRange": "bytes 2097152-2162687/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2424832-2490367",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2662,
+        "contentRange": "bytes 2424832-2490367/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2293760-2359295",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3821,
+        "contentRange": "bytes 2293760-2359295/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2293760-2359295",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2486,
+        "contentRange": "bytes 2293760-2359295/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2359296-2424831",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2232,
+        "contentRange": "bytes 2359296-2424831/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2555904-2621439",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2536,
+        "contentRange": "bytes 2555904-2621439/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2424832-2490367",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2300,
+        "contentRange": "bytes 2424832-2490367/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2621440-2686975",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2544,
+        "contentRange": "bytes 2621440-2686975/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2686976-2752511",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2843,
+        "contentRange": "bytes 2686976-2752511/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2490368-2555903",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2235,
+        "contentRange": "bytes 2490368-2555903/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2162688-2228223",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7027,
+        "contentRange": "bytes 2162688-2228223/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2818048-2883583",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 1866,
+        "contentRange": "bytes 2818048-2883583/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2555904-2621439",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3093,
+        "contentRange": "bytes 2555904-2621439/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2621440-2686975",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3099,
+        "contentRange": "bytes 2621440-2686975/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2752512-2818047",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3459,
+        "contentRange": "bytes 2752512-2818047/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2490368-2555903",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7345,
+        "contentRange": "bytes 2490368-2555903/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2752512-2818047",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2670,
+        "contentRange": "bytes 2752512-2818047/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2818048-2883583",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2464,
+        "contentRange": "bytes 2818048-2883583/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2949120-3014655",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3009,
+        "contentRange": "bytes 2949120-3014655/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3014656-3080191",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2707,
+        "contentRange": "bytes 3014656-3080191/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2686976-2752511",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4823,
+        "contentRange": "bytes 2686976-2752511/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3080192-3145727",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4117,
+        "contentRange": "bytes 3080192-3145727/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2883584-2949119",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 5241,
+        "contentRange": "bytes 2883584-2949119/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3014656-3080191",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3176,
+        "contentRange": "bytes 3014656-3080191/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=2883584-2949119",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 10246,
+        "contentRange": "bytes 2883584-2949119/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=2949120-3014655",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7700,
+        "contentRange": "bytes 2949120-3014655/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3276800-3342335",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 5851,
+        "contentRange": "bytes 3276800-3342335/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3080192-3145727",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7232,
+        "contentRange": "bytes 3080192-3145727/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3211264-3276799",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 10168,
+        "contentRange": "bytes 3211264-3276799/11279896"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3276800-3342335",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4341,
+        "contentRange": "bytes 3276800-3342335/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3145728-3211263",
+        "error": "Command failed: /usr/bin/curl --http1.1 --max-time 12 --silent --show-error --include --header User-Agent: GoMotionLocalMVP/0.1 --header Accept-Encoding: identity --header Range: bytes=3145728-3211263 --header If-Range: Sat, 27 Jan 2024 06:34:43 GMT https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3\ncurl: (28) Operation timed out after 12003 milliseconds with 39943 out of 65536 bytes received\n",
+        "elapsedMs": 12020
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3342336-3407871",
+        "error": "The operation was aborted",
+        "elapsedMs": 6264
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3407872-3473407",
+        "error": "The operation was aborted",
+        "elapsedMs": 4144
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3",
+        "method": "GET",
+        "range": "bytes=3473408-3538943",
+        "error": "The operation was aborted",
+        "elapsedMs": 1423
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3211264-3276799",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 10155,
+        "contentRange": "bytes 3211264-3276799/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3145728-3211263",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 11446,
+        "contentRange": "bytes 3145728-3211263/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3342336-3407871",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7443,
+        "contentRange": "bytes 3342336-3407871/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3407872-3473407",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 5376,
+        "contentRange": "bytes 3407872-3473407/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3473408-3538943",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4533,
+        "contentRange": "bytes 3473408-3538943/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3670016-3735551",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 1894,
+        "contentRange": "bytes 3670016-3735551/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3735552-3801087",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2862,
+        "contentRange": "bytes 3735552-3801087/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3801088-3866623",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2207,
+        "contentRange": "bytes 3801088-3866623/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3604480-3670015",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 5221,
+        "contentRange": "bytes 3604480-3670015/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3538944-3604479",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 7058,
+        "contentRange": "bytes 3538944-3604479/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3932160-3997695",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2256,
+        "contentRange": "bytes 3932160-3997695/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3866624-3932159",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2613,
+        "contentRange": "bytes 3866624-3932159/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4063232-4128767",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2661,
+        "contentRange": "bytes 4063232-4128767/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4194304-4259839",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2477,
+        "contentRange": "bytes 4194304-4259839/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=3997696-4063231",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4531,
+        "contentRange": "bytes 3997696-4063231/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4259840-4325375",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2520,
+        "contentRange": "bytes 4259840-4325375/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4128768-4194303",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4830,
+        "contentRange": "bytes 4128768-4194303/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4390912-4456447",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4820,
+        "contentRange": "bytes 4390912-4456447/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4521984-4587519",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3014,
+        "contentRange": "bytes 4521984-4587519/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4325376-4390911",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 6749,
+        "contentRange": "bytes 4325376-4390911/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4653056-4718591",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 1941,
+        "contentRange": "bytes 4653056-4718591/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4456448-4521983",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 6941,
+        "contentRange": "bytes 4456448-4521983/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4587520-4653055",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 5887,
+        "contentRange": "bytes 4587520-4653055/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4849664-4915199",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3645,
+        "contentRange": "bytes 4849664-4915199/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4718592-4784127",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 6218,
+        "contentRange": "bytes 4718592-4784127/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4915200-4980735",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3499,
+        "contentRange": "bytes 4915200-4980735/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4980736-5046271",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 2978,
+        "contentRange": "bytes 4980736-5046271/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=5046272-5111807",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 3186,
+        "contentRange": "bytes 5046272-5111807/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=5111808-5177343",
+        "status": 206,
+        "bytes": 65536,
+        "elapsedMs": 4529,
+        "contentRange": "bytes 5111808-5177343/11639298"
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=4784128-4849663",
+        "error": "Command failed: /usr/bin/curl --http1.1 --max-time 12 --silent --show-error --include --header User-Agent: GoMotionLocalMVP/0.1 --header Accept-Encoding: identity --header Range: bytes=4784128-4849663 --header If-Range: Fri, 20 Dec 2019 10:19:01 GMT https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3\ncurl: (28) Operation timed out after 12002 milliseconds with 55943 out of 65536 bytes received\n",
+        "elapsedMs": 12019
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=5177344-5242879",
+        "error": "The operation was aborted",
+        "elapsedMs": 4715
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=5242880-5308415",
+        "error": "The operation was aborted",
+        "elapsedMs": 2978
+      },
+      {
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3",
+        "method": "GET",
+        "range": "bytes=5308416-5373951",
+        "error": "The operation was aborted",
+        "elapsedMs": 325
+      }
+    ],
+    "tracks": [
+      {
+        "provider": "scottbuckley",
+        "sourceId": "undertow",
+        "title": "Undertow",
+        "description": "Sombre ebbing piano strings synth; reflective melancholy documentary underwater journey. 沉静 钢琴 弦乐 海洋 水下 纪录片 思考",
+        "kind": "audio",
+        "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "thumbnail": "",
+        "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+        "author": "Scott Buckley",
+        "authorUrl": "https://www.scottbuckley.com.au/",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution": "'Undertow' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au; https://www.scottbuckley.com.au/library/undertow/; https://creativecommons.org/licenses/by/4.0/",
+        "rights": {
+          "attributionRequired": true,
+          "shareAlike": false,
+          "synchronisationOnly": true,
+          "noFingerprinting": true,
+          "youtubeDescriptionCredit": true,
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "licenseEvidence": {
+          "method": "official-track-page",
+          "sourceUrl": "https://www.scottbuckley.com.au/library/undertow/",
+          "sha256": "cb05c64ff5876aad57f9157dc4521f4d9ab3483638dff1497a2dc1d079b50b00",
+          "requiresSourceVerification": false
+        },
+        "licenseCheckedAt": "2026-11-12T01:42:48.526Z",
+        "width": 0,
+        "height": 0,
+        "duration": 249.930975,
+        "bytes": 10000906,
+        "id": "scottbuckley:undertow",
+        "hasAudio": true,
+        "sha256": "4652007dad67295f1f5c87c8cbc8e2df1a530e7671266a29f693a084375d3910",
+        "downloadedBytes": 0,
+        "acquiredUrl": "https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_undertow.mp3",
+        "downloadMethod": "verified-byte-ranges",
+        "remoteValidator": {
+          "header": "last-modified",
+          "value": "Fri, 13 Dec 2019 10:21:19 GMT"
+        },
+        "acquiredAt": "2026-11-12T01:43:22.289Z",
+        "fullDecode": true,
+        "mood": "reflective",
+        "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/music-sources/6d8becc1565442aa35f77a9251cece6de90d577809f00020c90a074da1e6557f.audio",
+        "cacheHit": true
+      }
+    ],
+    "warnings": [
+      "scottbuckley:the-great-sea: Command failed: /usr/bin/curl --http1.1 --max-time 12 --silent --show-error --include --header User-Agent: GoMotionLocalMVP/0.1 --header Accept-Encoding: identity --header Range: bytes=3145728-3211263 --header If-Range: Sat, 27 Jan 2024 06:34:43 GMT https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3\ncurl: (28) Operation timed out after 12003 milliseconds with 39943 out of 65536 bytes received\n",
+      "scottbuckley:machina: Command failed: /usr/bin/curl --http1.1 --max-time 12 --silent --show-error --include --header User-Agent: GoMotionLocalMVP/0.1 --header Accept-Encoding: identity --header Range: bytes=4784128-4849663 --header If-Range: Fri, 20 Dec 2019 10:19:01 GMT https://www.scottbuckley.com.au/library/wp-content/uploads/2019/12/sb_machina.mp3\ncurl: (28) Operation timed out after 12002 milliseconds with 55943 out of 65536 bytes received\n"
+    ],
+    "totalBytes": 10000906,
+    "downloadedBytes": 0
+  }
+}

@@ -1,18 +1,41 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { readFile, rename, rm } from 'node:fs/promises';
-import { acquireDefaultMusic, musicLicenseError } from './music-sources.mjs';
+import { musicLicenseError } from './music-sources.mjs';
+import { selectBackgroundMusic } from './music-selection.mjs';
 import { run, probe } from './process.mjs';
+import { AUDIO_MIX_VERSION } from './audio-mix-profile.mjs';
 
-export async function prepareBackgroundMusic(cacheDirectory, { signal, fetch: fetcher = globalThis.fetch, enabled = true, budgetMs = 20000 } = {}) {
+export async function prepareBackgroundMusic(cacheDirectory, { project, signal, fetch: fetcher = globalThis.fetch, enabled = true, budgetMs = 20000 } = {}) {
   if (!enabled) return { status: 'disabled', mixed: false, narrationPreserved: true };
   const deadline = AbortSignal.timeout(Math.max(1, Math.min(20000, Number(budgetMs) || 20000)));
   const bounded = signal ? AbortSignal.any([signal, deadline]) : deadline;
   try {
-    const source = await acquireDefaultMusic(cacheDirectory, { signal: bounded, fetch: fetcher });
-    return { status: 'ready', mixed: false, source };
+    const selected = await selectBackgroundMusic(cacheDirectory, { project, signal: bounded, fetch: fetcher });
+    return { status: 'ready', mixed: false, ...selected };
   } catch (error) {
     return { status: 'unavailable', mixed: false, narrationPreserved: true, reason: String(error.message || '背景音乐暂不可用').slice(0, 500) };
   }
+}
+
+// Prepare one source-length cycle, independent of film length. The last source
+// samples crossfade into the first samples; the resulting cycle starts just
+// after that head segment so repeated cycles meet at adjacent source samples.
+export async function createSeamlessMusicLoop(music, output, { signal } = {}) {
+  if (!Number.isFinite(music.duration) || music.duration < .1 || music.duration > 1800) throw new Error('音乐循环需要有效且有限的原件时长');
+  const sampleRate = 48000, samples = Math.round(music.duration * sampleRate);
+  const overlap = Math.min(16800, Math.floor(samples / 4));
+  const graph = [
+    `[0:a:0]aresample=${sampleRate},aformat=channel_layouts=stereo,apad=whole_len=${samples},atrim=end_sample=${samples},asplit=3[body][tail][head]`,
+    `[body]atrim=start_sample=${overlap}:end_sample=${samples - overlap},asetpts=PTS-STARTPTS[middle]`,
+    `[tail]atrim=start_sample=${samples - overlap}:end_sample=${samples},asetpts=PTS-STARTPTS[end]`,
+    `[head]atrim=end_sample=${overlap},asetpts=PTS-STARTPTS[start]`,
+    `[end][start]acrossfade=ns=${overlap}:c1=tri:c2=tri[seam]`,
+    '[middle][seam]concat=n=2:v=0:a=1[cycle]',
+  ];
+  await run('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-filter_complex_threads', '1', '-i', music.localPath, '-filter_complex', graph.join(';'), '-map', '[cycle]', '-c:a', 'flac', '-sample_fmt', 's16', '-ar', String(sampleRate), output], signal);
+  const period = (samples - overlap) / sampleRate, actual = await probe(output, signal);
+  if (!actual.hasAudio || Math.abs(actual.duration - period) > 1 / sampleRate) throw new Error('音乐循环周期校验失败');
+  return { loopCrossfadeSeconds: overlap / sampleRate, loopPeriodSeconds: period, sourceOffset: overlap / sampleRate };
 }
 
 export async function mixBackgroundMusic(video, music, output, { duration, signal } = {}) {
@@ -31,6 +54,10 @@ export async function mixBackgroundMusic(video, music, output, { duration, signa
   const targetMusicLufs = Math.min(-30, narrationLufs - 14), normaliseTarget = Math.max(-70, targetMusicLufs);
   const extraGain = Math.pow(10, (targetMusicLufs - normaliseTarget) / 20);
   const length = duration.toFixed(6), fadeIn = Math.min(.8, duration / 4), fadeOut = Math.min(2, duration / 3);
+  const looped = duration > music.duration, loopFile = looped ? `${output}.${randomUUID()}.loop.flac` : undefined;
+  let loop = { loopCrossfadeSeconds: 0, loopPeriodSeconds: music.duration, sourceOffset: 0 };
+  try {
+  if (looped) loop = await createSeamlessMusicLoop(music, loopFile, { signal });
   const stereo = audio.channels === 1 ? 'pan=stereo|c0=c0|c1=c0' : 'aformat=channel_layouts=stereo';
   const graph = [
     `[0:a:0]aresample=48000,${stereo},apad,atrim=duration=${length},asetpts=PTS-STARTPTS,asplit=2[voice][sidechain]`,
@@ -38,31 +65,32 @@ export async function mixBackgroundMusic(video, music, output, { duration, signa
     '[bed][sidechain]sidechaincompress=threshold=0.015:ratio=6:attack=15:release=500:makeup=1[ducked]',
     '[voice][ducked]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,alimiter=limit=0.95:level=0:latency=1[aout]',
   ];
-  await run('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-filter_complex_threads', '1', '-i', video, '-stream_loop', '-1', '-i', music.localPath, '-filter_complex', graph.join(';'), '-map', '0:v:0', '-map', '[aout]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-t', length, '-movflags', '+faststart', output], signal);
+  await run('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-filter_complex_threads', '1', '-i', video, '-stream_loop', '-1', '-i', loopFile || music.localPath, '-filter_complex', graph.join(';'), '-map', '0:v:0', '-map', '[aout]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-t', length, '-movflags', '+faststart', output], signal);
   const actual = await probe(output, signal);
   if (!actual.hasAudio || Math.abs(actual.duration - duration) > .15) throw new Error('配乐成片音轨或时长校验失败');
   await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-xerror', '-err_detect', 'explode', '-i', output, '-map', '0:a:0', '-f', 'null', '-'], signal);
   return { status: 'mixed', mixed: true, narrationPreserved: true,
     source: { ...music, localPath: music.localPath },
-    mix: { version: 1, continuous: true, start: 0, end: duration, sourceOffset: 0, looped: duration > music.duration, narrationLufs, targetMusicLufs, narrationGain: 1,
+    mix: { version: AUDIO_MIX_VERSION, continuous: true, start: 0, end: duration, ...loop, looped, narrationLufs, targetMusicLufs, narrationGain: 1,
       ducking: { threshold: .015, ratio: 6, attackMs: 15, releaseMs: 500 }, fadeInSeconds: fadeIn, fadeOutSeconds: fadeOut,
-      changes: 'Music trimmed or looped continuously, loudness adjusted, ducked beneath narration, faded at film boundaries.' } };
+      changes: `Music trimmed${looped ? ', tail/head crossfaded into a seamless loop' : ''}, loudness adjusted, ducked beneath narration, faded at film boundaries.` } };
+  } finally { if (loopFile) await rm(loopFile, { force: true }); }
 }
 
 // Atomic replacement keeps the completed narration video available if a music
 // source, decoder or mixer fails. Cancellation still cancels the export.
-export async function addBackgroundMusic(video, cacheDirectory, { duration, signal, fetch: fetcher = globalThis.fetch, enabled = true, preparation } = {}) {
+export async function addBackgroundMusic(video, cacheDirectory, { project, duration, signal, fetch: fetcher = globalThis.fetch, enabled = true, preparation } = {}) {
   if (!enabled) return { status: 'disabled', mixed: false, narrationPreserved: true };
   const temporary = `${video}.${randomUUID()}.music.mp4`;
   try {
     signal?.throwIfAborted();
-    const prepared = await (preparation || prepareBackgroundMusic(cacheDirectory, { signal, fetch: fetcher }));
+    const prepared = await (preparation || prepareBackgroundMusic(cacheDirectory, { project, signal, fetch: fetcher }));
     signal?.throwIfAborted();
     if (prepared.status !== 'ready') return prepared;
     const result = await mixBackgroundMusic(video, prepared.source, temporary, { duration, signal });
     signal?.throwIfAborted();
     await rename(temporary, video);
-    return result;
+    return { ...result, selection: prepared.selection };
   } catch (error) {
     signal?.throwIfAborted();
     return { status: 'unavailable', mixed: false, narrationPreserved: true, reason: String(error.message || '背景音乐暂不可用').slice(0, 500) };

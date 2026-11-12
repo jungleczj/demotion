@@ -52,7 +52,7 @@ test('independent render inputs prepare together while the final HD timeline and
     const musicBytes = await readFile(musicFixture);
     await acquireDefaultMusic(path.join(directory, 'music-sources'), { signal: t.signal, fetch: async (url, options) => url === SCOTT_BUCKLEY_TRACKS[0].url
       ? new Response(options.method === 'HEAD' ? null : musicBytes, { headers: { 'Content-Length': String(musicBytes.length) } })
-      : new Response(`<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></p><a href="${SCOTT_BUCKLEY_TRACKS[0].url}">MP3</a>`) });
+      : new Response(`<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></p><a href="${SCOTT_BUCKLEY_TRACKS[0].url}">MP3</a><pre>'Undertow' by Scott Buckley - released under CC-BY 4.0.</pre>`) });
     project.scenes = ids.map((id, index) => {
       const asset = { id, sourceId: id.slice(7), provider: 'coverr', title: `Local scene ${index}`, description: '', kind: 'video', width: 1280, height: 720, duration: 2, localPath: source, sourceUrl: 'https://coverr.co/', author: 'offline fixture', license: 'fixture only', licenseUrl: 'https://coverr.co/license' };
       assets.set(id, asset);

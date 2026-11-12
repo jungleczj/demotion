@@ -1,0 +1,24 @@
+✔ music loop crossfades the real tail and head with sample-continuous repeat boundaries (262.799375ms)
+✔ a single continuous music bed loops past its source duration, ducks beneath speech and fades at the film end (1704.96575ms)
+ℹ {"fixtureOnly":true,"gapDb":-38.5,"duckedMusicDb":-50.4,"voiceDb":-21.3,"originalVoiceDb":-21.3,"endingDb":-59.7}
+✔ unavailable music preserves the completed narration video and cannot claim a successful mix (42.732042ms)
+✔ optional music preparation aborts its download within its budget without claiming a mix (31.349333ms)
+✔ military documentary title selects restrained tension instead of the generic reflective bed (1.4805ms)
+✔ scene planning cannot double-count a script and change music or the completed-film cache key (0.207333ms)
+✔ automatic music uses existing topic and script to choose exploration or tension with no model (509.978125ms)
+✔ verified relevant cache survives registry reset and beats cold downloads; corrupt files never count as cache (549.159291ms)
+✔ cold selected download failure has one bounded default fallback and retains selection evidence (151.93675ms)
+✔ a generic site footer cannot authorize a track and strict snapshot prewarm cannot omit missing originals (0.722458ms)
+✔ music backend searches official tracks, downloads once, fully decodes and verifies content hash on cache reuse (552.926584ms)
+✔ large range-capable music downloads bounded nonoverlapping original bytes and rejects changed versions (224.044875ms)
+✔ music acquisition rejects unregistered files, unlicensed files, oversize streams, bad decode and unsafe redirects (38.141875ms)
+✔ Openverse audio must have matching original-file and license links on its source page before any audio download (0.992584ms)
+✔ default music survives a registry reset and reuses the verified original without another page or audio request (496.724958ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2104.895125

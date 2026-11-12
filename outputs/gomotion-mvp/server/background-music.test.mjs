@@ -15,6 +15,28 @@ async function level(file, start, duration, frequency, signal) {
   return Number(output.match(/mean_volume: ([\d.-]+) dB/)?.[1]);
 }
 
+test('music loop crossfades the real tail and head with sample-continuous repeat boundaries', async (t) => {
+  const background = await import('./background-music.mjs');
+  assert.equal(typeof background.createSeamlessMusicLoop, 'function', 'loop preparation must replace hard source resets');
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'music-loop-'));
+  try {
+    const original = path.join(folder, 'ramp.wav'), loop = path.join(folder, 'loop.flac'), repeated = path.join(folder, 'repeated.pcm');
+    // A saw ramp has a large discontinuity at its raw 1.25s boundary.
+    await run('ffmpeg', ['-y', '-v', 'error', '-f', 'lavfi', '-i', 'aevalsrc=0.3*(2*t/1.25-1):s=48000:d=1.25', original], t.signal);
+    const prepared = await background.createSeamlessMusicLoop({ localPath: original, duration: 1.25 }, loop, { signal: t.signal });
+    assert.equal(prepared.loopCrossfadeSeconds, .3125);
+    assert.equal(prepared.loopPeriodSeconds, .9375);
+    const info = await probe(loop, t.signal);
+    assert.ok(Math.abs(info.duration - .9375) <= 1 / 48000);
+    await run('ffmpeg', ['-y', '-v', 'error', '-stream_loop', '-1', '-i', loop, '-t', '3', '-ac', '1', '-f', 'f32le', repeated], t.signal);
+    const bytes = await readFile(repeated), samples = new Float32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 4);
+    for (const boundary of [45000, 90000, 135000]) {
+      assert.ok(Math.abs(samples[boundary] - samples[boundary - 1]) < .001, `audible hard reset at sample ${boundary}`);
+    }
+    assert.ok(Math.max(...samples.subarray(40000, 44999)) - Math.min(...samples.subarray(40000, 44999)) > .01, 'crossfade must not erase the source or replace it with silence');
+  } finally { await rm(folder, { recursive: true, force: true }); }
+});
+
 test('a single continuous music bed loops past its source duration, ducks beneath speech and fades at the film end', { timeout: 30000 }, async (t) => {
   const { mixBackgroundMusic } = await import('./background-music.mjs');
   const folder = await mkdtemp(path.join(os.tmpdir(), 'music-mix-'));
@@ -28,6 +50,9 @@ test('a single continuous music bed loops past its source duration, ducks beneat
     assert.equal(result.mix.continuous, true);
     assert.equal(result.mix.start, 0);
     assert.equal(result.mix.end, 8);
+    assert.equal(result.mix.version, 2);
+    assert.ok(result.mix.loopCrossfadeSeconds > 0);
+    assert.ok(result.mix.loopPeriodSeconds < 1.25);
     assert.equal(info.hasAudio, true);
     assert.ok(Math.abs(info.duration - 8) < .1);
     await run('ffmpeg', ['-v', 'error', '-xerror', '-i', output, '-f', 'null', '-'], t.signal);

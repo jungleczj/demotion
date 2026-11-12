@@ -4,8 +4,17 @@ import { randomUUID } from 'node:crypto';
 import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { createProductionManager } from './productions.mjs';
+import { createProductionManager, productionCompletionMessage } from './productions.mjs';
 import { mkdir } from 'node:fs/promises';
+
+test('completed tasks disclose unavailable music while preserving the playable narration', () => {
+  const message = productionCompletionMessage({ review: { passed: true }, music: { status: 'unavailable', reason: 'private provider diagnostics' } });
+  assert.match(message, /可以播放或下载/);
+  assert.match(message, /背景音乐未加入，已保留完整旁白/);
+  assert.ok(!message.includes('private provider diagnostics'));
+  for (const status of ['mixed', 'disabled']) assert.ok(!productionCompletionMessage({ review: { passed: true }, music: { status } }).includes('未加入'));
+  assert.match(productionCompletionMessage({ music: { status: 'unavailable' } }), /草稿已保存.*背景音乐未加入/);
+});
 
 test('queued production persists independently of UI and only explicit stop cancels it', async () => {
   const work = await mkdtemp(path.join(os.tmpdir(), 'production-persistence-'));
@@ -116,5 +125,30 @@ test('remaking a project does not reuse a pre-music export', async () => {
     const next = await manager.submit({ project: { ...old.project, id: randomUUID() } });
     assert.equal(next.status, 'queued');
     assert.equal(next.project.exportUrl, undefined);
+  } finally { await rm(work, { recursive: true, force: true }); }
+});
+
+test('completed short music mixes and seamless loops reuse the saved film without new work', async () => {
+  const work = await mkdtemp(path.join(os.tmpdir(), 'production-music-profile-'));
+  try {
+    const directory = path.join(work, 'productions'); await mkdir(directory, { recursive: true });
+    const exportId = randomUUID(); await mkdir(path.join(work, exportId));
+    await writeFile(path.join(work, exportId, 'video.mp4'), 'cache eligibility fixture; not media acceptance');
+    const text = '缓存检查保持已经完成的短片，不重新请求配音或检索视频素材。';
+    const scene = { id: randomUUID(), text, duration: 6, selected: { id: 'upload:music-profile', provider: 'upload', kind: 'video' } };
+    for (const [version, looped, end, expected, newTitle] of [[1, false, 6, 'done'], [2, true, 16, 'done'], [1, true, 16, 'queued'], [2, false, 6, 'queued', 'Danger and survival']]) {
+      const old = { id: randomUUID(), exportId, status: 'done', updatedAt: 1,
+        project: { id: randomUUID(), script: text, voice: 'gemini:Kore', format: 'landscape', scenes: [scene],
+          exportUrl: `/api/exports/${exportId}/video.mp4`, videoProfile: { version: 1, audioMixVersion: version },
+          videoReview: { passed: true, watermarkFree: true },
+          music: { status: 'mixed', mixed: true, narrationPreserved: true,
+            source: { duration: 10, sha256: 'a'.repeat(64), fullDecode: true },
+            mix: { version, continuous: true, start: 0, end, looped, loopCrossfadeSeconds: .35, loopPeriodSeconds: 9.65 } } } };
+      await writeFile(path.join(directory, 'jobs.json'), JSON.stringify([old]));
+      const manager = await createProductionManager({ work, config: { visionEnabled: false }, analyses: new Map(), exports: new Map(), saveAssets: async () => {}, autoStart: false });
+      const next = await manager.submit({ project: { ...old.project, id: randomUUID(), ...(newTitle ? { title: newTitle } : {}) } });
+      assert.equal(next.status, expected, `version=${version}, looped=${looped}`);
+      assert.equal(next.project.exportUrl, expected === 'done' ? old.project.exportUrl : undefined);
+    }
   } finally { await rm(work, { recursive: true, force: true }); }
 });

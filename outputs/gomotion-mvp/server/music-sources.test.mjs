@@ -7,7 +7,7 @@ import { run } from './process.mjs';
 import { musicAssets, musicLicenseError, searchMusicSources, acquireMusicAsset } from './music-sources.mjs';
 import { SCOTT_BUCKLEY_TRACKS } from './source-adapters/scottbuckley.mjs';
 import * as musicSources from './music-sources.mjs';
-const officialPage = (track) => `<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></p><a href="${track.url}">MP3</a>`;
+const officialPage = (track) => `<p>This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a></p><a href="${track.url}">MP3</a><pre>'${track.title}' by Scott Buckley</pre>`;
 
 test('music backend searches official tracks, downloads once, fully decodes and verifies content hash on cache reuse', async () => {
   const folder = await mkdtemp(path.join(os.tmpdir(), 'music-sources-'));

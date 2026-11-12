@@ -1,0 +1,41 @@
+✔ a valid short legacy mix remains reusable without regenerating the film (1.234769ms)
+✔ a new looped mix is reusable only with a valid seamless loop receipt (0.166812ms)
+✔ missing or inconsistent music receipts cannot masquerade as completed mixes (0.32656ms)
+✔ music loop crossfades the real tail and head with sample-continuous repeat boundaries (368.253733ms)
+✔ a single continuous music bed loops past its source duration, ducks beneath speech and fades at the film end (2693.143271ms)
+ℹ {"fixtureOnly":true,"gapDb":-38.5,"duckedMusicDb":-50.4,"voiceDb":-21.3,"originalVoiceDb":-21.3,"endingDb":-59.7}
+✔ unavailable music preserves the completed narration video and cannot claim a successful mix (61.138068ms)
+✔ optional music preparation aborts its download within its budget without claiming a mix (32.913624ms)
+✔ military documentary title selects restrained tension instead of the generic reflective bed (2.423637ms)
+✔ scene planning cannot double-count a script and change music or the completed-film cache key (0.543527ms)
+✔ automatic music uses existing topic and script to choose exploration or tension with no model (537.017754ms)
+✔ verified relevant cache survives registry reset and beats cold downloads; corrupt files never count as cache (499.755138ms)
+✔ cold selected download failure has one bounded default fallback and retains selection evidence (147.567349ms)
+✔ a generic site footer cannot authorize a track and strict snapshot prewarm cannot omit missing originals (1.653866ms)
+✔ music backend searches official tracks, downloads once, fully decodes and verifies content hash on cache reuse (472.622159ms)
+✔ large range-capable music downloads bounded nonoverlapping original bytes and rejects changed versions (300.417109ms)
+✔ music acquisition rejects unregistered files, unlicensed files, oversize streams, bad decode and unsafe redirects (37.85753ms)
+✔ Openverse audio must have matching original-file and license links on its source page before any audio download (1.436225ms)
+✔ default music survives a registry reset and reuses the verified original without another page or audio request (517.027198ms)
+✔ completed tasks disclose unavailable music while preserving the playable narration (1.095056ms)
+✔ queued production persists independently of UI and only explicit stop cancels it (11.1037ms)
+✔ simultaneous submissions for the same project share one durable task (2.024668ms)
+✔ local production accepts and persists 25,000 characters exactly and rejects 25,001 (6.413302ms)
+✔ completed arbitrary diagrams cannot be reused as source-backed productions (2.47121ms)
+✔ remaking a subtitled project rebuilds an older small-caption export (1.74827ms)
+✔ remaking a project does not reuse a pre-music export (2.909612ms)
+✔ completed short music mixes and seamless loops reuse the saved film without new work (11.241495ms)
+✔ a failed render retains the measured time spent in its failing phase (49.897636ms)
+✔ independent render inputs prepare together while the final HD timeline and single narration remain ordered (3664.946099ms)
+ℹ {"inputReportsMax":4,"renderTimings":{"narrationMs":43.70935899999995,"prepareInputsMs":1270.1552550000001,"encodeMs":391.4641630000001,"assembleMs":1112.3801589999998,"reviewMs":246.3164670000001,"totalMs":3064.7511219999997},"outputDuration":2.233008,"artificialAudio":true,"realModelRequests":0}
+✔ Openverse requests direct original files with conservative reusable licenses; rejects incompatible and incomplete results (2.548895ms)
+✔ Cleveland accepts only individual CC0 image records and API-published bounded JPEGs (0.708982ms)
+✔ Scott Buckley catalog rechecks exact official MP3 and per-track license; never scrapes remixes or invents paths (6.619982ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6627.620726
