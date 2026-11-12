@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-12T03:27:13.429Z",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Kore",
+  "language": "zh-CN",
+  "probeDeadlineMs": 45000,
+  "requests": [
+    {
+      "startedMs": 1,
+      "httpStatus": 402,
+      "headersReceivedMs": 566
+    }
+  ],
+  "status": "failed",
+  "errorCode": "TTS_PROVIDER_ERROR",
+  "probeDeadlineExceeded": false,
+  "elapsedMs": 570
+}

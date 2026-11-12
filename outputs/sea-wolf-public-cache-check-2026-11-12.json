@@ -1,0 +1,64 @@
+{
+  "at": "2026-11-12T03:19:24.156953+00:00",
+  "videoId": "CSXelOdU8Yc",
+  "fullTranscriptObtained": false,
+  "checks": [
+    {
+      "name": "wayback-page",
+      "url": "https://web.archive.org/web/20261106095848id_/https://www.youtube.com/watch?si=Taj5FQkeOtz06L_y&v=CSXelOdU8Yc",
+      "status": 429,
+      "error": "HTTPError"
+    },
+    {
+      "name": "wayback-page-index",
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.youtube.com%2Fwatch%3Fv%3DCSXelOdU8Yc&output=json&filter=statuscode%3A200&collapse=timestamp%3A8&limit=5",
+      "status": 200,
+      "bytesRead": 261,
+      "contentType": "application/json",
+      "index": [
+        [
+          "urlkey",
+          "timestamp",
+          "original",
+          "mimetype",
+          "statuscode",
+          "digest",
+          "length"
+        ],
+        [
+          "com,youtube)/watch?v=csxelodu8yc",
+          "20261106095848",
+          "https://www.youtube.com/watch?si=Taj5FQkeOtz06L_y&v=CSXelOdU8Yc",
+          "text/html",
+          "200",
+          "USBAOLEG4Q7WNZWLFLMX2YYTE6LJFQEK",
+          "110226"
+        ]
+      ]
+    },
+    {
+      "name": "transcript-site",
+      "url": "https://youtubetotranscript.com/",
+      "status": 200,
+      "bytesRead": 46037,
+      "contentType": "text/html; charset=utf-8",
+      "formActions": [
+        "/transcript",
+        "/transcript"
+      ],
+      "transcriptLinks": [
+        "https://youtubetotranscript.com/",
+        "https://transcriptapi.com/?utm_source=youtubetotranscript&utm_medium=navbar&utm_campaign=api_link",
+        "https://transcriptapi.com/?utm_source=youtubetotranscript&utm_medium=navbar&utm_campaign=mcp_link",
+        "/auth/login?redirect_url=https%3A//youtubetotranscript.com/",
+        "https://chromewebstore.google.com/detail/youtube-to-transcript-ai/bcmoplgjpddohaelhnnodojbamdobbhc?utm_source=youtubetotranscript&utm_medium=homepage&utm_campaign=chrome_cta",
+        "https://transcriptapi.com/?utm_source=youtubetotranscript&utm_medium=homepage&utm_campaign=bottom_banner",
+        "https://youtubetotranscript.com",
+        "/transcript?v=1WEAJ-DFkHE&current_language_code=en",
+        "https://transcriptapi.com/?utm_source=youtubetotranscript&utm_medium=homepage&utm_campaign=faq",
+        "https://transcriptapi.com/?utm_source=youtubetotranscript&utm_medium=homepage&utm_campaign=footer"
+      ]
+    }
+  ],
+  "note": "Public HTTP checks only; a page/index hit does not establish that captions or video were archived."
+}

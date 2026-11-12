@@ -1,0 +1,60 @@
+✔ an undersized cached recording is regenerated instead of returned as valid narration (278.797166ms)
+✔ a corrupt legacy cache cannot permanently prevent generating a replacement (178.828042ms)
+✔ cache eviction only removes published recordings and leaves concurrent temporary WAV files intact (2.623667ms)
+✔ a persisted task protects its narration from age-based cache eviction after restart (2.053708ms)
+✔ stopping one audition does not cancel a second user of the same recording (176.816625ms)
+✔ an immediate retry does not join a cancelled recording request (78.321833ms)
+✔ successful TTS keeps model, voice, narration and request credentials unchanged (27.381416ms)
+✔ a per-minute 429 retries and can recover without treating generic billing advice as a permanent quota (1.658167ms)
+✔ a daily quota violation stops immediately even when the top-level error is generic (0.611542ms)
+▶ authentication, payment, explicit billing and insufficient-quota failures do not retry
+  ✔ 401 Invalid key (0.573125ms)
+  ✔ 403 Access denied (0.172334ms)
+  ✔ 402 Payment required (0.200542ms)
+  ✔ 429 billing_disabled (0.22975ms)
+  ✔ 429 insufficient_quota (0.318417ms)
+✔ authentication, payment, explicit billing and insufficient-quota failures do not retry (1.933833ms)
+✔ unknown 429 stops after three total attempts and preserves HTTP 429 (0.713375ms)
+▶ Retry-After seconds and dates override exponential delay and are capped at ten seconds
+  ✔ 3 (0.434125ms)
+  ✔ 0 (0.3035ms)
+  ✔ 999 (0.134625ms)
+  ✔ Wed, 11 Nov 2026 00:00:07 GMT (0.293958ms)
+  ✔ bad-date (0.161417ms)
+  ✔ -1 (0.250917ms)
+✔ Retry-After seconds and dates override exponential delay and are capped at ten seconds (1.865083ms)
+▶ 502, 503 and 504 recover but unrelated HTTP failures do not retry
+  ✔ 400 (0.196833ms)
+  ✔ 408 (0.091875ms)
+  ✔ 500 (0.080041ms)
+  ✔ 502 (0.188791ms)
+  ✔ 503 (0.101875ms)
+  ✔ 504 (0.097042ms)
+✔ 502, 503 and 504 recover but unrelated HTTP failures do not retry (0.961708ms)
+✔ temporary network failures are bounded and end with safe HTTP 502 (0.280666ms)
+✔ a temporary connection failure can recover on the next attempt (0.10925ms)
+✔ provider error JSON is readable while API keys, bearer tokens and URLs are redacted (0.127125ms)
+✔ cancelling during backoff stops promptly even if injected sleep never settles (0.262458ms)
+✔ an already cancelled request never starts TTS (0.065417ms)
+✔ a stalled attempt can retry within the original narration timeout budget (21.743459ms)
+✔ three stalled attempts stop with a timeout without renewing the total budget (62.686375ms)
+✔ a cached timeline ending at 0.6s cannot replace the complete two-second recording (300.295875ms)
+✔ a cached timeline ending at 100s cannot replace the complete two-second recording (198.138542ms)
+✔ an existing project track cannot truncate the final 0.4 seconds of speech (153.832667ms)
+✔ native config returns real capabilities without disclosing credentials or pretending a worker exists (2.32275ms)
+✔ voices returns the full catalog even without a provider key or external downloads (0.364875ms)
+✔ rewritten nested API routes return JSON errors instead of SPA HTML; methods are respected (0.536458ms)
+✔ preview uses the selected voice, style and language and returns a complete self-contained WAV (1.983583ms)
+✔ preview validates inputs and provider audio; no calls for missing key, invalid voice/language or long text (0.860375ms)
+✔ cross-origin mutations, oversized bodies, and upstream errors cannot disclose credentials (1.3045ms)
+✔ production endpoints explicitly reject work without durable worker instead of making transient fake tasks (0.275083ms)
+✔ a rejected narration request does not trigger footage-recovery rounds (26.064958ms)
+✔ an exhausted narration timeout budget is not restarted by footage recovery (22.840333ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 745.2165

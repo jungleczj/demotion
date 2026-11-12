@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-12T03:26:32.551Z",
+  "network": {
+    "source": "macOS-system",
+    "configured": true,
+    "address": "http://127.0.0.1:7897"
+  },
+  "checks": [
+    {
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": 200,
+      "ms": 393,
+      "name": "models/gemini-2.5-flash-preview-tts",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 16384,
+      "supportedGenerationMethods": [
+        "countTokens",
+        "generateContent"
+      ]
+    },
+    {
+      "model": "gemini-3.8-flash-tts",
+      "status": 200,
+      "ms": 382,
+      "name": "models/gemini-3.8-flash-tts",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 16384,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ]
+    },
+    {
+      "model": "gemini-3.8-flash-lite-tts",
+      "status": 200,
+      "ms": 306,
+      "name": "models/gemini-3.8-flash-lite-tts",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 16384,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ]
+    }
+  ],
+  "generatedAudioRequests": 0
+}

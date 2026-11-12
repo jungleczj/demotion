@@ -1,0 +1,80 @@
+✔ successful TTS keeps model, voice, narration and request credentials unchanged (20.747208ms)
+✔ a per-minute 429 retries and can recover without treating generic billing advice as a permanent quota (0.843542ms)
+✔ a daily quota violation stops immediately even when the top-level error is generic (0.317375ms)
+▶ authentication, payment, explicit billing and insufficient-quota failures do not retry
+  ✔ 401 Invalid key (0.31425ms)
+  ✔ 403 Access denied (0.146708ms)
+  ✔ 402 Payment required (0.136917ms)
+  ✔ 429 billing_disabled (0.112375ms)
+  ✔ 429 insufficient_quota (0.129834ms)
+✔ authentication, payment, explicit billing and insufficient-quota failures do not retry (1.071083ms)
+✔ unknown 429 stops after three total attempts and preserves HTTP 429 (0.408291ms)
+▶ Retry-After seconds and dates override exponential delay and are capped at ten seconds
+  ✔ 3 (0.231833ms)
+  ✔ 0 (0.142333ms)
+  ✔ 999 (0.09725ms)
+  ✔ Wed, 11 Nov 2026 00:00:07 GMT (0.128042ms)
+  ✔ bad-date (0.101375ms)
+  ✔ -1 (0.102625ms)
+✔ Retry-After seconds and dates override exponential delay and are capped at ten seconds (0.957917ms)
+▶ 502, 503 and 504 recover but unrelated HTTP failures do not retry
+  ✔ 400 (0.083584ms)
+  ✔ 408 (0.056458ms)
+  ✔ 500 (0.052334ms)
+  ✔ 502 (0.121791ms)
+  ✔ 503 (0.085542ms)
+  ✔ 504 (0.067875ms)
+✔ 502, 503 and 504 recover but unrelated HTTP failures do not retry (0.569625ms)
+✔ temporary network failures are bounded and end with safe HTTP 502 (0.213083ms)
+✔ a temporary connection failure can recover on the next attempt (0.091ms)
+✔ provider error JSON is readable while API keys, bearer tokens and URLs are redacted (0.101084ms)
+✔ cancelling during backoff stops promptly even if injected sleep never settles (0.210833ms)
+✔ an already cancelled request never starts TTS (0.062875ms)
+✖ a stalled attempt can retry within the original narration timeout budget (181.69025ms)
+✖ three stalled attempts stop with a timeout without renewing the total budget (181.650959ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 29
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 448.191041
+
+✖ failing tests:
+
+test at server/narration-request.test.mjs:173:1
+✖ a stalled attempt can retry within the original narration timeout budget (181.69025ms)
+  Error: 配音请求超时，请稍后重试
+      at abortedError (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.mjs:31:21)
+      at requestNarration (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.mjs:100:40)
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.test.mjs:180:20)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    status: 502,
+    code: 'TTS_TIMEOUT'
+  }
+
+test at server/narration-request.test.mjs:190:1
+✖ three stalled attempts stop with a timeout without renewing the total budget (181.650959ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: 配音请求超时，请稍后重试
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.test.mjs:197:5)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: 配音请求超时，请稍后重试
+        at abortedError (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.mjs:31:21)
+        at requestNarration (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.mjs:100:40)
+        at async waitForActual (node:assert:621:5)
+        at async strict.rejects (node:assert:744:25)
+        at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.test.mjs:197:5)
+        at async Test.run (node:internal/test_runner/test:1208:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:831:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }

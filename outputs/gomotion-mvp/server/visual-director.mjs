@@ -120,9 +120,17 @@ async function visualSequencePass(job, project, work, config, enabled) {
     // and settle both before cleaning up the shared task directory on any failure.
     const preparations = await Promise.allSettled([
       (async () => {
-        const measured = await measureNarration(project, directory, job, config);
-        job.events.push({ stage: 'narration-timing', engine: 'gemini-tts', model: 'gemini-2.5-flash-preview-tts', status: 'completed', durationMs: Date.now() - started, inputType: 'text', mediaCount: measured.length });
-        return measured;
+        try {
+          const measured = await measureNarration(project, directory, job, config);
+          job.events.push({ stage: 'narration-timing', engine: 'gemini-tts', model: 'gemini-2.5-flash-preview-tts', status: 'completed', durationMs: Date.now() - started, inputType: 'text', mediaCount: measured.length });
+          return measured;
+        } catch (error) {
+          // Voice transport already owns its bounded retries and timeout. A new
+          // footage query cannot repair this prerequisite or renew its budget.
+          job.failedStage = 'narration';
+          job.events.push({ stage: 'narration-timing', engine: 'gemini-tts', model: 'gemini-2.5-flash-preview-tts', status: 'failed', durationMs: Date.now() - started, inputType: 'text', errorCode: error.code || 'NARRATION_FAILED', httpStatus: error.code === 'TTS_PROVIDER_ERROR' ? error.status : undefined, attempts: error.attempts, detail: error.message });
+          throw error;
+        }
       })(),
       needsSearch ? refreshSemanticSearch(project, project.scenes, config, job, warnings, enabled) : Promise.resolve(project.scenes),
     ]);
@@ -311,7 +319,7 @@ export async function visualSequence(job, project, work, config, enabled) {
     job.status = 'running'; job.progress = Math.min(90, retry * 20); job.retry = retry;
     job.calls = 0; job.bytes = 0;
     job.callLimit = Math.max(36, Math.min(128, current.scenes.length * 5 + 8));
-    delete job.error; delete job.passStatus;
+    delete job.error; delete job.passStatus; delete job.failedStage;
     if (retry > 0 && checkpoint) {
       job.message = '正在自动补齐画面';
       try { current = await recoverMissingScenes(current, checkpoint, config, job, retry); }
@@ -328,6 +336,7 @@ export async function visualSequence(job, project, work, config, enabled) {
     if (job.result && ['done', 'incomplete'].includes(job.passStatus)) { checkpoint = job.result; await job.onCheckpoint?.(checkpoint); }
     if (job.passStatus === 'done') break;
     if (job.passStatus === 'error') {
+      if (job.failedStage === 'narration') break;
       if (/401|402|403|429|鉴权|权限|额度/.test(job.error || '')) break;
       current = { ...current, visualError: 'automatic-recovery' };
     }
@@ -344,7 +353,8 @@ export async function visualSequence(job, project, work, config, enabled) {
     job.status = checkpoint.report.complete ? 'done' : 'incomplete';
     job.message = checkpoint.report.complete ? '视频画面已准备好' : '自动重试已结束，草稿已保存，仍有画面待补充';
     if (!checkpoint.report.complete) job.result.report.warnings.push(`已自动重试 ${job.retry || 0} 轮，仍缺 ${checkpoint.report.missingScenes?.length || 0} 个画面`);
-    if (job.error && /401|402|403|429|鉴权|权限|额度/.test(job.error)) job.result.report.stopReason = /402|429|额度/.test(job.error) ? 'quota' : 'connection';
+    if (job.error && job.failedStage === 'narration') job.result.report.stopReason = 'narration';
+    else if (job.error && /401|402|403|429|鉴权|权限|额度/.test(job.error)) job.result.report.stopReason = /402|429|额度/.test(job.error) ? 'quota' : 'connection';
     delete job.error;
   }
   if (!checkpoint) job.status = 'error';

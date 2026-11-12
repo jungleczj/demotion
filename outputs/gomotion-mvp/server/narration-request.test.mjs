@@ -169,3 +169,36 @@ test('an already cancelled request never starts TTS', async () => {
     sleepImpl: async () => assert.fail('cancelled request must not wait'),
   }), (error) => error.name === 'AbortError');
 });
+
+test('a stalled attempt can retry within the original narration timeout budget', { timeout: 1000 }, async (t) => {
+  const timeout = AbortSignal.timeout.bind(AbortSignal);
+  t.mock.method(AbortSignal, 'timeout', (ms) => timeout(ms === 120000 ? 180 : 20));
+  const keepAlive = setInterval(() => {}, 1000);
+  let calls = 0;
+  const delays = [];
+  try {
+    const result = await requestNarration(config, 'model', payload, undefined, {
+      fetchImpl: async () => ++calls === 1 ? new Promise(() => {}) : json(200, audio),
+      sleepImpl: async (ms) => delays.push(ms),
+    });
+    assert.deepEqual(result, audio);
+    assert.equal(calls, 2, 'a stalled transport must not consume the entire budget before retrying');
+    assert.deepEqual(delays, [2000]);
+  } finally { clearInterval(keepAlive); }
+});
+
+test('three stalled attempts stop with a timeout without renewing the total budget', { timeout: 1000 }, async (t) => {
+  const timeout = AbortSignal.timeout.bind(AbortSignal);
+  t.mock.method(AbortSignal, 'timeout', (ms) => timeout(ms === 120000 ? 180 : 20));
+  const keepAlive = setInterval(() => {}, 1000);
+  let calls = 0;
+  const delays = [];
+  try {
+    await assert.rejects(requestNarration(config, 'model', payload, undefined, {
+      fetchImpl: async () => { calls++; return new Promise(() => {}); },
+      sleepImpl: async (ms) => delays.push(ms),
+    }), (error) => error.code === 'TTS_TIMEOUT' && error.attempts === 3);
+    assert.equal(calls, 3);
+    assert.deepEqual(delays, [2000, 4000]);
+  } finally { clearInterval(keepAlive); }
+});

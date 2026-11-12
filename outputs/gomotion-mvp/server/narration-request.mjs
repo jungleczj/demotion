@@ -25,10 +25,10 @@ async function abortable(operation, signal) {
   } finally { if (onAbort) signal.removeEventListener('abort', onAbort); }
 }
 
-function abortedError(signal) {
+function abortedError(signal, attempts = 0) {
   return signal?.aborted
-    ? Object.assign(new Error('配音已取消'), { name: 'AbortError', status: 499, code: 'TTS_CANCELLED' })
-    : Object.assign(new Error('配音请求超时，请稍后重试'), { status: 502, code: 'TTS_TIMEOUT' });
+    ? Object.assign(new Error('配音已取消'), { name: 'AbortError', status: 499, code: 'TTS_CANCELLED', attempts })
+    : Object.assign(new Error('配音请求超时，请稍后重试'), { status: 502, code: 'TTS_TIMEOUT', attempts });
 }
 
 function quotaKind(data, raw) {
@@ -81,28 +81,32 @@ export async function requestNarration(config, model, payload, signal, {
   fetchImpl = fetch,
   sleepImpl = (ms, waitSignal) => delay(ms, undefined, { signal: waitSignal }),
   now = Date.now,
+  attemptTimeoutMs = 45000,
 } = {}) {
   // One timeout budget spans all attempts and backoff, not 120 seconds per retry.
   const requestSignal = AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(120000)]);
   const url = `${config.visionBase.replace(/\/$/, '')}/models/${model}:generateContent`;
   const body = JSON.stringify(payload);
   for (let attempt = 1; attempt <= 3; attempt++) {
-    if (requestSignal.aborted) throw abortedError(signal);
+    if (requestSignal.aborted) throw abortedError(signal, attempt - 1);
+    // Reserve room to retry a stalled short recording inside the SAME overall
+    // deadline. Longer recordings may retain their existing full-call budget.
+    const attemptSignal = AbortSignal.any([requestSignal, AbortSignal.timeout(Math.max(1, Math.min(120000, attemptTimeoutMs)))]);
     let response, failure;
     try {
       response = await abortable(() => fetchImpl(url, {
         method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': config.visionKey },
-        signal: requestSignal, body,
-      }), requestSignal);
-      if (response.ok) return await abortable(() => response.json(), requestSignal);
-      failure = await providerError(response, config, requestSignal);
+        signal: attemptSignal, body,
+      }), attemptSignal);
+      if (response.ok) return await abortable(() => response.json(), attemptSignal);
+      failure = await providerError(response, config, attemptSignal);
     } catch (error) {
-      if (requestSignal.aborted) throw abortedError(signal);
-      failure = connectionError(error, config);
+      if (requestSignal.aborted) throw abortedError(signal, attempt);
+      failure = attemptSignal.aborted ? Object.assign(abortedError(signal, attempt), { retryable: true }) : connectionError(error, config);
     }
     failure.attempts = attempt;
     if (!failure.retryable || attempt === 3) throw failure;
     try { await abortable(() => sleepImpl(retryDelay(response, attempt, now), requestSignal), requestSignal); }
-    catch (error) { if (requestSignal.aborted) throw abortedError(signal); throw connectionError(error, config); }
+    catch (error) { if (requestSignal.aborted) throw abortedError(signal, attempt); throw connectionError(error, config); }
   }
 }

@@ -9,6 +9,7 @@ import { sharedOperations } from './shared-operation.mjs';
 import voiceCatalog from '../shared/voices.json' with { type: 'json' };
 import languages from '../shared/languages.json' with { type: 'json' };
 import { retainedMedia } from './media-retention.mjs';
+import { estimateNarrationSeconds } from '../shared/narration-duration.mjs';
 
 export const TTS_MODEL = 'gemini-2.5-flash-preview-tts';
 const folder = path.join(workDirectory, 'narration');
@@ -87,7 +88,7 @@ export async function narrationAudio(scene, project, config, signal) {
         catch { recordingSignal.throwIfAborted(); }
         finally { await rm(temporary, { force: true }); }
       }
-      const data = await requestNarration(config, TTS_MODEL, { contents: [{ parts: [{ text: `${style}\n\nNARRATION:\n${text}` }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, recordingSignal);
+      const data = await requestNarration(config, TTS_MODEL, { contents: [{ parts: [{ text: `${style}\n\nNARRATION:\n${text}` }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, recordingSignal, { attemptTimeoutMs: Math.max(45000, Math.min(120000, estimateNarrationSeconds(text, project.voiceStyle) * 1000)) });
       const part = data.candidates?.[0]?.content?.parts?.find((p) => p.inlineData?.data)?.inlineData;
       if (!part || !/audio\/(?:L16|pcm)/i.test(part.mimeType || '')) throw new Error('Gemini 没有返回受支持的 PCM 音轨，未使用其他声音替代');
       const rate = Number(part.mimeType.match(/rate=(\d+)/)?.[1]) || 24000;

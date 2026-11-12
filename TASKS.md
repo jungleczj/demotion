@@ -1,6 +1,6 @@
 # GoMotion MVP 任务与验收
 
-最后更新：2026-11-12 11:10（Asia/Shanghai）
+最后更新：2026-11-12 11:34（Asia/Shanghai）
 工作台：<http://localhost:3027/>
 应用入口：[MVP README](outputs/gomotion-mvp/README.md)
 
@@ -22,7 +22,7 @@
 |---|---|---|---|---|
 | 1 | 镜头切换不闪出“正在准备可播放视频”，无缝衔接 | 整片与草稿均一次连播；切镜无准备遮罩、黑白帧或旁白重启；以实际浏览器录屏验收。 | 实施中 | 已实现双持久播放器、下一幕预加载和解码帧交接；普通切镜保留同一旁白节点。8 项播放状态回归、4 项素材解码就绪状态检查通过；浏览器录屏仍待验收。 [播放状态检查](outputs/gomotion-mvp/src/hooks/usePreviewPlayback.test.mjs)、[素材就绪检查](outputs/gomotion-mvp/src/components/AssetVideo.test.mjs)。 |
 | 2 | 统一镜头清晰度与横竖屏，不能混拼 | 横1280×720 / 竖720×1280、30fps；实际源清晰度及方向合格；横竖各一条完整样片。 | 待人工验收 | 横/竖均已有真实完整短片；新增29.367秒竖片5幕，源文件均720×1280，实际审片、Range及完整解码通过。浏览器及人工清晰度一致性仍待复核。[竖屏真实验收](outputs/portrait-production-progress-2026-11-12.md)、[横屏验收](outputs/playback-performance-progress-2026-11-11.md)。 |
-| 3 | 进一步优化生成时间 | 提交至审片结束计时；目标≤成片时长2倍，短片另核2–3分钟上限；冷/热及普通/难题材分开实测。 | 实施中 | 目录 / 视觉 / 下载并发6/4/4；进一步修复合成前逐镜准备的串行瓶颈，输入准备4路、同素材共用、去掉重复probe，裁切检查进入并行编码。4镜头实际文件流程证明最大4请求在途，最新完整本地范围301/301通过；不以离线样例冒充2倍冷生成达标。最新既有用户任务52.44秒旁白耗647.79秒，恢复3轮，复用既有旁白/部分选材；目标未达。新增竖屏29.367秒/309.2秒（10.53倍），3轮恢复；选材279.39秒是主要瓶颈。[竖屏阶段计时](outputs/portrait-production-progress-2026-11-12.md)。此前横屏冷基准约31秒/140秒。 [性能测量报告](outputs/playback-performance-progress-2026-11-11.md)；[完整冷生成记录](outputs/gomotion-hd-generation-2026-11-11.json)。 |
+| 3 | 进一步优化生成时间 | 提交至审片结束计时；目标≤成片时长2倍，短片另核2–3分钟上限；冷/热及普通/难题材分开实测。 | 实施中 | 并发6/4/4及合成前4路准备已实现。新增修复：配音120秒总预算不再被选材外层重复4轮；短录音卡住可在同一预算内重试，305/305回归通过。实际新配音返回402，未做新版冷生成，速度仍未达标。[配音诊断](outputs/narration-retry-progress-2026-11-12.md)。既有竖片29.367秒/309.2秒（10.53倍），选材279.39秒含一次配音超时；既有横片约31秒/140秒。[竖屏计时](outputs/portrait-production-progress-2026-11-12.md)、[性能报告](outputs/playback-performance-progress-2026-11-11.md)。 |
 | 4 | 粘贴脚本后，在截图右下角实时显示预计成片时长 | 粘贴、输入、删除即时更新预计成片mm:ss；中英混合与空稿正确；位置及窄屏不遮挡。 | 待验收 | 已加入输入区右下角“预计成片 ≈ mm:ss”，与 Summary 共用估算；空稿为 0:00。类型与构建通过，待界面实际验收。 [页面实现](outputs/gomotion-mvp/src/components/Creator.tsx)、[估算检查](outputs/gomotion-mvp/shared/narration-duration.test.mjs)。 |
 | 5 | 从 GoMotion MCP 反查具体及主要素材来源 | 核对目标域名MCP/schema/实际响应；区分直接证据与推断；无证据则明确主素材库未知。 | 已完成（公开调研） | [来源与 MCP 报告](outputs/gomotion-mcp-source-audit-2026-11-11.md)：无鉴权 initialize / tools/list 均实测 401，公开 schema 无逐镜头来源；官方音乐目录声明 YouTube Audio Library。视频主库仍无法确认。 |
 | 6 | 说明 YouTube 素材如何接入、是否收费 | 交付官方API/key入口、配额/费用、版权、合法原片获取及按需缓存流程；本项为调研验收。 | 已完成（调研） | 搜索API、配额、版权和原片获取分开说明；后续代码接入与真实key验收另列Y1。 [YouTube接入调研](outputs/youtube-footage-access-2026-11-11.md)、[代码接入进展](outputs/youtube-integration-progress-2026-11-11.md)。 |
@@ -48,9 +48,11 @@
 | G1 | 推送到 jungleczj/demotion | 源码/任务/报告可克隆，排除密钥/依赖/媒体/第三方代码；核对远端分支和提交。 | 代码及本轮验收已同步至f21e016 | 本轮完整回归301/301通过，正式部署/执行快照已更新；269个发布文件凭证/排除内容扫描0匹配。[代码提交](https://github.com/jungleczj/demotion/commit/f21e0160fdcba7ec57724c3e72b3161ff3a4e58b)、[发布检查](outputs/publication-check-2026-11-12.json)、[线上检查](outputs/script-limit-online-2026-11-12.json)。 |
 | D1 | 修复Vercel线上“工作台无法连接／声音列表无法加载” | 线上配置/声音/任务接口返回真实JSON；实际试听、完整制作、Range播放和下载可用；离开/刷新不取消任务，后台重启可恢复；目标平台实际验证。 | 连接、声音目录和真实短片云端通过；浏览器待验收 | 配置/声音200、30声音/15语言；真实中文试听此前通过。现已补private Blob与独立Linux执行，实际两幕短片制作、审片、Range、完整解码和失败检查点恢复通过；本地已有任务未取消。浏览器录屏/听感与长视频仍未验收。[任务14最新实测](outputs/task-14-cloud-live-acceptance-2026-11-11.json)、[实施记录](outputs/task-14-cloud-generation-progress-2026-11-11.md)、[部署说明](outputs/gomotion-mvp/DEPLOYMENT.md)。 |
 | S1 | 输入框上限由5,000放开到25,000 | 输入与计数同步；本地/云端25,000完整接收、25,001拒绝；发布文件与前后端一致；不把字数接受当作长片已验证。 | 已发布；边界及构建通过，浏览器待验收 | 前后端共享限制、翻译与配音文本校验、视觉上下文同步；正式文件验证25,000，301项完整回归通过。本地在用户任务结束后重载并保留记录。[字数进展](outputs/script-limit-progress-2026-11-12.md)、[线上证据](outputs/script-limit-online-2026-11-12.json)。 |
-| B1 | 用Sea Wolf同一脚本对标GoMotion成片来驱动开发 | 完整原稿身份/散列固定；取得同稿参考片；逐段核内容、真实来源/图文动效、100%覆盖、同一人声、无闪屏及全流程计时。 | 来源核对中；同稿基线待取得 | 已定位历史公开视频ID，用户确认已私有；公开索引仍有标题链接，API未返回全文。没有以改写稿替代原稿。已找到11月6日Wayback页面快照，但尚未读到正文/字幕；馆藏搜索和英文字幕存档未命中。[公开存档结果](outputs/sea-wolf-public-archive-search-2026-11-12.json)。其他题材不计同稿验证。[基线与验收方法](outputs/sea-wolf-same-script-benchmark-2026-11-12.md)。 |
+| B1 | 用Sea Wolf同一脚本对标GoMotion成片来驱动开发 | 完整原稿身份/散列固定；取得同稿参考片；逐段核内容、真实来源/图文动效、100%覆盖、同一人声、无闪屏及全流程计时。 | 来源核对中；同稿基线待取得 | 已定位历史公开视频ID，用户确认已私有；API未返回全文。11:21补查：Wayback CDX返回历史页面索引，但正文429；字幕网站目标查询页403，是否有缓存未知；公开搜索未找到可核验的全文或重传。建议优先向GoMotion教程制作者索取当时粘贴的TXT/SRT。[替代渠道及HTTP证据](outputs/sea-wolf-alternative-access-2026-11-12.md)、[此前存档查询](outputs/sea-wolf-public-archive-search-2026-11-12.json)。原稿未取得，其他题材不计同稿验证。[基线与验收方法](outputs/sea-wolf-same-script-benchmark-2026-11-12.md)。 |
 
 ## 本轮本地验收摘要
+
+- **11:34配音诊断**：两个实际失败任务均约480秒等待；离线复现确认配音120秒总预算被选材外层4轮重启。已修复重试归属，并让短配音停滞在同一总预算内重试；完整305/305通过、类型/构建通过，新云快照已准备。真实短配音本次返回HTTP402，没有生成音频，需用户核对服务计费/余额；新版整片和速度仍未通过。[诊断与验收](outputs/narration-retry-progress-2026-11-12.md)、[真实短配音结果](outputs/narration-current-service-2026-11-12.json)。
 
 - **2026-11-12新增**：本地稳定目录、保存任务媒体保留、查询主体与去重、默认授权配乐及云音乐检查点已集成；完整301/301、0失败/取消/跳过，类型与构建通过。[完整日志](outputs/final-integration-regression-2026-11-12.txt)。真实竖片完整文件通过但速度失败；本地用户另一任务配音请求超时后自行结束，保留失败草稿，未重复提交。旧20条临时任务仍未恢复；不能把旧报告重建成恢复成功记录。[持久化状态](outputs/local-persistence-progress-2026-11-12.md)。
 

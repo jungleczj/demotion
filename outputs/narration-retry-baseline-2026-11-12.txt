@@ -1,0 +1,44 @@
+✔ an undersized cached recording is regenerated instead of returned as valid narration (377.247208ms)
+✔ a corrupt legacy cache cannot permanently prevent generating a replacement (177.397292ms)
+✔ cache eviction only removes published recordings and leaves concurrent temporary WAV files intact (3.753583ms)
+✔ a persisted task protects its narration from age-based cache eviction after restart (1.913541ms)
+✔ successful TTS keeps model, voice, narration and request credentials unchanged (21.220667ms)
+✔ a per-minute 429 retries and can recover without treating generic billing advice as a permanent quota (0.867417ms)
+✔ a daily quota violation stops immediately even when the top-level error is generic (0.339833ms)
+▶ authentication, payment, explicit billing and insufficient-quota failures do not retry
+  ✔ 401 Invalid key (0.315875ms)
+  ✔ 403 Access denied (0.137666ms)
+  ✔ 402 Payment required (0.145417ms)
+  ✔ 429 billing_disabled (0.107459ms)
+  ✔ 429 insufficient_quota (0.127417ms)
+✔ authentication, payment, explicit billing and insufficient-quota failures do not retry (1.062375ms)
+✔ unknown 429 stops after three total attempts and preserves HTTP 429 (0.352792ms)
+▶ Retry-After seconds and dates override exponential delay and are capped at ten seconds
+  ✔ 3 (0.186375ms)
+  ✔ 0 (0.152625ms)
+  ✔ 999 (0.09825ms)
+  ✔ Wed, 11 Nov 2026 00:00:07 GMT (0.137208ms)
+  ✔ bad-date (0.109667ms)
+  ✔ -1 (0.08225ms)
+✔ Retry-After seconds and dates override exponential delay and are capped at ten seconds (0.915875ms)
+▶ 502, 503 and 504 recover but unrelated HTTP failures do not retry
+  ✔ 400 (0.101125ms)
+  ✔ 408 (0.12375ms)
+  ✔ 500 (0.083167ms)
+  ✔ 502 (0.144333ms)
+  ✔ 503 (0.113791ms)
+  ✔ 504 (0.077292ms)
+✔ 502, 503 and 504 recover but unrelated HTTP failures do not retry (0.80425ms)
+✔ temporary network failures are bounded and end with safe HTTP 502 (0.260791ms)
+✔ a temporary connection failure can recover on the next attempt (0.102334ms)
+✔ provider error JSON is readable while API keys, bearer tokens and URLs are redacted (0.115458ms)
+✔ cancelling during backoff stops promptly even if injected sleep never settles (0.242708ms)
+✔ an already cancelled request never starts TTS (0.064583ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 637.337333
