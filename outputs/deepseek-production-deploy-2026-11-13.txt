@@ -1,0 +1,70 @@
+Vercel CLI 59.5.0 (Node.js 25.9.0)
+Deploying gomotion-mvp
+Uploading [--------------------] (0.0B/428KB)
+Uploading [=====---------------] (110.5KB/428KB)
+Uploading [==========----------] (216.1KB/428KB)
+Uploading [===============-----] (324.5KB/428KB)
+Uploading [====================] (428.0KB/428KB)
+  Inspect         https://vercel.com/signflow2/gomotion-mvp/8WJd6t9md3tTq1YvRw36fgJV7WTr
+  Production      https://gomotion-i4x8f6msi-signflow2.vercel.app
+Building…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 2 cores, 8 GB
+Retrieving list of deployment files...
+Downloading 111 deployment files...
+Restored build cache from previous deployment (LqtEN18VzAwDN3paf93N2QVbuKtN)
+Running "vercel build"
+Vercel CLI 65.14.0
+Installing dependencies...
+npm warn Unknown env config "cache-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+up to date in 464ms
+14 packages are looking for funding
+run `npm fund` for details
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+npm warn Unknown env config "cache-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+> gomotion-local-mvp@0.1.0 build
+> vite build
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 1604 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.61 kB │ gzip:   0.44 kB
+dist/assets/index-DrdZGpno.css   63.13 kB │ gzip:  13.90 kB
+dist/assets/index-xkIWjSb1.js   381.14 kB │ gzip: 120.75 kB
+✓ built in 2.35s
+Build Completed in /vercel/output [7s]
+Deploying outputs...
+  Production      https://gomotion-i4x8f6msi-signflow2.vercel.app
+Completing…
+▲ Aliased         https://gomotion-mvp.vercel.app
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_8WJd6t9md3tTq1YvRw36fgJV7WTr",
+    "url": "https://gomotion-i4x8f6msi-signflow2.vercel.app",
+    "inspectorUrl": "https://vercel.com/signflow2/gomotion-mvp/8WJd6t9md3tTq1YvRw36fgJV7WTr",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_8WJd6t9md3tTq1YvRw36fgJV7WTr"
+  },
+  "message": "Deployment gomotion-i4x8f6msi-signflow2.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel curl https://gomotion-i4x8f6msi-signflow2.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect gomotion-i4x8f6msi-signflow2.vercel.app",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod",
+      "when": "Promote to production"
+    }
+  ]
+}

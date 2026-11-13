@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-13T12:12:34.884Z",
+  "url": "https://gomotion-mvp.vercel.app",
+  "config": {
+    "status": 200,
+    "ms": 329,
+    "provider": "openai",
+    "model": "deepseek-flash",
+    "base": "https://api.deepseek.com",
+    "aiConnected": true,
+    "render": true,
+    "youtubeConnected": true
+  },
+  "voices": {
+    "status": 200,
+    "count": 30,
+    "languages": 15
+  },
+  "health": {
+    "status": 200,
+    "data": {
+      "status": "ok",
+      "runtime": "vercel",
+      "productionReady": true
+    }
+  },
+  "writing": {
+    "status": 200,
+    "ms": 1965,
+    "title": "海岸浪涌",
+    "script": "镜头贴近海面，一道白色浪脊从远处推近。浪头撞上礁石，水花四散，在石面上留下湿润的痕迹。退去的水流沿着岩缝向下滑落，汇入下一道涌来的浪。礁石边缘被反复冲刷，表面显得光滑。海水在石缝间来回穿行，泡沫聚散又消散。远处新的浪线正在形成，向岸边推进。"
+  },
+  "inferenceCallsThisCheck": 1,
+  "geminiCallsThisCheck": 0,
+  "productionTasksSubmitted": 0,
+  "scope": "Configuration, voice catalog and actual text generation only; no new full-film acceptance"
+}

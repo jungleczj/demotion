@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-13T20:13:43.880784+08:00",
+  "codeCommit": "5b3b8748a61fa44397a4c6053eb840f15a0e8aff",
+  "remoteBranch": "origin/main",
+  "remoteCodeVerified": true,
+  "deploymentId": "dpl_8WJd6t9md3tTq1YvRw36fgJV7WTr",
+  "deploymentURL": "https://gomotion-i4x8f6msi-signflow2.vercel.app",
+  "productionURL": "https://gomotion-mvp.vercel.app",
+  "readyState": "READY",
+  "snapshotId": "snap_MiAP5In4uW1HVRllgxz7BOlX4zMD",
+  "tests": {
+    "total": 369,
+    "pass": 369,
+    "fail": 0,
+    "skip": 0
+  },
+  "typecheckPassed": true,
+  "buildPassed": true,
+  "credentialAndExcludedPathMatches": 0,
+  "newFullFilmAccepted": false,
+  "newGeminiAudioRequests": 0
+}
