@@ -1,0 +1,6 @@
+{
+  "result": "read-only storage probe failed with TypeError; cloud active count not confirmed",
+  "mutations": 0,
+  "tasksStarted": 0,
+  "tasksStopped": 0
+}

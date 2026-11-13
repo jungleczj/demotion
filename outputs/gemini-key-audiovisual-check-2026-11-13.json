@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-13T12:22:03.559Z",
+  "inputFile": "outputs/gemini-new-key-review-probe-2026-11-13.mp4",
+  "inputSHA256": "0dd706bb8faae88fd0591b1058e5954ed20d92e6387b8a5d8247a55b5a94a336",
+  "bytes": 292648,
+  "scope": "Short audiovisual connectivity check with newly rotated review credential; not a full-film quality approval",
+  "inferenceCalls": 1,
+  "fullFilmTasksSubmitted": 0,
+  "error": "视觉 AI 请求失败（HTTP 503），请检查模型与接口：This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "elapsedMs": 40184,
+  "events": [
+    {
+      "stage": "connection-audiovisual-check",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "failed",
+      "inputType": "video",
+      "mediaCount": 1,
+      "at": "2026-11-13T12:22:03.560Z",
+      "httpStatus": 503,
+      "durationMs": 40183,
+      "detail": "视觉 AI 请求失败（HTTP 503），请检查模型与接口：This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+    }
+  ]
+}

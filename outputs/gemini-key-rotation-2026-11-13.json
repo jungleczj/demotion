@@ -1,0 +1,65 @@
+{
+  "at": "2026-11-13T12:18:52.778Z",
+  "localRoles": [
+    "GEMINI_API_KEY",
+    "NARRATION_API_KEY",
+    "REVIEW_API_KEY"
+  ],
+  "cloudVariables": [
+    {
+      "target": "production",
+      "name": "GEMINI_API_KEY",
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "NARRATION_API_KEY",
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "REVIEW_API_KEY",
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "GEMINI_API_KEY",
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "NARRATION_API_KEY",
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "REVIEW_API_KEY",
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "VISION_API_KEY",
+      "updated": true
+    }
+  ],
+  "productionPrimaryDeepSeekPreserved": true,
+  "credentialValuesStoredInEvidence": false,
+  "deploymentPending": false,
+  "deployment": {
+    "id": "dpl_C2kv8rta6Wmbd5rzHK2YsiguXYS9",
+    "url": "https://gomotion-5umlq86es-signflow2.vercel.app",
+    "readyState": "READY",
+    "target": "production"
+  },
+  "productionURL": "https://gomotion-mvp.vercel.app",
+  "previewVariablesUpdatedForFutureDeployments": true,
+  "verificationRequests": {
+    "productionNarration": 1,
+    "directAudiovisualReview": 1
+  },
+  "narrationHTTPStatus": 200,
+  "narrationDecoded": true,
+  "reviewHTTPStatus": 503,
+  "reviewRetried": false,
+  "fullFilmTasksSubmitted": 0
+}

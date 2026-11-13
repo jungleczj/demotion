@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-13T12:20:41.391Z",
+  "endpoint": "/api/narration",
+  "status": 200,
+  "elapsedMs": 3660,
+  "voice": "Kore",
+  "language": "zh-CN",
+  "apiRequests": 1,
+  "fullFilmTasksSubmitted": 0,
+  "duration": 2.6109583333333335,
+  "bytes": 125370,
+  "sha256": "a9874768bc5ee2135a2ef7152134c5aa85809d9a877fba8ebd2660ff1d8538ac",
+  "audioFile": "outputs/gemini-new-key-voice-probe-2026-11-13.wav",
+  "fullDecodePassed": true,
+  "codec": "pcm_s16le",
+  "sampleRate": 24000,
+  "channels": 1
+}

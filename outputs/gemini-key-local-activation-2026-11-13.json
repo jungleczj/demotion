@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-13T12:22:36.862Z",
+  "primaryProvider": "openai",
+  "primaryModel": "deepseek-flash",
+  "aiConnected": true,
+  "taskFileSHA256": "d69f209773081e98ad52a750b8774ccb5050f06bbdfb8e7917c7428357675b2f",
+  "tasks": [
+    {
+      "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+      "status": "done"
+    },
+    {
+      "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+      "status": "error"
+    },
+    {
+      "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+      "status": "error"
+    },
+    {
+      "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+      "status": "error"
+    }
+  ],
+  "active": 0,
+  "keysReturned": false
+}

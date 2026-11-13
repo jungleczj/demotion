@@ -1,0 +1,79 @@
+{
+  "at": "2026-11-13T12:15:59.005Z",
+  "checks": [
+    {
+      "base": "http://127.0.0.1:3027",
+      "/api/config": {
+        "status": 200,
+        "ms": 23,
+        "provider": "openai",
+        "model": "deepseek-flash",
+        "aiConnected": true,
+        "render": true,
+        "youtubeConnected": true
+      },
+      "/api/voices": {
+        "status": 200,
+        "ms": 2,
+        "voices": 30,
+        "languages": 15
+      },
+      "/api/health": {
+        "status": 200,
+        "ms": 0,
+        "health": "ok"
+      }
+    },
+    {
+      "base": "https://gomotion-mvp.vercel.app",
+      "/api/config": {
+        "status": 200,
+        "ms": 349,
+        "provider": "openai",
+        "model": "deepseek-flash",
+        "aiConnected": true,
+        "render": true,
+        "youtubeConnected": true
+      },
+      "/api/voices": {
+        "status": 200,
+        "ms": 276,
+        "voices": 30,
+        "languages": 15
+      },
+      "/api/health": {
+        "status": 200,
+        "ms": 266,
+        "health": "ok",
+        "productionReady": true
+      }
+    }
+  ],
+  "jobs": {
+    "sha256": "d69f209773081e98ad52a750b8774ccb5050f06bbdfb8e7917c7428357675b2f",
+    "count": 4,
+    "active": 0,
+    "tasks": [
+      {
+        "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+        "status": "done"
+      },
+      {
+        "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+        "status": "error"
+      },
+      {
+        "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+        "status": "error"
+      },
+      {
+        "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+        "status": "error"
+      }
+    ]
+  },
+  "modelInferenceCalls": 0,
+  "submittedTasks": 0,
+  "cancellations": 0,
+  "restarts": 0
+}
