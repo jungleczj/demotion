@@ -1,7 +1,7 @@
 import { Sandbox } from '@vercel/sandbox';
 
 // Credentials are injected only at execution, never into the reusable snapshot.
-const providerEnv = ['GEMINI_API_KEY', 'VISION_API_KEY', 'VISION_BASE_URL', 'VISION_MODEL', 'TTS_MODEL', 'PEXELS_API_KEY', 'PIXABAY_API_KEY', 'COVERR_API_KEY', 'YOUTUBE_API_KEY', 'YOUTUBE_DISCOVERY', 'LLM_API_KEY', 'LLM_BASE_URL', 'LLM_MODEL', 'TEXT_AI_PROVIDER'];
+const providerEnv = ['GEMINI_API_KEY', 'VISION_PROVIDER', 'VISION_API_KEY', 'VISION_BASE_URL', 'VISION_MODEL', 'NARRATION_API_KEY', 'NARRATION_BASE_URL', 'REVIEW_PROVIDER', 'REVIEW_API_KEY', 'REVIEW_BASE_URL', 'REVIEW_MODEL', 'TTS_MODEL', 'PEXELS_API_KEY', 'PIXABAY_API_KEY', 'COVERR_API_KEY', 'YOUTUBE_API_KEY', 'YOUTUBE_DISCOVERY', 'LLM_API_KEY', 'LLM_BASE_URL', 'LLM_MODEL', 'TEXT_AI_PROVIDER'];
 export function createSandboxExecutor({ sdk = Sandbox, env = process.env } = {}) {
   return {
     async start({ task, callbackURL, workerToken, checkpoint }) {
@@ -13,7 +13,15 @@ export function createSandboxExecutor({ sdk = Sandbox, env = process.env } = {})
       const command = await sandbox.runCommand({ cmd: 'node', args: ['server/cloud/worker.mjs', '/vercel/sandbox/gomotion-task.json'], cwd: '/vercel/sandbox/app', detached: true, env: { ...runEnv, NODE_ENV: 'production', GOMOTION_DATA_DIR: '/vercel/sandbox/work', PORT: '3027', HOST: '127.0.0.1', CAPTION_FONTS_DIR: '/usr/share/fonts/opentype/noto', MOTION_FONT_FILE: '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc', MOTION_FONT_FAMILY: 'Noto Sans CJK SC', MOTION_SYSTEM_FONTS: '1' } });
       return { name, commandId: command.cmdId };
     },
-    async stop(execution) { if (execution?.name) await (await sdk.get({ name: execution.name, resume: false })).stop(); },
+    async stop(execution) {
+      if (!execution?.name) return;
+      try {
+        const sandbox = await sdk.get({ name: execution.name, resume: false });
+        if (sandbox.status !== 'stopped') await sandbox.stop();
+      } catch (e) {
+        if ((e.statusCode || e.status) !== 404 && !/not.?found/i.test(e.code || e.message || '')) throw e;
+      }
+    },
     async state(execution) {
       try {
         const sandbox = await sdk.get({ name: execution.name, resume: false });

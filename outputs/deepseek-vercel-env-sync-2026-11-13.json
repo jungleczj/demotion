@@ -1,0 +1,64 @@
+{
+  "at": "2026-11-13T12:08:33.546Z",
+  "target": "production",
+  "project": "gomotion-mvp",
+  "variables": [
+    {
+      "name": "NARRATION_API_KEY",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "NARRATION_BASE_URL",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "REVIEW_PROVIDER",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "REVIEW_API_KEY",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "REVIEW_BASE_URL",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "REVIEW_MODEL",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "VISION_PROVIDER",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "VISION_BASE_URL",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "VISION_MODEL",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "TEXT_AI_PROVIDER",
+      "updated": true,
+      "sensitive": true
+    },
+    {
+      "name": "VISION_API_KEY",
+      "updated": true,
+      "sensitive": true
+    }
+  ],
+  "keysPrinted": false,
+  "requiresNewDeployment": true
+}

@@ -3,6 +3,8 @@ import languages from '../shared/languages.json' with { type: 'json' };
 import { requestNarration } from './narration-request.mjs';
 import { createCloudAPI } from './cloud/api.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
+import { aiConfigFromEnv, narrationConfig, redactAISecrets } from './ai-services.mjs';
+import { visionJSON } from './vision-client.mjs';
 
 const styles = {
   documentary: 'Calm, warm documentary narration with measured phrasing and restrained expression.',
@@ -19,13 +21,9 @@ const productionUnavailable = () => json({ error: '视频制作服务尚未就�
 // pump. A function instance and its temporary disk cannot own durable tasks.
 export function createVercelHandler({ env = process.env, fetchImpl = fetch, cloudAPI } = {}) {
   const cloud = cloudAPI === undefined ? createCloudAPI({ env }) : cloudAPI;
-  const config = {
-    visionKey: env.VISION_API_KEY || env.GEMINI_API_KEY || '',
-    visionBase: env.VISION_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta',
-    visionModel: env.VISION_MODEL || 'gemini-3.8-flash',
-  };
+  const config = aiConfigFromEnv(env);
   const redact = (message) => {
-    let value = String(message || '请求未完成，请稍后重试');
+    let value = redactAISecrets(message || '请求未完成，请稍后重试', config);
     for (const secret of [config.visionKey, env.PEXELS_API_KEY, env.PIXABAY_API_KEY, env.COVERR_API_KEY, env.YOUTUBE_API_KEY].filter(Boolean)) value = value.replaceAll(secret, '[redacted]');
     return value.replace(/https?:\/\/\S+/g, '[服务链接]').slice(0, 500);
   };
@@ -65,7 +63,7 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
         aiConnected: Boolean(config.visionKey), llmBase: '', llmModel: '', textProvider: 'vision',
         pexelsConnected: Boolean(env.PEXELS_API_KEY), pixabayConnected: Boolean(env.PIXABAY_API_KEY), coverrConnected: Boolean(env.COVERR_API_KEY), youtubeConnected: Boolean(env.YOUTUBE_API_KEY), youtubeDiscovery: env.YOUTUBE_DISCOVERY !== 'false',
         sources: ['commons', 'archive', 'nasa', ...(env.PEXELS_API_KEY ? ['pexels'] : []), ...(env.PIXABAY_API_KEY ? ['pixabay'] : []), ...(env.COVERR_API_KEY ? ['coverr'] : [])],
-        visionConfigured: Boolean(config.visionKey), visionEnabled: true, visionProvider: 'gemini', visionBase: config.visionBase, visionModel: config.visionModel,
+        visionConfigured: Boolean(config.visionKey), visionEnabled: true, visionProvider: config.visionProvider, visionBase: config.visionBase, visionModel: config.visionModel,
       }, 200, cloud?.responseHeaders(request));
       if (route === '/api/config' && method === 'POST') return json({ error: '线上连接配置请保存到 Vercel 项目的环境变量中，并重新部署。此页面不会临时保存密钥。', code: 'ENV_CONFIGURATION_REQUIRED' }, 409);
       if (route === '/api/voices' && method === 'GET') return json({ voices: voices.map((v) => v.key), languages });
@@ -76,7 +74,7 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
         const language = languages.find((item) => item.code === input?.language);
         const style = input?.voiceStyle || 'documentary';
         if (!text || text.length > 500 || !voices.some((v) => v.key === voice) || !language || !Object.hasOwn(styles, style)) throw fail('试听文本、声音或语言无效，请重新选择', 400);
-        if (!config.visionKey) throw fail('声音服务尚未连接，请联系工作区管理员', 503);
+        if (!narrationConfig(config).visionKey) throw fail('声音服务尚未连接，请联系工作区管理员', 503);
         const prompt = `Speak fluent native ${language.speech}. The supplied narration is already in this language; do not translate or change any words. ${styles[style]} Read the exact narration as a human narrator, with natural phrasing and breaths. Do not add headings, music, sound effects or extra words. Read only the narration verbatim.\n\nNARRATION:\n${text}`;
         const result = await requestNarration(config, env.TTS_MODEL || 'gemini-2.5-flash-preview-tts', { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, request.signal, { fetchImpl });
         const part = result.candidates?.[0]?.content?.parts?.find((p) => p.inlineData?.data)?.inlineData;
@@ -99,14 +97,9 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
         const language = languages.find((item) => item.code === input?.language);
         if (!topic || topic.length > 300 || !language) throw fail('请填写主题并选择语言', 400);
         if (!config.visionKey) throw fail('写作服务尚未连接，请联系工作区管理员', 503);
-        const response = await fetchImpl(`${config.visionBase.replace(/\/$/, '')}/models/${encodeURIComponent(config.visionModel)}:generateContent`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': config.visionKey },
-          signal: AbortSignal.any([request.signal, AbortSignal.timeout(45000)]),
-          body: JSON.stringify({ systemInstruction: { parts: [{ text: `Write original short documentary narration in ${language.speech}, 5-7 concise sentences about the supplied topic. Prefer visual verifiable statements. Avoid unsupported precise numbers. Return JSON {"title":"short title","script":"narration"}. No stage directions or headings inside script.` }] }, contents: [{ parts: [{ text: topic }] }], generationConfig: { responseMimeType: 'application/json', maxOutputTokens: 2500 } }),
-        });
-        if (!response.ok) throw fail(`写作服务请求未完成（HTTP ${response.status}），请稍后重试`, response.status);
-        const result = await response.json();
-        const output = JSON.parse(result.candidates?.[0]?.content?.parts?.filter((p) => p.text && !p.thought).map((p) => p.text).join('') || '{}');
+        const output = await visionJSON(config,
+          `Write original short documentary narration in ${language.speech}, 5-7 concise sentences about the supplied topic. Prefer visual verifiable statements. Avoid unsupported precise numbers. Return JSON {"title":"short title","script":"narration"}. No stage directions or headings inside script.`,
+          [{ text: topic }], { controller: { signal: request.signal }, events: [], disableTransientRetries: true }, 'text-planning', { fetchImpl });
         if (typeof output.title !== 'string' || typeof output.script !== 'string' || !output.script.trim() || output.script.length > scriptLimits.maxCharacters) throw fail('未生成可用的脚本，请重试', 502);
         return json({ title: output.title.slice(0, 100), script: output.script });
       }

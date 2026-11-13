@@ -1,8 +1,8 @@
 import { setTimeout as delay } from 'node:timers/promises';
+import { narrationConfig, redactAISecrets } from './ai-services.mjs';
 
 function redact(value, config) {
-  let text = String(value || '');
-  if (config.visionKey) text = text.replaceAll(config.visionKey, '[redacted]');
+  let text = redactAISecrets(value, config);
   return text.replace(/https?:\/\/[^\s<>"']+/gi, '[url]')
     .replace(/\bBearer\s+[\w.~+\/=-]+/gi, 'Bearer [redacted]')
     .replace(/\bAIza[\w-]{20,}\b/g, '[redacted]')
@@ -85,7 +85,9 @@ export async function requestNarration(config, model, payload, signal, {
 } = {}) {
   // One timeout budget spans all attempts and backoff, not 120 seconds per retry.
   const requestSignal = AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(120000)]);
-  const url = `${config.visionBase.replace(/\/$/, '')}/models/${model}:generateContent`;
+  const service = narrationConfig(config);
+  if (!service.visionKey) throw Object.assign(new Error('配音服务尚未连接，请联系工作区管理员'), { status: 503, code: 'TTS_NOT_CONFIGURED' });
+  const url = `${service.visionBase.replace(/\/$/, '')}/models/${model}:generateContent`;
   const body = JSON.stringify(payload);
   for (let attempt = 1; attempt <= 3; attempt++) {
     if (requestSignal.aborted) throw abortedError(signal, attempt - 1);
@@ -95,7 +97,7 @@ export async function requestNarration(config, model, payload, signal, {
     let response, failure;
     try {
       response = await abortable(() => fetchImpl(url, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': config.visionKey },
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': service.visionKey },
         signal: attemptSignal, body,
       }), attemptSignal);
       if (response.ok) return await abortable(() => response.json(), attemptSignal);

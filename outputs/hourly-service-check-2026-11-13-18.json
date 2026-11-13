@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-11-13T10:53:23.612Z",
+  "checks": [
+    {
+      "environment": "local",
+      "route": "/api/health",
+      "status": 200,
+      "durationMs": 22
+    },
+    {
+      "environment": "local",
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 16,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "environment": "local",
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 16,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "environment": "local",
+      "route": "/api/productions",
+      "status": 200,
+      "durationMs": 19,
+      "tasks": [
+        {
+          "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+          "status": "done"
+        },
+        {
+          "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+          "status": "error"
+        },
+        {
+          "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+          "status": "error"
+        },
+        {
+          "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+          "status": "error"
+        }
+      ],
+      "active": 0,
+      "taskIdsAndStatesUnchanged": true
+    },
+    {
+      "environment": "production",
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 448,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "environment": "production",
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 372,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "media": [
+    {
+      "name": "current-portrait-mp4",
+      "route": "/api/exports/ffb74b04-871c-4664-b781-ef82fa5b6fd9/video.mp4",
+      "status": 206,
+      "contentRange": "bytes 0-31/9407463",
+      "bytes": 32
+    },
+    {
+      "name": "saved-narration",
+      "route": "/api/narration/ff1227f55f375ed6a13649697cd9c93b0b53353edb01ce1f83b9b93bcf3d6ad1.wav",
+      "status": 206,
+      "contentRange": "bytes 0-31/1397814",
+      "bytes": 32
+    },
+    {
+      "name": "recovered-historical-landscape",
+      "route": "/api/exports/990ff277-2c83-4c0f-af25-c2b590faf278/video.mp4",
+      "status": 206,
+      "contentRange": "bytes 0-31/20946248",
+      "bytes": 32
+    }
+  ],
+  "persistedJobsSha256": "d69f209773081e98ad52a750b8774ccb5050f06bbdfb8e7917c7428357675b2f",
+  "persistedJobsBytesUnchanged": true,
+  "newModelRequests": 0,
+  "newVideoProductions": 0,
+  "userTasksCancelled": 0,
+  "serviceRestarts": 0,
+  "newCloudResources": 0
+}

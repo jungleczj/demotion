@@ -28,6 +28,7 @@ import { workDirectory, initializeWorkDirectory, allowedOrigins } from './runtim
 import { retainedMedia } from './media-retention.mjs';
 import { searchMusicSources, acquireMusicAsset } from './music-sources.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
+import { aiConfigFromEnv } from './ai-services.mjs';
 
 const network = configureNetwork();
 
@@ -37,16 +38,9 @@ const host = process.env.HOST || '127.0.0.1';
 const requestOrigins = allowedOrigins(port);
 const work = workDirectory;
 const config = {
-  llmKey: process.env.LLM_API_KEY || process.env.SECRET_DEEPSEEK_API_KEY || '',
-  llmBase: process.env.LLM_BASE_URL || 'https://api.deepseek.com',
-  llmModel: process.env.LLM_MODEL || 'deepseek-flash',
+  ...aiConfigFromEnv(),
   pexelsKey: process.env.PEXELS_API_KEY || '', pixabayKey: process.env.PIXABAY_API_KEY || '', coverrKey: process.env.COVERR_API_KEY || '',
   youtubeKey: process.env.YOUTUBE_API_KEY || '', youtubeDiscovery: process.env.YOUTUBE_DISCOVERY !== 'false',
-  visionProvider: process.env.VISION_PROVIDER || 'gemini',
-  visionKey: process.env.VISION_API_KEY || process.env.GEMINI_API_KEY || '',
-  visionBase: process.env.VISION_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta',
-  visionModel: process.env.VISION_MODEL || 'gemini-3.8-flash', visionEnabled: true,
-  textProvider: process.env.TEXT_AI_PROVIDER || 'vision',
 };
 const configView = () => ({ aiConnected: Boolean(config.llmKey), llmBase: config.llmBase, llmModel: config.llmModel, pexelsConnected: Boolean(config.pexelsKey), pixabayConnected: Boolean(config.pixabayKey), coverrConnected: Boolean(config.coverrKey), youtubeConnected: Boolean(config.youtubeKey), youtubeDiscovery: config.youtubeDiscovery, sources: ['commons', 'archive', 'nasa', ...(config.pexelsKey ? ['pexels'] : []), ...(config.pixabayKey ? ['pixabay'] : []), ...(config.coverrKey ? ['coverr'] : [])], localVoice: process.platform === 'darwin', render: true });
 const jobs = new Map();

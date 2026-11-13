@@ -4,8 +4,10 @@ import { prepareMedia, mediaParts } from './vision-media.mjs';
 import { visionJSON } from './vision-client.mjs';
 import { reviewRanges, reviewWithRetry } from './review-ranges.mjs';
 import { assertSourceFiles } from './source-provenance.mjs';
+import { audioReviewConfig } from './ai-services.mjs';
 
 export async function reviewExport(job, exportId, work, config) {
+  config = audioReviewConfig(config);
   const directory = path.join(work, `vision-${job.id}`);
   try {
     if (config.visionProvider !== 'gemini') throw new Error('本片要求审查真实声音，请使用支持视频音轨的 Gemini 审片服务');

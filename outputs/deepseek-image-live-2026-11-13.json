@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-13T12:01:00.405Z",
+  "sourcePath": "work/playback/5bf718db4edbed504bd220f781eb2d39997614d6db2c67411f04e8b0ba822a80.jpg",
+  "sourceSHA256": "252b14843239581c238751a6c6a893617c431ba0f4ccda053381f4b7943225fc",
+  "elapsedMs": 1327,
+  "result": {
+    "subjects": [
+      "rocks",
+      "sea",
+      "waves",
+      "foam"
+    ],
+    "visibleText": [],
+    "medium": "photo",
+    "description": "A close-up photo of water flowing over textured rocks near the sea."
+  },
+  "events": [
+    {
+      "stage": "connection-image-check",
+      "engine": "openai",
+      "model": "deepseek-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-13T12:00:59.078Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 355,
+        "outputTokens": 42,
+        "totalTokens": 397
+      },
+      "durationMs": 1326
+    }
+  ],
+  "inferenceCalls": 1,
+  "scope": "One image capability/credential check, not an approval of a film or the source-image supplement"
+}

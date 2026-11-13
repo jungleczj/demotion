@@ -1,0 +1,115 @@
+✖ narration sends only the independent audio key to the audio endpoint (2.97875ms)
+✖ DeepSeek alone cannot be accidentally used as a TTS credential (1.827625ms)
+✖ native cloud writing uses the configured DeepSeek model and leaves audio previews on their own service (4.784917ms)
+✖ image selection sends DeepSeek image blocks with thinking disabled and never an audio payload (4.034167ms)
+✖ cloud workers receive every independent role at runtime while the task envelope stays credential-free (0.675667ms)
+✖ audio timing keeps the selected recording and routes actual audio to the retained review service (6.254166ms)
+✖ final film review chooses the retained audiovisual role before validating the real export (1.96275ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 417.570292
+
+✖ failing tests:
+
+test at server/ai-role-routing.test.mjs:20:1
+✖ narration sends only the independent audio key to the audio endpoint (2.97875ms)
+  Error: 配音服务连接失败：Expected values to be strictly equal: + actual - expected + '[url]' - '[url]'
+      at connectionError (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.mjs:67:24)
+      at requestNarration (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-request.mjs:105:109)
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:21:3)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    status: 502,
+    code: 'TTS_CONNECTION_ERROR',
+    retryable: false,
+    attempts: 1
+  }
+
+test at server/ai-role-routing.test.mjs:28:1
+✖ DeepSeek alone cannot be accidentally used as a TTS credential (1.827625ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:30:3)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /声音服务|配音.*连接/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at server/ai-role-routing.test.mjs:34:1
+✖ native cloud writing uses the configured DeepSeek model and leaves audio previews on their own service (4.784917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  502 !== 200
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:41:10)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 502,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server/ai-role-routing.test.mjs:55:1
+✖ image selection sends DeepSeek image blocks with thinking disabled and never an audio payload (4.034167ms)
+  Error: 视觉 AI 连接失败（ERR_ASSERTION）
+      at visionJSON (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/vision-client.mjs:90:11)
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:63:20)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at server/ai-role-routing.test.mjs:66:1
+✖ cloud workers receive every independent role at runtime while the task envelope stays credential-free (0.675667ms)
+  AssertionError [ERR_ASSERTION]: VISION_PROVIDER
+  + actual - expected
+
+  + undefined
+  - 'openai'
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:70:59)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'openai',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server/ai-role-routing.test.mjs:74:1
+✖ audio timing keeps the selected recording and routes actual audio to the retained review service (6.254166ms)
+  Error: 自然配音需要已连接的 Gemini API key
+      at narrationAudio (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration.mjs:156:70)
+      at prepareNarrationTimeline (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-timeline.mjs:22:24)
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:90:18)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at server/ai-role-routing.test.mjs:94:1
+✖ final film review chooses the retained audiovisual role before validating the real export (1.96275ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /完整性检查/. Input:
+
+  '本片要求审查真实声音，请使用支持视频音轨的 Gemini 审片服务'
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/ai-role-routing.test.mjs:100:51)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '本片要求审查真实声音，请使用支持视频音轨的 Gemini 审片服务',
+    expected: /完整性检查/,
+    operator: 'match',
+    diff: 'simple'
+  }

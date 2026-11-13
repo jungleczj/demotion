@@ -25,13 +25,13 @@ function memory() {
     async download(name) { return `https://private.example/read/${name}`; },
   };
 }
-function setup() {
+function setup(options = {}) {
   const store = memory(), starts = [], stops = [];
   let timestamp = 1794400000000;
   const now = () => timestamp;
   const executor = { async start(input) { starts.push(clone(input)); return { name: `sandbox-${input.task.id}-${input.task.attempt}`, commandId: 'cmd-1' }; }, async stop(input) { stops.push(input); }, async state() { return 'stopped'; } };
   const auth = createCloudAuth(secret, now);
-  const manager = () => createCloudProductions({ store, executor, auth, now, callbackOrigin: 'https://studio.example' });
+  const manager = () => createCloudProductions({ store, executor, auth, now, callbackOrigin: 'https://studio.example', ...options });
   return { store, executor, starts, stops, auth, manager, now, advance(ms) { timestamp += ms; } };
 }
 const input = () => ({ project: { id: randomUUID(), title: '海洋', script: '海浪不断涌向海岸，海洋的故事却远不止眼前这一片蓝色。', voice: 'gemini:Kore', language: 'zh-CN', voiceStyle: 'documentary', format: 'landscape', subtitles: true, createdAt: '2026-11-11T00:00:00.000Z', scenes: [] }, providers: ['pixabay', 'coverr'] });
@@ -128,6 +128,36 @@ test('restart uses committed checkpoint in a new attempt and fences the previous
   await assert.rejects(callback(s, task.id, 'progress', { task }, 2, 1), { status: 401 });
   assert.equal((await s.manager().get('owner', task.id)).id, task.id);
 });
+test('recovery interrupted after its task commit retains the old execution until a later request stops it', async () => {
+  const s = setup(), task = await s.manager().submit('owner', input());
+  const oldExecution = s.starts[0];
+  s.advance(301_000); s.executor.state = async () => 'running';
+  const change = s.store.change; let interrupted = false;
+  s.store.change = async (key, fn) => {
+    const value = await change(key, fn);
+    if (!interrupted && key === `tasks/${task.id}.json` && value?.attempt === 2) {
+      interrupted = true; throw Error('simulated request termination after durable recovery commit');
+    }
+    return value;
+  };
+  await assert.rejects(s.manager().list('owner'), /simulated request termination/);
+  assert.equal(s.starts.length, 1); assert.equal(s.stops.length, 0);
+  s.store.change = change;
+  await s.manager().list('owner');
+  assert.equal(s.stops.length, 1, 'the old execution must remain discoverable after the request disappears');
+  assert.equal(s.stops[0].name, `sandbox-${oldExecution.task.id}-1`);
+  assert.equal(s.starts.length, 2);
+});
+test('a temporarily failed stop prevents launching a replacement until cleanup succeeds', async () => {
+  const s = setup(), task = await s.manager().submit('owner', input());
+  s.advance(301_000); s.executor.state = async () => 'running';
+  const stop = s.executor.stop; s.executor.stop = async () => { throw Error('temporary stop outage'); };
+  await s.manager().list('owner');
+  assert.equal(s.starts.length, 1, 'do not overlap the replacement with an execution that has not stopped');
+  s.executor.stop = stop;
+  await s.manager().list('owner');
+  assert.equal(s.starts.length, 2); assert.equal(s.stops.length, 1);
+});
 test('retrying the same failed input retains verified media and resumes its committed checkpoint', async () => {
   const s = setup(), draft = input(), task = await s.manager().submit('owner', draft);
   const saved = { ...task, status: 'running', project: { ...task.project, scenes: [{ id: 's1', text: '海浪', selected: { id: 'pixabay:1' } }] } };
@@ -145,6 +175,127 @@ test('cancellation while an execution is starting stops the late VM rather than 
   const task = await s.manager().submit('owner', input());
   assert.equal(task.status, 'cancelled');
   assert.deepEqual(s.stops, [{ name: 'late-vm' }]);
+});
+test('incremental polling retains another task terminal update at the same millisecond', async () => {
+  const s = setup(), first = await s.manager().submit('owner', input()), second = await s.manager().submit('owner', input());
+  const initial = await s.manager().list('owner');
+  await callback(s, second.id, 'failed', { failure: { phase: 'producing', detail: 'offline fixture' } });
+  const polled = await s.manager().list('owner', initial.cursor);
+  assert.ok(polled.tasks.some((task) => task.id === second.id && task.status === 'error'));
+  await callback(s, first.id, 'complete', { task: { ...first, status: 'incomplete', progress: 100, message: '草稿已保留' } });
+  const final = await s.manager().list('owner', polled.cursor);
+  assert.ok(final.tasks.some((task) => task.id === first.id && task.status === 'incomplete'), 'terminal state must arrive without a fresh after=0 request');
+});
+test('immediate remake after cancellation stops the old attempt when its startup returns late', async () => {
+  const s = setup(), draft = input();
+  let release, started;
+  const waiting = new Promise((resolve) => { started = resolve; });
+  const delayed = new Promise((resolve) => { release = resolve; });
+  s.executor.start = async (value) => {
+    s.starts.push(clone(value));
+    if (value.task.attempt === 1) { started(value.task); await delayed; return { name: 'old-late-vm' }; }
+    return { name: 'current-vm' };
+  };
+  const original = s.manager().submit('owner', draft), task = await waiting;
+  assert.equal((await s.manager().cancel('owner', task.id)).status, 'cancelled');
+  await s.manager().submit('owner', draft);
+  release(); await original;
+  assert.deepEqual(s.starts.map((value) => value.task.attempt), [1, 2]);
+  assert.deepEqual(s.stops, [{ name: 'old-late-vm' }]);
+  assert.equal((await s.store.read(`tasks/${task.id}.json`)).value.execution.name, 'current-vm');
+});
+test('fresh heartbeat during reconciliation prevents stopping a healthy execution', async () => {
+  const s = setup(), task = await s.manager().submit('owner', input());
+  await callback(s, task.id, 'progress', { task: { ...task, status: 'running' } });
+  s.advance(301_000);
+  s.executor.state = async () => { await callback(s, task.id, 'heartbeat'); return 'running'; };
+  await s.manager().list('owner');
+  assert.equal(s.stops.length, 0, 'the fresh heartbeat must be checked before stopping the execution');
+  assert.equal(s.starts.length, 1);
+  assert.equal((await s.store.read(`tasks/${task.id}.json`)).value.status, 'running');
+});
+test('different concurrent submissions atomically respect the active-task admission limit', async () => {
+  const s = setup({ maxActive: 1 }), drafts = [input(), input()];
+  const results = await Promise.allSettled(drafts.map((draft) => s.manager().submit('owner', draft)));
+  assert.equal(results.filter((result) => result.status === 'fulfilled').length, 1);
+  assert.deepEqual(results.filter((result) => result.status === 'rejected').map((result) => result.reason.status), [409]);
+  assert.equal(s.starts.length, 1);
+  const active = (await s.manager().list('owner')).tasks;
+  assert.equal(active.length, 1);
+  await s.manager().cancel('owner', active[0].id);
+  const rejectedDraft = drafts[results.findIndex((result) => result.status === 'rejected')];
+  assert.equal((await s.manager().submit('owner', rejectedDraft)).status, 'queued', 'a rejected admission must release its pending reservation');
+  assert.equal(s.starts.length, 2);
+});
+test('polling cannot launch a retried project before its daily admission succeeds', async () => {
+  const s = setup({ dailyLimit: 1 }), draft = input(), task = await s.manager().submit('owner', draft);
+  await callback(s, task.id, 'failed', { failure: { phase: 'producing', detail: 'offline fixture' } });
+  const originalChange = s.store.change.bind(s.store);
+  let polled = false;
+  s.store.change = async (name, update) => {
+    const value = await originalChange(name, update);
+    if (!polled && name === `tasks/${task.id}.json` && value.attempt === 2 && value.status === 'queued') {
+      polled = true; await s.manager().list('owner');
+    }
+    return value;
+  };
+  await assert.rejects(s.manager().submit('owner', draft), { status: 429 });
+  assert.equal(polled, true, 'the poll must interleave after the new task state is saved');
+  assert.equal(s.starts.length, 1, 'a rejected daily admission must never start an execution');
+  assert.equal((await s.manager().get('owner', task.id)).status, 'error');
+  assert.equal(s.starts.length, 1, 'a later refresh must not bypass the rejected admission');
+});
+test('a refreshed manager completes admission interrupted after the index was persisted', async () => {
+  const s = setup(), draft = input(), originalChange = s.store.change.bind(s.store);
+  let interrupted = false;
+  s.store.change = (name, update) => {
+    if (!interrupted && name.startsWith('tasks/') && s.store.records.has('index.json')) {
+      interrupted = true; return Promise.reject(Error('offline fixture request interruption'));
+    }
+    return originalChange(name, update);
+  };
+  await assert.rejects(s.manager().submit('owner', draft), /offline fixture request interruption/);
+  assert.equal(interrupted, true);
+  s.store.change = originalChange;
+  const tasks = (await s.manager().list('owner')).tasks;
+  assert.equal(tasks.length, 1);
+  assert.equal(s.starts.length, 1, 'refresh must continue a durable task whose admission was already saved');
+  assert.equal(s.starts[0].task.attempt, 1, 'finishing admission must retain the original attempt');
+});
+test('active admission remains atomic when the real Blob store retries index contention', async () => {
+  const records = new Map(); let version = 0, conflicts = 0;
+  const sdk = {
+    async head(name) {
+      const saved = records.get(name);
+      if (!saved) throw Object.assign(Error('offline fixture missing object'), { name: 'BlobNotFoundError' });
+      return { etag: saved.etag };
+    },
+    async get(name) { return { stream: new Response(records.get(name).body).body }; },
+    async put(name, body, options) {
+      const old = records.get(name);
+      if (old ? !options.allowOverwrite || old.etag !== options.ifMatch : options.allowOverwrite) {
+        conflicts++; throw Error('Precondition failed');
+      }
+      records.set(name, { body, etag: String(++version) });
+    },
+  };
+  const s = setup({ store: createBlobStore({ sdk, env: { BLOB_STORE_ID: 'offline-fixture' } }), maxActive: 1 });
+  const results = await Promise.allSettled(Array.from({ length: 3 }, () => s.manager().submit('owner', input())));
+  assert.equal(results.filter((result) => result.status === 'fulfilled').length, 1);
+  assert.deepEqual(results.filter((result) => result.status === 'rejected').map((result) => result.reason.status), [409, 409]);
+  assert.equal(s.starts.length, 1);
+  assert.ok(conflicts > 0, 'the real store must have retried an actual conditional-write conflict');
+});
+test('concurrent retries of indexed drafts can still claim an available admission', async () => {
+  const s = setup({ maxActive: 1 }), drafts = [input(), input()];
+  for (const draft of drafts) {
+    const task = await s.manager().submit('owner', draft);
+    await callback(s, task.id, 'failed', { failure: { phase: 'producing', detail: 'offline fixture' } });
+  }
+  const results = await Promise.allSettled(drafts.map((draft) => s.manager().submit('owner', draft)));
+  assert.equal(results.filter((result) => result.status === 'fulfilled').length, 1, 'unadmitted drafts must not each reserve the other draft out of the available slot');
+  assert.equal(results.find((result) => result.status === 'rejected').reason.status, 409);
+  assert.equal(s.starts.length, 3);
 });
 test('private checkpoint metadata is not downloadable through the public artifact route', async () => {
   const s = setup(), task = await s.manager().submit('owner', input());
@@ -222,6 +373,10 @@ test('Sandbox starts a detached worker from a key-free snapshot and injects cred
   assert.equal(commands[0].detached, true); assert.equal(commands[0].env.GEMINI_API_KEY, 'private-provider-key');
   assert.doesNotMatch(writes[0].content.toString(), /private-provider-key/);
   assert.equal(result.commandId, 'cmd-offline');
+});
+test('stopping an already removed Sandbox is idempotent so interrupted recovery can finish cleanup', async () => {
+  const sdk = { async get() { throw Object.assign(Error('Named sandbox not found'), { statusCode: 404 }); } };
+  await createSandboxExecutor({ sdk }).stop({ name: 'offline-already-removed' });
 });
 
 test('cloud checkpoints retain verified music original and license receipt but exclude partial or changed bytes', async () => {

@@ -97,7 +97,7 @@ async function refreshSemanticSearch(project, scenes, config, job, warnings, ena
 }
 
 async function visualSequencePass(job, project, work, config, enabled) {
-  config = { ...config, outputFormat: project.format };
+  config = { ...config, outputFormat: project.format, visionCacheDirectory: path.join(work, 'scene-observations') };
   const directory = path.join(work, `vision-${job.id}`);
   const signal = job.controller.signal;
   const warnings = [];

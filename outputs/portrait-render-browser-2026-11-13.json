@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-11-13T05:17:18.984Z",
+  "projectTitle": "海岸竖屏真实制作验收",
+  "kind": "saved-rendered-mp4",
+  "newProductions": 0,
+  "newModelRequests": 0,
+  "userTasksCancelled": 0,
+  "before": [
+    {
+      "currentTime": 0,
+      "duration": 29.366667,
+      "height": 1280,
+      "label": "连续成片预览",
+      "muted": false,
+      "paused": true,
+      "quality": null,
+      "readyState": 4,
+      "src": "http://127.0.0.1:3027/api/exports/ffb74b04-871c-4664-b781-ef82fa5b6fd9/video.mp4",
+      "width": 720
+    }
+  ],
+  "afterStart": [
+    {
+      "currentTime": 0.197213,
+      "duration": 29.366667,
+      "ended": false,
+      "height": 1280,
+      "label": "连续成片预览",
+      "muted": true,
+      "paused": false,
+      "readyState": 4,
+      "src": "http://127.0.0.1:3027/api/exports/ffb74b04-871c-4664-b781-ef82fa5b6fd9/video.mp4",
+      "width": 720
+    }
+  ],
+  "afterEnd": [
+    {
+      "currentTime": 29.366667,
+      "duration": 29.366667,
+      "ended": true,
+      "height": 1280,
+      "label": "连续成片预览",
+      "muted": true,
+      "paused": true,
+      "readyState": 4,
+      "src": "http://127.0.0.1:3027/api/exports/ffb74b04-871c-4664-b781-ef82fa5b6fd9/video.mp4",
+      "width": 720
+    }
+  ],
+  "playClicks": 1,
+  "muted": true,
+  "fullFrameBrowserRecording": false,
+  "cdpAvailable": false,
+  "limits": [
+    "仅验证保存MP4一次静音播放至结束；未验证声音自然度或逐帧浏览器无闪屏。",
+    "当前浏览器可用能力只有visibility与viewport；cdp不可用。",
+    "结束状态等待首次超时，未再次点击播放；后续直接读取确认ended=true。"
+  ]
+}

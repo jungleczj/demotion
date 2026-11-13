@@ -1,14 +1,15 @@
+import { sceneCacheRequest, readSceneObservation, saveSceneObservation } from './scene-observation-cache.mjs';
+import { redactAISecrets } from './ai-services.mjs';
+
 const cleanJSON = (text) => JSON.parse(String(text || '').replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '').trim());
 
 export function visionConfigured(config) {
   return Boolean(config.visionEnabled && config.visionKey && config.visionModel);
 }
 
-export async function visionJSON(config, system, parts, job, stage) {
+export async function visionJSON(config, system, parts, job, stage, { fetchImpl = fetch } = {}) {
   if (!visionConfigured(config)) throw Object.assign(new Error('请在设置 → AI 服务中配置并启用视觉模型'), { status: 409 });
   job.controller.signal.throwIfAborted();
-  job.calls = (job.calls || 0) + 1;
-  if (job.calls > (job.callLimit || 36)) throw new Error('本轮自动处理已达到上限，已保留草稿');
   const event = { stage, engine: config.visionProvider, model: config.visionModel, status: 'running', inputType: parts.some((p) => p.mime?.startsWith('audio/')) ? 'audio' : parts.some((p) => p.mime === 'video/mp4') ? 'video' : parts.some((p) => p.mime) ? 'timestamped-images' : 'text', mediaCount: parts.filter((p) => p.mime).length, at: new Date().toISOString() };
   job.events.push(event);
   const started = Date.now();
@@ -29,10 +30,24 @@ export async function visionJSON(config, system, parts, job, stage) {
       endpoint = `${config.visionBase.replace(/\/$/, '')}/chat/completions`;
       headers = { Authorization: `Bearer ${config.visionKey}` };
       payload = { model: config.visionModel, messages: [{ role: 'system', content: system }, { role: 'user', content: parts.map((part) => part.mime ? { type: 'image_url', image_url: { url: `data:${part.mime};base64,${part.data}` } } : { type: 'text', text: part.text }) }], response_format: { type: 'json_object' }, max_tokens: 5000 };
+      if (new URL(config.visionBase).hostname === 'api.deepseek.com') payload.thinking = { type: 'disabled' };
     }
+    const body = JSON.stringify(payload);
+    const cache = sceneCacheRequest(config, stage, endpoint, body, parts);
+    const cached = await readSceneObservation(cache);
+    job.controller.signal.throwIfAborted();
+    if (cached) {
+      event.status = 'completed'; event.cacheHit = true; event.durationMs = Date.now() - started;
+      event.cacheSourceAt = new Date(cached.createdAt).toISOString(); event.cacheSourceModelVersion = cached.modelVersion;
+      event.usage = { inputTokens: 0, outputTokens: 0, totalTokens: 0 };
+      event.detail = '复用完全相同输入的已完成画面观察，本次未请求模型；仍执行现时选材校验';
+      return cached.data;
+    }
+    job.calls = (job.calls || 0) + 1;
+    if (job.calls > (job.callLimit || 36)) throw Object.assign(new Error('本轮自动处理已达到上限，已保留草稿'), { code: 'VISION_CALL_LIMIT' });
     let response;
     for (let attempt = 0; attempt < 3; attempt++) {
-      response = await fetch(endpoint, { method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal });
+      response = await fetchImpl(endpoint, { method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' }, body, signal });
       if (response.status !== 429 || job.disableTransientRetries || attempt === 2) break;
       let detail = '';
       try { detail = String((await response.clone().json()).error?.message || ''); } catch {}
@@ -51,9 +66,9 @@ export async function visionJSON(config, system, parts, job, stage) {
       let providerDetail = '';
       try {
         const errorBody = await response.json();
-        providerDetail = String(errorBody.error?.message || '').replaceAll(config.visionKey, '[密钥已隐藏]').replace(/https?:\/\/\S+/g, '[服务链接]').slice(0, 450);
+        providerDetail = redactAISecrets(errorBody.error?.message, config).replace(/https?:\/\/\S+/g, '[服务链接]').slice(0, 450);
       } catch {}
-      throw new Error(`视觉 AI 请求失败（HTTP ${response.status}）${response.status === 401 || response.status === 403 ? '，鉴权或模型权限被拒绝' : response.status === 402 ? '，预付费额度不足' : response.status === 429 ? '，额度或速率受限' : '，请检查模型与接口'}${providerDetail ? `：${providerDetail}` : ''}`);
+      throw Object.assign(new Error(`视觉 AI 请求失败（HTTP ${response.status}）${response.status === 401 || response.status === 403 ? '，鉴权或模型权限被拒绝' : response.status === 402 ? '，预付费额度不足' : response.status === 429 ? '，额度或速率受限' : '，请检查模型与接口'}${providerDetail ? `：${providerDetail}` : ''}`), { status: response.status });
     }
     const result = await response.json();
     const text = config.visionProvider === 'gemini'
@@ -63,13 +78,17 @@ export async function visionJSON(config, system, parts, job, stage) {
     event.usage = { inputTokens: usage.promptTokenCount || usage.prompt_tokens || 0, outputTokens: usage.candidatesTokenCount || usage.completion_tokens || 0, totalTokens: usage.totalTokenCount || usage.total_tokens || 0 };
     if (!text) throw new Error(`视觉 AI 没有返回可用文本（${result.candidates?.[0]?.finishReason || result.promptFeedback?.blockReason || 'EMPTY_RESPONSE'}）`);
     const data = cleanJSON(text);
+    job.controller.signal.throwIfAborted();
+    const finishedNormally = config.visionProvider === 'gemini' ? result.candidates?.[0]?.finishReason === 'STOP' : result.choices?.[0]?.finish_reason === 'stop';
+    if (finishedNormally) await saveSceneObservation(cache, data, job.controller.signal, result.modelVersion || result.model);
+    job.controller.signal.throwIfAborted();
     event.status = 'completed'; event.durationMs = Date.now() - started;
     return data;
   } catch (error) {
     event.status = 'failed'; event.durationMs = Date.now() - started;
     const code = String(error.cause?.code || error.code || '').replace(/[^A-Z0-9_]/g, '').slice(0, 70);
     event.errorCode = code || undefined;
-    event.detail = job.controller.signal.aborted ? '已取消' : error instanceof SyntaxError ? '模型未返回有效 JSON' : error.message.startsWith('视觉 AI') ? error.message : code === 'UND_ERR_CONNECT_TIMEOUT' || error.name === 'TimeoutError' ? `视觉 AI 网络连接超时${code ? `（${code}）` : ''}，请检查服务使用的代理` : `视觉 AI 连接失败${code ? `（${code}）` : ''}`;
-    throw new Error(event.detail);
+    event.detail = job.controller.signal.aborted ? '已取消' : code === 'VISION_CALL_LIMIT' ? error.message : error instanceof SyntaxError ? '模型未返回有效 JSON' : error.message.startsWith('视觉 AI') ? error.message : code === 'UND_ERR_CONNECT_TIMEOUT' || error.name === 'TimeoutError' ? `视觉 AI 网络连接超时${code ? `（${code}）` : ''}，请检查服务使用的代理` : `视觉 AI 连接失败${code ? `（${code}）` : ''}`;
+    throw Object.assign(new Error(event.detail), { status: error.status });
   }
 }

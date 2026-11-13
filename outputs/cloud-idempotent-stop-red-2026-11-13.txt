@@ -1,0 +1,24 @@
+✖ stopping an already removed Sandbox is idempotent so interrupted recovery can finish cleanup (0.762375ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 258.596167
+
+✖ failing tests:
+
+test at server/cloud-production.test.mjs:377:1
+✖ stopping an already removed Sandbox is idempotent so interrupted recovery can finish cleanup (0.762375ms)
+  Error: Named sandbox not found
+      at Object.get (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud-production.test.mjs:378:51)
+      at Object.stop (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud/executor.mjs:16:67)
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/cloud-production.test.mjs:379:40)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    statusCode: 404
+  }

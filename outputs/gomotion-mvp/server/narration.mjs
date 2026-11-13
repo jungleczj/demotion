@@ -3,6 +3,7 @@ import { mkdir, writeFile, stat, rename, rm, readdir, utimes } from 'node:fs/pro
 import path from 'node:path';
 import { workDirectory } from './runtime.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
+import { narrationConfig } from './ai-services.mjs';
 import { probe, run } from './process.mjs';
 import { requestNarration } from './narration-request.mjs';
 import { sharedOperations } from './shared-operation.mjs';
@@ -153,7 +154,7 @@ async function longNarration(plan, voice, style, project, config, file, signal) 
 export async function narrationAudio(scene, project, config, signal, onProgress) {
   const voice = project.voice?.split(':')[1];
   if (!project.voice?.startsWith('gemini:') || !voices.has(voice)) throw new Error('请选择 Gemini 神经配音并重新选材；旧版本机朗读不满足本片的人声要求');
-  if (config.visionProvider !== 'gemini' || !config.visionKey) throw new Error('自然配音需要已连接的 Gemini API key');
+  if (!narrationConfig(config).visionKey) throw new Error('自然配音需要已连接的声音服务');
   const text = String(scene.text || '');
   if (!text.trim() || text.length > scriptLimits.maxCharacters) throw new Error('配音文本需要 1–25,000 字符的台词');
   const language = languages.find((l) => l.code === project.language);

@@ -41,24 +41,42 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
     return (await Promise.all(ids.map(get))).filter(Boolean);
   };
   async function register(task) {
-    await store.change('index.json', (old) => {
+    try { await store.change('index.json', async (old) => {
       const index = old || { tasks: [], admissions: {} };
       const day = new Date(now()).toISOString().slice(0, 10);
       const admission = `${task.id}-${task.attempt}`;
       if (index.admissions[admission] === day) return;
+      // Admission shares the index CAS, so distinct project submissions cannot
+      // both claim the last slot after reading the same earlier task count.
+      const others = await Promise.all(index.tasks.filter((t) => t.owner === task.owner && t.id !== task.id).map((t) => get(t.id)));
+      const reserved = others.filter((t) => active(t) && (!t.admissionPending || index.admissions[`${t.id}-${t.attempt}`]));
+      if (reserved.length >= maxActive) throw error('已有多个视频制作中，请稍后提交。', 409);
       index.admissions = Object.fromEntries(Object.entries(index.admissions).filter(([, date]) => date === day));
       if (Object.keys(index.admissions).length >= dailyLimit) throw error('今天的制作名额已用完，请明天继续。', 429);
       index.admissions[admission] = day;
       index.tasks = [...index.tasks.filter((t) => t.id !== task.id), { id: task.id, owner: task.owner, createdAt: task.createdAt }].slice(-100);
       return index;
     });
+      await change(task.id, (t) => {
+        if (t.attempt !== task.attempt || !t.admissionPending) return;
+        t.admissionPending = false; return touch(t);
+      });
+    } catch (failure) {
+      // A rejected reservation must not remain active and bypass admission on
+      // its next retry. Never alter an execution another caller already owns.
+      if ([409, 429].includes(failure.status)) await change(task.id, (t) => {
+        if (t.attempt !== task.attempt || !active(t) || t.execution || t.launchUntil > now()) return;
+        t.status = 'error'; t.finishedAt = now(); t.message = '这次制作未能开始，脚本已保留，请稍后重试。'; return touch(t);
+      });
+      throw failure;
+    }
   }
   async function launch(id) {
     const lease = randomUUID();
     let claimed = false;
     const task = await change(id, (t) => {
       claimed = false;
-      if (!t || !active(t) || t.execution || t.launchUntil > now() || t.cancelRequested) return;
+      if (!t || !active(t) || t.admissionPending || t.retiredExecutions?.length || t.execution || t.launchUntil > now() || t.cancelRequested) return;
       claimed = true; t.launchLease = lease; t.launchUntil = now() + 90_000; return touch(t);
     });
     if (!claimed) return task;
@@ -69,7 +87,7 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
         if (current.attempt !== task.attempt || current.launchLease !== lease) return;
         current.execution = execution; current.launchUntil = 0; current.heartbeatAt = now(); return touch(current);
       });
-      if (saved.cancelRequested || !active(saved)) await executor.stop(execution).catch(() => {});
+      if (saved.attempt !== task.attempt || saved.cancelRequested || !active(saved)) await executor.stop(execution).catch(() => {});
       return saved;
     } catch {
       return change(id, (current) => {
@@ -86,23 +104,48 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
     if (!task || task.owner !== owner) throw error('制作任务不存在', 404);
     return task;
   }
+  async function cleanRetired(task) {
+    for (const execution of task.retiredExecutions || []) {
+      // Persist the reference until stop succeeds. A request may disappear
+      // after the recovery CAS or after stop; either path can safely resume.
+      try { await executor.stop(execution); } catch { return get(task.id); }
+      const identity = JSON.stringify(execution);
+      await change(task.id, (t) => {
+        t.retiredExecutions = (t.retiredExecutions || []).filter((e) => JSON.stringify(e) !== identity);
+        return touch(t);
+      });
+    }
+    return get(task.id);
+  }
   async function reconcile(task) {
+    if (task.retiredExecutions?.length) task = await cleanRetired(task);
+    if (task.retiredExecutions?.length) return task;
     if (!active(task) || task.cancelRequested) return task;
-    if (!task.execution) return launch(task.id);
+    if (!task.execution) {
+      if (task.admissionPending) await register(task);
+      return launch(task.id);
+    }
     if (now() - (task.heartbeatAt || task.updatedAt) < 90_000 || now() - (task.inspectedAt || 0) < 15_000) return task;
     await change(task.id, (t) => { if (t.attempt !== task.attempt) return; t.inspectedAt = now(); return t; });
     const state = await executor.state?.(task.execution);
     if (!['stopped', 'exited'].includes(state) && now() - (task.heartbeatAt || task.updatedAt) < 5 * 60_000) return task;
     if (!['stopped', 'exited', 'running'].includes(state)) return task;
-    if (state === 'running') await executor.stop(task.execution).catch(() => {});
-    const recovered = await change(task.id, (t) => {
+    let claimed = false;
+    let recovered = await change(task.id, (t) => {
+      claimed = false;
       if (t.attempt !== task.attempt || !active(t) || t.cancelRequested || t.heartbeatAt > task.heartbeatAt) return;
+      claimed = true;
+      if (state === 'running') t.retiredExecutions = [...(t.retiredExecutions || []), t.execution];
       t.recoveries = (t.recoveries || 0) + 1;
       if (t.recoveries > 3) { t.status = 'incomplete'; t.finishedAt = now(); t.message = '多次尝试仍未完成，已保留制作进度，请稍后重试。'; return touch(t); }
-      t.attempt++; t.execution = undefined; t.launchUntil = 0; t.heartbeatAt = now(); t.status = 'queued'; t.message = '正在从已保存的进度继续制作';
+      t.attempt++; t.admissionPending = true; t.execution = undefined; t.launchUntil = 0; t.heartbeatAt = now(); t.status = 'queued'; t.message = '正在从已保存的进度继续制作';
       return touch(t);
     });
-    if (recovered.attempt === task.attempt || !active(recovered)) return recovered;
+    // Fence the old attempt before stopping it. A heartbeat arriving while the
+    // executor state is awaited must be able to invalidate this recovery.
+    if (!claimed) return recovered;
+    if (recovered.retiredExecutions?.length) recovered = await cleanRetired(recovered);
+    if (!active(recovered) || recovered.retiredExecutions?.length) return recovered;
     await register(recovered);
     return launch(recovered.id);
   }
@@ -110,7 +153,9 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
     async list(owner, after = 0) {
       const tasks = await indexTasks(owner);
       const current = await Promise.all(tasks.map(reconcile));
-      return { cursor: Math.max(after, ...current.map((t) => t.updatedAt || 0)), tasks: current.filter((t) => t.updatedAt > after).map(view) };
+      // Per-task clocks are not a global change cursor. All records are already
+      // read above; return their snapshot so equal or skewed clocks lose no state.
+      return { cursor: Math.max(after, ...current.map((t) => t.updatedAt || 0)), tasks: current.map(view) };
     },
     async get(owner, id) { return view(await reconcile(await owned(owner, id))); },
     async submit(owner, raw) {
@@ -123,7 +168,7 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
         if (old && (active(old) || old.status === 'done' && old.fingerprint === fingerprint)) return;
         if (count >= maxActive) throw error('已有多个视频制作中，请稍后提交。', 409);
         const resume = old?.fingerprint === fingerprint && old?.checkpoint;
-        return { id, owner, input, fingerprint, project: resume ? old.checkpoint.project : input.project, ...(resume ? { checkpoint: old.checkpoint } : {}), attempt: (old?.attempt || 0) + 1, status: 'queued', phase: 'queued', progress: 0, message: resume ? '正在从已保存的进度继续制作' : '等待开始制作', createdAt: now(), updatedAt: Math.max(now(), (old?.updatedAt || 0) + 1), estimate: productionEstimate(input.project), files: resume ? old.files : {}, sequences: {} };
+        return { id, owner, input, fingerprint, project: resume ? old.checkpoint.project : input.project, ...(resume ? { checkpoint: old.checkpoint } : {}), ...(old?.retiredExecutions?.length ? { retiredExecutions: old.retiredExecutions } : {}), attempt: (old?.attempt || 0) + 1, admissionPending: true, status: 'queued', phase: 'queued', progress: 0, message: resume ? '正在从已保存的进度继续制作' : '等待开始制作', createdAt: now(), updatedAt: Math.max(now(), (old?.updatedAt || 0) + 1), estimate: productionEstimate(input.project), files: resume ? old.files : {}, sequences: {} };
       });
       if (!active(task)) return view(task);
       await register(task);
@@ -132,7 +177,7 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
     async recover(owner, raw) {
       const tasks = await indexTasks(owner);
       const task = tasks.find((t) => t.project.id === raw?.project?.id);
-      return task ? view(!task.execution && active(task) ? await launch(task.id) : task) : null;
+      return task ? view(await reconcile(task)) : null;
     },
     async cancel(owner, id) {
       await owned(owner, id);

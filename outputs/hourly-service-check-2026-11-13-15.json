@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-13T07:09:30.851Z",
+  "checks": [
+    {
+      "targetIndex": 0,
+      "errorName": "TypeError"
+    },
+    {
+      "targetIndex": 1,
+      "errorName": "TypeError"
+    },
+    {
+      "targetIndex": 2,
+      "errorName": "TypeError"
+    },
+    {
+      "targetIndex": 3,
+      "errorName": "TypeError"
+    },
+    {
+      "environment": "production",
+      "route": "/api/config",
+      "status": 200,
+      "durationMs": 482,
+      "render": true,
+      "visionConfigured": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "environment": "production",
+      "route": "/api/voices",
+      "status": 200,
+      "durationMs": 509,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "media": [
+    {
+      "targetIndex": 6,
+      "errorName": "TypeError"
+    },
+    {
+      "targetIndex": 7,
+      "errorName": "TypeError"
+    },
+    {
+      "targetIndex": 8,
+      "errorName": "TypeError"
+    }
+  ],
+  "newModelRequests": 0,
+  "newVideoProductions": 0,
+  "userTasksCancelled": 0,
+  "serviceRestarts": 0,
+  "newCloudResources": 0
+}
