@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-13T00:41:37.162Z",
+  "source": "native CUA Google Chrome fullscreen screenshots",
+  "projectTitle": "海岸竖屏真实制作验收",
+  "projectDurationSeconds": 29.367,
+  "playClicks": 1,
+  "voiceMutedForCheck": true,
+  "newProductions": 0,
+  "newTTSRequests": 0,
+  "sampleCount": 193,
+  "firstSampleAfterClickMs": 917,
+  "lastSampleAfterClickMs": 34073,
+  "meanSamplesPerSecond": 5.791,
+  "sceneCaptionChanges": [
+    {
+      "observedAfterClickMs": 743,
+      "caption": "海浪不断涌向海岸，"
+    },
+    {
+      "observedAfterClickMs": 2965,
+      "caption": "白色的浪花在沙滩边铺展开来。"
+    },
+    {
+      "observedAfterClickMs": 7442,
+      "caption": "海面随着波浪起伏，水面的光影也不断变化。"
+    },
+    {
+      "observedAfterClickMs": 14330,
+      "caption": "沿着海岸望去，一道道浪花接连靠近，又缓缓退回海中。"
+    },
+    {
+      "observedAfterClickMs": 22257,
+      "caption": "站在海边，我们能够看见海水不断流动，也能看见海岸的辽阔。"
+    }
+  ],
+  "finalAX": {
+    "scene": "05 / 05",
+    "position": "0:29 / 0:29",
+    "status": "播放结束"
+  },
+  "limitations": [
+    "This is a screenshot sequence, not a full-frame screen recording. It cannot prove absence of short flashes between samples.",
+    "Muted visual playback does not verify narration continuity or naturalness."
+  ]
+}

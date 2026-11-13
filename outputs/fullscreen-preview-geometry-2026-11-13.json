@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-13T00:47:45.422Z",
+  "checks": [
+    {
+      "name": "before",
+      "file": "../portrait-browser-fullscreen-2026-11-12.png",
+      "exitCode": 1,
+      "stdout": "{\"format\":\"portrait\",\"screenshot\":{\"width\":2940,\"height\":1846},\"picture\":{\"width\":2940,\"height\":1844,\"x\":0,\"y\":2},\"expected\":{\"width\":1038.375,\"height\":1846},\"source\":\"native-CUA-screenshot\"}",
+      "assertion": "AssertionError [ERR_ASSERTION]: Fullscreen must preserve the project aspect ratio and show its complete picture\n    at file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/scripts/check-fullscreen-preview.mjs:21:8\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {"
+    },
+    {
+      "name": "after",
+      "file": "../portrait-browser-fullscreen-fixed-2026-11-13.png",
+      "exitCode": 0,
+      "stdout": "{\"format\":\"portrait\",\"screenshot\":{\"width\":2940,\"height\":1846},\"picture\":{\"width\":1036,\"height\":1844,\"x\":952,\"y\":2},\"expected\":{\"width\":1038.375,\"height\":1846},\"source\":\"native-CUA-screenshot\"}"
+    }
+  ]
+}

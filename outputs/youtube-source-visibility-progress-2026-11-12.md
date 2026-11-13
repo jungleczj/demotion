@@ -16,3 +16,7 @@
 - [当前连接实测](task-status-service-check-2026-11-12-20.json)：本地与正式youtubeConnected=true、youtubeDiscovery=true。正式目录200不等于新版排序已发布。
 
 已推送[31ec2c2](https://github.com/jungleczj/demotion/commit/31ec2c2e13e542a393cd9dc0d6107fe84bb5ddd0)，官方CLI核对正式部署READY。20:19正式首页、JS及配置均200，新JS的SHA256与本地构建相同，配置YouTube已连接且启用、render=true。[实际线上核对](youtube-source-visibility-online-2026-11-12.json)。线上实际弹窗尚未点击复核，不把JS发布等同浏览器验收；没有新增模型或视频生成请求。第15项本轮仅首屏可见性通过；完整原片取得与片段入片不在此窄结论内。
+
+## 11月13日正式浏览器补验
+
+原生Chrome实际打开正式站首页，声音列表显示30种、中文语言选项正常，未见原连接报错。打开素材来源弹窗，YouTube Data API在第一行、已连接/勾选、官方链接正确；[正式实际截图](youtube-source-visible-production-2026-11-13.png)。未更改开关或密钥，也未触发YouTube搜索或新试听。当前声音服务的新生成仍受最近402影响，不将目录可见当作完整视频恢复。[最新接口与任务](hourly-service-check-2026-11-13-08.json)。

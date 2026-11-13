@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-12T12:40:33.179Z",
+  "assetId": "coverr:Pvvw8EyofT",
+  "sourceHost": "cdn.coverr.co",
+  "cacheControl": "Same CDN URL; no OS/CDN cache flush; full then range. A single pair cannot establish general speedup.",
+  "attemptLimit": 1,
+  "modelRequests": 0,
+  "productionTasks": 0,
+  "cases": [
+    {
+      "method": "full-get",
+      "startedAt": "2026-11-12T12:40:33.179Z",
+      "requests": 1,
+      "bytes": 20849655,
+      "passed": true,
+      "status": 200,
+      "elapsedMs": 34617,
+      "sha256": "a05a28fbd588d4fa141a73176d75ccb4edf361983d76a39e7afd44773b5d0ed1"
+    },
+    {
+      "method": "four-ranges",
+      "startedAt": "2026-11-12T12:41:07.817Z",
+      "requests": 5,
+      "bytes": 20849655,
+      "passed": true,
+      "maxInFlight": 4,
+      "elapsedMs": 35407,
+      "sha256": "a05a28fbd588d4fa141a73176d75ccb4edf361983d76a39e7afd44773b5d0ed1"
+    }
+  ],
+  "identicalOriginalBytes": true,
+  "sourceInfo": {
+    "hasAudio": false,
+    "duration": 37.328971,
+    "width": 1920,
+    "height": 3412
+  },
+  "fullSourceDecode": true,
+  "temporaryOriginalsRemoved": true
+}

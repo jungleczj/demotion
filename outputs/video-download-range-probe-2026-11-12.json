@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-12T12:28:45.252Z",
+  "assetId": "coverr:Pvvw8EyofT",
+  "sourceHost": "cdn.coverr.co",
+  "results": [
+    {
+      "method": "HEAD",
+      "status": 200,
+      "headers": {
+        "content-length": null,
+        "content-range": null,
+        "accept-ranges": null,
+        "etag": null,
+        "last-modified": null,
+        "content-encoding": "br"
+      },
+      "bytes": 0,
+      "elapsedMs": 3062
+    },
+    {
+      "method": "GET",
+      "requestedRange": "bytes=0-65535",
+      "status": 206,
+      "headers": {
+        "content-length": "65536",
+        "content-range": "bytes 0-65535/20849655",
+        "accept-ranges": null,
+        "etag": "\"973d11ecd4158bea877ba87e29d57cef\"",
+        "last-modified": null,
+        "content-encoding": null
+      },
+      "bytes": 65536,
+      "elapsedMs": 2998
+    }
+  ],
+  "modelRequests": 0,
+  "productionTasks": 0
+}
