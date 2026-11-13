@@ -26,3 +26,7 @@
 - 修正容器高度后，类型检查与生产构建通过。最终完整回归336/336、0失败/取消/跳过，65.088秒，见[最终日志](fullscreen-preview-final-regression-2026-11-13.txt)。
 - 独立子智能体只读复核最终布局，没有发现额外修改项；横屏及完整连续切镜仍要求各自实际证据。
 - 此报告仅涵盖本地布局和已有草稿播放。新云端整片、长视频、2倍制作速度、所有来源补片和自然人声均未因此取得验收。
+
+## 发布核对
+
+修复已提交并推送[GitHub b0e998c](https://github.com/jungleczj/demotion/commit/b0e998c5f1c5622ec60d3a23216dde8da117cb47)，Vercel正式部署READY且提交SHA一致，[部署记录](fullscreen-preview-production-deployment-2026-11-13.json)。正式首页、JS、CSS均200，JS/CSS SHA256与本地已验证构建一致；发布后配置/声音仍200、30声音/15语言，[产物及接口](fullscreen-preview-production-assets-2026-11-13.json)。这证明代码已发布，不代替正式站的视频全流程或用户验收。

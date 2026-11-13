@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-11-13T00:55:08.296Z",
+  "homepageStatus": 200,
+  "assets": [
+    {
+      "path": "/assets/index-xkIWjSb1.js",
+      "status": 200,
+      "sha256": "962502b6150f31e4555faabbf522fdc5f1f63966c421beb82039f0952d149115",
+      "localSha256": "962502b6150f31e4555faabbf522fdc5f1f63966c421beb82039f0952d149115",
+      "matchesLocal": true
+    },
+    {
+      "path": "/assets/index-DrdZGpno.css",
+      "status": 200,
+      "sha256": "cfd7d14b633bfca05c92fa50e62ce248f40f67a18a9189a637529d009bd65c9f",
+      "localSha256": "cfd7d14b633bfca05c92fa50e62ce248f40f67a18a9189a637529d009bd65c9f",
+      "matchesLocal": true
+    }
+  ],
+  "postDeployApiCheckedAt": "2026-11-13T00:55:44.263Z",
+  "apiChecks": [
+    {
+      "route": "/api/config",
+      "status": 200,
+      "render": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "route": "/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    }
+  ]
+}
