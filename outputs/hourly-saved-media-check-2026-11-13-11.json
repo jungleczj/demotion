@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-11-13T03:19:40.838Z",
+  "tasks": [
+    {
+      "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+      "status": "done"
+    },
+    {
+      "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+      "status": "error"
+    },
+    {
+      "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+      "status": "error"
+    },
+    {
+      "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+      "status": "error"
+    }
+  ],
+  "active": 0,
+  "media": [
+    {
+      "kind": "saved-film",
+      "status": 206,
+      "receivedBytes": 32,
+      "contentRange": "bytes 0-31/9407463",
+      "contentType": "video/mp4"
+    },
+    {
+      "kind": "saved-narration",
+      "status": 206,
+      "receivedBytes": 32,
+      "contentRange": "bytes 0-31/1397814",
+      "contentType": "audio/wav"
+    }
+  ],
+  "newProductions": 0,
+  "newModelRequests": 0,
+  "userTasksCancelled": 0,
+  "serviceRestarts": 0
+}

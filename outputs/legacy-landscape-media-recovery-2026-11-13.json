@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-13T04:13:44.725Z",
+  "kind": "historical-playback-hardlink",
+  "exportId": "990ff277-2c83-4c0f-af25-c2b590faf278",
+  "originalTaskId": "9d1a7812-4e8f-4d4f-b89d-8f1456714c71",
+  "archive": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-ocean-full-generation-2026-11-11.mp4",
+  "archiveReport": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-ocean-full-generation-2026-11-11.json",
+  "destination": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/990ff277-2c83-4c0f-af25-c2b590faf278/video.mp4",
+  "sourceBytes": 20946248,
+  "currentSha256": "ac7c63ec81f60993b046c3d3ccabcdfea19ee90156ce735dcb6dcb79b1ae9524",
+  "originalExportShaComparisonAvailable": false,
+  "sameInode": true,
+  "browserExportAndFourTextsMatch": true,
+  "beforeHttpStatus": 500,
+  "after": {
+    "status": 206,
+    "range": "bytes 0-31/20946248",
+    "receivedBytes": 32
+  },
+  "metadataHttpStatus": 404,
+  "originalTaskRestored": false,
+  "subtitlesAndSourcesRestored": false,
+  "knownHistoricalIssues": [
+    {
+      "time": 24.3,
+      "sceneIndex": 4,
+      "type": "content",
+      "severity": "low",
+      "description": "镜头底部带有第三方机构水印及许可文字",
+      "suggestion": "替换为无水印航拍素材或适当裁切"
+    }
+  ],
+  "approvedUnderCurrentRules": false,
+  "retention": "Unreferenced historical playback folder remains subject to existing 24-hour cleanup. Permanent archive remains outside work.",
+  "newModelRequests": 0,
+  "newProductions": 0,
+  "userTasksCancelled": 0,
+  "serviceRestarts": 0,
+  "postBrowserCheckedAt": "2026-11-13T04:22:45.641Z",
+  "postBrowserTasks": [
+    {
+      "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+      "status": "done"
+    },
+    {
+      "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+      "status": "error"
+    },
+    {
+      "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+      "status": "error"
+    },
+    {
+      "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+      "status": "error"
+    }
+  ],
+  "postBrowserActive": 0,
+  "destinationSha256": "ac7c63ec81f60993b046c3d3ccabcdfea19ee90156ce735dcb6dcb79b1ae9524"
+}

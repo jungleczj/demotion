@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-13T04:16:14.472Z",
+  "playClicks": 1,
+  "muted": true,
+  "video": {
+    "currentTime": 31.933333,
+    "duration": 31.933333,
+    "ended": true,
+    "paused": true,
+    "readyState": 4,
+    "videoHeight": 1080,
+    "videoWidth": 1920
+  },
+  "status": "播放结束",
+  "newModelRequests": 0,
+  "newProductions": 0,
+  "limitations": [
+    "No full-frame screen recording was made; this is not proof of no flashes.",
+    "This historical file is not approved under current watermark or output-profile rules."
+  ]
+}

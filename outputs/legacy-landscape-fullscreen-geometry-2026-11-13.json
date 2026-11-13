@@ -1,0 +1,20 @@
+{
+  "format": "landscape",
+  "screenshot": {
+    "width": 1470,
+    "height": 923
+  },
+  "picture": {
+    "width": 1470,
+    "height": 826,
+    "x": 0,
+    "y": 48
+  },
+  "expected": {
+    "width": 1470,
+    "height": 826.875
+  },
+  "source": "CUA-IAB-screenshot",
+  "checkedAt": "2026-11-13T04:17:45.089Z",
+  "scope": "Historical rendered file in the current player; not current output-profile or subtitle approval"
+}

@@ -1,0 +1,110 @@
+{
+  "checkedAt": "2026-11-13T03:14:07.141Z",
+  "origin": "http://127.0.0.1:3027",
+  "isolatedFromUserLocalhostDraft": true,
+  "cases": [
+    {
+      "id": "empty",
+      "suppliedLength": 0,
+      "length": 0,
+      "maxLength": 25000,
+      "duration": "预计成片时长 0:00",
+      "summary": "0:00",
+      "generateEnabled": false
+    },
+    {
+      "id": "chinese",
+      "suppliedLength": 19,
+      "length": 19,
+      "maxLength": 25000,
+      "duration": "预计成片时长 0:05",
+      "summary": "0:05",
+      "generateEnabled": true
+    },
+    {
+      "id": "english",
+      "suppliedLength": 78,
+      "length": 78,
+      "maxLength": 25000,
+      "duration": "预计成片时长 0:07",
+      "summary": "0:07",
+      "generateEnabled": true
+    },
+    {
+      "id": "mixed",
+      "suppliedLength": 36,
+      "length": 36,
+      "maxLength": 25000,
+      "duration": "预计成片时长 0:04",
+      "summary": "0:04",
+      "generateEnabled": true
+    },
+    {
+      "id": "max25000",
+      "suppliedLength": 25000,
+      "length": 25000,
+      "maxLength": 25000,
+      "duration": "预计成片时长 104:10",
+      "summary": "104:10",
+      "generateEnabled": true
+    },
+    {
+      "id": "over25001-fill",
+      "suppliedLength": 25001,
+      "length": 25001,
+      "maxLength": 25000,
+      "duration": "预计成片时长 104:11",
+      "summary": "104:11",
+      "generateEnabled": false
+    }
+  ],
+  "newModelRequests": 0,
+  "newProductions": 0,
+  "styleCheck": {
+    "mixedDocumentary": "0:04",
+    "mixedGentle": "0:05",
+    "restoredToDocumentary": true
+  },
+  "narrow": {
+    "requestedViewportWidth": 320,
+    "contentWidth": 305,
+    "statusRect": {
+      "height": 15,
+      "viewport": 305,
+      "width": 84.5703125,
+      "x": 177.4296875,
+      "y": 82.2890625
+    },
+    "exampleRects": [
+      {
+        "height": 24,
+        "width": 62,
+        "x": 90,
+        "y": 48.7890625
+      },
+      {
+        "height": 24,
+        "width": 62,
+        "x": 158,
+        "y": 48.7890625
+      },
+      {
+        "height": 24,
+        "width": 70,
+        "x": 41,
+        "y": 78.7890625
+      }
+    ],
+    "overlaps": false,
+    "insideContent": true
+  },
+  "viewportReset": true,
+  "limitCheckNote": "Locator fill can set a value beyond HTML maxlength; the 25,001-character case verifies the Generate button is disabled, not native keyboard/paste truncation.",
+  "realTyping": {
+    "before": "预计成片时长 0:04",
+    "after": "预计成片时长 0:06",
+    "scriptCharactersAdded": 18
+  },
+  "maxCounter": "自动保存到浏览器工作区\n25,000 / 25,000",
+  "boundaryNote": "No generation was submitted. Backend 25,000/25,001 acceptance remains the previously recorded offline checks."
+}
