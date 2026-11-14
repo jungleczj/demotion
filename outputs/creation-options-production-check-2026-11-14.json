@@ -1,0 +1,94 @@
+{
+  "at": "2026-11-14T07:30:11.278Z",
+  "commit": "e740edd2ffbdcd90227a88e420ebe63ba0e5e65e",
+  "origin": "https://gomotion-mvp.vercel.app",
+  "modelCalls": 0,
+  "productionSubmissions": 0,
+  "browserVerified": false,
+  "browserBlock": "Local browser access is unavailable for this chat",
+  "requests": [
+    {
+      "path": "/assets/index-Chpb4TkG.js",
+      "status": 200,
+      "sha256": "c6d6b0e6152a0e88946d597738439fdef847b529922e8df819c10f1d702a6ac2",
+      "matchesLocal": true
+    },
+    {
+      "path": "/assets/index-CpAbIwJz.css",
+      "status": 200,
+      "sha256": "04f9a8577070f32d862c2507b44caacb760a78f03468173802c9b945c7d96b02",
+      "matchesLocal": true
+    },
+    {
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "path": "/api/config",
+      "status": 200,
+      "render": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true
+    },
+    {
+      "path": "/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15
+    },
+    {
+      "path": "/api/music/catalog",
+      "status": 200,
+      "tracks": [
+        {
+          "id": "scottbuckley:undertow",
+          "title": "Undertow"
+        },
+        {
+          "id": "scottbuckley:the-great-sea",
+          "title": "The Great Sea"
+        },
+        {
+          "id": "scottbuckley:machina",
+          "title": "Machina"
+        }
+      ],
+      "genres": [
+        {
+          "id": "auto",
+          "label": "自动选择"
+        },
+        {
+          "id": "epic",
+          "label": "史诗"
+        },
+        {
+          "id": "documentary",
+          "label": "纪录片"
+        },
+        {
+          "id": "tension",
+          "label": "紧张"
+        },
+        {
+          "id": "emotional",
+          "label": "情感"
+        },
+        {
+          "id": "chill",
+          "label": "轻松"
+        },
+        {
+          "id": "upbeat",
+          "label": "欢快"
+        }
+      ]
+    }
+  ],
+  "homeStatus": 200,
+  "preview": {
+    "status": 307,
+    "location": "https://www.scottbuckley.com.au/library/wp-content/uploads/2024/01/TheGreatSea.mp3"
+  },
+  "passed": true
+}

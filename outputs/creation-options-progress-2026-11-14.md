@@ -14,3 +14,5 @@
 - [382 项完整回归](creation-options-regression-2026-11-14.txt)：0 失败，0 跳过；TypeScript 和 Vite 构建通过。另单独重查五种背景栅格与选项归一化，共 4 项通过。
 - 实现入口：[创建页](gomotion-mvp/src/components/Creator.tsx)、[制作选项](gomotion-mvp/shared/production-options.mjs)、[云检查点回归](gomotion-mvp/server/cloud-production.test.mjs)、[上传校验回归](gomotion-mvp/server/cloud/music-upload.test.mjs)。
 - 参考：[GoMotion 创建页](https://gomotionai.com/app)、[现有页面证据](gomotion-page-controls-architecture-2026-11-11.md)。
+
+15:33更新：实现e740edd已正式发布，代码散列、后台目录与新快照Linux67/67通过；正式交互及新版成片仍未通过。[发布核对与限制](creation-options-release-2026-11-14.md)。
