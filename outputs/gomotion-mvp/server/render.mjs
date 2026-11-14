@@ -13,6 +13,8 @@ import { makeAss, captionFilter } from './captions.mjs';
 import captionStyle from '../shared/caption-style.json' with { type: 'json' };
 import { addBackgroundMusic, prepareBackgroundMusic } from './background-music.mjs';
 import { AUDIO_MIX_VERSION } from './audio-mix-profile.mjs';
+import { productionOptions } from '../shared/production-options.mjs';
+import { backgroundStyle } from './visual-backgrounds.mjs';
 
 export { run, probe } from './process.mjs';
 import { run, probe } from './process.mjs';
@@ -20,6 +22,8 @@ import { run, probe } from './process.mjs';
 function srtTime(seconds) { return new Date(Math.round(seconds * 1000)).toISOString().slice(11, 23).replace('.', ','); }
 
 export async function renderProject(job, project, directory, config = {}) {
+  project = { ...project, ...productionOptions(project) };
+  if (!project.motionGraphics && project.scenes.some((s) => s.motionGraphic || s.renderKind === 'motion-graphic' || (assets.get(s.selected?.id) || s.selected)?.renderKind === 'motion-graphic')) throw new Error('已关闭图表与动效，请重新为这些镜头匹配视频素材。');
   const started = performance.now();
   const timings = job.renderTimings = { narrationMs: 0, prepareInputsMs: 0, encodeMs: 0, assembleMs: 0, reviewMs: 0, totalMs: 0 };
   let currentPhase, phaseStart;
@@ -96,7 +100,7 @@ export async function renderProject(job, project, directory, config = {}) {
       }
       if (asset.kind === 'video' && Number.isFinite(scene.trimEnd) && start + duration > scene.trimEnd + .15) throw new Error(`镜头 ${index + 1} 的旁白超出了 AI 审核过的片段，请重新运行视觉选材或手动调整起点`);
       let scale = project.fit === 'contain'
-        ? `scale=${width}:${height}:force_original_aspect_ratio=decrease,pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2:color=0x101828`
+        ? `scale=${width}:${height}:force_original_aspect_ratio=decrease,pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2:color=0x${backgroundStyle(project.background).background.slice(1)}`
         : `scale=${width}:${height}:force_original_aspect_ratio=increase,crop=${width}:${height}`;
       encodeTasks.push(async () => {
         const crop = project.fit === 'cover' ? await contentCrop(input, inputInfo, start, duration, signal) : '';
@@ -151,7 +155,7 @@ export async function renderProject(job, project, directory, config = {}) {
     const rendered = await probe(path.join(folder, 'video.mp4'), signal);
     if (!rendered.hasAudio || Math.abs(rendered.duration - total) > .15) throw new Error('成片音轨或时长未通过完整覆盖检查，已停止输出');
     await writeFile(path.join(folder, 'captions.srt'), manifest.map((s, i) => `${i + 1}\n${srtTime(s.start)} --> ${srtTime(s.end)}\n${s.text}\n`).join('\n'));
-    await writeFile(path.join(folder, 'sources.json'), JSON.stringify({ title: project.title, script: project.script, duration: total, width, height, captionStyleVersion: captionStyle.version, videoProfile: profile, music, createdAt: new Date().toISOString(), scenes: manifest }, null, 2));
+    await writeFile(path.join(folder, 'sources.json'), JSON.stringify({ title: project.title, script: project.script, duration: total, width, height, captionStyleVersion: captionStyle.version, videoProfile: profile, ...productionOptions(project), music, createdAt: new Date().toISOString(), scenes: manifest }, null, 2));
     await Promise.all(project.scenes.map((_, index) => rm(path.join(folder, `scene-${index}.mp4`), { force: true })));
     await rm(captions, { force: true });
     job.message = 'AI 正在审查整片画面、转场和真实配音'; job.progress = 96;

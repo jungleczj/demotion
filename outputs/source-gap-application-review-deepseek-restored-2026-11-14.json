@@ -1,0 +1,362 @@
+{
+  "at": "2026-11-14T03:52:10.517Z",
+  "status": "application_rejected_candidate",
+  "scene": {
+    "id": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "index": 7,
+    "text": "它们将蛋放在双脚上，",
+    "query": "penguin feet snow",
+    "visual": "帝企鹅爪部踏在冰面上的特写",
+    "duration": 2.0799999999999983,
+    "narrationAnchor": {
+      "start": 41.46666666666667
+    }
+  },
+  "scope": {
+    "diagnosticOnly": true,
+    "maxModelHTTPRequests": 1,
+    "modelHTTPRequests": 1,
+    "modelReviewCalls": 1,
+    "queryPlannerCalls": 0,
+    "liveCatalogSearches": 0,
+    "fixtureCatalogCalls": 1,
+    "ttsRequests": 0,
+    "audioGenerationRequests": 0,
+    "productionJobsSubmitted": 0,
+    "userJobsCancelled": 0,
+    "serviceRestarts": 0,
+    "productCodeChanged": false,
+    "plannerRecoveryOrSegmentationChanged": false,
+    "gitOrDeploymentOperations": 0,
+    "clipsRendered": 0,
+    "task11Accepted": false,
+    "wholeFilmAccepted": false
+  },
+  "historicalIdentity": {
+    "reportFile": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-penguin-motion-accepted-2026-11-11.json",
+    "reportSha256": "a38e052a38e49a7fcaad5cb61afb57f4bdef93e4b9ce05d798c0d55d424d11a2",
+    "projectId": "bd18d764-47f4-41d2-8df8-acbbb668e415",
+    "title": "放弃天空的鸟——帝企鹅 · 补片验收",
+    "script": "并非所有鸟类，都属于天空。\n\n在地球的最南端，一群鸟类放弃了飞行，却征服了另一片广阔的世界。\n\n它们，就是帝企鹅。\n\n南极的冬季，气温可能降至零下四十摄氏度，狂风不断席卷冰原。\n\n就在这样的环境中，帝企鹅开始繁衍后代。\n\n母企鹅产下蛋后，便前往海洋寻找食物。\n\n而企鹅爸爸，则承担起孵化的责任。\n\n它们将蛋放在双脚上，用腹部的育儿袋保护着这个脆弱的新生命。\n\n在漫长的孵化过程中，雄企鹅可能数月无法进食。\n\n它们彼此依偎，轮流站在寒风中，用群体的温暖抵御严寒。\n\n终于，当第一声稚嫩的鸣叫从蛋壳中传来，一切等待都有了意义。\n\n它们虽然无法飞翔，却在冰冷的世界里，创造了生命最温暖的奇迹。",
+    "scriptSha256": "9ef1a4e8e1422d6885ebb70434de48d0254ff5fb149feafb2fe5f85c26d8378d",
+    "originalSceneDurationPreserved": 2.0799999999999983,
+    "historicalGeneratedDiagramApprovalsReused": false
+  },
+  "configuration": {
+    "provider": "openai",
+    "model": "deepseek-flash",
+    "base": "https://api.deepseek.com",
+    "credentialSource": "existing local .env, parsed in memory; values never saved",
+    "retriesDisabled": true,
+    "callLimit": 1,
+    "network": {
+      "configured": true,
+      "source": "macOS-system"
+    }
+  },
+  "source": {
+    "id": "commons-original",
+    "path": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/source-gap-research/candidate-1-nsf-penguin-lifecycle-original.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/PENGUIN_LIFECYCLE_H.JPG",
+    "bytes": 1304056,
+    "sha256": "4950715fe9969e6e1067398610828d2beecfb96e600369eae9293484e28eb00f",
+    "mime": "image/jpeg",
+    "width": 1800,
+    "height": 1216,
+    "originalPixelsPreserved": true,
+    "viewedWith": "view_image",
+    "manualInspection": "completed",
+    "preferredForClarity": true,
+    "actualProbe": {
+      "hasAudio": false,
+      "duration": 0.04,
+      "width": 1800,
+      "height": 1216
+    },
+    "actualSha256": "4950715fe9969e6e1067398610828d2beecfb96e600369eae9293484e28eb00f",
+    "fixture": {
+      "id": "commons:PENGUIN_LIFECYCLE_H.JPG",
+      "provider": "commons",
+      "sourceId": "PENGUIN_LIFECYCLE_H.JPG",
+      "kind": "image",
+      "title": "Lifecycle of the Emperor Penguin — Zina Deretsky / NSF (2006)",
+      "description": "Published emperor penguin scientific lifecycle illustration. Specific Commons file declares PD-US-NSF. The same work is Figure 1 in Jenouvrier et al. 2023, doi:10.3389/frym.2023.1052262 (article CC BY 4.0; no figure-specific exclusion observed). Original USAP item rights record was unavailable; current NSF general policy requires case-by-case checking. No new institutional permission obtained. Catalog identity and described content are not pixel evidence.",
+      "localPath": "/Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/work/source-gap-research/candidate-1-nsf-penguin-lifecycle-original.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/PENGUIN_LIFECYCLE_H.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:PENGUIN_LIFECYCLE_H.JPG",
+      "author": "Zina Deretsky, National Science Foundation",
+      "license": "Public domain (specific Commons PD-US-NSF declaration)",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File:PENGUIN_LIFECYCLE_H.JPG#Licensing"
+    }
+  },
+  "rightsEvidence": [
+    {
+      "kind": "specific_catalog_rights_record",
+      "url": "https://commons.wikimedia.org/wiki/File:PENGUIN_LIFECYCLE_H.JPG",
+      "observedLicense": "Public domain / PD-US-NSF",
+      "basis": "Catalog identifies creator and treats work as created in official NSF duties. This is a specific catalog declaration, not a direct newly obtained NSF confirmation.",
+      "lastRevisionUrl": "https://commons.wikimedia.org/w/index.php?title=File:PENGUIN_LIFECYCLE_H.JPG&oldid=956453316"
+    },
+    {
+      "kind": "primary_scientific_publication",
+      "url": "https://kids.frontiersin.org/articles/10.3389/frym.2023.1052262",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "observed": "Article copyright statement links CC BY 4.0; Figure 1 expressly credits Deretsky/NSF and links the USAP item. No figure-specific restrictive license or excluded-credit clause was visible.",
+      "suggestedAttribution": "Zina Deretsky / National Science Foundation, Lifecycle of the Emperor Penguin (2006), reproduced as Fig. 1 in Jenouvrier et al. (2023), doi:10.3389/frym.2023.1052262. Article: CC BY 4.0. State any permitted presentation changes."
+    },
+    {
+      "kind": "primary_general_policy_limitation",
+      "url": "https://www.nsf.gov/policies/digital",
+      "observed": "Current NSF visual-media policy distinguishes public-domain assets, contractor work, and third-party assets and says use permission is determined case by case. The fact that an image is on a government website alone is not clearance."
+    },
+    {
+      "kind": "unavailable_original_rights_record",
+      "url": "https://photolibrary.usap.gov/PhotoDetails.aspx?filename=PENGUIN_LIFECYCLE_H.JPG",
+      "webToolResult": "fetch error; library home returned 502",
+      "directPublicFetchResult": "SSL unexpected EOF",
+      "bypassedAccessRestriction": false,
+      "permissionRequestSent": false
+    }
+  ],
+  "rightsConclusion": "Specific Commons public-domain declaration and Frontiers article CC BY evidence are recorded; original USAP item permission was not independently retrieved. No new permission or final legal clearance is asserted.",
+  "queryPlan": {
+    "sceneId": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "mode": "explicit-researched-candidate-no-live-query-planning",
+    "subject": {
+      "text": "帝企鹅",
+      "quote": "它们，就是帝企鹅。",
+      "aliases": [
+        "帝企鹅",
+        "emperor penguin",
+        "Aptenodytes forsteri"
+      ]
+    },
+    "queries": [
+      "Lifecycle of the Emperor Penguin Zina Deretsky NSF"
+    ]
+  },
+  "metadataLicenseGate": {
+    "error": "",
+    "catalogMetadataAloneDoesNotApprove": true
+  },
+  "manualSourceInspection": {
+    "actualOriginalViewed": true,
+    "method": "view_image of original local file",
+    "applicationReview": false,
+    "observed": "Published lifecycle illustration with three incubating adults at lower left, foot-level pale eggs highlighted by original red dashed circles, and an enlarged egg linked by existing red arrows. Adjacent hatchling drawings are distinct stages.",
+    "limitations": [
+      "Scientific illustration, not live photography.",
+      "Static egg position does not demonstrate temporal placement or transfer.",
+      "Feet and eggs are a small portion of the complete graphic.",
+      "The enlarged egg is an existing callout, not an egg lying separately on the ice."
+    ]
+  },
+  "result": {
+    "plan": null,
+    "attempted": 1,
+    "reviewed": 1,
+    "deduplicated": 0,
+    "metadataRejected": 0,
+    "queries": [
+      "Lifecycle of the Emperor Penguin Zina Deretsky NSF"
+    ],
+    "warnings": [
+      "Diagnostic candidate fixture: known researched source, no live source search and no query model.",
+      "commons:PENGUIN_LIFECYCLE_H.JPG 图片已排除：图片标注必须引用当前旁白原文并有实际画面依据"
+    ]
+  },
+  "returnedReview": {
+    "matched": true,
+    "exactSubject": true,
+    "clear": true,
+    "watermarkFree": true,
+    "licenseUsable": true,
+    "observed": "Scientific lifecycle illustration of emperor penguins showing mating adults, males incubating eggs on their feet, hatching, feeding chicks, and chick groups, with month labels and arrows.",
+    "limitations": [
+      "The illustration covers the whole lifecycle; the narration focuses on one stage.",
+      "Catalogue identity, author, license and article publication cannot be verified from pixels."
+    ],
+    "title": "Males incubate eggs",
+    "annotations": [
+      {
+        "label": "Males incubate eggs",
+        "quote": "用腹部的育儿袋保护着这个脆弱的新生命",
+        "region": [
+          0.14,
+          0.58,
+          0.13,
+          0.18
+        ],
+        "observed": "Two adult emperor penguins shown with an egg near their feet alongside the caption text 'Males incubate eggs'.",
+        "labels": "Males incubate eggs"
+      },
+      {
+        "label": "Hatching",
+        "quote": "蛋壳中传来",
+        "region": [
+          0.33,
+          0.58,
+          0.1,
+          0.2
+        ],
+        "observed": "An adult penguin bending over a chick just emerged from an egg, captioned 'Hatching'.",
+        "labels": "Hatching"
+      },
+      {
+        "label": "Feeding chicks",
+        "quote": "寻找食物",
+        "region": [
+          0.52,
+          0.6,
+          0.2,
+          0.18
+        ],
+        "observed": "Adult penguins with grey chicks captioned 'Feeding chicks'.",
+        "labels": "Feeding chicks"
+      }
+    ],
+    "annotations2": [
+      {
+        "labels": "Males incubate eggs"
+      }
+    ],
+    "categories": [
+      "scientific illustration",
+      "lifecycle"
+    ]
+  },
+  "events": [
+    {
+      "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "openai",
+      "model": "deepseek-flash",
+      "status": "completed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-14T03:52:11.171Z",
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1981,
+        "outputTokens": 324,
+        "totalTokens": 2305
+      },
+      "durationMs": 3472
+    },
+    {
+      "stage": "source-image-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-reader",
+      "assetId": "commons:PENGUIN_LIFECYCLE_H.JPG",
+      "status": "failed",
+      "detail": "图片标注必须引用当前旁白原文并有实际画面依据"
+    },
+    {
+      "stage": "source-image-search-baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "engine": "source-image-catalog",
+      "status": "unfilled",
+      "queries": [
+        "Lifecycle of the Emperor Penguin Zina Deretsky NSF"
+      ],
+      "subject": {
+        "text": "帝企鹅",
+        "quote": "它们，就是帝企鹅。",
+        "aliases": [
+          "帝企鹅",
+          "emperor penguin",
+          "Aptenodytes forsteri"
+        ]
+      },
+      "attempted": 1,
+      "acquisitionLimit": 12,
+      "reviewed": 1,
+      "reviewLimit": 4,
+      "deduplicated": 0,
+      "metadataRejected": 0
+    }
+  ],
+  "updatedAt": "2026-11-14T03:52:14.647Z",
+  "currentService": {
+    "httpStatus": 200,
+    "visionEnabled": true,
+    "visionConfigured": true,
+    "provider": "openai",
+    "model": "deepseek-flash",
+    "base": "https://api.deepseek.com",
+    "matchesEnvironment": true
+  },
+  "reviewInput": {
+    "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "imageMime": "image/png",
+    "imageBytes": 2721344,
+    "decodedSha256": "929c25f408f2c325324c4790a75ce4dd08cfdb0340f7a1b8ebbf64d2d5273a3d",
+    "decodedWidth": 1600,
+    "decodedHeight": 1081,
+    "sourceOriginalSha256": "4950715fe9969e6e1067398610828d2beecfb96e600369eae9293484e28eb00f",
+    "fullFrame": true,
+    "scaleDownOnly": true,
+    "sourceLayout": {
+      "x": 121.95522664199814,
+      "y": 136.8,
+      "width": 767.2895467160037,
+      "height": 518.4,
+      "scale": 0.4795559666975023
+    },
+    "promptSha256": "8f86011367c871d743181ab003f4a7b3cbe57238b425064713b992d5dc7ff83b",
+    "exactMetadataSent": {
+      "sceneId": "baac21f7-5c79-44ca-9093-598ed9697eeb",
+      "narration": "它们将蛋放在双脚上，",
+      "story": "并非所有鸟类，都属于天空。\n\n在地球的最南端，一群鸟类放弃了飞行，却征服了另一片广阔的世界。\n\n它们，就是帝企鹅。\n\n南极的冬季，气温可能降至零下四十摄氏度，狂风不断席卷冰原。\n\n就在这样的环境中，帝企鹅开始繁衍后代。\n\n母企鹅产下蛋后，便前往海洋寻找食物。\n\n而企鹅爸爸，则承担起孵化的责任。\n\n它们将蛋放在双脚上，用腹部的育儿袋保护着这个脆弱的新生命。\n\n在漫长的孵化过程中，雄企鹅可能数月无法进食。\n\n它们彼此依偎，轮流站在寒风中，用群体的温暖抵御严寒。\n\n终于，当第一声稚嫩的鸣叫从蛋壳中传来，一切等待都有了意义。\n\n它们虽然无法飞翔，却在冰冷的世界里，创造了生命最温暖的奇迹。",
+      "desiredVisual": "帝企鹅爪部踏在冰面上的特写",
+      "requiredExactSubject": true,
+      "retrievalContext": {
+        "query": "Lifecycle of the Emperor Penguin Zina Deretsky NSF",
+        "subject": {
+          "text": "帝企鹅",
+          "quote": "它们，就是帝企鹅。",
+          "aliases": [
+            "帝企鹅",
+            "emperor penguin",
+            "Aptenodytes forsteri"
+          ]
+        },
+        "catalogOnly": true
+      },
+      "retrievalIsNotPixelEvidence": true,
+      "source": {
+        "id": "commons:PENGUIN_LIFECYCLE_H.JPG",
+        "provider": "commons",
+        "title": "Lifecycle of the Emperor Penguin — Zina Deretsky / NSF (2006)",
+        "description": "Published emperor penguin scientific lifecycle illustration. Specific Commons file declares PD-US-NSF. The same work is Figure 1 in Jenouvrier et al. 2023, doi:10.3389/frym.2023.1052262 (article CC BY 4.0; no figure-specific exclusion observed). Original USAP item rights record was unavailable; current NSF general policy requires case-by-case checking. No new institutional permission obtained. Catalog identity and described content are not pixel evidence.",
+        "author": "Zina Deretsky, National Science Foundation",
+        "license": "Public domain (specific Commons PD-US-NSF declaration)",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:PENGUIN_LIFECYCLE_H.JPG#Licensing",
+        "width": 1600,
+        "height": 1081
+      },
+      "catalogIsUntrusted": true
+    }
+  },
+  "http": {
+    "stage": "source-image-review-baac21f7-5c79-44ca-9093-598ed9697eeb",
+    "method": "POST",
+    "serviceHost": "api.deepseek.com",
+    "startedAt": "2026-11-14T03:52:11.175Z",
+    "respondedAt": "2026-11-14T03:52:12.442Z",
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "stopOn401402403429": false
+  },
+  "normalProductionSourceGatesPassed": false,
+  "calls": 1,
+  "finishedAt": "2026-11-14T03:52:14.647Z",
+  "stageOutcomes": {
+    "metadataLicenseCompleteness": "passed_catalog_declaration_not_final_rights_clearance",
+    "originalHashAndFullFrameDecode": "passed",
+    "targetLayoutNoUpscaling": "passed",
+    "realVisualHTTP": 200,
+    "actualPixelReviewJSON": "returned",
+    "contentReviewAndAnnotations": "rejected",
+    "validatedRenderablePlan": "not_created",
+    "renderer": "not_called"
+  },
+  "nextCorrectAction": "Keep the original scene unfilled; preserve actual rejection or service failure evidence and continue only with a valid source and the existing gates."
+}

@@ -1,0 +1,95 @@
+{
+  "at": "2026-11-14T04:31:20.330Z",
+  "isolation": "/tmp/gomotion-two-shot-live-HAP218",
+  "priorTask": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+  "mediaCacheReused": true,
+  "coldGeneration": false,
+  "sameScriptBaseline": false,
+  "scope": "single real two-shot local production; reuse audited footage; new narration, alignment, render and audiovisual review",
+  "attempts": [
+    {
+      "stage": "narration",
+      "at": "2026-11-14T04:31:20.550Z",
+      "status": 200,
+      "responseMs": 5227
+    },
+    {
+      "stage": "alignment",
+      "at": "2026-11-14T04:31:27.881Z",
+      "status": 503,
+      "responseMs": 5504
+    }
+  ],
+  "observations": [
+    {
+      "at": "2026-11-14T04:31:20.546Z",
+      "state": {
+        "status": "running",
+        "phase": "queued",
+        "progress": 0
+      }
+    },
+    {
+      "at": "2026-11-14T04:31:22.049Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 10
+      }
+    }
+  ],
+  "sourceClips": [
+    {
+      "id": "pixabay:348909",
+      "width": 720,
+      "height": 1280,
+      "duration": 19.866667,
+      "approvedInterval": [
+        0,
+        3
+      ],
+      "sha256": "c2e6fa8711924860c8a89610037d73313582eee224aa96bedb7fad2afce2eade"
+    },
+    {
+      "id": "pixabay:360803",
+      "width": 720,
+      "height": 1280,
+      "duration": 30,
+      "approvedInterval": [
+        3,
+        8
+      ],
+      "sha256": "f7d754602e6de166f83816fdd73b4b3dda424b51cae7e4ecc2478922da880eb7"
+    }
+  ],
+  "passed": false,
+  "scriptSha256": "84d7808aba564e72c957d05ef586d44c2e6c687ea7383f883e2586cd0a7e1d02",
+  "scriptCharacters": 23,
+  "taskId": "bcfb82d0-b6a2-4a80-b494-6050684cc31c",
+  "status": "error",
+  "message": "这次制作未能完成，已保留草稿，可以重新制作。",
+  "error": "视觉 AI 请求失败（HTTP 503），请检查模型与接口：This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+  "productionSeconds": 12.845,
+  "timings": {
+    "planningMs": 1,
+    "matchingMs": 12842
+  },
+  "scenes": [
+    {
+      "id": "912d98dc-23e0-4340-b62d-1e3a164d6fa2",
+      "asset": "pixabay:348909",
+      "duration": 2.54,
+      "start": 0,
+      "trimEnd": 3
+    },
+    {
+      "id": "57566102-392a-4c7d-864d-2f98ee4d8c6b",
+      "asset": "pixabay:360803",
+      "duration": 4.46,
+      "start": 3.19,
+      "trimEnd": 8
+    }
+  ],
+  "reviewError": "",
+  "savedProjectsUnchanged": true
+}

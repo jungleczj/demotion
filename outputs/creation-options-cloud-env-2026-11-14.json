@@ -1,0 +1,21 @@
+{
+  "snapshotId": "snap_YOpT0ZOGDdcmgq9X6jQ9jIEDEEce",
+  "updates": [
+    {
+      "environment": "production",
+      "exitCode": 0,
+      "output": "Vercel CLI 59.5.0 (Node.js 25.9.0)\nRetrieving project\u2026\n> Removed trailing newline from stdin input\nUpdating\nUpdated Environment Variable GOMOTION_SANDBOX_SNAPSHOT in Project gomotion-mvp [499ms]\n  Visibility      Secret\n"
+    },
+    {
+      "environment": "preview",
+      "exitCode": 1,
+      "output": "{\n  \"status\": \"error\",\n  \"reason\": \"env_not_found\",\n  \"message\": \"No Environment Variable GOMOTION_SANDBOX_SNAPSHOT found matching the specified target/branch.\"\n}\nVercel CLI 59.5.0 (Node.js 25.9.0)\nRetrieving project\u2026\n"
+    },
+    {
+      "environment": "preview",
+      "operation": "add-missing-variable",
+      "exitCode": 0,
+      "output": "Vercel CLI 59.5.0 (Node.js 25.9.0)\nRetrieving project\u2026\nRetrieving project\u2026\n> Removed trailing newline from stdin input\nSaving\u2026\n\n\u2713 Added           GOMOTION_SANDBOX_SNAPSHOT\n  Project         signflow2/gomotion-mvp\n  Environments    Preview\n  Type            Sensitive\n  Visibility      Secret\nCommon next commands:\n- `vercel env ls`\n- `vercel env pull`\n"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { Worker } from 'node:worker_threads';
 import { createHash } from 'node:crypto';
 import { mkdir, stat, readdir, readFile, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { backgroundStyle } from './visual-backgrounds.mjs';
 import { assets, registerUpload } from './sources.mjs';
 import { findSourceImagePlan } from './source-images.mjs';
 import { planSourceImageQueries } from './source-image-query.mjs';
@@ -108,6 +109,11 @@ export function createMotionLimiter(limit) {
 export async function fillMissingWithMotion(job, project, work, config, options = {}) {
   job.events ||= [];
   const signal = job.controller.signal;
+  if (project.motionGraphics === false) {
+    const scenes = project.scenes.map((s) => s.motionGraphic || s.renderKind === 'motion-graphic' || s.selected?.renderKind === 'motion-graphic' ? { ...s, selected: null, motionGraphic: undefined, renderKind: undefined, confirmed: false, visualObservation: undefined } : s);
+    const missingScenes = scenes.filter((s) => !s.selected).map((s) => s.id);
+    return { ...project, scenes, sequenceReport: { ...project.sequenceReport, complete: missingScenes.length === 0, missingScenes } };
+  }
   const checkedScenes = [];
   for (const scene of project.scenes) {
     signal.throwIfAborted();
@@ -130,7 +136,7 @@ export async function fillMissingWithMotion(job, project, work, config, options 
   if (!missing.length) return project;
   const folder = path.join(work, `motion-${project.id}`);
   await mkdir(folder, { recursive: true });
-  let style = project.motionStyle;
+  let style = project.background ? backgroundStyle(project.background) : project.motionStyle;
   const results = new Map(), plans = [], warnings = [...(project.sequenceReport?.warnings || [])];
   const baseCalls = Number(job.calls) || 0, phaseController = new AbortController();
   const phaseSignal = AbortSignal.any([signal, phaseController.signal]);

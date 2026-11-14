@@ -1,0 +1,167 @@
+{
+  "at": "2026-11-14T06:58:53.168Z",
+  "network": {
+    "source": "macOS-system",
+    "configured": true,
+    "address": "http://127.0.0.1:10808"
+  },
+  "requests": [
+    {
+      "base": "http://localhost:3027",
+      "endpoint": "/api/health",
+      "status": 200,
+      "elapsedMs": 22
+    },
+    {
+      "base": "http://localhost:3027",
+      "endpoint": "/api/config",
+      "status": 200,
+      "sources": [
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "elapsedMs": 15
+    },
+    {
+      "base": "http://localhost:3027",
+      "endpoint": "/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15,
+      "elapsedMs": 15
+    },
+    {
+      "base": "http://localhost:3027",
+      "endpoint": "/api/productions",
+      "status": 200,
+      "tasks": [
+        {
+          "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+          "status": "done",
+          "phase": "reviewing"
+        },
+        {
+          "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+          "status": "error",
+          "phase": "matching"
+        },
+        {
+          "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+          "status": "error",
+          "phase": "matching"
+        },
+        {
+          "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+          "status": "error",
+          "phase": "matching"
+        },
+        {
+          "id": "d82f69d3-8ff2-4c26-b836-34864a9fecd9",
+          "status": "error",
+          "phase": "matching"
+        }
+      ],
+      "active": 0,
+      "elapsedMs": 15
+    },
+    {
+      "base": "https://generativelanguage.googleapis.com/v1beta",
+      "endpoint": "/models",
+      "status": 200,
+      "modelCount": 50,
+      "configuredModelPresent": true,
+      "elapsedMs": 8855
+    },
+    {
+      "base": "https://gomotion-mvp.vercel.app",
+      "endpoint": "/api/health",
+      "error": "TypeError",
+      "causeCode": "UND_ERR_CONNECT_TIMEOUT",
+      "elapsedMs": 10500
+    },
+    {
+      "base": "https://gomotion-mvp.vercel.app",
+      "endpoint": "/api/config",
+      "error": "TypeError",
+      "causeCode": "UND_ERR_CONNECT_TIMEOUT",
+      "elapsedMs": 10500
+    },
+    {
+      "base": "https://gomotion-mvp.vercel.app",
+      "endpoint": "/api/voices",
+      "status": 200,
+      "voices": 30,
+      "languages": 15,
+      "elapsedMs": 11077
+    }
+  ],
+  "archiveSha256": "549625c444d3e35a3dc2bf47b3ab001d8d7a533a849ccad5776a1feab35d195c",
+  "savedTasks": [
+    {
+      "id": "9dcab9af-d7b1-4eba-98ce-3692325d4988",
+      "status": "done"
+    },
+    {
+      "id": "4504a49c-f4dd-449a-8410-9a773cacede7",
+      "status": "error"
+    },
+    {
+      "id": "841647ad-7113-47b1-b63f-bfa484645e36",
+      "status": "error"
+    },
+    {
+      "id": "aab18ca8-b8af-4f6a-87f7-580e817e6c02",
+      "status": "error"
+    },
+    {
+      "id": "d82f69d3-8ff2-4c26-b836-34864a9fecd9",
+      "status": "error"
+    }
+  ],
+  "followupAt": "2026-11-14T07:11:38.774Z",
+  "followup": [
+    {
+      "base": "http://localhost:3027",
+      "endpoint": "/api/health",
+      "status": 200
+    },
+    {
+      "base": "http://localhost:3027",
+      "endpoint": "/api/config",
+      "status": 200,
+      "render": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true,
+      "sources": [
+        "commons",
+        "archive",
+        "nasa",
+        "pixabay",
+        "coverr"
+      ]
+    },
+    {
+      "base": "https://gomotion-mvp.vercel.app",
+      "endpoint": "/api/health",
+      "status": 200
+    },
+    {
+      "base": "https://gomotion-mvp.vercel.app",
+      "endpoint": "/api/config",
+      "status": 200,
+      "render": true,
+      "youtubeConnected": true,
+      "youtubeDiscovery": true,
+      "sources": [
+        "commons",
+        "archive",
+        "nasa",
+        "pixabay",
+        "coverr"
+      ]
+    }
+  ]
+}

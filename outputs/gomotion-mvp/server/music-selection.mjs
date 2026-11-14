@@ -1,5 +1,8 @@
 import { SCOTT_BUCKLEY_TRACKS } from './source-adapters/scottbuckley.mjs';
 import { acquireCuratedMusic } from './music-sources.mjs';
+import { MUSIC_TRACK_DETAILS } from './music-catalog.mjs';
+import { acquireUploadedMusic } from './music-uploads.mjs';
+import path from 'node:path';
 
 const cues = {
   tension: ['danger', 'dangerous', 'survival', 'storm', 'threat', 'conflict', 'mystery', 'suspense', 'crime', 'disaster', 'predator', 'peril', 'war', 'missile', 'artillery', 'battle', 'weapon', '危险', '生存', '风暴', '危机', '冲突', '悬疑', '灾难', '捕食', '紧张', '战争', '导弹', '火炮', '战斗', '武器'],
@@ -10,6 +13,8 @@ function matches(text, word) {
   return /[^a-z]/i.test(word) ? text.includes(word) : new RegExp(`\\b${word}\\b`, 'i').test(text);
 }
 export function rankMusicForProject(project = {}) {
+  const options = project.musicOptions || {}, explicit = options.trackId;
+  if (explicit && !SCOTT_BUCKLEY_TRACKS.some((track) => explicit === `scottbuckley:${track.slug}`)) throw Error('所选曲目不存在，请重新选择');
   // Only existing editorial text participates. No prompts, model requests,
   // source searches or credentials are needed for this decision.
   const script = String(project.script || '').trim();
@@ -21,14 +26,23 @@ export function rankMusicForProject(project = {}) {
   const scores = Object.fromEntries(Object.entries(cues).map(([mood, words]) => [mood, words.reduce((sum, word) => sum + fields.reduce((n, [text, weight]) => n + (matches(text, word) ? weight : 0), 0), 0)]));
   const mood = Object.keys(cues).sort((a, b) => scores[b] - scores[a])[0];
   const selectedMood = scores[mood] ? mood : 'reflective';
-  const primary = SCOTT_BUCKLEY_TRACKS.find((track) => track.mood === selectedMood);
-  const ranked = [primary, ...SCOTT_BUCKLEY_TRACKS.filter((track) => track !== primary)];
+  const genre = options.genre && options.genre !== 'auto' ? options.genre : null;
+  const eligible = explicit ? SCOTT_BUCKLEY_TRACKS : SCOTT_BUCKLEY_TRACKS.filter((track) => !genre || MUSIC_TRACK_DETAILS[track.slug].genres.includes(genre));
+  if (!eligible.length) throw Error('所选音乐分类暂无可用曲目，请选择其他分类或上传音乐');
+  const primary = explicit ? eligible.find((track) => explicit === `scottbuckley:${track.slug}`) : eligible.find((track) => track.mood === selectedMood) || eligible[0];
+  const ranked = explicit ? [primary] : [primary, ...eligible.filter((track) => track !== primary)];
   return { version: 1, mood: selectedMood, requestedTrackId: `scottbuckley:${primary.slug}`,
-    reason: scores[mood] ? `Existing title/topic/script cues: ${selectedMood}` : 'Conservative reflective documentary default',
+    ...(explicit ? { explicit: true } : {}), ...(genre ? { genre } : {}),
+    reason: explicit ? 'User selected this exact track' : genre ? `User genre: ${genre}; story cues: ${selectedMood}` : scores[mood] ? `Existing title/topic/script cues: ${selectedMood}` : 'Conservative reflective documentary default',
     scores, rankedTrackIds: ranked.map((track) => `scottbuckley:${track.slug}`) };
 }
 
 export async function selectBackgroundMusic(directory, { project, signal, fetch: fetcher = globalThis.fetch } = {}) {
+  if (project?.musicOptions?.enabled === false || project?.musicOptions?.volume === 0) return { status: 'disabled', source: null };
+  if (project?.musicOptions?.upload) {
+    const source = await acquireUploadedMusic(project.musicOptions.upload, path.join(path.resolve(directory), '..', 'music-uploads'), { signal });
+    return { source, selection: { version: 1, requestedTrackId: source.id, selectedTrackId: source.id, explicit: true, cachePreferred: true, fallback: false, reason: 'User uploaded original', attempts: [{ id: source.id, mode: 'upload', status: 'ready' }] } };
+  }
   const ranked = rankMusicForProject(project), attempts = [];
   const finish = (source) => ({ source, selection: { ...ranked, selectedTrackId: source.id, cachePreferred: source.cacheHit === true,
     fallback: source.id !== ranked.requestedTrackId, attempts } });
@@ -40,7 +54,7 @@ export async function selectBackgroundMusic(directory, { project, signal, fetch:
       attempts.push({ id, mode: 'cache', status: 'ready' }); return finish(source);
     } catch (error) { signal?.throwIfAborted(); attempts.push({ id, mode: 'cache', status: 'unavailable', reason: String(error.message).slice(0, 200) }); }
   }
-  const coldIds = [...new Set([ranked.requestedTrackId, 'scottbuckley:undertow'])];
+  const coldIds = ranked.explicit ? [ranked.requestedTrackId] : [...new Set([ranked.requestedTrackId, ranked.rankedTrackIds.includes('scottbuckley:undertow') ? 'scottbuckley:undertow' : ranked.rankedTrackIds[1]].filter(Boolean))];
   // At most two candidates, started together. Each has its own 10s deadline
   // within the caller's overall 20s preparation budget; no library-wide retry.
   const results = await Promise.allSettled(coldIds.map(async (id) => {

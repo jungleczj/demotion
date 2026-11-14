@@ -57,7 +57,11 @@ test('content inspection sends real acquired image bytes and binds the decision 
   try {
     const input = await fixture(folder), acquired = await module.acquireSourceImage(source(input), path.join(folder, 'acquired'));
     const job = { controller: new AbortController(), events: [] };
-    const result = await module.inspectSourceImage(acquired, scene, scene.text, {}, job, async (_config, _prompt, parts) => {
+    const result = await module.inspectSourceImage(acquired, scene, `${scene.text}另一个镜头提供无关引文。`, {}, job, async (_config, prompt, parts) => {
+      const candidate = JSON.parse(parts.find((p) => p.text).text);
+      assert.equal(candidate.narration, scene.text);
+      assert.ok(!JSON.stringify(candidate).includes("另一个镜头提供无关引文"));
+      assert.match(prompt, /only from the narration field/i);
       const pixelInput = parts.find((p) => p.mime === 'image/png');
       assert.ok(pixelInput, 'review must include actual image');
       assert.deepEqual(Buffer.from(pixelInput.data, 'base64'), await readFile(acquired.decodedPath));

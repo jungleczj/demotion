@@ -136,9 +136,9 @@ test('completed short music mixes and seamless loops reuse the saved film withou
     await writeFile(path.join(work, exportId, 'video.mp4'), 'cache eligibility fixture; not media acceptance');
     const text = '缓存检查保持已经完成的短片，不重新请求配音或检索视频素材。';
     const scene = { id: randomUUID(), text, duration: 6, selected: { id: 'upload:music-profile', provider: 'upload', kind: 'video' } };
-    for (const [version, looped, end, expected, newTitle] of [[1, false, 6, 'done'], [2, true, 16, 'done'], [1, true, 16, 'queued'], [2, false, 6, 'queued', 'Danger and survival']]) {
+    for (const [version, looped, end, expected, newTitle, preserveScript] of [[1, false, 6, 'done'], [2, true, 16, 'done'], [1, true, 16, 'queued'], [2, false, 6, 'queued', 'Danger and survival'], [2, false, 6, 'queued', undefined, true]]) {
       const old = { id: randomUUID(), exportId, status: 'done', updatedAt: 1,
-        project: { id: randomUUID(), script: text, voice: 'gemini:Kore', format: 'landscape', scenes: [scene],
+        project: { id: randomUUID(), script: text, preserveScript, voice: 'gemini:Kore', format: 'landscape', scenes: [scene],
           exportUrl: `/api/exports/${exportId}/video.mp4`, videoProfile: { version: 1, audioMixVersion: version },
           videoReview: { passed: true, watermarkFree: true },
           music: { status: 'mixed', mixed: true, narrationPreserved: true,
@@ -146,7 +146,7 @@ test('completed short music mixes and seamless loops reuse the saved film withou
             mix: { version, continuous: true, start: 0, end, looped, loopCrossfadeSeconds: .35, loopPeriodSeconds: 9.65 } } } };
       await writeFile(path.join(directory, 'jobs.json'), JSON.stringify([old]));
       const manager = await createProductionManager({ work, config: { visionEnabled: false }, analyses: new Map(), exports: new Map(), saveAssets: async () => {}, autoStart: false });
-      const next = await manager.submit({ project: { ...old.project, id: randomUUID(), ...(newTitle ? { title: newTitle } : {}) } });
+      const next = await manager.submit({ project: { ...old.project, id: randomUUID(), ...(newTitle ? { title: newTitle } : {}), ...(preserveScript ? { script: `  ${text}\n` } : {}) } });
       assert.equal(next.status, expected, `version=${version}, looped=${looped}`);
       assert.equal(next.project.exportUrl, expected === 'done' ? old.project.exportUrl : undefined);
     }

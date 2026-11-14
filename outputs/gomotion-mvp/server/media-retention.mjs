@@ -18,8 +18,9 @@ export function retainTaskMedia(work, tasks, assets = new Map()) {
     const musicFile = project.music?.source?.localPath;
     if (project.music?.mixed === true && typeof musicFile === 'string') { retain(musicFile); retain(`${musicFile}.json`); }
     for (const id of [task.exportId, project.exportId]) if (/^[a-f0-9-]{36}$/.test(id || '')) retain(path.join(root, id));
-    const key = project.narrationTrack?.key;
-    if (/^[a-f0-9]{64}$/.test(key || '')) { retain(path.join(root, 'narration', `${key}.wav`)); retain(path.join(root, 'narration', `${key}.json`)); }
+    for (const key of [project.narrationTrack?.key, project.narrationRecording?.version === 1 && project.narrationRecording.key]) {
+      if (/^[a-f0-9]{64}$/.test(key || '')) { retain(path.join(root, 'narration', `${key}.wav`)); retain(path.join(root, 'narration', `${key}.json`)); }
+    }
     const partialKey = project.narrationWork?.version === 1 && project.narrationWork.key;
     if (/^[a-f0-9]{64}$/u.test(partialKey || '')) retain(path.join(root, 'narration', 'chunks', partialKey));
     for (const scene of project.scenes || []) {

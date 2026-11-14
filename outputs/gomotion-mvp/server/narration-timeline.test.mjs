@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
-import { mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, writeFile, readFile, copyFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { prepareNarrationTimeline } from './narration-timeline.mjs';
@@ -70,6 +70,42 @@ test('an existing project track cannot truncate the final 0.4 seconds of speech'
     fixture.restore();
     if (result) await rm(result.file, { force: true });
     if (cache) await rm(cache, { force: true });
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test('a successful recording remains checkpointable when real timing has not been accepted', async () => {
+  const project = projectFixture(), fixture = installFixture(project);
+  const wrapped = globalThis.fetch;
+  globalThis.fetch = (url, options) => JSON.parse(options.body).generationConfig.responseModalities?.includes('AUDIO')
+    ? wrapped(url, options)
+    : Promise.resolve(Response.json({ error: { message: 'busy' } }, { status: 503 }));
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'narration-checkpoint-'));
+  const state = job();
+  try {
+    await assert.rejects(prepareNarrationTimeline(project, config, state, directory), /503/);
+    assert.match(state.narrationRecording?.key || '', /^[a-f0-9]{64}$/);
+    assert.equal(state.narrationTrack, undefined);
+    const { narrationPath } = await import('./narration.mjs');
+    const { checkpointFiles } = await import('./cloud/worker.mjs');
+    const audio = narrationPath(state.narrationRecording.key);
+    const work = path.join(directory, 'work');
+    await mkdir(path.join(work, 'narration'), { recursive: true });
+    await Promise.all([audio, audio.replace(/\.wav$/, '.json')].map(f => copyFile(f, path.join(work, 'narration', path.basename(f)))));
+    const files = await checkpointFiles(work, { project: { ...project, narrationRecording: state.narrationRecording }, status: 'error' }, path.join(directory, 'staging'));
+    assert.deepEqual(files.map(f => f.relativePath).sort(), [`narration/${state.narrationRecording.key}.json`, `narration/${state.narrationRecording.key}.wav`]);
+    const receipt = JSON.parse(await readFile(audio.replace(/\.wav$/, '.json'), 'utf8'));
+    assert.equal(receipt.sha256, files.find(f => f.relativePath.endsWith('.wav')).sha256);
+    await writeFile(path.join(work, 'narration', path.basename(audio)), 'invalid changed bytes');
+    assert.deepEqual(await checkpointFiles(work, { project: { ...project, narrationRecording: state.narrationRecording }, status: 'error' }), []);
+    assert.equal(fixture.calls.tts, 1);
+  } finally {
+    fixture.restore();
+    if (state.narrationRecording) {
+      const { narrationPath } = await import('./narration.mjs');
+      const audio = narrationPath(state.narrationRecording.key);
+      await rm(audio, { force: true }); await rm(audio.replace(/\.wav$/, '.json'), { force: true });
+    }
     await rm(directory, { recursive: true, force: true });
   }
 });

@@ -7,8 +7,9 @@ import { pathToFileURL } from 'node:url';
 import { pipeline } from 'node:stream/promises';
 import { Readable } from 'node:stream';
 import { musicLicenseError } from '../music-sources.mjs';
-import { verifiedNarrationChunkFiles } from '../narration-chunks.mjs';
+import { checkedNarrationArtifact, receiptPath, verifiedNarrationChunkFiles } from '../narration-chunks.mjs';
 import { MAX_UPLOAD_FILES, MAX_CHECKPOINT_FILES } from './checkpoint-limits.mjs';
+import { uploadReceiptError, MUSIC_UPLOAD_MAX_BYTES } from '../music-upload-input.mjs';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const digest = async (file) => { const hash = createHash('sha256'); for await (const chunk of createReadStream(file)) hash.update(chunk); return hash.digest('hex'); };
@@ -66,6 +67,17 @@ export async function checkpointFiles(work, task, staging) {
   try { catalog = JSON.parse(await readFile(path.join(work, 'assets.json'), 'utf8')); } catch {}
   const assets = new Map(catalog.map((a) => [a.id, a]));
   const project = task.project;
+  const upload = project.musicOptions?.upload;
+  if (upload && project.musicOptions.enabled !== false && project.musicOptions.volume > 0) {
+    const audio = checkpointTarget(work, `music-uploads/${upload.id}.audio`);
+    try {
+      const receipt = JSON.parse(await readFile(`${audio}.json`, 'utf8'));
+      const info = await stat(audio);
+      if (!uploadReceiptError(receipt, upload) && !musicLicenseError(receipt) && info.isFile() && info.size === receipt.bytes && info.size <= MUSIC_UPLOAD_MAX_BYTES && await digest(audio) === receipt.sha256) {
+        add(audio); add(`${audio}.json`);
+      }
+    } catch {}
+  }
   // Carry only complete, attributable music originals across worker restarts.
   // Part files and receipts whose bytes no longer match never become uploads.
   const musicDirectory = path.join(work, 'music-sources');
@@ -90,6 +102,9 @@ export async function checkpointFiles(work, task, staging) {
   }
   const key = project.narrationTrack?.key;
   if (/^[a-f0-9]{64}$/.test(key || '')) { wanted.add(`narration/${key}.wav`); wanted.add(`narration/${key}.json`); }
+  const recordingKey = project.narrationRecording?.version === 1 && project.narrationRecording.key;
+  const recordingPath = /^[a-f0-9]{64}$/.test(recordingKey || '') && recordingKey !== key ? path.join(work, 'narration', `${recordingKey}.wav`) : null;
+  if (recordingPath && await checkedNarrationArtifact(recordingPath, recordingKey)) { add(recordingPath); add(receiptPath(recordingPath)); }
   for (const file of await verifiedNarrationChunkFiles(work, project.narrationWork)) add(file);
   if (!['queued', 'running'].includes(task.status) && /^[a-f0-9-]{36}$/.test(project.exportId || '')) for (const name of ['video.mp4', 'captions.srt', 'sources.json']) wanted.add(`${project.exportId}/${name}`);
   const files = [];
@@ -106,6 +121,12 @@ export async function checkpointFiles(work, task, staging) {
       target = copy; info = await stat(target);
     }
     files.push({ relativePath, size: info.size, contentType: typeOf(target), sha256: await digest(target) });
+  }
+  if (staging && recordingPath) {
+    const relative = path.relative(work, recordingPath);
+    if (!await checkedNarrationArtifact(checkpointTarget(staging, relative), recordingKey)) {
+      for (let i = files.length - 1; i >= 0; i--) if (files[i].relativePath === relative || files[i].relativePath === receiptPath(relative)) files.splice(i, 1);
+    }
   }
   if (staging && project.narrationWork?.key) {
     // Generation may finish another chunk while staging is copied. Publish only
@@ -155,7 +176,9 @@ export async function runCloudWorker(envelope, { fetchImpl = fetch, work = proce
     heartbeat = setInterval(() => { if (heartbeatRunning) return; heartbeatRunning = true; void callback('heartbeat').catch(() => {}).finally(() => { heartbeatRunning = false; }); }, 10_000);
     phase = 'submitting';
     localTask = await ensureLocalProduction(local, envelope.input, fetchImpl);
-    const uploaded = new Map((envelope.checkpoint?.files || []).map((f) => [f.relativePath, f]));
+    // Owner-scoped music uploads seed a first execution. They must be copied
+    // into this task's own verified namespace before callbacks can publish them.
+    const uploaded = new Map((envelope.checkpoint?.files || []).filter((f) => f.blobRef?.startsWith(`files/${envelope.taskId}/`)).map((f) => [f.relativePath, f]));
     let lastCheckpoint = 0;
     phase = 'producing';
     for (;;) {

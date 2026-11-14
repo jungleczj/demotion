@@ -4,6 +4,8 @@ import voices from '../../shared/voices.json' with { type: 'json' };
 import languages from '../../shared/languages.json' with { type: 'json' };
 import scriptLimits from '../../shared/script-limits.json' with { type: 'json' };
 import { MAX_UPLOAD_FILES, MAX_CHECKPOINT_FILES } from './checkpoint-limits.mjs';
+import { productionOptions } from '../../shared/production-options.mjs';
+import { musicUploadCheckpoint } from './music-upload.mjs';
 
 const active = (task) => ['queued', 'running'].includes(task?.status);
 const idPattern = /^[a-f0-9-]{36}$/;
@@ -19,7 +21,9 @@ function validateInput(input) {
   if (!idPattern.test(p?.id || '') || typeof p.script !== 'string' || p.script.trim().length < scriptLimits.minCharacters || p.script.length > scriptLimits.maxCharacters || !['landscape', 'portrait'].includes(p.format) || !voices.some((v) => `gemini:${v.key}` === p.voice) || !languages.some((l) => l.code === p.language)) throw error('请提供有效脚本、声音、语言与画幅');
   // Browser-supplied file paths, AI approvals and source receipts are never
   // trusted. The remote worker plans and reviews its own media from this input.
-  const project = { id: p.id, title: String(p.title || 'Untitled').slice(0, 100), script: p.script.trim(), createdAt: p.createdAt || new Date().toISOString(), voice: p.voice, voiceStyle: ['documentary', 'story', 'conversation', 'explainer', 'gentle'].includes(p.voiceStyle) ? p.voiceStyle : 'documentary', language: p.language, format: p.format, fit: 'cover', subtitles: p.subtitles !== false, topic: String(p.topic || '').slice(0, 100), scenes: [] };
+  const project = { id: p.id, title: String(p.title || 'Untitled').slice(0, 100), script: p.preserveScript === true ? p.script : p.script.trim(), createdAt: p.createdAt || new Date().toISOString(), voice: p.voice, voiceStyle: ['documentary', 'story', 'conversation', 'explainer', 'gentle'].includes(p.voiceStyle) ? p.voiceStyle : 'documentary', language: p.language, format: p.format, fit: 'cover', subtitles: p.subtitles !== false, topic: String(p.topic || '').slice(0, 100), scenes: [] };
+  Object.assign(project, productionOptions(p));
+  project.fit = p.fit === 'contain' ? 'contain' : 'cover';
   const providers = [...new Set((Array.isArray(input.providers) ? input.providers : ['pixabay', 'coverr', 'commons', 'nasa', 'archive']).filter((p) => ['pixabay', 'coverr', 'commons', 'nasa', 'archive', 'pexels'].includes(p)))];
   return { project, providers };
 }
@@ -81,7 +85,13 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
     });
     if (!claimed) return task;
     try {
-      const checkpoint = task.checkpoint ? { task: task.checkpoint, files: await Promise.all(Object.values(task.files || {}).map(async (f) => ({ ...f, url: await store.download(f.blobRef) }))) } : undefined;
+      const files = task.checkpoint ? await Promise.all(Object.values(task.files || {}).map(async (f) => ({ ...f, url: await store.download(f.blobRef) }))) : [];
+      const music = productionOptions(task.input.project).musicOptions;
+      if (music.enabled && music.volume > 0 && music.upload) {
+        const seed = await musicUploadCheckpoint(store, task.owner, music.upload);
+        for (const file of seed.files) if (!files.some((saved) => saved.relativePath === file.relativePath && saved.sha256 === file.sha256)) files.push(file);
+      }
+      const checkpoint = task.checkpoint || files.length ? { ...(task.checkpoint ? { task: task.checkpoint } : {}), files } : undefined;
       const execution = await executor.start({ task, callbackURL: `${callbackOrigin}/api/cloud-callback/${id}`, workerToken: auth.worker(task), checkpoint });
       const saved = await change(id, (current) => {
         if (current.attempt !== task.attempt || current.launchLease !== lease) return;
@@ -160,6 +170,8 @@ export function createCloudProductions({ store, executor, auth, callbackOrigin, 
     async get(owner, id) { return view(await reconcile(await owned(owner, id))); },
     async submit(owner, raw) {
       const input = validateInput(raw);
+      const music = input.project.musicOptions;
+      if (music.enabled && music.volume > 0 && music.upload) await musicUploadCheckpoint(store, owner, music.upload);
       const count = (await indexTasks(owner)).filter(active).length;
       const hash = createHash('sha256').update(`${owner}/${input.project.id}`).digest('hex');
       const id = `${hash.slice(0, 8)}-${hash.slice(8, 12)}-${hash.slice(12, 16)}-${hash.slice(16, 20)}-${hash.slice(20, 32)}`;

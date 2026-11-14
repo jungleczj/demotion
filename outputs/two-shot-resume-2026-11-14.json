@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-14T04:39:43.020Z",
+  "previousTask": "bcfb82d0-b6a2-4a80-b494-6050684cc31c",
+  "scope": "one isolated resume of original footage and exact recording; no repeat TTS or catalog retrieval",
+  "isolation": "/tmp/gomotion-two-shot-live-HAP218",
+  "requests": [
+    {
+      "stage": "alignment",
+      "at": "2026-11-14T04:39:43.273Z",
+      "transport": "TimeoutError",
+      "responseMs": 60007
+    }
+  ],
+  "observations": [
+    {
+      "at": "2026-11-14T04:39:43.067Z",
+      "state": {
+        "phase": "queued",
+        "status": "running",
+        "progress": 0
+      }
+    },
+    {
+      "at": "2026-11-14T04:39:44.269Z",
+      "state": {
+        "phase": "matching",
+        "status": "running",
+        "progress": 10
+      }
+    }
+  ],
+  "passed": false,
+  "recording": {
+    "duration": 7.051,
+    "sha256": "f6b6804a84ba0fdc834f3b2834e8149087498cb614089da0549b69a259e6977a"
+  },
+  "taskId": "3a52ba56-7d3a-40dd-a360-ba93645b20e7",
+  "status": "error",
+  "error": "视觉 AI 网络连接超时（23），请检查服务使用的代理",
+  "reviewError": "",
+  "elapsedSeconds": 60.222,
+  "timings": {
+    "planningMs": 2,
+    "matchingMs": 60218
+  },
+  "hasAlignedTrack": false,
+  "recordingCheckpointPreserved": true,
+  "savedProjectsUnchanged": true,
+  "recordingHashUnchanged": true
+}

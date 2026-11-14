@@ -5,6 +5,7 @@ import { createCloudAPI } from './cloud/api.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
 import { aiConfigFromEnv, narrationConfig, redactAISecrets } from './ai-services.mjs';
 import { visionJSON } from './vision-client.mjs';
+import { musicCatalog, curatedMusicPreviewRedirect } from './music-catalog.mjs';
 
 const styles = {
   documentary: 'Calm, warm documentary narration with measured phrasing and restrained expression.',
@@ -24,7 +25,7 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
   const config = aiConfigFromEnv(env);
   const redact = (message) => {
     let value = redactAISecrets(message || '请求未完成，请稍后重试', config);
-    for (const secret of [config.visionKey, env.PEXELS_API_KEY, env.PIXABAY_API_KEY, env.COVERR_API_KEY, env.YOUTUBE_API_KEY].filter(Boolean)) value = value.replaceAll(secret, '[redacted]');
+    for (const [key, secret] of Object.entries(env)) if (/KEY$|SECRET$|TOKEN$/.test(key) && secret) value = value.replaceAll(secret, '[redacted]');
     return value.replace(/https?:\/\/\S+/g, '[服务链接]').slice(0, 500);
   };
   return async function handle(request) {
@@ -57,6 +58,10 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
         const response = await cloud.handle(request, route, body);
         if (response) return response;
       }
+      if (route === '/api/music/catalog' && method === 'GET') return json(musicCatalog(), 200, cloud?.responseHeaders(request));
+      if (route === '/api/music/preview' && ['GET', 'HEAD'].includes(method)) return await curatedMusicPreviewRedirect(url.searchParams.get('id'), { signal: request.signal, fetch: fetchImpl });
+      if (route === '/api/music/upload' && method === 'POST') return json({ error: '音频上传服务尚未就绪，请稍后重试' }, 503);
+      if (['/api/music/catalog', '/api/music/preview', '/api/music/upload'].includes(route)) return json({ error: '请求方法不支持' }, 405);
       if (route === '/api/health' && method === 'GET') return json({ status: 'ok', runtime: 'vercel', productionReady: Boolean(cloud) });
       if (route === '/api/config' && method === 'GET') return json({
         runtime: 'vercel', render: Boolean(cloud), localVoice: false,

@@ -8,7 +8,11 @@ import { createCloudAPI, cloudConfigured } from './cloud/api.mjs';
 import { createVercelHandler } from './vercel-api.mjs';
 import { createCloudAuth } from './cloud/auth.mjs';
 import { createCloudProductions } from './cloud/productions.mjs';
-import { checkpointFiles, hydrateCheckpoint, ensureLocalProduction, checkpointUploadGrants } from './cloud/worker.mjs';
+import { checkpointFiles, hydrateCheckpoint, ensureLocalProduction, checkpointUploadGrants, runCloudWorker } from './cloud/worker.mjs';
+import { createCloudMusicUploads } from './cloud/music-upload.mjs';
+import { validateMusicFile } from './music-sources.mjs';
+import { acquireUploadedMusic } from './music-uploads.mjs';
+import { run } from './process.mjs';
 import { splitNarration } from './narration-chunks.mjs';
 import { createSandboxExecutor } from './cloud/executor.mjs';
 import { createBlobStore } from './cloud/blob-store.mjs';
@@ -85,6 +89,16 @@ test('native cloud API accepts 25,000 Chinese characters without truncation and 
   assert.equal((await handler(request('/api/productions', draft, cookie))).status, 400);
   assert.equal(s.starts.length, 1, 'oversized input must not start any extra executor');
 });
+test('cloud production transfers a verbatim script with its full original whitespace to the worker', async () => {
+  const s = setup(), draft = input();
+  Object.assign(draft.project, { script: '  An untouched original.\r\n\r\nThe second paragraph.  \n', language: 'en', preserveScript: true });
+  const task = await s.manager().submit('owner', draft);
+  assert.equal(task.project.preserveScript, true);
+  assert.equal(task.project.script, draft.project.script);
+  assert.equal(s.starts[0].task.input.project.preserveScript, true);
+  assert.equal(s.starts[0].task.input.project.script, draft.project.script);
+});
+
 test('explicit cancellation is durable before stop and a late callback cannot resurrect a task', async () => {
   const s = setup(), task = await s.manager().submit('owner', input());
   const oldToken = s.auth.worker((await s.store.read(`tasks/${task.id}.json`)).value);
@@ -394,6 +408,87 @@ test('cloud checkpoints retain verified music original and license receipt but e
     await writeFile(path.join(folder, `${key}.audio`), 'changed-audio');
     assert.deepEqual(await checkpointFiles(work, task), []);
   } finally { await rm(work, {recursive:true, force:true}); }
+});
+
+test('first cloud music execution hydrates owner originals and a retry reuses only task-scoped verified copies', async (t) => {
+  const s = setup(), owner = randomUUID(), objects = new Map(), draft = input();
+  const folder = await mkdtemp(path.join(os.tmpdir(), 'gomotion-cloud-upload-flow-'));
+  let currentWork, localTask;
+  const storageFetch = async (url, options) => {
+    const key = new URL(url).pathname.slice('/upload/'.length);
+    const chunks = [];
+    if (Buffer.isBuffer(options.body)) chunks.push(options.body);
+    else for await (const chunk of options.body) chunks.push(Buffer.from(chunk));
+    objects.set(key, Buffer.concat(chunks));
+    return new Response(null, { status: 200 });
+  };
+  s.store.verify = async (name, expected) => {
+    const bytes = objects.get(name);
+    assert.ok(bytes, `missing private object ${name}`);
+    assert.equal(bytes.length, expected.size);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), expected.sha256);
+  };
+  try {
+    const fixture = path.join(folder, 'original.wav');
+    await run('ffmpeg', ['-y', '-v', 'error', '-f', 'lavfi', '-i', 'sine=frequency=330:duration=0.3', fixture], t.signal);
+    const uploads = createCloudMusicUploads({ store: s.store, validate: async (bytes) => {
+      const file = path.join(folder, 'validated.audio'); await writeFile(file, bytes);
+      return { ...await validateMusicFile(file, t.signal, 3_000_000, { uploaded: true }), fullDecode: true };
+    }, fetchImpl: storageFetch });
+    const upload = await uploads.save(owner, { name: 'My original.wav', data: (await readFile(fixture)).toString('base64') }, t.signal);
+    draft.project.musicOptions = { enabled: true, genre: 'auto', volume: 3, upload };
+    const first = await s.manager().submit(owner, draft);
+    assert.equal(s.starts.length, 1);
+    assert.equal(s.starts[0].checkpoint.task, undefined);
+    assert.equal(s.starts[0].checkpoint.files.length, 2);
+    assert.ok(s.starts[0].checkpoint.files.every((file) => file.blobRef.startsWith(`music-uploads/${owner}/`)));
+
+    // The subprocess owns no port or production API. All local service and
+    // private Blob I/O is supplied below; the real cloud worker loop runs.
+    const app = path.join(folder, 'app'); await mkdir(path.join(app, 'server'), { recursive: true });
+    await writeFile(path.join(app, 'server/index.mjs'), 'setInterval(() => {}, 1000);');
+    const fetchImpl = async (url, options = {}) => {
+      if (url.startsWith('https://private.example/upload/')) return storageFetch(url, options);
+      if (url.startsWith('https://private.example/read/')) {
+        const bytes = objects.get(new URL(url).pathname.slice('/read/'.length));
+        return bytes ? new Response(bytes) : new Response(null, { status: 404 });
+      }
+      if (url.startsWith('https://studio.example/api/cloud-callback/')) {
+        try { return Response.json(await s.manager().callback(new Request(url, { headers: options.headers }), first.id, JSON.parse(options.body))); }
+        catch (error) { return Response.json({ error: error.message }, { status: error.status || 500 }); }
+      }
+      if (url === 'http://127.0.0.1:3027/api/health') return Response.json({ status: 'ok' });
+      if (url === 'http://127.0.0.1:3027/api/productions' && options.method !== 'POST') return Response.json({ tasks: [] });
+      if (url === 'http://127.0.0.1:3027/api/productions' && options.method === 'POST') {
+        const input = JSON.parse(options.body);
+        const source = await acquireUploadedMusic(input.project.musicOptions.upload, path.join(currentWork, 'music-uploads'), { signal: t.signal });
+        assert.equal(source.sha256, upload.sha256);
+        localTask = { id: randomUUID(), project: input.project, status: 'incomplete', phase: 'done', progress: 100 };
+        await mkdir(path.join(currentWork, 'productions'), { recursive: true });
+        await writeFile(path.join(currentWork, 'productions/jobs.json'), JSON.stringify([localTask]));
+        return Response.json(localTask);
+      }
+      if (url === `http://127.0.0.1:3027/api/productions/${localTask?.id}`) return Response.json(localTask);
+      throw Error(`Unexpected service request: ${url}`);
+    };
+    const execute = async (start, name) => {
+      currentWork = path.join(folder, name);
+      await runCloudWorker({ version: 1, taskId: first.id, attempt: start.task.attempt, input: start.task.input, callbackURL: start.callbackURL, workerToken: start.workerToken, checkpoint: start.checkpoint }, { fetchImpl, work: currentWork, app });
+      return (await s.store.read(`tasks/${first.id}.json`)).value;
+    };
+    const completed = await execute(s.starts[0], 'first-worker');
+    assert.equal(completed.status, 'incomplete');
+    const audioFiles = Object.values(completed.files).filter((file) => file.relativePath.startsWith('music-uploads/'));
+    assert.equal(audioFiles.length, 2);
+    assert.ok(audioFiles.every((file) => file.blobRef.startsWith(`files/${first.id}/${file.sha256}/`)));
+    await s.manager().submit(owner, draft);
+    assert.equal(s.starts.length, 2);
+    assert.equal(s.starts[1].task.attempt, 2);
+    assert.ok(s.starts[1].checkpoint.files.every((file) => file.blobRef.startsWith(`files/${first.id}/`)));
+    const retried = await execute(s.starts[1], 'retry-worker');
+    assert.equal(retried.status, 'incomplete');
+    assert.equal(retried.files[`music-uploads/${upload.id}.audio`].sha256, upload.sha256);
+  } finally { await rm(folder, { recursive: true, force: true }); }
 });
 test('private Blob compare-and-swap retries contention rather than losing another update', async () => {
   let saved = { count: 0 }, etag = '0', conflicted = false; const options = [];

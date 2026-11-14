@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-14T07:15:20.615Z",
+  "snapshotId": "snap_YOpT0ZOGDdcmgq9X6jQ9jIEDEEce",
+  "providerCalls": 0,
+  "scope": "Linux offline contracts for new options, short-recording checkpoint and bounded request retries",
+  "testFiles": [
+    "server/vision-retry.test.mjs",
+    "server/review-ranges.test.mjs",
+    "server/narration-timeline.test.mjs",
+    "server/cloud-production.test.mjs",
+    "server/cloud/music-upload.test.mjs",
+    "server/music-controls.test.mjs",
+    "server/script-fidelity.test.mjs",
+    "server/visual-backgrounds.test.mjs",
+    "shared/production-options.test.mjs"
+  ],
+  "passed": true,
+  "exitCode": 0,
+  "counts": {
+    "tests": 67,
+    "pass": 67,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  }
+}

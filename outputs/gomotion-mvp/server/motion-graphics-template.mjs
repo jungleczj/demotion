@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { backgroundSVG } from './visual-backgrounds.mjs';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[c]);
 const compact = (s) => String(s || '').replace(/\s+/gu, '');
@@ -65,7 +66,7 @@ export function motionSVG(plan, style, progress, profile, marker = '示意', dra
   const background = color(style.background, '#163341'), accent = color(style.accent, '#89c9da'), textColor = color(style.text, '#f4f7f8'), muted = color(style.muted, '#bacbd1');
   const contents = [];
   if (layer !== 'overlay') {
-    contents.push(`<rect width="${w}" height="${h}" fill="${background}"/>`);
+    contents.push(backgroundSVG(style.theme, w, h, background));
     for (const asset of plan.sourceAssets) {
       const image = sourceImages.get(asset.id), rect = sourceLayout(asset, profile);
       if (!/^data:image\/png;base64,[a-zA-Z0-9+/=]+$/.test(image || '')) throw new Error('未读取来源图片的真实像素');

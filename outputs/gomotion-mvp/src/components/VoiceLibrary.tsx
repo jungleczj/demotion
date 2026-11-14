@@ -3,9 +3,9 @@ import { AudioLines, Check, LoaderCircle, Pause, Play, Search } from 'lucide-rea
 import { api } from '../api';
 import { languageOptions, narrationStyles, voiceOptions } from '../data';
 
-type Props = { voice: string; style: string; language: string; onLanguage: (id: string) => void; onVoice: (id: string) => void; onStyle: (id: string) => void };
+type Props = { preserveScript?: boolean; voice: string; style: string; language: string; onLanguage: (id: string) => void; onVoice: (id: string) => void; onStyle: (id: string) => void };
 
-export default function VoiceLibrary({ voice, style, language, onLanguage, onVoice, onStyle }: Props) {
+export default function VoiceLibrary({ preserveScript, voice, style, language, onLanguage, onVoice, onStyle }: Props) {
   const [query, setQuery] = useState('');
   const [available, setAvailable] = useState<string[] | null>(null);
   useEffect(() => { const abort = new AbortController(); void api<{voices: string[]}>('/api/voices', undefined, abort.signal).then((r) => setAvailable(r.voices)).catch(() => { if (!abort.signal.aborted) { setAvailable([]); setError('声音列表暂时无法加载，请刷新后重试。'); } }); return () => abort.abort(); }, []);
@@ -58,7 +58,7 @@ export default function VoiceLibrary({ voice, style, language, onLanguage, onVoi
   const visible = voiceOptions.filter((v) => available?.includes(v.key) && (filter === '全部声音' || v.tag === filter) && `${v.name} ${v.description}`.toLowerCase().includes(query.toLowerCase()));
   return <section className="panel voice-library" aria-label="旁白声音选择">
     <div className="section-heading"><div className="step-label"><span className="step-circle">2</span><h2>Voice</h2><span className="muted-small">选一个适合故事的声音</span></div><span className="soft-tag"><AudioLines size={13}/> {available === null ? '正在载入声音' : `${available.length} 种声音`}</span></div>
-    <div className="language-choice"><label htmlFor="narration-language">旁白语言</label><select id="narration-language" value={language} onChange={(e) => { stop(); setError(''); onLanguage(e.target.value); }}>{languageOptions.map((l) => <option key={l.code} value={l.code}>{l.name} · {l.native}</option>)}</select><button className="secondary" disabled={Boolean(loading) && loading !== voice} onClick={() => void listen(voice)}>{loading === voice ? <LoaderCircle className="spin" size={14}/> : <Play size={14}/>}{audition === voice || loading === voice ? '停止试听' : `试听${languageOptions.find((l) => l.code === language)?.name || ''}`}</button></div><p className="language-hint">旁白与字幕将使用所选语言；原文会在制作时自动转换。</p>
+    <div className="language-choice"><label htmlFor="narration-language">旁白语言</label><select id="narration-language" value={language} onChange={(e) => { stop(); setError(''); onLanguage(e.target.value); }}>{languageOptions.map((l) => <option key={l.code} value={l.code}>{l.name} · {l.native}</option>)}</select><button className="secondary" disabled={Boolean(loading) && loading !== voice} onClick={() => void listen(voice)}>{loading === voice ? <LoaderCircle className="spin" size={14}/> : <Play size={14}/>}{audition === voice || loading === voice ? '停止试听' : `试听${languageOptions.find((l) => l.code === language)?.name || ''}`}</button></div><p className="language-hint">{preserveScript ? '使用原稿，不自动翻译。请将旁白语言设为原稿语言。' : '旁白与字幕将使用所选语言；原文会在制作时自动转换。'}</p>
     <div className="delivery-options"><span className="field-label">讲述方式</span><div role="group" aria-label="配音风格">{narrationStyles.map((s) => <button key={s.id} className={style === s.id ? 'active' : ''} aria-pressed={style === s.id} onClick={() => onStyle(s.id)}>{s.name}</button>)}</div></div>
     <div className="voice-library-toolbar"><div className="voice-filter" role="group" aria-label="声音筛选">{tags.map((tag) => <button key={tag} className={filter === tag ? 'active' : ''} aria-pressed={filter === tag} onClick={() => setFilter(tag)}>{tag}</button>)}</div><label className="voice-search"><Search size={14}/><input value={query} onChange={(e) => setQuery(e.target.value)} aria-label="搜索声音" placeholder="搜索声音"/></label></div>
     <div className="voice-library-grid">{visible.map((v) => <article key={v.id} className={`voice-choice-card ${v.id === voice ? 'selected' : ''}`}>

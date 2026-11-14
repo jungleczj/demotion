@@ -2,13 +2,16 @@ import { createBlobStore } from './blob-store.mjs';
 import { createCloudAuth } from './auth.mjs';
 import { createSandboxExecutor } from './executor.mjs';
 import { createCloudProductions } from './productions.mjs';
+import { createCloudMusicUploads, createSandboxMusicValidator } from './music-upload.mjs';
+import { MUSIC_UPLOAD_BODY_BYTES } from '../music-upload-input.mjs';
 
 export const cloudConfigured = (env) => Boolean(env.GOMOTION_CLOUD_ENABLED === '1' && (env.BLOB_STORE_ID || env.BLOB_READ_WRITE_TOKEN) && env.GOMOTION_SANDBOX_SNAPSHOT && env.GOMOTION_CLOUD_SECRET?.length >= 32 && (env.GEMINI_API_KEY || env.VISION_API_KEY));
-export function createCloudAPI({ env = process.env, store, executor, now } = {}) {
+export function createCloudAPI({ env = process.env, store, executor, now, musicValidator, fetchImpl = globalThis.fetch } = {}) {
   if (!cloudConfigured(env) && (!store || !executor)) return null;
   const auth = createCloudAuth(env.GOMOTION_CLOUD_SECRET, now);
   store ||= createBlobStore({ env, prefix: `gomotion/${env.VERCEL_ENV === 'preview' ? 'preview' : 'production'}/v1` });
   executor ||= createSandboxExecutor({ env });
+  const musicUploads = createCloudMusicUploads({ store, validate: musicValidator || createSandboxMusicValidator({ env }), fetchImpl });
   return {
     responseHeaders(request) { const { cookie } = auth.session(request); return cookie ? { 'set-cookie': cookie } : {}; },
     async handle(request, route, body) {
@@ -25,6 +28,7 @@ export function createCloudAPI({ env = process.env, store, executor, now } = {})
       const { owner, cookie } = auth.session(request);
       const json = (value, status) => reply(value, status, cookie ? { 'set-cookie': cookie } : {});
       const redirect = (target) => target instanceof Response ? target : new Response(null, { status: 307, headers: { location: target, 'cache-control': 'private, no-store', ...(cookie ? { 'set-cookie': cookie } : {}) } });
+      if (route === '/api/music/upload' && method === 'POST') return json(await musicUploads.save(owner, await body(MUSIC_UPLOAD_BODY_BYTES), request.signal));
       if (route === '/api/productions') {
         if (method === 'GET') return json(await manager.list(owner, Math.max(0, Number(url.searchParams.get('after')) || 0)));
         if (method === 'POST') return json(await manager.submit(owner, await body(500_000)), 202);

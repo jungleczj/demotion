@@ -1,0 +1,62 @@
+{
+  "at": "2026-11-14T07:06:53.597Z",
+  "isolation": "/tmp/gomotion-two-shot-live-HAP218",
+  "previousTask": "3a52ba56-7d3a-40dd-a360-ba93645b20e7",
+  "network": {
+    "source": "macOS-system",
+    "configured": true,
+    "address": "http://127.0.0.1:10808"
+  },
+  "coldGeneration": false,
+  "sameScriptBaseline": false,
+  "scope": "one production resume after bounded-retry fix; existing exact recording and reviewed footage; zero repeat TTS",
+  "requests": [
+    {
+      "stage": "alignment",
+      "at": "2026-11-14T07:06:53.810Z",
+      "transport": "TimeoutError",
+      "responseMs": 60003
+    }
+  ],
+  "observations": [
+    {
+      "at": "2026-11-14T07:06:53.624Z",
+      "state": {
+        "status": "running",
+        "phase": "queued",
+        "progress": 0
+      }
+    },
+    {
+      "at": "2026-11-14T07:06:54.626Z",
+      "state": {
+        "status": "running",
+        "phase": "matching",
+        "progress": 10
+      }
+    },
+    {
+      "at": "2026-11-14T07:07:54.689Z",
+      "state": {
+        "status": "error",
+        "phase": "matching",
+        "progress": 10
+      }
+    }
+  ],
+  "taskId": "ce4503e6-9c38-469a-9f5b-f1179e3ba6e4",
+  "status": "error",
+  "error": "视觉 AI 请求处理超时，已保留草稿，请稍后重试",
+  "reviewError": "",
+  "elapsedSeconds": 61.068,
+  "recordingCheckpointPreserved": true,
+  "hasAlignedTrack": false,
+  "events": [],
+  "passed": false,
+  "savedProjectsUnchanged": true,
+  "recordingHashUnchanged": true,
+  "timings": {
+    "planningMs": 1,
+    "matchingMs": 60194
+  }
+}

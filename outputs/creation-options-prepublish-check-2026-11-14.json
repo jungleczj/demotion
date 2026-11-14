@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-14T07:14:08.863Z",
+  "filesChecked": 68,
+  "secretMatches": [],
+  "envIgnored": [
+    "outputs/gomotion-mvp/.env",
+    ".env.deployment-check.local"
+  ],
+  "diffCheckPassed": true
+}

@@ -8,7 +8,8 @@ import { pipeline } from 'node:stream/promises';
 import { searchOpenverse } from './source-adapters/openverse.mjs';
 import { searchScottBuckley, SCOTT_BUCKLEY_TRACKS, scottBuckleyAsset, verifyScottBuckleyTrack } from './source-adapters/scottbuckley.mjs';
 import { sharedOperations } from './shared-operation.mjs';
-import { run, probe } from './process.mjs';
+import { run } from './process.mjs';
+import { uploadReceiptError } from './music-upload-input.mjs';
 
 export const musicAssets = new Map();
 const cache = new Map(), shared = sharedOperations(), MAX_BYTES = 48 * 1024 * 1024;
@@ -43,6 +44,7 @@ async function limitedText(url, options = {}) {
   return Buffer.concat(chunks).toString('utf8');
 }
 export function musicLicenseError(asset) {
+  if (asset?.provider === 'user-upload') return uploadReceiptError(asset, { id: asset.sourceId });
   if (!asset || asset.kind !== 'audio' || !allowedURL(asset.url) || !allowedURL(asset.sourceUrl) || !asset.author || !asset.attribution) return '音乐来源与署名记录不完整';
   if (!/^(?:CC BY \d\.\d|CC0(?: 1\.0)?|Public domain mark(?: 1\.0)?)$/.test(asset.license)) return '音乐尚未明确允许商业同步与改编';
   let u; try { u = new URL(asset.licenseUrl); } catch { return '音乐许可链接无效'; }
@@ -73,16 +75,19 @@ export async function searchMusicSources(query = '', config = {}, { providers = 
   return { assets: good.flatMap((o) => o.assets), warnings, queriedSources: enabled, cached: good.every((o) => o.cached), notice: '音乐只在选用时下载；须将署名随视频发布。目录命中不代表已经混音或试听。' };
 }
 
-async function validateFile(file, signal, maxBytes = MAX_BYTES) {
+async function validateFile(file, signal, maxBytes = MAX_BYTES, { uploaded = false } = {}) {
   const info = await stat(file);
   if (!info.isFile() || info.size <= 0 || info.size > maxBytes) throw new Error('音乐文件大小无效');
-  const metadata = await probe(file, signal);
-  const streams = JSON.parse(await run('ffprobe', ['-v', 'error', '-show_entries', 'stream=codec_type:stream_disposition=attached_pic', '-of', 'json', file], signal)).streams || [];
+  const restrictions = uploaded ? ['-format_whitelist', 'mp3,wav,mov,ogg,flac,aac', '-protocol_whitelist', 'file'] : [];
+  const details = JSON.parse(await run('ffprobe', ['-v', 'error', ...restrictions, '-show_entries', 'format=duration:stream=codec_type:stream_disposition=attached_pic', '-of', 'json', file], signal));
+  const metadata = { hasAudio: details.streams?.some((s) => s.codec_type === 'audio') || false, duration: Number(details.format?.duration) || 0, width: 0, height: 0 };
+  const streams = details.streams || [];
   // MP3/FLAC cover art is valid; reject actual moving-picture tracks.
   if (!metadata.hasAudio || streams.some((s) => s.codec_type === 'video' && s.disposition?.attached_pic !== 1) || metadata.duration <= 0 || metadata.duration > 1800) throw new Error('来源文件不是有效的独立音频');
-  await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-xerror', '-err_detect', 'explode', '-i', file, '-map', '0:a:0', '-f', 'null', '-'], signal);
+  await run('ffmpeg', ['-nostdin', '-hide_banner', '-loglevel', 'error', '-xerror', '-err_detect', 'explode', ...restrictions, '-i', file, '-map', '0:a:0', '-f', 'null', '-'], signal);
   return { ...metadata, bytes: info.size, sha256: hash(await readFile(file)) };
 }
+export { validateFile as validateMusicFile };
 
 async function downloadOriginal(url, temporary, { signal, fetch: fetcher, maxBytes = MAX_BYTES }) {
   let head;

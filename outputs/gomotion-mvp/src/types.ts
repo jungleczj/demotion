@@ -25,12 +25,19 @@ export type Scene = {
   motionGraphic?: MotionGraphic; renderKind?: 'footage' | 'motion-graphic';
 };
 export type NarrationTrack = { processingVersion?: number; key: string; url: string; voice: string; style: string; language?: string; duration: number; scenes: {id: string; text: string; start: number; end: number}[] };
+export type BackgroundStyle = 'blue' | 'cinematic' | 'vintage' | 'light' | 'grid';
+export type MusicGenre = 'auto' | 'epic' | 'documentary' | 'tension' | 'emotional' | 'chill' | 'upbeat';
+export type MusicUpload = { id: string; name: string; sha256?: string };
+export type MusicOptions = { enabled: boolean; genre: MusicGenre; trackId?: string; volume: number; upload?: MusicUpload };
+export type MusicTrack = { id: string; title: string; author: string; duration: number; genres: string[]; previewUrl: string };
+export type MusicCatalog = { genres: {id: string; label: string}[]; tracks: MusicTrack[]; upload?: {maxBytes: number; acceptedExtensions: string[]} };
 export type Project = {
   id: string; title: string; script: string; createdAt: string; productionUpdatedAt?: number;
   voice: string; voiceStyle?: string; language?: string; originalScript?: string; narrationTrack?: NarrationTrack; format: 'landscape' | 'portrait'; fit: 'cover' | 'contain';
   subtitles: boolean; topic: string; scenes: Scene[]; exportUrl?: string; exportId?: string; sequenceReport?: SequenceReport; aiTrace?: AIEvent[]; videoReview?: VideoReview; visualError?: string;
   videoProfile?: { version: number; width: number; height: number; fps: number; label: string; captionStyleVersion?: number };
   motionStyle?: { background: string; accent: string; text: string; muted: string };
+  preserveScript?: boolean; background?: BackgroundStyle; motionGraphics?: boolean; musicOptions?: MusicOptions;
 };
 export type TokenUsage = { inputTokens: number; outputTokens: number; totalTokens: number };
 export type AIEvent = { stage: string; engine: string; model?: string; status: string; inputType?: string; mediaCount?: number; at?: string; durationMs?: number; detail?: string; usage?: TokenUsage };

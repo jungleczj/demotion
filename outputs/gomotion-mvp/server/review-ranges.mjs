@@ -10,7 +10,7 @@ export async function reviewWithRetry(action, signal) {
     signal.throwIfAborted();
     try { return await action(attempt); }
     catch (error) {
-      if (signal.aborted || attempt || !/超时|连接失败|有效 JSON|HTTP 50[0234]/i.test(error.message || '')) throw error;
+      if (signal.aborted || error.requestRetriesHandled || attempt || !/超时|连接失败|有效 JSON|HTTP 50[0234]/i.test(error.message || '')) throw error;
     }
   }
 }

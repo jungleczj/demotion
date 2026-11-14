@@ -6,7 +6,7 @@ import { run, probe } from './process.mjs';
 import { AUDIO_MIX_VERSION } from './audio-mix-profile.mjs';
 
 export async function prepareBackgroundMusic(cacheDirectory, { project, signal, fetch: fetcher = globalThis.fetch, enabled = true, budgetMs = 20000 } = {}) {
-  if (!enabled) return { status: 'disabled', mixed: false, narrationPreserved: true };
+  if (!enabled || project?.musicOptions?.enabled === false || project?.musicOptions?.volume === 0) return { status: 'disabled', mixed: false, narrationPreserved: true };
   const deadline = AbortSignal.timeout(Math.max(1, Math.min(20000, Number(budgetMs) || 20000)));
   const bounded = signal ? AbortSignal.any([signal, deadline]) : deadline;
   try {
@@ -38,8 +38,10 @@ export async function createSeamlessMusicLoop(music, output, { signal } = {}) {
   return { loopCrossfadeSeconds: overlap / sampleRate, loopPeriodSeconds: period, sourceOffset: overlap / sampleRate };
 }
 
-export async function mixBackgroundMusic(video, music, output, { duration, signal } = {}) {
+export async function mixBackgroundMusic(video, music, output, { duration, signal, volume = 3 } = {}) {
   if (!Number.isFinite(duration) || duration <= 0) throw new Error('配乐需要有效的整片时长');
+  if (!Number.isFinite(volume) || volume < 0 || volume > 100) throw new Error('配乐音量需为 0–100%');
+  if (volume === 0) return { status: 'disabled', mixed: false, narrationPreserved: true };
   const licenseError = musicLicenseError(music);
   if (licenseError || music.fullDecode !== true || !music.localPath || !/^[a-f0-9]{64}$/.test(music.sha256 || '')) throw new Error(licenseError || '配乐原件未通过完整解码和来源校验');
   if (createHash('sha256').update(await readFile(music.localPath)).digest('hex') !== music.sha256) throw new Error('配乐原件散列已变化');
@@ -51,7 +53,7 @@ export async function mixBackgroundMusic(video, music, output, { duration, signa
   const measured = analysis.match(/\{\s*"input_i"[\s\S]*?\}/)?.[0];
   const narrationLufs = measured ? Number(JSON.parse(measured).input_i) : NaN;
   if (!Number.isFinite(narrationLufs)) throw new Error('无法测得旁白响度，已保留原有声音');
-  const targetMusicLufs = Math.min(-30, narrationLufs - 14), normaliseTarget = Math.max(-70, targetMusicLufs);
+  const targetMusicLufs = Math.min(-30 + 20 * Math.log10(volume / 3), narrationLufs - 14), normaliseTarget = Math.max(-70, targetMusicLufs);
   const extraGain = Math.pow(10, (targetMusicLufs - normaliseTarget) / 20);
   const length = duration.toFixed(6), fadeIn = Math.min(.8, duration / 4), fadeOut = Math.min(2, duration / 3);
   const looped = duration > music.duration, loopFile = looped ? `${output}.${randomUUID()}.loop.flac` : undefined;
@@ -71,7 +73,7 @@ export async function mixBackgroundMusic(video, music, output, { duration, signa
   await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-xerror', '-err_detect', 'explode', '-i', output, '-map', '0:a:0', '-f', 'null', '-'], signal);
   return { status: 'mixed', mixed: true, narrationPreserved: true,
     source: { ...music, localPath: music.localPath },
-    mix: { version: AUDIO_MIX_VERSION, continuous: true, start: 0, end: duration, ...loop, looped, narrationLufs, targetMusicLufs, narrationGain: 1,
+    mix: { version: AUDIO_MIX_VERSION, continuous: true, start: 0, end: duration, ...loop, looped, narrationLufs, targetMusicLufs, narrationGain: 1, volumePercent: volume,
       ducking: { threshold: .015, ratio: 6, attackMs: 15, releaseMs: 500 }, fadeInSeconds: fadeIn, fadeOutSeconds: fadeOut,
       changes: `Music trimmed${looped ? ', tail/head crossfaded into a seamless loop' : ''}, loudness adjusted, ducked beneath narration, faded at film boundaries.` } };
   } finally { if (loopFile) await rm(loopFile, { force: true }); }
@@ -80,14 +82,14 @@ export async function mixBackgroundMusic(video, music, output, { duration, signa
 // Atomic replacement keeps the completed narration video available if a music
 // source, decoder or mixer fails. Cancellation still cancels the export.
 export async function addBackgroundMusic(video, cacheDirectory, { project, duration, signal, fetch: fetcher = globalThis.fetch, enabled = true, preparation } = {}) {
-  if (!enabled) return { status: 'disabled', mixed: false, narrationPreserved: true };
+  if (!enabled || project?.musicOptions?.enabled === false || project?.musicOptions?.volume === 0) return { status: 'disabled', mixed: false, narrationPreserved: true };
   const temporary = `${video}.${randomUUID()}.music.mp4`;
   try {
     signal?.throwIfAborted();
     const prepared = await (preparation || prepareBackgroundMusic(cacheDirectory, { project, signal, fetch: fetcher }));
     signal?.throwIfAborted();
     if (prepared.status !== 'ready') return prepared;
-    const result = await mixBackgroundMusic(video, prepared.source, temporary, { duration, signal });
+    const result = await mixBackgroundMusic(video, prepared.source, temporary, { duration, signal, volume: project?.musicOptions?.volume ?? 3 });
     signal?.throwIfAborted();
     await rename(temporary, video);
     return { ...result, selection: prepared.selection };

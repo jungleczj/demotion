@@ -6,6 +6,7 @@ import { narrationAudio } from './narration.mjs';
 import { visionJSON } from './vision-client.mjs';
 import { run } from './process.mjs';
 import { audioReviewConfig } from './ai-services.mjs';
+import { checkedNarrationArtifact, writeNarrationReceipt } from './narration-chunks.mjs';
 
 const folder = path.join(workDirectory, 'narration');
 
@@ -19,11 +20,21 @@ export async function prepareNarrationTimeline(project, config, job, directory) 
   // are generated in bounded chunks before this authoritative alignment pass.
   const compact = (value) => String(value || '').replace(/\s+/gu, '');
   // Splitting a visual beat must not regenerate or change the film's voice.
-  const narration = compact(project.script) === compact(texts.join('')) ? project.script : texts.join('\n\n');
+  const coversScript = compact(project.script) === compact(texts.join(''));
+  if (project.preserveScript === true && !coversScript) throw new Error('镜头台词未完整保留原稿，请重新规划');
+  const narration = coversScript ? project.script : texts.join('\n\n');
   const spoken = await narrationAudio({ text: narration }, project, config, signal, (progress) => {
     job.narrationProgress = progress;
     job.message = `正在准备统一旁白（${progress.completed}/${progress.total} 段）`;
   });
+  // A complete recording is reusable even when the alignment service is down.
+  // Persist its own verified receipt before asking for alignment; it does not
+  // carry timings, approve a cut or become the project's playable voice track.
+  if (!await checkedNarrationArtifact(spoken.file, spoken.key, signal)) {
+    await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-xerror', '-err_detect', 'explode', '-i', spoken.file, '-map', '0:a:0', '-f', 'null', '-'], signal);
+    await writeNarrationReceipt(spoken.file, spoken.key, spoken.duration);
+  }
+  job.narrationRecording = { version: 1, key: spoken.key };
   // Cached timing must cover the actual recording. Normal output adds .22s
   // then rounds to a 30fps frame; .3s allows that padding without accepting a
   // truncated final sentence or a stale, much longer recording's timeline.

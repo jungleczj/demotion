@@ -181,8 +181,13 @@ export async function narrationAudio(scene, project, config, signal, onProgress)
   }
   await mkdir(folder, { recursive: true });
   const file = narrationPath(key);
+  const checkpointed = project.narrationRecording?.version === 1 && project.narrationRecording.key === key;
   try {
-    if ((await stat(file)).size > 44) {
+    if (checkpointed) {
+      const verified = await checkedNarrationArtifact(file, key, signal, 600);
+      if (verified) { await utimes(file, new Date(), new Date()); return { key, ...verified, model: TTS_MODEL }; }
+    }
+    if (!checkpointed && (await stat(file)).size > 44) {
       const info = await probe(file, signal);
       if (info.hasAudio && Number.isFinite(info.duration) && info.duration >= .3 && info.duration <= 600) {
         await utimes(file, new Date(), new Date());

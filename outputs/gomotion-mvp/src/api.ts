@@ -9,7 +9,29 @@ export function downloadJSON(value: unknown, name: string) {
   const a = document.createElement('a'); a.href = url; a.download = name; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-import type { AnalysisJob, Project, Provider, Scene, SequenceResult, VideoReview } from './types';
+import type { AnalysisJob, MusicCatalog, MusicUpload, Project, Provider, Scene, SequenceResult, VideoReview } from './types';
+
+export const MUSIC_UPLOAD_MAX_BYTES = 3_000_000;
+export const MUSIC_UPLOAD_EXTENSIONS = ['mp3', 'wav', 'm4a', 'ogg', 'flac', 'aac'];
+export const musicCatalog = (signal?: AbortSignal) => api<MusicCatalog>('/api/music/catalog', undefined, signal);
+
+export async function uploadMusic(file: File, signal?: AbortSignal, limits = { maxBytes: MUSIC_UPLOAD_MAX_BYTES, acceptedExtensions: MUSIC_UPLOAD_EXTENSIONS }): Promise<MusicUpload> {
+  if (!file.size) throw new Error('请选择一个有内容的音频文件。');
+  if (file.size > limits.maxBytes) throw new Error(`音频不能超过 ${(limits.maxBytes / 1_000_000).toLocaleString()} MB。`);
+  if (!limits.acceptedExtensions.includes(file.name.split('.').pop()?.toLowerCase() || '')) throw new Error(`请选择 ${limits.acceptedExtensions.map((extension) => extension.toUpperCase()).join('、')} 音频。`);
+  const data = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    const abort = () => reader.abort();
+    const cleanup = () => signal?.removeEventListener('abort', abort);
+    reader.onload = () => { cleanup(); resolve(String(reader.result).split(',')[1] || ''); };
+    reader.onerror = () => { cleanup(); reject(new Error('无法读取这个音频文件，请重新选择。')); };
+    reader.onabort = () => { cleanup(); reject(new DOMException('已取消上传', 'AbortError')); };
+    signal?.addEventListener('abort', abort, { once: true });
+    if (signal?.aborted) { cleanup(); reject(new DOMException('已取消上传', 'AbortError')); return; }
+    reader.readAsDataURL(file);
+  });
+  return api<MusicUpload>('/api/music/upload', { name: file.name, data }, signal);
+}
 
 
 export class AnalysisError extends Error {
