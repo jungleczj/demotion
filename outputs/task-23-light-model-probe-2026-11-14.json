@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-14T10:56:55.442Z",
+  "model": "gemini-3.5-flash-lite",
+  "requests": 1,
+  "retries": 0,
+  "inputType": "text",
+  "status": 200,
+  "headersMs": 1636,
+  "modelVersion": "gemini-3.5-flash-lite",
+  "text": "{\"query\": \"rocket launching Moon\"}",
+  "usage": {
+    "promptTokenCount": 21,
+    "candidatesTokenCount": 8,
+    "totalTokenCount": 29,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "elapsedMs": 1640
+}

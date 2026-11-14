@@ -1,0 +1,54 @@
+✔ audio alignment survives a temporary 503 without changing the supplied recording (18.835708ms)
+✔ transient review failures stop after three requests and retain their status (0.630917ms)
+✔ retry backoff respects cancellation and cannot dispatch another request (0.213917ms)
+✔ expired processing budget is reported as a request deadline, not a proxy failure (15.828833ms)
+✔ HTTP 401 is not retried (0.20675ms)
+✔ HTTP 402 is not retried (0.106708ms)
+✔ HTTP 403 is not retried (0.115583ms)
+✔ HTTP 400 is not retried (0.129792ms)
+✔ explicit billing and daily quota evidence on 429 are not retried (0.299333ms)
+✖ minute throttling with generic billing advice honors Google RetryInfo and succeeds (0.232625ms)
+✖ structured daily quota is permanent even when its generic message suggests retrying (0.621709ms)
+✔ transport interruption can retry, while a disabled retry policy remains single-shot (0.475ms)
+✔ whole-film review does not renew an exhausted inner request budget (0.274417ms)
+✔ automatic retries stop at the remaining film call limit (0.153667ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.583375
+
+✖ failing tests:
+
+test at server/vision-retry.test.mjs:86:1
+✖ minute throttling with generic billing advice honors Google RetryInfo and succeeds (0.232625ms)
+  Error: 视觉 AI 请求失败（HTTP 429），额度或速率受限：You exceeded your current quota, please check your plan and billing details. Generate content requests per minute limit exceeded on Free Tier.
+      at visionJSON (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/vision-client.mjs:101:25)
+      at async TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/vision-retry.test.mjs:89:18)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    status: 429,
+    requestRetriesHandled: true
+  }
+
+test at server/vision-retry.test.mjs:100:1
+✖ structured daily quota is permanent even when its generic message suggests retrying (0.621709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'daily'
+  
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/vision-retry.test.mjs:107:10)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'daily',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

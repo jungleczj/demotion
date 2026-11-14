@@ -1,4 +1,5 @@
 import { setTimeout as delay } from 'node:timers/promises';
+import { quotaKind } from './provider-quota.mjs';
 import { narrationConfig, redactAISecrets } from './ai-services.mjs';
 
 function redact(value, config) {
@@ -31,15 +32,6 @@ function abortedError(signal, attempts = 0) {
     : Object.assign(new Error('配音请求超时，请稍后重试'), { status: 502, code: 'TTS_TIMEOUT', attempts });
 }
 
-function quotaKind(data, raw) {
-  // A generic RESOURCE_EXHAUSTED or "check your plan and billing details" can
-  // describe minute limits too. Stop only for explicit daily/billing evidence.
-  const evidence = (data ? JSON.stringify(data) : raw).replace(/https?:\/\/[^\s<>"']+/gi, '');
-  if (/daily|per[\s_-]?day|每日|每天|当日.{0,12}(?:限额|配额|额度)/i.test(evidence)) return 'daily';
-  if (/insufficient[\s_-]?(?:funds|balance|credits|quota)|(?:billing|payment)[\s_-]?(?:disabled|not[\s_-]?(?:enabled|active)|required|hard[\s_-]?limit|account[\s_-]?(?:disabled|suspended|closed))|(?:billing|balance|credits?).{0,45}(?:exhausted|depleted|insufficient|suspended|disabled|past[\s_-]?due)|payment[\s_-]?required|prepayment.{0,30}(?:depleted|exhausted)|(?:余额|额度|费用).{0,8}(?:不足|耗尽|用尽)|欠费|计费.{0,8}(?:未启用|停用|禁用)/i.test(evidence)) return 'billing';
-  return 'unknown';
-}
-
 async function providerError(response, config, signal) {
   let raw = '';
   try { raw = await abortable(() => response.text(), signal); }
@@ -55,7 +47,7 @@ async function providerError(response, config, signal) {
         : status === 429 ? '配音服务限流或配额受限' : '配音服务请求失败';
   return Object.assign(new Error(`${label}（HTTP ${status}）${detail ? `：${detail}` : ''}`), {
     status, quotaKind: kind, code: 'TTS_PROVIDER_ERROR',
-    retryable: (status === 429 || [502, 503, 504].includes(status)) && kind === 'unknown',
+    retryable: (status === 429 || [502, 503, 504].includes(status)) && !['daily', 'billing'].includes(kind),
   });
 }
 

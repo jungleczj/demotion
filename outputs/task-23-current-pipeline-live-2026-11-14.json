@@ -1,0 +1,238 @@
+{
+  "at": "2026-11-14T10:53:44.076Z",
+  "priorTaskId": "c9bb3308-31c8-4a63-9da6-877c29450f54",
+  "scriptSHA256": "9c9da10cc0744e1b3beb9bd8bd5c24faa7bedb6b021747ec561a4ffaba6894e2",
+  "scriptLength": 122,
+  "sameProjectId": true,
+  "preexistingTasks": 13,
+  "archiveSHA256Before": "63977d5b50bbbac656fa29bf3f00380f1f4c347b107af42eac8e050e7b318e65",
+  "submissions": 1,
+  "cancellations": 0,
+  "submissionStatus": 202,
+  "taskId": "572a817a-1dd6-4283-a36f-12a8d71103d1",
+  "finishedAt": "2026-11-14T10:55:04.150Z",
+  "result": {
+    "id": "572a817a-1dd6-4283-a36f-12a8d71103d1",
+    "project": {
+      "title": "从地球出发，向月球前进",
+      "script": "火箭从发射台升起，穿过云层，向太空进发。\n\n从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。\n\n在月球表面，撞击坑记录着漫长岁月留下的痕迹。\n\n宇航员在月面行走，探索这片安静而陌生的土地。\n\n每一次新的任务，都让我们更接近理解地球以外的世界。",
+      "voice": "gemini:Charon",
+      "voiceStyle": "documentary",
+      "language": "zh-CN",
+      "preserveScript": false,
+      "format": "landscape",
+      "fit": "cover",
+      "subtitles": true,
+      "topic": "auto",
+      "background": "vintage",
+      "motionGraphics": true,
+      "musicOptions": {
+        "enabled": true,
+        "genre": "auto",
+        "trackId": "scottbuckley:the-great-sea",
+        "volume": 11
+      },
+      "id": "49d1e454-83b0-46e0-bbe6-8cac2999b938",
+      "createdAt": "2026-11-14T07:32:07.094Z",
+      "scenes": [
+        {
+          "text": "火箭从发射台升起，穿过云层，向太空进发。",
+          "query": "rocket launch pad liftoff smoke cloud ascent",
+          "visual": "低角度仰拍火箭点火离开发射台，尾部火焰与白烟弥漫，镜头随火箭上升穿过云层",
+          "exact": false,
+          "id": "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+          "index": 0,
+          "duration": 5,
+          "start": 0,
+          "candidates": [],
+          "selected": null,
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": false
+        },
+        {
+          "text": "从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。",
+          "query": "Earth from orbit clouds blue ocean space station view",
+          "visual": "从轨道高度俯视地球，蓝色海洋与白色云带缓慢流动，画面稳定辽阔",
+          "exact": false,
+          "id": "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+          "index": 1,
+          "duration": 7,
+          "start": 0,
+          "candidates": [],
+          "selected": null,
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": false
+        },
+        {
+          "text": "在月球表面，撞击坑记录着漫长岁月留下的痕迹。",
+          "query": "moon surface craters close up grey terrain sunlight",
+          "visual": "低空掠过月球灰色地表，密集撞击坑与阴影显现，阳光斜照",
+          "exact": false,
+          "id": "af43da6b-8397-43c3-8c91-0c8f61cfbcff",
+          "index": 2,
+          "duration": 6,
+          "start": 0,
+          "candidates": [],
+          "selected": null,
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": false
+        },
+        {
+          "text": "宇航员在月面行走，探索这片安静而陌生的土地。",
+          "query": "astronaut walking moon surface spacesuit footprints",
+          "visual": "身穿白色宇航服的宇航员在月面缓步行走，留下脚印，背景为黑色天空与灰色地面",
+          "exact": true,
+          "id": "32ad8a21-849f-4a2e-a89c-fe8c899f27ef",
+          "index": 3,
+          "duration": 6,
+          "start": 0,
+          "candidates": [],
+          "selected": null,
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": false
+        },
+        {
+          "text": "每一次新的任务，都让我们更接近理解地球以外的世界。",
+          "query": "Earth horizon from space sunrise spacecraft view",
+          "visual": "从太空回望地球弧线与日出光晕，画面缓慢推进，收束全片",
+          "exact": false,
+          "id": "b21cd0bb-4371-4ad9-817d-134866ec4313",
+          "index": 4,
+          "duration": 7,
+          "start": 0,
+          "candidates": [],
+          "selected": null,
+          "confirmed": false,
+          "status": "done",
+          "preserveSelection": false
+        }
+      ],
+      "originalScript": "火箭从发射台升起，穿过云层，向太空进发。\n\n从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。\n\n在月球表面，撞击坑记录着漫长岁月留下的痕迹。\n\n宇航员在月面行走，探索这片安静而陌生的土地。\n\n每一次新的任务，都让我们更接近理解地球以外的世界。",
+      "aiTrace": [
+        {
+          "stage": "text-planning",
+          "engine": "openai",
+          "model": "deepseek-flash",
+          "status": "completed",
+          "inputType": "text",
+          "mediaCount": 0,
+          "at": "2026-11-14T07:32:08.227Z",
+          "attempts": 1,
+          "httpStatus": 200,
+          "usage": {
+            "inputTokens": 327,
+            "outputTokens": 304,
+            "totalTokens": 631
+          },
+          "durationMs": 2283
+        }
+      ],
+      "productionUpdatedAt": 1794643520090,
+      "narrationRecording": {
+        "version": 1,
+        "key": "6449b57f99b9b9e569413221558a2ac8d7bf96922655e6511661370bf320a62b"
+      },
+      "sequenceReport": {
+        "complete": false,
+        "preparationIncomplete": true,
+        "stopReason": "narration",
+        "missingScenes": [
+          "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+          "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+          "af43da6b-8397-43c3-8c91-0c8f61cfbcff",
+          "32ad8a21-849f-4a2e-a89c-fe8c899f27ef",
+          "b21cd0bb-4371-4ad9-817d-134866ec4313"
+        ],
+        "analyzed": 0,
+        "candidates": 0,
+        "method": "preparation-incomplete",
+        "summary": "制作暂未完成，已保留检索候选；候选仍需实际画面及播放检查",
+        "warnings": [
+          "已自动重试 0 轮，仍缺 5 个画面"
+        ],
+        "events": [
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "failed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T10:53:44.090Z",
+            "attempts": 1,
+            "durationMs": 45004,
+            "detail": "视觉 AI 请求处理超时，已保留草稿，请稍后重试"
+          },
+          {
+            "stage": "narration-alignment",
+            "engine": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "failed",
+            "inputType": "audio",
+            "mediaCount": 1,
+            "at": "2026-11-14T10:53:59.497Z",
+            "attempts": 1,
+            "durationMs": 60003,
+            "detail": "视觉 AI 请求处理超时，已保留草稿，请稍后重试"
+          },
+          {
+            "stage": "narration-timing",
+            "engine": "gemini-tts",
+            "model": "gemini-2.5-flash-preview-tts",
+            "status": "failed",
+            "durationMs": 75412,
+            "inputType": "text",
+            "errorCode": "NARRATION_FAILED",
+            "detail": "视觉 AI 请求处理超时，已保留草稿，请稍后重试"
+          },
+          {
+            "stage": "selection-pass-0",
+            "engine": "director",
+            "status": "failed",
+            "detail": "视觉 AI 请求处理超时，已保留草稿，请稍后重试"
+          }
+        ],
+        "retries": 0,
+        "retryLimit": 3,
+        "bytes": 0,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "totalTokens": 0
+        }
+      }
+    },
+    "providers": [
+      "commons",
+      "archive",
+      "nasa",
+      "pixabay",
+      "coverr"
+    ],
+    "status": "error",
+    "phase": "matching",
+    "progress": 10,
+    "message": "这次制作未能完成，已保留草稿，可以重新制作。",
+    "createdAt": 1794653624080,
+    "estimate": {
+      "videoSeconds": 31,
+      "minSeconds": 90,
+      "maxSeconds": 240
+    },
+    "retry": 0,
+    "retryLimit": 3,
+    "updatedAt": 1794653699527,
+    "timings": {
+      "planningMs": 4,
+      "matchingMs": 75430
+    },
+    "startedAt": 1794653624083,
+    "errorDetail": "视觉 AI 请求处理超时，已保留草稿，请稍后重试",
+    "finishedAt": 1794653699527
+  },
+  "originalTaskIDsPreserved": true
+}

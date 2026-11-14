@@ -1,8 +1,22 @@
 import { sceneCacheRequest, readSceneObservation, saveSceneObservation } from './scene-observation-cache.mjs';
 import { redactAISecrets } from './ai-services.mjs';
+import { quotaKind } from './provider-quota.mjs';
 import { setTimeout as delay } from 'node:timers/promises';
 
 const cleanJSON = (text) => JSON.parse(String(text || '').replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '').trim());
+
+function retryDelay(response, providerError, attempt) {
+  const header = response?.headers.get('retry-after')?.trim();
+  const headerMs = /^\d*\.?\d+$/.test(header || '') ? Number(header) * 1000
+    : header ? Date.parse(header) - Date.now() : NaN;
+  const retryInfo = Array.isArray(providerError?.details)
+    ? providerError.details.find((detail) => detail?.['@type'] === 'type.googleapis.com/google.rpc.RetryInfo')
+    : undefined;
+  const seconds = String(retryInfo?.retryDelay || '').match(/^(\d+(?:\.\d+)?)s$/)?.[1]
+    ?? providerError?.message?.match?.(/\bretry in (\d+(?:\.\d+)?)s\b/i)?.[1];
+  const hints = [headerMs, Number(seconds) * 1000].filter(Number.isFinite);
+  return hints.length ? Math.ceil(Math.max(0, ...hints)) : 2000 * (attempt + 1);
+}
 
 export function visionConfigured(config) {
   return Boolean(config.visionEnabled && config.visionKey && config.visionModel);
@@ -15,7 +29,9 @@ export async function visionJSON(config, system, parts, job, stage, { fetchImpl 
   job.events.push(event);
   const started = Date.now();
   const timeout = stage.startsWith('rendered-') ? 120000 : stage.startsWith('visual-scene-') || stage === 'whole-film-edit' || stage === 'narration-alignment' ? 60000 : 45000;
-  const signal = AbortSignal.any([job.controller.signal, AbortSignal.timeout(timeout)]);
+  let signal = AbortSignal.any([job.controller.signal, AbortSignal.timeout(timeout)]);
+  let cooldownBudgetUsed = 0;
+  let cooldownElapsed = 0;
   try {
     let endpoint, payload, headers;
     if (config.visionProvider === 'gemini') {
@@ -44,12 +60,13 @@ export async function visionJSON(config, system, parts, job, stage, { fetchImpl 
       event.detail = '复用完全相同输入的已完成画面观察，本次未请求模型；仍执行现时选材校验';
       return cached.data;
     }
-    let response;
+    let response, providerError;
     for (let attempt = 0; attempt < 3; attempt++) {
       signal.throwIfAborted();
       if ((job.calls || 0) >= (job.callLimit || 36)) throw Object.assign(new Error('本轮自动处理已达到上限，已保留草稿'), { code: 'VISION_CALL_LIMIT' });
       job.calls = (job.calls || 0) + 1; event.attempts = attempt + 1;
       response = undefined;
+      providerError = undefined;
       try {
         response = await fetchImpl(endpoint, { method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' }, body, signal });
       } catch (error) {
@@ -57,24 +74,35 @@ export async function visionJSON(config, system, parts, job, stage, { fetchImpl 
         const transient = /^(?:ECONNRESET|ECONNREFUSED|ETIMEDOUT|EAI_AGAIN|ENETUNREACH|EHOSTUNREACH|UND_ERR_CONNECT_TIMEOUT|UND_ERR_HEADERS_TIMEOUT|UND_ERR_BODY_TIMEOUT|UND_ERR_SOCKET)$/.test(error.cause?.code || error.code || '') || /fetch failed|failed to fetch|socket hang up/i.test(error.message || '');
         if (!transient || job.disableTransientRetries || attempt === 2) throw error;
       }
+      if (response && !response.ok) {
+        try { providerError = (await response.json()).error; } catch { signal.throwIfAborted(); }
+        event.httpStatus = response.status;
+        if (response.status === 429) event.quotaKind = quotaKind(providerError);
+      }
       if (response && (![429, 502, 503, 504].includes(response.status) || job.disableTransientRetries || attempt === 2)) break;
-      let detail = '';
-      try { detail = String((await response?.clone().json()).error?.message || ''); } catch {}
-      if (/daily|per.day|per_day|billing|credits|payment|insufficient|每日|余额/i.test(detail)) break;
-      const retryAfter = response?.headers.get('retry-after')?.trim();
-      const headerMs = /^\d+(?:\.\d+)?$/.test(retryAfter || '') ? Number(retryAfter) * 1000 : retryAfter ? Date.parse(retryAfter) - Date.now() : NaN;
-      const waitMs = Number.isFinite(headerMs) ? Math.max(0, Math.min(10000, headerMs)) : 2000 * (attempt + 1);
-      await response?.body?.cancel(); event.transientRetries = attempt + 1;
-      await sleepImpl(waitMs, signal);
+      if (response?.status === 429 && ['daily', 'billing'].includes(event.quotaKind)) break;
+      const waitMs = retryDelay(response, providerError, attempt);
+      const remaining = timeout - (Date.now() - started - cooldownElapsed);
+      const minuteLimit = response?.status === 429 && event.quotaKind === 'minute';
+      // Allow one minute window of server-directed cooldown in addition to the
+      // existing processing budget. Other failures still share the old deadline.
+      if (minuteLimit ? cooldownBudgetUsed + waitMs > 65000 || remaining <= 0 : waitMs >= remaining) break;
+      event.transientRetries = attempt + 1;
+      if (minuteLimit) {
+        const coolingSince = Date.now();
+        signal.throwIfAborted();
+        await sleepImpl(waitMs, AbortSignal.any([job.controller.signal, AbortSignal.timeout(waitMs + 5000)]));
+        cooldownBudgetUsed += waitMs;
+        cooldownElapsed += Date.now() - coolingSince;
+        event.cooldownMs = cooldownElapsed;
+        signal = AbortSignal.any([job.controller.signal, AbortSignal.timeout(remaining)]);
+      } else await sleepImpl(waitMs, signal);
     }
     event.httpStatus = response.status;
     if (!response.ok) {
-      let providerDetail = '';
-      try {
-        const errorBody = await response.json();
-        providerDetail = redactAISecrets(errorBody.error?.message, config).replace(/https?:\/\/\S+/g, '[服务链接]').slice(0, 450);
-      } catch {}
-      throw Object.assign(new Error(`视觉 AI 请求失败（HTTP ${response.status}）${response.status === 401 || response.status === 403 ? '，鉴权或模型权限被拒绝' : response.status === 402 ? '，预付费额度不足' : response.status === 429 ? '，额度或速率受限' : '，请检查模型与接口'}${providerDetail ? `：${providerDetail}` : ''}`), { status: response.status });
+      const providerDetail = redactAISecrets(providerError?.message, config).replace(/https?:\/\/\S+/g, '[服务链接]').slice(0, 450);
+      const quotaDetail = { minute: '达到每分钟请求上限', daily: '达到每日配额', billing: '计费或可用余额受限' }[event.quotaKind] || '额度或速率受限';
+      throw Object.assign(new Error(`视觉 AI 请求失败（HTTP ${response.status}）${response.status === 401 || response.status === 403 ? '，鉴权或模型权限被拒绝' : response.status === 402 ? '，预付费额度不足' : response.status === 429 ? `，${quotaDetail}` : '，请检查模型与接口'}${providerDetail ? `：${providerDetail}` : ''}`), { status: response.status });
     }
     const result = await response.json();
     const text = config.visionProvider === 'gemini'
@@ -98,6 +126,6 @@ export async function visionJSON(config, system, parts, job, stage, { fetchImpl 
     event.detail = job.controller.signal.aborted ? '已取消' : signal.aborted ? '视觉 AI 请求处理超时，已保留草稿，请稍后重试' : code === 'VISION_CALL_LIMIT' ? error.message : error instanceof SyntaxError ? '模型未返回有效 JSON' : error.message.startsWith('视觉 AI') ? error.message : code === 'UND_ERR_CONNECT_TIMEOUT' ? `视觉 AI 网络连接超时（${code}），请检查服务使用的代理` : `视觉 AI 连接失败${code ? `（${code}）` : ''}`;
     // This layer owns the request limit/deadline. A film-review wrapper must
     // not multiply its attempts or start another full deadline after failure.
-    throw Object.assign(new Error(event.detail), { status: error.status, requestRetriesHandled: true });
+    throw Object.assign(new Error(event.detail), { status: error.status, requestRetriesHandled: true, modelEvent: event });
   }
 }

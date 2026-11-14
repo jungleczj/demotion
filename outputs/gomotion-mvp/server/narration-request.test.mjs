@@ -70,7 +70,7 @@ test('unknown 429 stops after three total attempts and preserves HTTP 429', asyn
   let calls = 0;
   const delays = [];
   await assert.rejects(requestNarration(config, 'model', payload, undefined, {
-    fetchImpl: async () => { calls++; return limited(); },
+    fetchImpl: async () => { calls++; return json(429, { error: { message: 'You exceeded your current quota, please check your plan and billing details.' } }); },
     sleepImpl: async (ms) => delays.push(ms),
   }), (error) => error.status === 429 && error.quotaKind === 'unknown' && !error.message.includes('额度不足'));
   assert.equal(calls, 3);

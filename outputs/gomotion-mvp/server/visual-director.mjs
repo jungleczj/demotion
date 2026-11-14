@@ -132,8 +132,9 @@ async function visualSequencePass(job, project, work, config, enabled) {
         } catch (error) {
           // Voice transport already owns its bounded retries and timeout. A new
           // footage query cannot repair this prerequisite or renew its budget.
-          job.failedStage = 'narration';
-          job.events.push({ stage: 'narration-timing', engine: 'gemini-tts', model: narrationModel(config), status: 'failed', durationMs: Date.now() - started, inputType: 'text', errorCode: error.code || 'NARRATION_FAILED', httpStatus: error.code === 'TTS_PROVIDER_ERROR' ? error.status : undefined, attempts: error.attempts, detail: error.message });
+          const alignment = job.narrationRecording && error.modelEvent;
+          job.failedStage = alignment ? 'narration-alignment' : 'narration';
+          job.events.push({ stage: 'narration-timing', engine: alignment?.engine || 'gemini-tts', model: alignment?.model || narrationModel(config), status: 'failed', durationMs: Date.now() - started, inputType: alignment?.inputType || 'text', errorCode: alignment ? 'NARRATION_ALIGNMENT_FAILED' : error.code || 'NARRATION_FAILED', httpStatus: alignment?.httpStatus ?? (error.code === 'TTS_PROVIDER_ERROR' ? error.status : undefined), quotaKind: alignment?.quotaKind || error.quotaKind, attempts: alignment?.attempts ?? error.attempts, detail: error.message });
           throw error;
         }
       })(),
@@ -348,7 +349,7 @@ export async function visualSequence(job, project, work, config, enabled) {
     if (job.result && (['done', 'incomplete'].includes(job.passStatus) || job.result.report.preparationIncomplete)) { checkpoint = job.result; await job.onCheckpoint?.(checkpoint); }
     if (job.passStatus === 'done') break;
     if (job.passStatus === 'error') {
-      if (job.failedStage === 'narration') break;
+      if (job.failedStage?.startsWith('narration')) break;
       if (/401|402|403|429|鉴权|权限|额度/.test(job.error || '')) break;
       current = { ...current, visualError: 'automatic-recovery' };
     }

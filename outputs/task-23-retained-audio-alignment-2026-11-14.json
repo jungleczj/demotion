@@ -1,0 +1,92 @@
+{
+  "at": "2026-11-14T10:57:56.783Z",
+  "model": "gemini-3.5-flash-lite",
+  "input": "actual retained film narration",
+  "newTTSRequests": 0,
+  "fullFilmTasks": 0,
+  "passed": true,
+  "track": {
+    "processingVersion": 2,
+    "key": "6449b57f99b9b9e569413221558a2ac8d7bf96922655e6511661370bf320a62b",
+    "url": "/api/narration/6449b57f99b9b9e569413221558a2ac8d7bf96922655e6511661370bf320a62b.wav",
+    "voice": "gemini:Charon",
+    "style": "documentary",
+    "language": "zh-CN",
+    "duration": 35.525333,
+    "scenes": [
+      {
+        "id": "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+        "text": "火箭从发射台升起，穿过云层，向太空进发。",
+        "start": 0,
+        "end": 5.633333333333334
+      },
+      {
+        "id": "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+        "text": "从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。",
+        "start": 5.633333333333334,
+        "end": 14.033333333333333
+      },
+      {
+        "id": "af43da6b-8397-43c3-8c91-0c8f61cfbcff",
+        "text": "在月球表面，撞击坑记录着漫长岁月留下的痕迹。",
+        "start": 14.033333333333333,
+        "end": 21.466666666666665
+      },
+      {
+        "id": "32ad8a21-849f-4a2e-a89c-fe8c899f27ef",
+        "text": "宇航员在月面行走，探索这片安静而陌生的土地。",
+        "start": 21.466666666666665,
+        "end": 28.766666666666666
+      },
+      {
+        "id": "b21cd0bb-4371-4ad9-817d-134866ec4313",
+        "text": "每一次新的任务，都让我们更接近理解地球以外的世界。",
+        "start": 28.766666666666666,
+        "end": 35.766666666666666
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+      "duration": 5.633333333333334
+    },
+    {
+      "id": "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+      "duration": 8.399999999999999
+    },
+    {
+      "id": "af43da6b-8397-43c3-8c91-0c8f61cfbcff",
+      "duration": 7.433333333333332
+    },
+    {
+      "id": "32ad8a21-849f-4a2e-a89c-fe8c899f27ef",
+      "duration": 7.300000000000001
+    },
+    {
+      "id": "b21cd0bb-4371-4ad9-817d-134866ec4313",
+      "duration": 7
+    }
+  ],
+  "elapsedMs": 2030,
+  "requests": 1,
+  "events": [
+    {
+      "stage": "narration-alignment",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "inputType": "audio",
+      "mediaCount": 1,
+      "at": "2026-11-14T10:57:57.060Z",
+      "attempts": 1,
+      "httpStatus": 200,
+      "usage": {
+        "inputTokens": 1205,
+        "outputTokens": 151,
+        "totalTokens": 1356
+      },
+      "durationMs": 1753
+    }
+  ]
+}

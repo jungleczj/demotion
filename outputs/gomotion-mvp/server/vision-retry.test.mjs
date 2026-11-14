@@ -83,6 +83,43 @@ test('explicit billing and daily quota evidence on 429 are not retried', async (
   }
 });
 
+test('minute throttling with generic billing advice honors Google RetryInfo and succeeds', async () => {
+  const state = job(), waits = [];
+  const limited = { error: { message: 'You exceeded your current quota, please check your plan and billing details. Generate content requests per minute limit exceeded on Free Tier.', details: [{ '@type': 'type.googleapis.com/google.rpc.RetryInfo', retryDelay: '20.45423988s' }] } };
+  const result = await visionJSON(config, 'Rank candidates.', [], state, 'catalog-shortlist', {
+    fetchImpl: async () => state.calls === 1 ? Response.json(limited, { status: 429 }) : success(),
+    sleepImpl: async (ms) => { waits.push(ms); },
+  });
+  assert.deepEqual(result, { complete: true });
+  assert.equal(state.calls, 2);
+  assert.ok(waits[0] >= 20454, 'never truncate a provider cooldown to ten seconds');
+  assert.equal(state.events[0].quotaKind, 'minute');
+  assert.equal(state.events[0].transientRetries, 1);
+});
+
+test('structured daily quota is permanent even when its generic message suggests retrying', async () => {
+  const state = job(); let calls = 0;
+  await assert.rejects(visionJSON(config, 'Rank candidates.', [], state, 'catalog-shortlist', {
+    fetchImpl: async () => { calls++; return Response.json({ error: { message: 'Please check your plan and billing details.', details: [{ violations: [{ quotaId: 'GenerateRequestsPerDayPerProjectPerModel' }] }] } }, { status: 429 }); },
+    sleepImpl: async () => assert.fail('daily quota must not wait and retry'),
+  }), { status: 429 });
+  assert.equal(calls, 1);
+  assert.equal(state.events[0].quotaKind, 'daily');
+});
+
+test('a minute cooldown longer than the normal stage deadline can still recover', async () => {
+  const state = job(), waits = [];
+  const result = await visionJSON(config, 'Align split recording.', audio, state, 'narration-split-alignment', {
+    fetchImpl: async () => state.calls === 1
+      ? Response.json({ error: { message: 'Generate content requests per minute limit exceeded. Please retry in 58.238989837s.' } }, { status: 429 })
+      : success(),
+    sleepImpl: async (ms) => { waits.push(ms); },
+  });
+  assert.deepEqual(result, { complete: true });
+  assert.deepEqual(waits, [58239]);
+  assert.equal(state.calls, 2);
+});
+
 test('transport interruption can retry, while a disabled retry policy remains single-shot', async () => {
   for (const disabled of [false, true]) {
     const state = { ...job(), disableTransientRetries: disabled }; let calls = 0;

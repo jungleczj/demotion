@@ -1,0 +1,534 @@
+{
+  "previous": "b64327cb-3b64-40fd-9788-fdfb73411326",
+  "taskId": "6cf7ff31-5526-4f91-a5dc-e0aaaa70e600",
+  "scriptSha256": "9c9da10cc0744e1b3beb9bd8bd5c24faa7bedb6b021747ec561a4ffaba6894e2",
+  "retainedRecordingSha256": "cde8afc7464b9a6916a2281732700825f458c49e06136b114817ca035fe17712",
+  "state": "error",
+  "cancellations": 0,
+  "phase": "matching",
+  "elapsedSeconds": 66.172,
+  "recordingUnchanged": true,
+  "sameRecording": true,
+  "originalTasksPreserved": true,
+  "error": "视觉 AI 请求失败（HTTP 429），达到每分钟请求上限：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [服务链接] To monitor your current usage, head to: [服务链接] \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See [服务链接]\nPlease retry in 58.238989837s.",
+  "sceneCount": 10,
+  "selectedCount": 3,
+  "candidateCounts": [
+    1,
+    3,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    6
+  ],
+  "selections": [
+    {
+      "provider": "pixabay",
+      "id": "pixabay:235"
+    },
+    {
+      "provider": "pixabay",
+      "id": "pixabay:20763"
+    },
+    {
+      "provider": "pixabay",
+      "id": "pixabay:732"
+    }
+  ],
+  "reportComplete": false,
+  "stopReason": "narration",
+  "events": [
+    {
+      "stage": "narration-timing",
+      "engine": "gemini-tts",
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": "completed",
+      "durationMs": 162,
+      "mediaCount": 8
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 1659.181
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 1687.397
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 1970.356
+    },
+    {
+      "stage": "scene-1",
+      "engine": "preserved-selection",
+      "status": "skipped"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 2517.757
+    },
+    {
+      "stage": "scene-2",
+      "engine": "preserved-selection",
+      "status": "skipped"
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 5210.088
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 4299.396
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 1660
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 1687
+    },
+    {
+      "stage": "visual-scene-3-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 2250,
+      "mediaCount": 2
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 1970
+    },
+    {
+      "stage": "visual-scene-4-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 2456,
+      "mediaCount": 2
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 2518
+    },
+    {
+      "stage": "visual-scene-5-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 2514,
+      "mediaCount": 2
+    },
+    {
+      "stage": "repair-search-3-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 920,
+      "mediaCount": 0
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 4299
+    },
+    {
+      "stage": "repair-search-4-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 635,
+      "mediaCount": 0
+    },
+    {
+      "stage": "repair-search-5-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 854,
+      "mediaCount": 0
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 5210
+    },
+    {
+      "stage": "visual-scene-6-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 1918,
+      "mediaCount": 2
+    },
+    {
+      "stage": "repair-retrieval-3-2",
+      "engine": "nasa",
+      "status": "completed",
+      "mediaCount": 22
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 11024.229
+    },
+    {
+      "stage": "repair-search-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 683,
+      "mediaCount": 0
+    },
+    {
+      "stage": "repair-retrieval-4-2",
+      "engine": "nasa+archive",
+      "status": "completed",
+      "mediaCount": 20
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 5990.139
+    },
+    {
+      "stage": "repair-retrieval-5-2",
+      "engine": "nasa+archive",
+      "status": "completed",
+      "mediaCount": 21
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 5294.907
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 7337.137
+    },
+    {
+      "stage": "repair-retrieval-6-2",
+      "engine": "nasa+archive",
+      "status": "completed",
+      "mediaCount": 27
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 8282.15
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 8318.16
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 5295
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 5990
+    },
+    {
+      "stage": "visual-scene-4-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 1897,
+      "mediaCount": 2
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 331.89
+    },
+    {
+      "stage": "prepare-media-phases",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 559.134
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 7337
+    },
+    {
+      "stage": "visual-scene-5-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 1984,
+      "mediaCount": 2
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 332
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 559
+    },
+    {
+      "stage": "visual-scene-7-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 3037,
+      "mediaCount": 2
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 11024
+    },
+    {
+      "stage": "visual-scene-3-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 1794,
+      "mediaCount": 2
+    },
+    {
+      "stage": "visual-scene-8-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 1649,
+      "mediaCount": 2
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 8282
+    },
+    {
+      "stage": "prepare-media-source",
+      "engine": "media-reader",
+      "status": "completed",
+      "durationMs": 8318
+    },
+    {
+      "stage": "visual-scene-6-2",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 2794,
+      "mediaCount": 2
+    },
+    {
+      "stage": "whole-film-edit",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 3891,
+      "mediaCount": 6
+    },
+    {
+      "stage": "recovery-plan-1",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "failed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 2013,
+      "mediaCount": 0
+    },
+    {
+      "stage": "recovery-plan-1",
+      "engine": "recovery",
+      "status": "fallback"
+    },
+    {
+      "stage": "recovery-1",
+      "engine": "recovery",
+      "status": "completed"
+    },
+    {
+      "stage": "semantic-search-plan",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "quotaKind": "minute",
+      "transientRetries": 1,
+      "attempts": 2,
+      "durationMs": 27157,
+      "mediaCount": 0
+    },
+    {
+      "stage": "narration-split-alignment",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "quotaKind": "minute",
+      "transientRetries": 2,
+      "attempts": 3,
+      "durationMs": 27437,
+      "mediaCount": 1
+    },
+    {
+      "stage": "narration-split-alignment",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "failed",
+      "httpStatus": 429,
+      "quotaKind": "minute",
+      "attempts": 1,
+      "durationMs": 249,
+      "mediaCount": 1
+    },
+    {
+      "stage": "narration-timing",
+      "engine": "gemini-tts",
+      "model": "gemini-2.5-flash-preview-tts",
+      "status": "failed",
+      "durationMs": 27981
+    },
+    {
+      "stage": "semantic-retrieval-5",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 1773,
+      "mediaCount": 24
+    },
+    {
+      "stage": "semantic-retrieval-3",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 2627,
+      "mediaCount": 25
+    },
+    {
+      "stage": "semantic-retrieval-7",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 3626,
+      "mediaCount": 30
+    },
+    {
+      "stage": "semantic-retrieval-10",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 2288,
+      "mediaCount": 33
+    },
+    {
+      "stage": "semantic-retrieval-6",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 4889,
+      "mediaCount": 33
+    },
+    {
+      "stage": "semantic-retrieval-8",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 6964,
+      "mediaCount": 31
+    },
+    {
+      "stage": "semantic-retrieval-4",
+      "engine": "nasa",
+      "status": "completed",
+      "durationMs": 7677,
+      "mediaCount": 28
+    },
+    {
+      "stage": "catalog-shortlist",
+      "engine": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "completed",
+      "httpStatus": 200,
+      "attempts": 1,
+      "durationMs": 3126,
+      "mediaCount": 0
+    },
+    {
+      "stage": "selection-pass-1",
+      "engine": "director",
+      "status": "failed"
+    }
+  ],
+  "exportUrl": null,
+  "videoReview": null
+}

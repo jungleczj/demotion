@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-14T10:49:32.608Z",
+  "taskId": "c9bb3308-31c8-4a63-9da6-877c29450f54",
+  "model": "gemini-2.5-flash-preview-tts",
+  "base": "https://generativelanguage.googleapis.com/v1beta",
+  "voice": "Charon",
+  "textSHA256": "9c9da10cc0744e1b3beb9bd8bd5c24faa7bedb6b021747ec561a4ffaba6894e2",
+  "textLength": 122,
+  "requests": 1,
+  "retries": 0,
+  "deadlineSeconds": 60,
+  "narrationKeyMatchesLatestEnvironment": true,
+  "recordingProcessingAttempted": false,
+  "httpStatus": 200,
+  "headersMs": 15957,
+  "bodyMs": 16078,
+  "finishReasons": [
+    "STOP"
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 120,
+    "candidatesTokenCount": 712,
+    "totalTokenCount": 832,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "AUDIO",
+        "tokenCount": 712
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-2.5-flash-preview-tts",
+  "audioParts": 1,
+  "mimeTypes": [
+    "audio/L16;codec=pcm;rate=24000"
+  ],
+  "audioBytes": 1367566,
+  "rawAudioSavedPrivately": true
+}

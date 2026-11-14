@@ -1,0 +1,1336 @@
+{
+  "at": "2026-11-14T11:03:26.317Z",
+  "taskId": "b64327cb-3b64-40fd-9788-fdfb73411326",
+  "priorTaskId": "572a817a-1dd6-4283-a36f-12a8d71103d1",
+  "scriptSHA256": "9c9da10cc0744e1b3beb9bd8bd5c24faa7bedb6b021747ec561a4ffaba6894e2",
+  "scriptLength": 122,
+  "submissions": 1,
+  "cancellations": 0,
+  "ttsRecordingRetained": "6449b57f99b9b9e569413221558a2ac8d7bf96922655e6511661370bf320a62b",
+  "finishedAt": "2026-11-14T11:04:41.381Z",
+  "result": {
+    "id": "b64327cb-3b64-40fd-9788-fdfb73411326",
+    "status": "error",
+    "phase": "matching",
+    "message": "当前服务额度暂不可用，请稍后重试。",
+    "error": "视觉 AI 请求失败（HTTP 429），额度或速率受限：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [服务链接] To monitor your current usage, head to: [服务链接] \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See [服务链接]\nPlease retry in 20.45423988s.",
+    "startedAt": 1794654206314,
+    "finishedAt": 1794654279537,
+    "timings": {
+      "planningMs": 6,
+      "matchingMs": 73207
+    },
+    "project": {
+      "title": "从地球出发，向月球前进",
+      "script": "火箭从发射台升起，穿过云层，向太空进发。\n\n从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。\n\n在月球表面，撞击坑记录着漫长岁月留下的痕迹。\n\n宇航员在月面行走，探索这片安静而陌生的土地。\n\n每一次新的任务，都让我们更接近理解地球以外的世界。",
+      "format": "landscape",
+      "narrationTrack": {
+        "processingVersion": 2,
+        "key": "6449b57f99b9b9e569413221558a2ac8d7bf96922655e6511661370bf320a62b",
+        "url": "/api/narration/6449b57f99b9b9e569413221558a2ac8d7bf96922655e6511661370bf320a62b.wav",
+        "voice": "gemini:Charon",
+        "style": "documentary",
+        "language": "zh-CN",
+        "duration": 35.525333,
+        "scenes": [
+          {
+            "id": "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+            "text": "火箭从发射台升起，穿过云层，向太空进发。",
+            "start": 0,
+            "end": 5.633333333333334
+          },
+          {
+            "id": "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+            "text": "从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。",
+            "start": 5.633333333333334,
+            "end": 14.033333333333333
+          },
+          {
+            "id": "5f3344c2-2511-47c6-a9d1-e7ea12af9195",
+            "text": "在月球表面，",
+            "start": 14.033333333333333,
+            "end": 15.163333333333334
+          },
+          {
+            "id": "6c50a441-1363-4cc8-832c-9df4eaeb8c9d",
+            "text": "撞击坑记录着漫长岁月留下的痕迹。",
+            "start": 15.163333333333334,
+            "end": 21.466666666666665
+          },
+          {
+            "id": "c2328595-b4bc-4e58-86ac-b9edb028f533",
+            "text": "宇航员在月面行走，",
+            "start": 21.466666666666665,
+            "end": 22.516666666666666
+          },
+          {
+            "id": "d55ed81b-0c67-4b55-b25d-4e0e1f1ae0a1",
+            "text": "探索这片安静而陌生的土地。",
+            "start": 22.516666666666666,
+            "end": 28.766666666666666
+          },
+          {
+            "id": "5e6b8120-3bc9-4979-ba55-fe88e4cd18eb",
+            "text": "每一次新的任务，",
+            "start": 28.766666666666666,
+            "end": 29.937666666666665
+          },
+          {
+            "id": "612649b2-29b0-4be3-ae58-a24760bfe092",
+            "text": "都让我们更接近理解地球以外的世界。",
+            "start": 29.937666666666665,
+            "end": 35.766666666666666
+          }
+        ]
+      },
+      "sequenceReport": {
+        "complete": false,
+        "preparationIncomplete": true,
+        "stopReason": "quota",
+        "missingScenes": [
+          "5f3344c2-2511-47c6-a9d1-e7ea12af9195",
+          "6c50a441-1363-4cc8-832c-9df4eaeb8c9d",
+          "c2328595-b4bc-4e58-86ac-b9edb028f533",
+          "d55ed81b-0c67-4b55-b25d-4e0e1f1ae0a1",
+          "5e6b8120-3bc9-4979-ba55-fe88e4cd18eb",
+          "612649b2-29b0-4be3-ae58-a24760bfe092"
+        ],
+        "analyzed": 0,
+        "candidates": 202,
+        "method": "preparation-incomplete",
+        "summary": "制作暂未完成，已保留检索候选；候选仍需实际画面及播放检查",
+        "warnings": [
+          "已自动重试 1 轮，仍缺 6 个画面"
+        ],
+        "events": [
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:03:26.322Z",
+            "attempts": 2,
+            "transientRetries": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 836,
+              "outputTokens": 549,
+              "totalTokens": 1385
+            },
+            "durationMs": 4863
+          },
+          {
+            "stage": "narration-timing",
+            "engine": "gemini-tts",
+            "model": "gemini-2.5-flash-preview-tts",
+            "status": "completed",
+            "durationMs": 170,
+            "inputType": "text",
+            "mediaCount": 5
+          },
+          {
+            "stage": "semantic-retrieval-4",
+            "engine": "nasa+archive",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 21,
+            "durationMs": 5320,
+            "detail": "检索词：astronaut moon walk；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-2",
+            "engine": "nasa+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 38,
+            "durationMs": 5560,
+            "detail": "检索词：earth from orbit；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-5",
+            "engine": "nasa+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 25,
+            "durationMs": 5736,
+            "detail": "检索词：earth horizon sunrise；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-1",
+            "engine": "nasa+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 30,
+            "durationMs": 8632,
+            "detail": "检索词：rocket launch ascent；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-3",
+            "engine": "nasa+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 31,
+            "durationMs": 10487,
+            "detail": "检索词：moon surface craters；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "catalog-shortlist",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:03:41.675Z",
+            "attempts": 2,
+            "transientRetries": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 12110,
+              "outputTokens": 404,
+              "totalTokens": 12514
+            },
+            "durationMs": 6030
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "nasa:art002m1200912237_SAJ-Jettison",
+            "status": "failed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 23894.579,
+              "statMs": 0,
+              "probeMs": 0,
+              "ffmpegMs": 0,
+              "frameReadMs": 0,
+              "videoReadMs": 0,
+              "queueMs": 0.023,
+              "downloadMs": 23854.263,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.103,
+                "queueMs": 0.023,
+                "downloadMs": 23854.263,
+                "downloadBytes": 39815713,
+                "sourceProbeMs": 38.26,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 23894.303
+              },
+              "ffmpegInvocations": 0,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "detail": "原片清晰度不足 720p，已自动寻找高清版本或其他素材",
+            "durationMs": 23894.622
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:235",
+            "status": "completed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 6413.279,
+              "statMs": 0.098,
+              "probeMs": 0,
+              "ffmpegMs": 602.052,
+              "frameReadMs": 1.4,
+              "videoReadMs": 0.223,
+              "queueMs": 406.648,
+              "downloadMs": 1515.245,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0,
+                "queueMs": 406.648,
+                "downloadMs": 1515.245,
+                "downloadBytes": 21034631,
+                "sourceProbeMs": 48.505,
+                "cropMs": 208.136,
+                "transcodeMs": 4107.815,
+                "outputProbeMs": 47.806,
+                "commitMs": 0.411,
+                "thumbnailMs": 75.873,
+                "cacheProbeMs": 0,
+                "totalMs": 6412.827
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 7017.103
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "commons:28922977",
+            "status": "completed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 6610.063,
+              "statMs": 0.039,
+              "probeMs": 0,
+              "ffmpegMs": 748.202,
+              "frameReadMs": 1.049,
+              "videoReadMs": 0.253,
+              "queueMs": 0.001,
+              "downloadMs": 2858.092,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 0.001,
+                "downloadMs": 2858.092,
+                "downloadBytes": 46243301,
+                "sourceProbeMs": 45.975,
+                "cropMs": 172.74,
+                "transcodeMs": 3430.206,
+                "outputProbeMs": 45.47,
+                "commitMs": 1.145,
+                "thumbnailMs": 53.739,
+                "cacheProbeMs": 0,
+                "totalMs": 6609.923
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 7359.646
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "commons:32666487",
+            "status": "completed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 10760.187,
+              "statMs": 0.021,
+              "probeMs": 0,
+              "ffmpegMs": 342.652,
+              "frameReadMs": 0.532,
+              "videoReadMs": 0.066,
+              "queueMs": 6411.516,
+              "downloadMs": 2521.499,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 6411.516,
+                "downloadMs": 2521.499,
+                "downloadBytes": 34097204,
+                "sourceProbeMs": 44.208,
+                "cropMs": 97.326,
+                "transcodeMs": 1604.613,
+                "outputProbeMs": 37.431,
+                "commitMs": 0.325,
+                "thumbnailMs": 40.783,
+                "cacheProbeMs": 0,
+                "totalMs": 10760.049
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 11103.49
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:38087",
+            "status": "completed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 6258.892,
+              "statMs": 0.038,
+              "probeMs": 0,
+              "ffmpegMs": 346.151,
+              "frameReadMs": 0.908,
+              "videoReadMs": 0.084,
+              "queueMs": 4345.136,
+              "downloadMs": 461.72,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 4345.136,
+                "downloadMs": 461.72,
+                "downloadBytes": 1699477,
+                "sourceProbeMs": 52.762,
+                "cropMs": 156.305,
+                "transcodeMs": 1135.383,
+                "outputProbeMs": 46.845,
+                "commitMs": 4.383,
+                "thumbnailMs": 53.918,
+                "cacheProbeMs": 0,
+                "totalMs": 6258.369
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 6606.117
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "commons:151509801",
+            "status": "failed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 408.227,
+              "statMs": 0,
+              "probeMs": 0,
+              "ffmpegMs": 0,
+              "frameReadMs": 0,
+              "videoReadMs": 0,
+              "queueMs": 0.002,
+              "downloadMs": 406.115,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 0.002,
+                "downloadMs": 406.115,
+                "downloadBytes": 0,
+                "sourceProbeMs": 0,
+                "cropMs": 0,
+                "transcodeMs": 0,
+                "outputProbeMs": 0,
+                "commitMs": 0,
+                "thumbnailMs": 0,
+                "cacheProbeMs": 0,
+                "totalMs": 407.888
+              },
+              "ffmpegInvocations": 0,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "detail": "高清原片超过本次 48MB 下载上限，自动寻找其他高清素材",
+            "durationMs": 408.24
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:127428",
+            "status": "completed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 9234.872,
+              "statMs": 0.031,
+              "probeMs": 0,
+              "ffmpegMs": 812.394,
+              "frameReadMs": 0.924,
+              "videoReadMs": 0.148,
+              "queueMs": 6257.084,
+              "downloadMs": 287.313,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0,
+                "queueMs": 6257.084,
+                "downloadMs": 287.313,
+                "downloadBytes": 9149506,
+                "sourceProbeMs": 60.835,
+                "cropMs": 247.802,
+                "transcodeMs": 2260.587,
+                "outputProbeMs": 49.482,
+                "commitMs": 0.429,
+                "thumbnailMs": 69.064,
+                "cacheProbeMs": 0,
+                "totalMs": 9234.738
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 10048.408
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:106311",
+            "status": "completed",
+            "at": "2026-11-14T11:03:47.706Z",
+            "timings": {
+              "playbackMs": 4347.025,
+              "statMs": 0.053,
+              "probeMs": 0,
+              "ffmpegMs": 746.823,
+              "frameReadMs": 1.618,
+              "videoReadMs": 0.371,
+              "queueMs": 0.001,
+              "downloadMs": 1505.701,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 0.001,
+                "downloadMs": 1505.701,
+                "downloadBytes": 10540140,
+                "sourceProbeMs": 114.753,
+                "cropMs": 188.978,
+                "transcodeMs": 2400.775,
+                "outputProbeMs": 55.75,
+                "commitMs": 0.701,
+                "thumbnailMs": 77.555,
+                "cacheProbeMs": 0,
+                "totalMs": 4346.398
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 5095.965
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:106311",
+            "status": "completed",
+            "durationMs": 5096,
+            "detail": "pixabay:106311"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:38087",
+            "status": "completed",
+            "durationMs": 6606,
+            "detail": "pixabay:38087"
+          },
+          {
+            "stage": "media-3",
+            "engine": "media-reader",
+            "status": "failed",
+            "detail": "commons:151509801：高清原片超过本次 48MB 下载上限，自动寻找其他高清素材"
+          },
+          {
+            "stage": "visual-scene-3-1",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-14T11:03:54.312Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1763,
+              "outputTokens": 136,
+              "totalTokens": 1899
+            },
+            "durationMs": 2662
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:235",
+            "status": "completed",
+            "durationMs": 7017,
+            "detail": "pixabay:235"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "commons:28922977",
+            "status": "completed",
+            "durationMs": 7359,
+            "detail": "commons:28922977"
+          },
+          {
+            "stage": "repair-search-3-2",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:03:56.974Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 224,
+              "outputTokens": 28,
+              "totalTokens": 252
+            },
+            "durationMs": 741
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:127428",
+            "status": "completed",
+            "durationMs": 10048,
+            "detail": "pixabay:127428"
+          },
+          {
+            "stage": "visual-scene-4-1",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-14T11:03:57.754Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3129,
+              "outputTokens": 228,
+              "totalTokens": 3357
+            },
+            "durationMs": 2974
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "commons:32666487",
+            "status": "completed",
+            "durationMs": 11103,
+            "detail": "commons:32666487"
+          },
+          {
+            "stage": "visual-scene-2-1",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-14T11:03:58.809Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3529,
+              "outputTokens": 269,
+              "totalTokens": 3798
+            },
+            "durationMs": 2842
+          },
+          {
+            "stage": "repair-retrieval-3-2",
+            "engine": "archive+pixabay",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 21,
+            "detail": "补搜：moon crater low altitude flyover"
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:264448",
+            "status": "completed",
+            "at": "2026-11-14T11:03:59.479Z",
+            "timings": {
+              "playbackMs": 1561.142,
+              "statMs": 0.035,
+              "probeMs": 0,
+              "ffmpegMs": 318.995,
+              "frameReadMs": 1.496,
+              "videoReadMs": 0.141,
+              "queueMs": 0.026,
+              "downloadMs": 523.027,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.027,
+                "queueMs": 0.026,
+                "downloadMs": 523.027,
+                "downloadBytes": 939133,
+                "sourceProbeMs": 67.061,
+                "cropMs": 120.114,
+                "transcodeMs": 743.523,
+                "outputProbeMs": 50.175,
+                "commitMs": 1.187,
+                "thumbnailMs": 54.913,
+                "cacheProbeMs": 0,
+                "totalMs": 1560.997
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 1881.915
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:218508",
+            "status": "completed",
+            "at": "2026-11-14T11:03:59.479Z",
+            "timings": {
+              "playbackMs": 3469.441,
+              "statMs": 0.026,
+              "probeMs": 0,
+              "ffmpegMs": 426.992,
+              "frameReadMs": 0.643,
+              "videoReadMs": 0.098,
+              "queueMs": 0.008,
+              "downloadMs": 627.232,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.002,
+                "queueMs": 0.008,
+                "downloadMs": 627.232,
+                "downloadBytes": 2290750,
+                "sourceProbeMs": 38.705,
+                "cropMs": 109.558,
+                "transcodeMs": 2606.808,
+                "outputProbeMs": 41.037,
+                "commitMs": 0.328,
+                "thumbnailMs": 43.887,
+                "cacheProbeMs": 0,
+                "totalMs": 3469.326
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 3897.249
+          },
+          {
+            "stage": "repair-search-4-2",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:04:00.728Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 227,
+              "outputTokens": 34,
+              "totalTokens": 261
+            },
+            "durationMs": 991
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:264448",
+            "status": "completed",
+            "durationMs": 1882,
+            "detail": "pixabay:264448"
+          },
+          {
+            "stage": "repair-search-2-2",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:04:01.652Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 222,
+              "outputTokens": 16,
+              "totalTokens": 238
+            },
+            "durationMs": 938
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:218508",
+            "status": "completed",
+            "durationMs": 3897,
+            "detail": "pixabay:218508"
+          },
+          {
+            "stage": "visual-scene-3-2",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-14T11:04:03.376Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 2685,
+              "outputTokens": 263,
+              "totalTokens": 2948
+            },
+            "durationMs": 7029
+          },
+          {
+            "stage": "repair-retrieval-4-2",
+            "engine": "archive+nasa",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 22,
+            "detail": "补搜：apollo astronaut walking lunar surface"
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:127728",
+            "status": "completed",
+            "at": "2026-11-14T11:04:04.798Z",
+            "timings": {
+              "playbackMs": 3697.515,
+              "statMs": 0.022,
+              "probeMs": 0,
+              "ffmpegMs": 374.092,
+              "frameReadMs": 0.614,
+              "videoReadMs": 0.07,
+              "queueMs": 0.005,
+              "downloadMs": 2323.41,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.005,
+                "queueMs": 0.005,
+                "downloadMs": 2323.41,
+                "downloadBytes": 3168017,
+                "sourceProbeMs": 44.802,
+                "cropMs": 235.696,
+                "transcodeMs": 979.318,
+                "outputProbeMs": 47.653,
+                "commitMs": 0.495,
+                "thumbnailMs": 60.446,
+                "cacheProbeMs": 0,
+                "totalMs": 3697.362
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 4072.42
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:92481",
+            "status": "completed",
+            "at": "2026-11-14T11:04:04.799Z",
+            "timings": {
+              "playbackMs": 2085.655,
+              "statMs": 0.031,
+              "probeMs": 0,
+              "ffmpegMs": 246.394,
+              "frameReadMs": 0.555,
+              "videoReadMs": 0.069,
+              "queueMs": 0.02,
+              "downloadMs": 783.248,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.012,
+                "queueMs": 0.02,
+                "downloadMs": 783.248,
+                "downloadBytes": 397739,
+                "sourceProbeMs": 69.045,
+                "cropMs": 82.944,
+                "transcodeMs": 1058.053,
+                "outputProbeMs": 39.548,
+                "commitMs": 0.357,
+                "thumbnailMs": 48.185,
+                "cacheProbeMs": 0,
+                "totalMs": 2085.523
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 2332.747
+          },
+          {
+            "stage": "repair-retrieval-2-2",
+            "engine": "pixabay+archive",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 23,
+            "detail": "补搜：planet earth space station view"
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:20763",
+            "status": "completed",
+            "at": "2026-11-14T11:04:05.140Z",
+            "timings": {
+              "playbackMs": 3677.098,
+              "statMs": 0.037,
+              "probeMs": 0,
+              "ffmpegMs": 528.564,
+              "frameReadMs": 1.179,
+              "videoReadMs": 0.112,
+              "queueMs": 1633.99,
+              "downloadMs": 365.344,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.004,
+                "queueMs": 1633.99,
+                "downloadMs": 365.344,
+                "downloadBytes": 4015748,
+                "sourceProbeMs": 45.411,
+                "cropMs": 178.028,
+                "transcodeMs": 1344.135,
+                "outputProbeMs": 47.946,
+                "commitMs": 0.417,
+                "thumbnailMs": 60.022,
+                "cacheProbeMs": 0,
+                "totalMs": 3677.014
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 4207.041
+          },
+          {
+            "stage": "prepare-media-phases",
+            "engine": "media-reader",
+            "assetId": "pixabay:732",
+            "status": "completed",
+            "at": "2026-11-14T11:04:05.140Z",
+            "timings": {
+              "playbackMs": 1635.618,
+              "statMs": 0.049,
+              "probeMs": 0,
+              "ffmpegMs": 292.519,
+              "frameReadMs": 0.713,
+              "videoReadMs": 0.096,
+              "queueMs": 0.004,
+              "downloadMs": 450.74,
+              "playbackPhases": {
+                "cacheHit": false,
+                "metadataMs": 0.001,
+                "queueMs": 0.004,
+                "downloadMs": 450.74,
+                "downloadBytes": 598504,
+                "sourceProbeMs": 64.94,
+                "cropMs": 84.186,
+                "transcodeMs": 934.591,
+                "outputProbeMs": 46.071,
+                "commitMs": 0.405,
+                "thumbnailMs": 53.375,
+                "cacheProbeMs": 0,
+                "totalMs": 1635.288
+              },
+              "ffmpegInvocations": 1,
+              "playbackBypassed": false
+            },
+            "timingScope": "playbackMs measures this caller waiting for ensurePlayback; playbackPhases measures its shared preparation operation, including queue, download, validation and normalization. Local-file analysis bypasses playback, leaving queue/download null.",
+            "durationMs": 1929.021
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:732",
+            "status": "completed",
+            "durationMs": 1929,
+            "detail": "pixabay:732"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:92481",
+            "status": "completed",
+            "durationMs": 2333,
+            "detail": "pixabay:92481"
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:127728",
+            "status": "completed",
+            "durationMs": 4073,
+            "detail": "pixabay:127728"
+          },
+          {
+            "stage": "visual-scene-4-2",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-14T11:04:08.871Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 2959,
+              "outputTokens": 219,
+              "totalTokens": 3178
+            },
+            "durationMs": 4488
+          },
+          {
+            "stage": "prepare-media-source",
+            "engine": "media-reader",
+            "assetId": "pixabay:20763",
+            "status": "completed",
+            "durationMs": 4207,
+            "detail": "pixabay:20763"
+          },
+          {
+            "stage": "visual-scene-2-2",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-14T11:04:09.347Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3394,
+              "outputTokens": 282,
+              "totalTokens": 3676
+            },
+            "durationMs": 3965
+          },
+          {
+            "stage": "visual-scene-5-1",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 2,
+            "at": "2026-11-14T11:04:10.406Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 3371,
+              "outputTokens": 342,
+              "totalTokens": 3713
+            },
+            "durationMs": 2006
+          },
+          {
+            "stage": "media-1",
+            "engine": "media-reader",
+            "status": "failed",
+            "detail": "nasa:art002m1200912237_SAJ-Jettison：原片清晰度不足 720p，已自动寻找高清版本或其他素材"
+          },
+          {
+            "stage": "visual-scene-1-1",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "video",
+            "mediaCount": 1,
+            "at": "2026-11-14T11:04:11.601Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 1816,
+              "outputTokens": 99,
+              "totalTokens": 1915
+            },
+            "durationMs": 1479
+          },
+          {
+            "stage": "whole-film-edit",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "timestamped-images",
+            "mediaCount": 8,
+            "at": "2026-11-14T11:04:13.359Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 10420,
+              "outputTokens": 687,
+              "totalTokens": 11107
+            },
+            "durationMs": 14185
+          },
+          {
+            "stage": "recovery-plan-1",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:04:27.562Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 515,
+              "outputTokens": 348,
+              "totalTokens": 863
+            },
+            "durationMs": 2070
+          },
+          {
+            "stage": "recovery-1",
+            "engine": "recovery",
+            "status": "completed",
+            "detail": "仅重试 3 个缺失镜头，拆分后共 8 个；保留已有画面"
+          },
+          {
+            "stage": "semantic-search-plan",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:04:29.636Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 831,
+              "outputTokens": 552,
+              "totalTokens": 1383
+            },
+            "durationMs": 1847
+          },
+          {
+            "stage": "narration-split-alignment",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "audio",
+            "mediaCount": 1,
+            "at": "2026-11-14T11:04:29.853Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 342,
+              "outputTokens": 8,
+              "totalTokens": 350
+            },
+            "durationMs": 2171
+          },
+          {
+            "stage": "narration-split-alignment",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "audio",
+            "mediaCount": 1,
+            "at": "2026-11-14T11:04:32.081Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 338,
+              "outputTokens": 8,
+              "totalTokens": 346
+            },
+            "durationMs": 1466
+          },
+          {
+            "stage": "semantic-retrieval-4",
+            "engine": "nasa+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 26,
+            "durationMs": 1377,
+            "detail": "检索词：lunar craters aerial；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "narration-split-alignment",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "completed",
+            "inputType": "audio",
+            "mediaCount": 1,
+            "at": "2026-11-14T11:04:33.616Z",
+            "attempts": 1,
+            "httpStatus": 200,
+            "usage": {
+              "inputTokens": 320,
+              "outputTokens": 9,
+              "totalTokens": 329
+            },
+            "durationMs": 1456
+          },
+          {
+            "stage": "semantic-retrieval-6",
+            "engine": "nasa+archive",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 25,
+            "durationMs": 2595,
+            "detail": "检索词：astronaut looking horizon；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-7",
+            "engine": "nasa+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 33,
+            "durationMs": 3234,
+            "detail": "检索词：space probe cosmos；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "narration-timing",
+            "engine": "gemini-tts",
+            "model": "gemini-2.5-flash-preview-tts",
+            "status": "completed",
+            "durationMs": 5439,
+            "inputType": "text",
+            "mediaCount": 8
+          },
+          {
+            "stage": "semantic-retrieval-8",
+            "engine": "nasa+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 43,
+            "durationMs": 4117,
+            "detail": "检索词：earth space view；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-5",
+            "engine": "nasa+archive",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 33,
+            "durationMs": 6199,
+            "detail": "检索词：astronaut walking moon；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "semantic-retrieval-3",
+            "engine": "nasa+commons",
+            "status": "completed",
+            "inputType": "AI-query",
+            "mediaCount": 36,
+            "durationMs": 7662,
+            "detail": "检索词：moon soil regolith；目录返回不等于内容已审核"
+          },
+          {
+            "stage": "catalog-shortlist",
+            "engine": "gemini",
+            "model": "gemini-3.5-flash-lite",
+            "status": "failed",
+            "inputType": "text",
+            "mediaCount": 0,
+            "at": "2026-11-14T11:04:39.145Z",
+            "attempts": 1,
+            "httpStatus": 429,
+            "durationMs": 369,
+            "detail": "视觉 AI 请求失败（HTTP 429），额度或速率受限：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [服务链接] To monitor your current usage, head to: [服务链接] \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See [服务链接]\nPlease retry in 20.45423988s."
+          },
+          {
+            "stage": "selection-pass-1",
+            "engine": "director",
+            "status": "failed",
+            "detail": "视觉 AI 请求失败（HTTP 429），额度或速率受限：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [服务链接] To monitor your current usage, head to: [服务链接] \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See [服务链接]\nPlease retry in 20.45423988s."
+          }
+        ],
+        "retries": 1,
+        "retryLimit": 3,
+        "bytes": 39628262,
+        "usage": {
+          "inputTokens": 49031,
+          "outputTokens": 4481,
+          "totalTokens": 53512
+        }
+      },
+      "scenes": [
+        {
+          "id": "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+          "text": "火箭从发射台升起，穿过云层，向太空进发。",
+          "query": "rocket launch ascent",
+          "duration": 5.633333333333334,
+          "start": 6,
+          "selected": {
+            "id": "pixabay:235",
+            "provider": "pixabay",
+            "title": "rocket, thrusters, nasa, space shuttle, endeavor, atlantis, discovery, space ship, rocket launch, space travel, power, space, explore, science, technology, boosters, usa, lift-off, gravitation, gravity, speed, accelerate, acceleration, fuel, altitude, astronautics, space exploration, propulsion, jets, fire, flame, heat",
+            "sourceUrl": "https://pixabay.com/videos/id-235/"
+          },
+          "candidateCount": 1,
+          "visualObservation": {
+            "assetId": "pixabay:235",
+            "observed": "火箭在发射台点火升起，伴随大量白烟和火焰",
+            "medium": "live action",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 6,
+                "end": 12,
+                "reason": "火箭在发射台点火并开始升起，符合叙事需求"
+              }
+            ],
+            "uncertainties": []
+          }
+        },
+        {
+          "id": "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+          "text": "从轨道上俯瞰地球，白色的云层在蓝色星球上缓缓移动。",
+          "query": "earth from orbit",
+          "duration": 8.399999999999999,
+          "start": 0,
+          "selected": {
+            "id": "pixabay:20763",
+            "provider": "pixabay",
+            "title": "planet earth, space, universe, planet, earth, satellite view, space exploration, solar system, cosmos, milky way, sunrise",
+            "sourceUrl": "https://pixabay.com/videos/id-20763/"
+          },
+          "candidateCount": 5,
+          "visualObservation": {
+            "assetId": "pixabay:20763",
+            "observed": "从太空轨道俯瞰地球，地球表面夜景灯光与大气层边缘的日出光芒，带有云层",
+            "medium": "synthetic-looking",
+            "watermarkFree": true,
+            "intervals": [
+              {
+                "start": 0,
+                "end": 9,
+                "reason": "展示了从轨道俯瞰地球的场景，符合旁白描述"
+              }
+            ],
+            "uncertainties": []
+          }
+        },
+        {
+          "id": "5f3344c2-2511-47c6-a9d1-e7ea12af9195",
+          "text": "在月球表面，",
+          "query": "moon soil regolith",
+          "duration": 1.1300000000000008,
+          "start": 0,
+          "selected": null,
+          "candidateCount": 36
+        },
+        {
+          "id": "6c50a441-1363-4cc8-832c-9df4eaeb8c9d",
+          "text": "撞击坑记录着漫长岁月留下的痕迹。",
+          "query": "lunar craters aerial",
+          "duration": 6.303333333333331,
+          "start": 0,
+          "selected": null,
+          "candidateCount": 26
+        },
+        {
+          "id": "c2328595-b4bc-4e58-86ac-b9edb028f533",
+          "text": "宇航员在月面行走，",
+          "query": "astronaut walking moon",
+          "duration": 1.0500000000000007,
+          "start": 0,
+          "selected": null,
+          "candidateCount": 33
+        },
+        {
+          "id": "d55ed81b-0c67-4b55-b25d-4e0e1f1ae0a1",
+          "text": "探索这片安静而陌生的土地。",
+          "query": "astronaut looking horizon",
+          "duration": 6.25,
+          "start": 0,
+          "selected": null,
+          "candidateCount": 25
+        },
+        {
+          "id": "5e6b8120-3bc9-4979-ba55-fe88e4cd18eb",
+          "text": "每一次新的任务，",
+          "query": "space probe cosmos",
+          "duration": 1.1709999999999994,
+          "start": 0,
+          "selected": null,
+          "candidateCount": 33
+        },
+        {
+          "id": "612649b2-29b0-4be3-ae58-a24760bfe092",
+          "text": "都让我们更接近理解地球以外的世界。",
+          "query": "earth space view",
+          "duration": 5.829000000000001,
+          "start": 0,
+          "selected": null,
+          "candidateCount": 43
+        }
+      ]
+    }
+  },
+  "originalTasksPreserved": true
+}
