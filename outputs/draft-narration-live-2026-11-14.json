@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-14T19:25:42.137816",
+  "taskId": "6cf7ff31-5526-4f91-a5dc-e0aaaa70e600",
+  "projectStatus": "error",
+  "exportPresent": false,
+  "sceneCount": 10,
+  "retainedTimingSpans": 8,
+  "retainedRecordingSeconds": 35.525333,
+  "selectedSpans": [
+    {
+      "id": "3801a10d-e8eb-4c90-bedf-5b50b71447f5",
+      "start": 0,
+      "end": 5.633333333333334,
+      "mean_volume": -19.8,
+      "max_volume": -2.0
+    },
+    {
+      "id": "07ee7050-0028-4a3f-b71b-5e02d1108a80",
+      "start": 5.633333333333334,
+      "end": 14.033333333333333,
+      "mean_volume": -20.0,
+      "max_volume": -2.3
+    },
+    {
+      "id": "5e6b8120-3bc9-4979-ba55-fe88e4cd18eb",
+      "start": 28.766666666666666,
+      "end": 29.937666666666665,
+      "mean_volume": -21.9,
+      "max_volume": -1.9
+    }
+  ],
+  "browserBefore": "草稿预览 · 仅画面，旁白尚待准备",
+  "browserAfter": "草稿预览 · 仅播放已有画面",
+  "browserVideoDecoded": true,
+  "humanListeningVerified": false,
+  "cancellations": 0
+}

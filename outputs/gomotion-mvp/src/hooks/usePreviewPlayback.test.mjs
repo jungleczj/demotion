@@ -81,6 +81,19 @@ test('timeline helpers retain exact offsets and skip only missing visuals', () =
   assert.equal(nextVideoScene(draft, 0), 2);
 });
 
+test('a split of an unfilled scene keeps the saved narration audible on approved draft scenes', async () => {
+  const draft = project(true);
+  draft.scenes.splice(1, 1, { ...draft.scenes[1], id: 'split-a', text: 'Text', duration: 2 }, { ...draft.scenes[1], id: 'split-b', text: '1', duration: 2 });
+  const app = mount(draft);
+  try {
+    app.playback.play('film'); await settle();
+    assert.equal(app.playback.playing, true);
+    assert.deepEqual(app.nodes.map((node) => node.offsets), [[0]]);
+    app.tick(5.05); await settle();
+    assert.deepEqual(app.nodes.map((node) => node.offsets), [[0], [9]]);
+  } finally { app.dispose(); }
+});
+
 test('a delayed decoded frame keeps the outgoing slot and one narration source across a normal cut', async () => {
   const app = mount();
   try {

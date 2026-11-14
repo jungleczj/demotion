@@ -27,6 +27,26 @@ export function validNarration(project: Project) {
     && track.scenes.every((scene, i) => scene.id === project.scenes[i].id && scene.text === project.scenes[i].text) ? track : null;
 }
 
+function draftNarration(project: Project, mode: Mode) {
+  const complete = validNarration(project);
+  if (complete || mode !== 'available') return complete;
+  const track = project.narrationTrack;
+  if (!track || track.processingVersion !== 2 || track.voice !== project.voice || track.style !== (project.voiceStyle || 'documentary')
+    || (track.language || 'auto') !== (project.language || 'auto')) return null;
+  const compact = (text: string) => text.replace(/\s+/gu, '');
+  if (compact(track.scenes.map((scene) => scene.text).join('')) !== compact(project.scenes.map((scene) => scene.text).join(''))) return null;
+  const spans = new Map(track.scenes.map((scene) => [scene.id, scene]));
+  const selected = project.scenes.flatMap((scene, index) => {
+    if (scene.selected?.kind !== 'video') return [];
+    const span = spans.get(scene.id);
+    return [{ index, span: span && span.text === scene.text && Number.isFinite(span.start) && span.start >= 0
+      && Math.abs(span.end - span.start - scene.duration) < .025 && span.end <= track.duration + .3 ? span : null }];
+  });
+  if (selected.some(({ span }) => !span)) return null;
+  const byIndex = new Map(selected.map(({ index, span }) => [index, span!]));
+  return { ...track, scenes: project.scenes.map((scene, index) => byIndex.get(index) || { id: scene.id, text: scene.text, start: NaN, end: NaN }) };
+}
+
 function waitUntil(ready: () => boolean, signal: AbortSignal, timeout = 30000) {
   return new Promise<void>((resolve, reject) => {
     const deadline = performance.now() + timeout;
@@ -224,7 +244,7 @@ export default function usePreviewPlayback(options: Options) {
 
   async function startDraft(project: Project, index: number, local: number, mode: Mode, abort: AbortController) {
     try {
-      const track = validNarration(project);
+      const track = draftNarration(project, mode);
       const narration = track && context.current ? (async () => {
         let buffer = buffers.current.get(track.key);
         if (!buffer) {
@@ -254,7 +274,7 @@ export default function usePreviewPlayback(options: Options) {
         source.current?.disconnect(); source.current = null;
         if (!spoken || !track || !ctx || !gain.current) return;
         const audioPosition = track.scenes[sceneIndex].start + sceneLocal;
-        if (audioPosition >= spoken.duration) return;
+        if (!Number.isFinite(audioPosition) || audioPosition >= spoken.duration) return;
         const node = ctx.createBufferSource(); node.buffer = spoken; node.connect(gain.current);
         node.start(0, audioPosition); source.current = node;
       };
@@ -311,7 +331,8 @@ export default function usePreviewPlayback(options: Options) {
           const nextOffset = sceneOffset(project, next);
           // Restart only across omitted draft intervals. Adjacent scenes use
           // the same AudioBufferSourceNode all the way through their boundary.
-          if (Math.abs(nextOffset - end) > .025) { anchorPosition = nextOffset; anchorTime = seconds(); startAudio(next, 0); }
+          const audioGap = track && Math.abs(track.scenes[next].start - (track.scenes[playingScene.index].start + sceneDuration)) > .025;
+          if (Math.abs(nextOffset - end) > .025 || audioGap) { anchorPosition = nextOffset; anchorTime = seconds(); startAudio(next, 0); }
           void switchScene(next).catch((error) => fail(error, abort));
         }
         frame.current = requestAnimationFrame(tick);
@@ -334,7 +355,7 @@ export default function usePreviewPlayback(options: Options) {
     release();
     const abort = new AbortController(); request.current = abort; busy.current = true;
     setPreparing(true); setMessage('正在准备播放…');
-    const track = validNarration(project);
+    const track = draftNarration(project, mode);
     if (voiceEnabled || track) {
       try {
         context.current ||= new AudioContext();

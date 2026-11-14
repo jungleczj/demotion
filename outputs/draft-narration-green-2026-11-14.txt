@@ -1,0 +1,17 @@
+✔ timeline helpers retain exact offsets and skip only missing visuals (0.575583ms)
+✔ a split of an unfilled scene keeps the saved narration audible on approved draft scenes (76.711292ms)
+✔ a delayed decoded frame keeps the outgoing slot and one narration source across a normal cut (258.517375ms)
+✔ missing draft intervals jump narration once rather than playing their unseen text (108.419875ms)
+✔ rendered movie starts inside the click and highlighting does not restart its element (72.780209ms)
+✔ unmount cancels a pending handoff and stops the continuous voice (144.672167ms)
+✔ changing project cancels pending frames, clears old slots and resets the timeline (166.424458ms)
+✔ a failed background preload leaves the front slot playing until its boundary (142.944625ms)
+✔ a late rejection from warmup play cannot pause a slot after its decoded frame was accepted (1.090042ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1063.373084
