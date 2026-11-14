@@ -1,5 +1,7 @@
 const geminiBase = 'https://generativelanguage.googleapis.com/v1beta';
 const geminiReviewModel = 'gemini-3.8-flash';
+export const DEFAULT_TTS_MODEL = 'gemini-2.5-flash-preview-tts';
+export const narrationModel = (config) => config.ttsModel || DEFAULT_TTS_MODEL;
 
 // Each credential belongs to one service. A compatible text/image key is never
 // a fallback for audio, even when the audio service has not been configured.
@@ -14,6 +16,7 @@ export function aiConfigFromEnv(env = process.env) {
     textProvider: env.TEXT_AI_PROVIDER || 'vision',
     llmKey: env.LLM_API_KEY || env.SECRET_DEEPSEEK_API_KEY || '',
     llmBase: env.LLM_BASE_URL || 'https://api.deepseek.com', llmModel: env.LLM_MODEL || 'deepseek-flash',
+    ttsModel: (env.TTS_MODEL || DEFAULT_TTS_MODEL).trim().replace(/^models\//, ''),
     narrationKey: env.NARRATION_API_KEY || env.GEMINI_API_KEY || (legacyGemini ? visionKey : ''),
     narrationBase: env.NARRATION_BASE_URL || (legacyGemini ? visionBase : geminiBase),
     reviewProvider: env.REVIEW_PROVIDER || 'gemini',

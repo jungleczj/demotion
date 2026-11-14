@@ -1,0 +1,20 @@
+✔ environment role resolution preserves legacy Gemini and does not reuse a primary image key for audio (0.713666ms)
+✔ all model role credentials are redacted together (0.066042ms)
+✔ narration sends only the independent audio key to the audio endpoint (1.694ms)
+✔ DeepSeek alone cannot be accidentally used as a TTS credential (0.252625ms)
+✔ native cloud writing uses the configured DeepSeek model and leaves audio previews on their own service (6.919125ms)
+✔ image selection sends DeepSeek image blocks with thinking disabled and never an audio payload (0.524917ms)
+✔ cloud workers receive every independent role at runtime while the task envelope stays credential-free (0.32825ms)
+✔ audio timing keeps the selected recording and routes actual audio to the retained review service (211.533833ms)
+✔ final film review chooses the retained audiovisual role before validating the real export (1.336ms)
+✔ final audiovisual review actually sends an audio-bearing MP4 to its independent Gemini service (182.107334ms)
+✔ configured production TTS model controls the request and separates recording caches (354.262542ms)
+✔ every chunk of long narration uses one configured TTS model and voice (239.738083ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 770.215125

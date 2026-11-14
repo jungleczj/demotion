@@ -3,7 +3,7 @@ import { mkdir, writeFile, stat, rename, rm, readdir, utimes } from 'node:fs/pro
 import path from 'node:path';
 import { workDirectory } from './runtime.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
-import { narrationConfig } from './ai-services.mjs';
+import { narrationConfig, narrationModel, DEFAULT_TTS_MODEL } from './ai-services.mjs';
 import { probe, run } from './process.mjs';
 import { requestNarration } from './narration-request.mjs';
 import { sharedOperations } from './shared-operation.mjs';
@@ -13,7 +13,7 @@ import { retainedMedia } from './media-retention.mjs';
 import { estimateNarrationSeconds } from '../shared/narration-duration.mjs';
 import { narrationPlan, ensureNarrationManifest, checkedNarrationArtifact, writeNarrationReceipt, assembleNarration, withNarrationSlot, activeNarrationDirectories, CHUNK_CONCURRENCY } from './narration-chunks.mjs';
 
-export const TTS_MODEL = 'gemini-2.5-flash-preview-tts';
+export const TTS_MODEL = DEFAULT_TTS_MODEL;
 const folder = path.join(workDirectory, 'narration');
 const recordingRequest = sharedOperations();
 const voices = new Set(voiceCatalog.map((v) => v.key));
@@ -72,8 +72,9 @@ function wav(pcm, rate) {
 }
 
 async function recordNarration(text, voice, style, voiceStyle, config, file, signal) {
+  const model = narrationModel(config);
   const attempt = randomUUID();
-  const data = await withNarrationSlot(signal, () => requestNarration(config, TTS_MODEL, { contents: [{ parts: [{ text: `${style}\n\nNARRATION:\n${text}` }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, signal, { attemptTimeoutMs: Math.max(45000, Math.min(120000, estimateNarrationSeconds(text, voiceStyle) * 1000)) }));
+  const data = await withNarrationSlot(signal, () => requestNarration(config, model, { contents: [{ parts: [{ text: `${style}\n\nNARRATION:\n${text}` }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, signal, { attemptTimeoutMs: Math.max(45000, Math.min(120000, estimateNarrationSeconds(text, voiceStyle) * 1000)) }));
   const candidate = data.candidates?.[0];
   if (candidate?.finishReason && candidate.finishReason !== 'STOP') throw new Error('配音服务未完整读完这一段旁白，已保留完成的录音');
   const parts = candidate?.content?.parts?.filter((part) => part.inlineData?.data).map((part) => part.inlineData);
@@ -91,7 +92,7 @@ async function recordNarration(text, voice, style, voiceStyle, config, file, sig
   } finally { await Promise.all([temporary, normalized].map((file) => rm(file, { force: true }))); }
 }
 
-async function verifiedPreviousTrack(project, text, key, file, signal) {
+async function verifiedPreviousTrack(project, text, key, file, signal, model) {
   const track = project.narrationTrack, compact = (value) => String(value || '').replace(/\s+/gu, '');
   if (track?.processingVersion !== 2 || track.key !== key || track.voice !== project.voice || track.style !== (project.voiceStyle || 'documentary') || track.language !== (project.language || 'auto') || !Number.isFinite(track.duration) || !Array.isArray(track.scenes) || !track.scenes.length || compact(track.scenes.map((scene) => scene.text).join('')) !== compact(text)) return null;
   if (track.scenes.some((scene, index) => !Number.isFinite(scene.start) || !Number.isFinite(scene.end) || scene.end <= scene.start || (index === 0 ? scene.start !== 0 : Math.abs(scene.start - track.scenes[index - 1].end) > .001))) return null;
@@ -102,7 +103,7 @@ async function verifiedPreviousTrack(project, text, key, file, signal) {
     if (!audio.hasAudio || audio.duration < .3 || Math.abs(audio.duration - track.duration) > .002) return null;
     await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-xerror', '-i', file, '-f', 'null', '-'], signal);
     await utimes(file, new Date(), new Date());
-    return { key, file, duration: audio.duration, model: TTS_MODEL };
+    return { key, file, duration: audio.duration, model };
   } catch { signal?.throwIfAborted(); return null; }
 }
 
@@ -110,7 +111,7 @@ const progressListeners = new Map(), progressSnapshots = new Map();
 function announceProgress(key, value) { progressSnapshots.set(key, value); for (const listener of progressListeners.get(key) || []) { try { listener(value); } catch {} } }
 
 async function longNarration(plan, voice, style, project, config, file, signal) {
-  const { manifest, texts } = plan, key = manifest.key;
+  const { manifest, texts } = plan, key = manifest.key, model = manifest.request.model;
   const directory = path.join(folder, 'chunks', key);
   activeNarrationDirectories.set(directory, (activeNarrationDirectories.get(directory) || 0) + 1);
   const group = new AbortController(), groupSignal = AbortSignal.any([signal, group.signal]);
@@ -146,12 +147,14 @@ async function longNarration(plan, voice, style, project, config, file, signal) 
       signal.throwIfAborted(); await rename(temporary, file);
       await writeNarrationReceipt(file, key, info.duration);
       await pruneNarrationCache(folder, file);
-      return { key, file, duration: info.duration, model: TTS_MODEL };
+      return { key, file, duration: info.duration, model };
     } finally { await rm(temporary, { force: true }); }
   } finally { const users = activeNarrationDirectories.get(directory) - 1; if (users) activeNarrationDirectories.set(directory, users); else activeNarrationDirectories.delete(directory); }
 }
 
 export async function narrationAudio(scene, project, config, signal, onProgress) {
+  const model = narrationModel(config);
+  config = { ...config, ttsModel: model };
   const voice = project.voice?.split(':')[1];
   if (!project.voice?.startsWith('gemini:') || !voices.has(voice)) throw new Error('请选择 Gemini 神经配音并重新选材；旧版本机朗读不满足本片的人声要求');
   if (!narrationConfig(config).visionKey) throw new Error('自然配音需要已连接的声音服务');
@@ -160,22 +163,22 @@ export async function narrationAudio(scene, project, config, signal, onProgress)
   const language = languages.find((l) => l.code === project.language);
   const languageStyle = language ? `Speak fluent native ${language.speech}. The supplied narration is already in this language; do not translate or change any words.` : 'Speak in the language of the supplied narration, using standard Mandarin for Chinese.';
   const style = languageStyle + ' ' + (deliveryStyles[project.voiceStyle] || deliveryStyles.documentary) + ' Read the exact narration below as a human narrator. Natural human phrasing and breaths, medium pace, connected delivery consistent with the requested style. No announcer affectation, robotic rhythm, extra words, headings, music or sound effects. Do not read these instructions. Read only the narration verbatim.';
-  const legacyKey = createHash('sha256').update(JSON.stringify({ text, voice, style, model: TTS_MODEL })).digest('hex');
+  const legacyKey = createHash('sha256').update(JSON.stringify({ text, voice, style, model })).digest('hex');
   const key = createHash('sha256').update(`${legacyKey}:natural-pauses-v2`).digest('hex');
-  const plan = narrationPlan(text, voice, style, TTS_MODEL, project.voiceStyle);
+  const plan = narrationPlan(text, voice, style, model, project.voiceStyle);
   if (plan.texts.length > 1) {
     // A previous complete, aligned film remains reusable after adding chunking.
     // Its exact request key and saved track identity must match; existence alone
     // never upgrades a legacy recording into an approved long track.
     const previousKey = createHash('sha256').update(`${legacyKey}:natural-pauses-v2`).digest('hex');
-    const previous = await verifiedPreviousTrack(project, text, previousKey, narrationPath(previousKey), signal);
+    const previous = await verifiedPreviousTrack(project, text, previousKey, narrationPath(previousKey), signal, model);
     if (previous) return previous;
     const key = plan.manifest.key, file = narrationPath(key);
     await mkdir(folder, { recursive: true });
     if (onProgress) { if (!progressListeners.has(key)) progressListeners.set(key, new Set()); progressListeners.get(key).add(onProgress); if (progressSnapshots.has(key)) onProgress(progressSnapshots.get(key)); }
     try {
       const cached = await checkedNarrationArtifact(file, key, signal);
-      if (cached) { await utimes(file, new Date(), new Date()); onProgress?.({ version: 1, key, chunkKeys: plan.manifest.chunks.map((chunk) => chunk.key), completed: plan.texts.length, total: plan.texts.length, updatedAt: new Date().toISOString() }); return { key, ...cached, model: TTS_MODEL }; }
+      if (cached) { await utimes(file, new Date(), new Date()); onProgress?.({ version: 1, key, chunkKeys: plan.manifest.chunks.map((chunk) => chunk.key), completed: plan.texts.length, total: plan.texts.length, updatedAt: new Date().toISOString() }); return { key, ...cached, model }; }
       return await recordingRequest(key, signal, (recordingSignal) => longNarration(plan, voice, style, project, config, file, recordingSignal));
     } finally { if (onProgress) progressListeners.get(key)?.delete(onProgress); if (!progressListeners.get(key)?.size) { progressListeners.delete(key); progressSnapshots.delete(key); } }
   }
@@ -185,13 +188,13 @@ export async function narrationAudio(scene, project, config, signal, onProgress)
   try {
     if (checkpointed) {
       const verified = await checkedNarrationArtifact(file, key, signal, 600);
-      if (verified) { await utimes(file, new Date(), new Date()); return { key, ...verified, model: TTS_MODEL }; }
+      if (verified) { await utimes(file, new Date(), new Date()); return { key, ...verified, model }; }
     }
     if (!checkpointed && (await stat(file)).size > 44) {
       const info = await probe(file, signal);
       if (info.hasAudio && Number.isFinite(info.duration) && info.duration >= .3 && info.duration <= 600) {
         await utimes(file, new Date(), new Date());
-        return { key, file, duration: info.duration, model: TTS_MODEL };
+        return { key, file, duration: info.duration, model };
       }
     }
   } catch { signal?.throwIfAborted(); }
@@ -203,13 +206,13 @@ export async function narrationAudio(scene, project, config, signal, onProgress)
       try { reuse = (await stat(legacy)).size > 44; } catch {}
       if (reuse) {
         const temporary = `${file}.${attempt}.normalized.wav`;
-        try { const info = await normalizeNarration(legacy, temporary, recordingSignal); recordingSignal.throwIfAborted(); await rename(temporary, file); return { key, file, duration: info.duration, model: TTS_MODEL }; }
+        try { const info = await normalizeNarration(legacy, temporary, recordingSignal); recordingSignal.throwIfAborted(); await rename(temporary, file); return { key, file, duration: info.duration, model }; }
         // A malformed old cache is replaceable; cancellation must still stop.
         catch { recordingSignal.throwIfAborted(); }
         finally { await rm(temporary, { force: true }); }
       }
       const { duration } = await recordNarration(text, voice, style, project.voiceStyle, config, file, recordingSignal);
       await pruneNarrationCache(folder, file);
-      return { key, file, duration, model: TTS_MODEL };
+      return { key, file, duration, model };
   });
 }

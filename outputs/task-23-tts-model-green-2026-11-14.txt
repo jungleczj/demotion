@@ -1,0 +1,10 @@
+✔ configured production TTS model controls the request and separates recording caches (298.373416ms)
+✔ every chunk of long narration uses one configured TTS model and voice (212.293791ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 586.127416

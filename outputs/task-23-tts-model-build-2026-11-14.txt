@@ -1,0 +1,13 @@
+
+> gomotion-local-mvp@0.1.0 build
+> vite build
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 1607 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.61 kB │ gzip:   0.44 kB
+dist/assets/index-CpAbIwJz.css   71.93 kB │ gzip:  15.76 kB
+dist/assets/index-Chpb4TkG.js   393.53 kB │ gzip: 123.67 kB
+✓ built in 718ms

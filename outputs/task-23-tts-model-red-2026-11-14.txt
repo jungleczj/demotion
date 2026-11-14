@@ -1,0 +1,50 @@
+✖ configured production TTS model controls the request and separates recording caches (240.576791ms)
+✖ every chunk of long narration uses one configured TTS model and voice (212.705458ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 529.465208
+
+✖ failing tests:
+
+test at server/narration-model.test.mjs:18:1
+✖ configured production TTS model controls the request and separates recording caches (240.576791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'gemini-2.5-flash-preview-tts'
+  - 'offline-paid-pro'
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-model.test.mjs:29:12)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'gemini-2.5-flash-preview-tts',
+    expected: 'offline-paid-pro',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server/narration-model.test.mjs:37:1
+✖ every chunk of long narration uses one configured TTS model and voice (212.705458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'gemini-2.5-flash-preview-tts'
+  - 'offline-paid-pro'
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/narration-model.test.mjs:48:12)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'gemini-2.5-flash-preview-tts',
+    expected: 'offline-paid-pro',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

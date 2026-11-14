@@ -3,7 +3,7 @@ import languages from '../shared/languages.json' with { type: 'json' };
 import { requestNarration } from './narration-request.mjs';
 import { createCloudAPI } from './cloud/api.mjs';
 import scriptLimits from '../shared/script-limits.json' with { type: 'json' };
-import { aiConfigFromEnv, narrationConfig, redactAISecrets } from './ai-services.mjs';
+import { aiConfigFromEnv, narrationConfig, narrationModel, redactAISecrets } from './ai-services.mjs';
 import { visionJSON } from './vision-client.mjs';
 import { musicCatalog, curatedMusicPreviewRedirect } from './music-catalog.mjs';
 
@@ -81,7 +81,7 @@ export function createVercelHandler({ env = process.env, fetchImpl = fetch, clou
         if (!text || text.length > 500 || !voices.some((v) => v.key === voice) || !language || !Object.hasOwn(styles, style)) throw fail('试听文本、声音或语言无效，请重新选择', 400);
         if (!narrationConfig(config).visionKey) throw fail('声音服务尚未连接，请联系工作区管理员', 503);
         const prompt = `Speak fluent native ${language.speech}. The supplied narration is already in this language; do not translate or change any words. ${styles[style]} Read the exact narration as a human narrator, with natural phrasing and breaths. Do not add headings, music, sound effects or extra words. Read only the narration verbatim.\n\nNARRATION:\n${text}`;
-        const result = await requestNarration(config, env.TTS_MODEL || 'gemini-2.5-flash-preview-tts', { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, request.signal, { fetchImpl });
+        const result = await requestNarration(config, narrationModel(config), { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } }, request.signal, { fetchImpl });
         const part = result.candidates?.[0]?.content?.parts?.find((p) => p.inlineData?.data)?.inlineData;
         if (!part || !/^audio\/(?:L16|pcm)(?:;|$)/i.test(part.mimeType || '')) throw fail('声音服务未返回可播放音频，请重试', 502);
         const rate = Number(part.mimeType.match(/rate=(\d+)/)?.[1]) || 24000;

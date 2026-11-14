@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-14T10:37:37.822303+00:00",
+  "method": "read-only saved report and committed source audit",
+  "newProviderCalls": 0,
+  "newFilmTasks": 0,
+  "evidence": "voice-live-acceptance-2026-11-11.json",
+  "applicationEndpoint": "http://127.0.0.1:3027/api/narration",
+  "historicalModelFromCommittedSource": "gemini-2.5-flash-preview-tts",
+  "requestFormat": "POST /models/{model}:generateContent; generationConfig.responseModalities=[AUDIO]",
+  "successfulAudioSamples": 44,
+  "clientRequestsStarted": 50,
+  "successByPacificQuotaDay": {
+    "2026-11-10": 29,
+    "2026-11-11": 15
+  },
+  "rounds": [
+    {
+      "startedAt": "2026-11-11T04:07:54.147Z",
+      "finishedAt": "2026-11-11T04:08:26.881Z",
+      "stopReason": "http_429",
+      "summary": {
+        "success": 10,
+        "failed": 2,
+        "notRun": 32,
+        "requestsStarted": 12
+      }
+    },
+    {
+      "startedAt": "2026-11-11T04:12:26.491Z",
+      "finishedAt": "2026-11-11T04:13:32.444Z",
+      "stopReason": "http_429",
+      "summary": {
+        "success": 19,
+        "failed": 2,
+        "notRun": 13,
+        "requestsStarted": 21
+      }
+    },
+    {
+      "startedAt": "2026-11-11T08:39:53.930Z",
+      "finishedAt": "2026-11-11T08:40:44.687Z",
+      "stopReason": "http_429",
+      "summary": {
+        "success": 13,
+        "failed": 2,
+        "notRun": 0,
+        "requestsStarted": 15
+      }
+    },
+    {
+      "startedAt": "2026-11-11T15:54:35.595Z",
+      "finishedAt": "2026-11-11T15:54:42.412Z",
+      "stopReason": null,
+      "summary": {
+        "success": 2,
+        "failed": 0,
+        "notRun": 0,
+        "requestsStarted": 2
+      }
+    }
+  ],
+  "cacheStatusCounts": {
+    "not_reported_by_api": 44
+  },
+  "unknown": [
+    "Exact upstream-generation count: API did not report cache hits",
+    "Historical Google project identity / key identity",
+    "Historical runtime base URL override: not present in the preserved request report",
+    "Which older user-film tasks were deleted from temporary storage"
+  ],
+  "currentFailureEvidence": [
+    "task-23-paid-tts-probe-2026-11-14.json",
+    "task-23-gemini-switch-diagnosis-2026-11-14.md"
+  ],
+  "conclusion": "A current FreeTier limit=10 rejection is not evidence of a universal 10-per-day Gemini TTS limit. Historical app success exceeded 10 on one Pacific day; upstream count/project identity cannot be reconstructed."
+}

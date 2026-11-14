@@ -15,7 +15,7 @@ import { aiConfigFromEnv, audioReviewConfig, narrationConfig, redactAISecrets } 
 import { run } from './process.mjs';
 
 const config = { visionEnabled: true, visionProvider: 'openai', visionBase: 'https://api.deepseek.com', visionKey: 'offline-primary-key', visionModel: 'deepseek-flash', narrationKey: 'offline-tts-key', narrationBase: 'https://tts.invalid', reviewProvider: 'gemini', reviewKey: 'offline-review-key', reviewBase: 'https://review.invalid', reviewModel: 'offline-audio-review' };
-const env = { VISION_PROVIDER: 'openai', VISION_BASE_URL: config.visionBase, VISION_API_KEY: config.visionKey, VISION_MODEL: config.visionModel, NARRATION_API_KEY: config.narrationKey, NARRATION_BASE_URL: config.narrationBase, REVIEW_PROVIDER: config.reviewProvider, REVIEW_API_KEY: config.reviewKey, REVIEW_BASE_URL: config.reviewBase, REVIEW_MODEL: config.reviewModel };
+const env = { VISION_PROVIDER: 'openai', VISION_BASE_URL: config.visionBase, VISION_API_KEY: config.visionKey, VISION_MODEL: config.visionModel, NARRATION_API_KEY: config.narrationKey, NARRATION_BASE_URL: config.narrationBase, TTS_MODEL: 'models/offline-configured-tts', REVIEW_PROVIDER: config.reviewProvider, REVIEW_API_KEY: config.reviewKey, REVIEW_BASE_URL: config.reviewBase, REVIEW_MODEL: config.reviewModel };
 const job = () => ({ controller: new AbortController(), events: [] });
 const post = (route, body) => new Request(`https://studio.invalid/api/${route}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
 
@@ -63,7 +63,7 @@ test('native cloud writing uses the configured DeepSeek model and leaves audio p
   assert.equal(calls[0].headers.Authorization, `Bearer ${config.visionKey}`);
   const preview = await handler(post('narration', { voice: 'gemini:Kore', language: 'zh-CN', text: '海浪不断涌向海岸。' }));
   assert.equal(preview.status, 200);
-  assert.ok(calls[1].url.startsWith('https://tts.invalid/models/'));
+  assert.equal(calls[1].url, 'https://tts.invalid/models/offline-configured-tts:generateContent');
   assert.equal(calls[1].headers['x-goog-api-key'], config.narrationKey);
   const publicConfig = await (await handler(new Request('https://studio.invalid/api/config'))).json();
   assert.equal(publicConfig.visionProvider, 'openai'); assert.equal(publicConfig.visionModel, 'deepseek-flash');
