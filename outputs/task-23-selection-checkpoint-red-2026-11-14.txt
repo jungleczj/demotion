@@ -1,0 +1,54 @@
+✖ catalog candidates survive narration failure and restart (36.231334ms)
+✖ catalog candidates survive narration failure and restart even when catalog ranking also fails (12.024125ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 133.580583
+
+✖ failing tests:
+
+test at server/selection-checkpoint.test.mjs:14:3
+✖ catalog candidates survive narration failure and restart (36.231334ms)
+  AssertionError [ERR_ASSERTION]: a successful parallel catalog must not disappear when narration fails
+  + actual - expected
+
+  + []
+  - [
+  -   'pixabay:51207a15-7c7d-494d-91aa-aba1eb500067'
+  - ]
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/selection-checkpoint.test.mjs:56:14)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'pixabay:51207a15-7c7d-494d-91aa-aba1eb500067' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at server/selection-checkpoint.test.mjs:14:3
+✖ catalog candidates survive narration failure and restart even when catalog ranking also fails (12.024125ms)
+  AssertionError [ERR_ASSERTION]: a successful parallel catalog must not disappear when narration fails
+  + actual - expected
+
+  + []
+  - [
+  -   'pixabay:caa6ce87-4b91-45f2-a30c-af548fe8c6db'
+  - ]
+
+      at TestContext.<anonymous> (file:///Users/chenzhijiang/Documents/Codex/2026-11-09/gomotion-market-research/outputs/gomotion-mvp/server/selection-checkpoint.test.mjs:56:14)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'pixabay:caa6ce87-4b91-45f2-a30c-af548fe8c6db' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,12 @@
+✔ catalog candidates survive narration failure and restart (36.69675ms)
+✔ catalog candidates survive narration failure and restart even when catalog ranking also fails (12.064ms)
+✔ a rejected narration request does not trigger footage-recovery rounds (22.862125ms)
+✔ an exhausted narration timeout budget is not restarted by footage recovery (20.899625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.045917
