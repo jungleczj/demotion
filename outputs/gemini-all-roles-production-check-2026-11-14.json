@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-14T07:47:30.938Z",
+  "base": "https://gomotion-mvp.vercel.app",
+  "checks": [
+    {
+      "route": "health",
+      "status": 200,
+      "durationMs": 1481,
+      "result": {
+        "status": "ok",
+        "runtime": "vercel",
+        "productionReady": true
+      }
+    },
+    {
+      "route": "config",
+      "status": 200,
+      "durationMs": 2474,
+      "visionProvider": "gemini",
+      "visionModel": "gemini-3.8-flash",
+      "textProvider": "vision",
+      "visionConfigured": true,
+      "render": true
+    },
+    {
+      "route": "voices",
+      "status": 200,
+      "durationMs": 2070,
+      "voices": 30,
+      "languages": 15
+    }
+  ],
+  "ttsRequests": 0,
+  "fullFilmTasksSubmitted": 0,
+  "writeRequests": 1,
+  "write": {
+    "status": 503,
+    "durationMs": 4046,
+    "error": "视觉 AI 请求失败（HTTP 503），请检查模型与接口：This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+  },
+  "configurationPassed": true
+}

@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-14T07:51:31.887Z",
+  "query": "rocket launch",
+  "sources": [
+    "pixabay",
+    "coverr",
+    "nasa"
+  ],
+  "modelCalls": 0,
+  "ttsCalls": 0,
+  "fullFilmTasksSubmitted": 0,
+  "scope": "Catalog metadata only; no playback or semantic approval claimed.",
+  "durationMs": 9599,
+  "queriedSources": [
+    "pixabay",
+    "coverr",
+    "nasa"
+  ],
+  "warnings": [],
+  "total": 31,
+  "bySource": {
+    "pixabay": {
+      "returned": 24,
+      "samples": [
+        {
+          "id": "pixabay:228",
+          "title": "rocket launch, cape caneveral, nasa, space shuttle, endeavor, atlantis, discovery, space ship, space travel, power, space, explore, science, technology, boosters, usa, america, lift-off, gravitation, gravity, speed, accelerate, acceleration, fuel, altitude, astronautics, space exploration, propulsion, jets, fire, flame, heat, astronauts",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "id": "pixabay:8",
+          "title": "rocket, thrusters, nasa, space shuttle, endeavor, atlantis, discovery, space ship, rocket launch, space travel, power, space, explore, science, technology, boosters, usa, lift-off, gravitation, gravity, speed, accelerate, acceleration, fuel, altitude, astronautics, space exploration, propulsion, jets, fire, flame, heat",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "landscapeMetadataNotRejected": 24,
+      "portraitMetadataNotRejected": 0
+    },
+    "coverr": {
+      "returned": 1,
+      "samples": [
+        {
+          "id": "coverr:tN7DBjiJ6U",
+          "title": "Rocket ship launch animation",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "landscapeMetadataNotRejected": 1,
+      "portraitMetadataNotRejected": 0
+    },
+    "nasa": {
+      "returned": 6,
+      "samples": [
+        {
+          "id": "nasa:KSC-20230507-MH-RLS01-TROPICS_Rocket_Launch-Rocket_Lab-WON_3330130",
+          "title": "TROPICS Rocket Launch",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "nasa:KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988",
+          "title": "Rocket Lab PREFIRE-1 Launch",
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "landscapeMetadataNotRejected": 6,
+      "portraitMetadataNotRejected": 6,
+      "dimensionsNeedActualProbe": true
+    }
+  },
+  "orientationScope": "Metadata guards only. NASA catalog dimensions are unknown (0x0); not rejected does not mean measured orientation or quality passed."
+}

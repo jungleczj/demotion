@@ -1,0 +1,42 @@
+✔ environment role resolution preserves legacy Gemini and does not reuse a primary image key for audio (0.611417ms)
+✔ all model role credentials are redacted together (0.05775ms)
+✔ narration sends only the independent audio key to the audio endpoint (1.401333ms)
+✔ DeepSeek alone cannot be accidentally used as a TTS credential (0.230666ms)
+✔ native cloud writing uses the configured DeepSeek model and leaves audio previews on their own service (5.118834ms)
+✔ image selection sends DeepSeek image blocks with thinking disabled and never an audio payload (0.467709ms)
+✔ cloud workers receive every independent role at runtime while the task envelope stays credential-free (0.292042ms)
+✔ audio timing keeps the selected recording and routes actual audio to the retained review service (243.977208ms)
+✔ final film review chooses the retained audiovisual role before validating the real export (1.179875ms)
+✔ final audiovisual review actually sends an audio-bearing MP4 to its independent Gemini service (172.78425ms)
+✔ the exact successful media review is persisted across jobs without repeating upstream usage (25.1595ms)
+✔ truncated provider completions are never cached even when their JSON is well formed (1.464458ms)
+✔ uncached requests retain the actual call limit error instead of becoming network failures (0.617708ms)
+✔ changed media, text, duration, aspect, prompt, model, endpoint or account cannot reuse a review (5.6485ms)
+✔ incomplete and failed responses never become reusable evidence; other stages remain uncached (1.241709ms)
+✔ expired or malformed records are ignored and cancellation cannot be satisfied from cache (1.925959ms)
+✔ a valid JSON record with incorrectly typed audit fields is a cache miss, not a playback-generation failure (3.08175ms)
+✔ malformed intervals in rejected observations cannot make the optional cache fail generation (0.452917ms)
+✔ a rejected watermarked observation remains rejected when reused (0.909ms)
+✔ a missing or duplicated candidate observation is never cached (0.735833ms)
+✔ a cache write failure is optional and a request cancelled after HTTP completion leaves no evidence (1.12975ms)
+✔ compatible frame-based endpoints reuse only their own normally completed responses (0.97725ms)
+✔ audio alignment survives a temporary 503 without changing the supplied recording (22.052ms)
+✔ transient review failures stop after three requests and retain their status (0.685125ms)
+✔ retry backoff respects cancellation and cannot dispatch another request (0.221208ms)
+✔ expired processing budget is reported as a request deadline, not a proxy failure (15.097083ms)
+✔ HTTP 401 is not retried (0.258583ms)
+✔ HTTP 402 is not retried (0.125875ms)
+✔ HTTP 403 is not retried (0.109417ms)
+✔ HTTP 400 is not retried (0.130666ms)
+✔ explicit billing and daily quota evidence on 429 are not retried (0.322083ms)
+✔ transport interruption can retry, while a disabled retry policy remains single-shot (0.606167ms)
+✔ whole-film review does not renew an exhausted inner request budget (0.285875ms)
+✔ automatic retries stop at the remaining film call limit (0.192459ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 712.736959

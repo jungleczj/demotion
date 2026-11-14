@@ -1,0 +1,18 @@
+{
+  "health": {
+    "status": "ok"
+  },
+  "config": {
+    "visionProvider": "gemini",
+    "visionBase": "https://generativelanguage.googleapis.com/v1beta",
+    "visionModel": "gemini-3.8-flash",
+    "textProvider": "vision",
+    "visionConfigured": true,
+    "render": true
+  },
+  "productions": {
+    "count": 7,
+    "active": 0
+  },
+  "archiveSHA256": "8a4b7654047bcf28806ce169ca20cf7e449c8c3ebbe3380d63253d2ffc9c9283"
+}

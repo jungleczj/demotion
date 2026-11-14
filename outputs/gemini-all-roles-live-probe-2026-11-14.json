@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-14T07:43:38.017Z",
+  "roles": {
+    "textProvider": "vision",
+    "visionProvider": "gemini",
+    "visionModel": "gemini-3.8-flash",
+    "narrationProvider": "gemini",
+    "reviewProvider": "gemini"
+  },
+  "allFourKeysMatchRequested": true,
+  "providerRequests": 1,
+  "ttsRequests": 0,
+  "fullFilmTasksSubmitted": 0,
+  "inputMedia": {
+    "kind": "actual-source-image",
+    "bytes": 1304056
+  },
+  "passed": false,
+  "error": "视觉 AI 请求处理超时，已保留草稿，请稍后重试",
+  "events": [
+    {
+      "stage": "gemini-role-switch-probe",
+      "engine": "gemini",
+      "model": "gemini-3.8-flash",
+      "status": "failed",
+      "inputType": "timestamped-images",
+      "mediaCount": 1,
+      "at": "2026-11-14T07:43:38.020Z",
+      "attempts": 1,
+      "durationMs": 45005,
+      "detail": "视觉 AI 请求处理超时，已保留草稿，请稍后重试"
+    }
+  ],
+  "actualDispatches": 1
+}

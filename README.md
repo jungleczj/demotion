@@ -20,6 +20,8 @@ npm run dev
 
 已接入同项目原生API、持久任务、私有媒体存储和独立视频执行环境；历史两幕云短片及检查点恢复通过。[云端历史实测](outputs/task-14-cloud-live-acceptance-2026-11-11.json)、[部署说明](outputs/gomotion-mvp/DEPLOYMENT.md)。最新短录音生成成功，但音频对齐仍超时，新版整片尚未复验通过。[当前失败与修复](outputs/narration-resume-progress-2026-11-14.md)。目录恢复不等于生成恢复。
 
+当前模型已按用户要求统一切回Gemini；素材源实际并行查询有返回，但配音每日限额及主模型繁忙仍阻塞生成。[任务23排查与切换](outputs/task-23-gemini-switch-diagnosis-2026-11-14.md)。
+
 ## 代码与任务
 
 - [应用说明](outputs/gomotion-mvp/README.md)

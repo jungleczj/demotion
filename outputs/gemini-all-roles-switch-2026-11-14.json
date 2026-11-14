@@ -1,0 +1,255 @@
+{
+  "at": "2026-11-14T07:39:49.518329+00:00",
+  "localFiles": [
+    {
+      "file": "outputs/gomotion-mvp/.env",
+      "roles": [
+        "VISION_API_KEY",
+        "GEMINI_API_KEY",
+        "NARRATION_API_KEY",
+        "REVIEW_API_KEY"
+      ],
+      "allMatchRequestedKey": true
+    }
+  ],
+  "localVisionProvider": "gemini",
+  "localVisionModel": "gemini-3.8-flash",
+  "localTextProvider": "vision",
+  "localRoles": [
+    "GEMINI_API_KEY",
+    "VISION_API_KEY",
+    "NARRATION_API_KEY",
+    "REVIEW_API_KEY"
+  ],
+  "allLocalRolesMatchRequestedKey": true,
+  "archiveSHA256Before": "8a4b7654047bcf28806ce169ca20cf7e449c8c3ebbe3380d63253d2ffc9c9283",
+  "taskCountBefore": 7,
+  "activeTasksBefore": [],
+  "credentialsIncluded": false,
+  "cloudUpdates": [
+    {
+      "target": "production",
+      "name": "GEMINI_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "VISION_PROVIDER",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "VISION_BASE_URL",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "VISION_MODEL",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "VISION_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "TEXT_AI_PROVIDER",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "NARRATION_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "NARRATION_BASE_URL",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "REVIEW_PROVIDER",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "REVIEW_BASE_URL",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "REVIEW_MODEL",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "production",
+      "name": "REVIEW_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "GEMINI_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "VISION_PROVIDER",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "VISION_BASE_URL",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "VISION_MODEL",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "VISION_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "TEXT_AI_PROVIDER",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "NARRATION_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "NARRATION_BASE_URL",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "REVIEW_PROVIDER",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "REVIEW_BASE_URL",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "REVIEW_MODEL",
+      "operation": "add",
+      "exitCode": 0,
+      "updated": true
+    },
+    {
+      "target": "preview",
+      "name": "REVIEW_API_KEY",
+      "operation": "update",
+      "exitCode": 0,
+      "updated": true
+    }
+  ],
+  "cloudTarget": {
+    "project": "gomotion-mvp",
+    "projectId": "prj_Ql3SEgoVRfmheFaF48BPO9RWI3bm",
+    "scope": "signflow2"
+  },
+  "allCloudRolesUpdated": true,
+  "updatedAt": "2026-11-14T07:43:14.231034+00:00",
+  "deploymentPending": false,
+  "recentFailureDiagnosis": [
+    {
+      "id": "fb6b9937-7ee9-4da7-a65e-7a927a94051a",
+      "title": "从地球出发，向月球前进",
+      "errorDetail": "配音服务每日配额已达到上限（HTTP 429）：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [url] To monitor your current usage, head to: [url]  * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10, model: gemini-2.5-flash-tts, description: Generate content requests per day limit exceeded on Free Tier. See [url] Please retry in 27m43.09404718s.",
+      "planningSucceeded": true
+    },
+    {
+      "id": "1aa43b71-ff42-4b22-94df-3f4ece1787d0",
+      "title": "天空，永远属于生命",
+      "errorDetail": "配音服务每日配额已达到上限（HTTP 429）：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [url] To monitor your current usage, head to: [url]  * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10, model: gemini-2.5-flash-tts, description: Generate content requests per day limit exceeded on Free Tier. See [url] Please retry in 29m20.580454134s.",
+      "planningSucceeded": true
+    },
+    {
+      "id": "d82f69d3-8ff2-4c26-b836-34864a9fecd9",
+      "title": "天空，永远属于生命",
+      "errorDetail": "配音服务限流或配额受限（HTTP 429）：You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: [url] To monitor your current usage, head to: [url]  * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 3, model: gemini-2.5-flash-tts, description: Generate content requests per minute limit exceeded on Free Tier. See [url] Please retry in 53.338252836s.",
+      "planningSucceeded": true
+    }
+  ],
+  "localActivationEvidence": "gemini-all-roles-local-activation-2026-11-14.json",
+  "developmentCloudEnvironment": "No Gemini variables configured previously; local development uses the updated ignored app .env.",
+  "redeployExitCode": 0,
+  "redeployAt": "2026-11-14T07:46:12.751957+00:00",
+  "deploymentURL": "https://gomotion-2o1f9jkx7-signflow2.vercel.app",
+  "deployment": {
+    "id": "dpl_56sBETnJjpwRzpFz7Z5zAKKophrQ",
+    "url": "https://gomotion-2o1f9jkx7-signflow2.vercel.app",
+    "target": "production",
+    "readyState": "READY",
+    "alias": "https://gomotion-mvp.vercel.app"
+  },
+  "productionEvidence": "gemini-all-roles-production-check-2026-11-14.json",
+  "actualImageProbePassed": false,
+  "actualTextProbePassed": false,
+  "providerCallsThisChange": {
+    "image": 1,
+    "text": 1,
+    "tts": 0,
+    "fullFilm": 0
+  },
+  "regression": {
+    "passed": 34,
+    "failed": 0,
+    "skipped": 0
+  },
+  "materialsProbeEvidence": "task-23-source-parallel-probe-2026-11-14.json",
+  "completedScope": "Configuration/model/key switch only; generation recovery and same-script benchmark not passed."
+}
